@@ -1,19 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpInterceptorService } from './http-interceptor.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
 import {FormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminPageComponent,
-    LoginComponent
+    AdminComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -21,13 +22,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpInterceptorService,
-      multi: true
-    }
-  ],
+  providers: [AuthInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
