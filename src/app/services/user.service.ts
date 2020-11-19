@@ -6,19 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
-  private userUrl = 'http://localhost:8080/api/test/user';
-  private pmUrl = 'http://localhost:8080/api/test/pm';
-  private adminUrl = 'http://localhost:8081/admin';
+  private managerUrl = 'http://localhost:8080/manager';
+  private adminUrl = 'http://localhost:8080/admin';
 
   constructor(private http: HttpClient) { }
 
-  getUserBoard(): Observable<string> {
-    return this.http.get(this.userUrl, { responseType: 'text' });
-  }
-
-  getPMBoard(): Observable<string> {
-    return this.http.get(this.pmUrl, { responseType: 'text' });
+  getManagerBoard(): Observable<string> {
+    return this.http.get(this.managerUrl, { responseType: 'text' });
   }
 
   getAdminBoard(): Observable<string> {

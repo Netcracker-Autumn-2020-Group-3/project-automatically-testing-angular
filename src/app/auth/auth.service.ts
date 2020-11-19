@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { JwtResponse } from './jwt-response';
 import { AuthLoginInfo } from './login-info';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 
 
 const httpOptions = {
@@ -18,7 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
-  private loginUrl = 'http://localhost:8082/login';
+  private loginUrl = 'http://localhost:8080/login';
   private signupUrl = 'http://localhost:8080/api/auth/signup';
 
   public getToken(): string {
@@ -30,6 +30,13 @@ export class AuthService {
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
+
+
+/*
+ attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
+    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
+  }
+*/
 
 
 
