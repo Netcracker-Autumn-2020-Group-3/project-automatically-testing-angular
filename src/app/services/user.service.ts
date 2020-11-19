@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
   private managerUrl = 'http://localhost:8080/manager';
-  private adminUrl = 'http://localhost:8080/admin';
+  private adminUrl = 'https://automatically-testing-java.herokuapp.com/admin';
 
   constructor(private http: HttpClient) { }
 
