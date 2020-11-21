@@ -7,7 +7,9 @@ import { TokenStorageService } from './auth/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  // @ts-ignore
   private roles: string[];
+  // @ts-ignore
   public authority: string;
 
   constructor(private tokenStorage: TokenStorageService) { }
