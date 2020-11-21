@@ -1,10 +1,11 @@
 .category-wrap {
   padding: 15px;
   background: white;
-  width: 300px;
+  width: 15%;
   box-shadow: 2px 2px 8px rgba(0,0,0,.1);
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
+  height: 100%;
 }
 .category-wrap h3 {
   font-size: 35px;
@@ -55,4 +56,13 @@
 .category-wrap a:hover {
   background: #73d4f5;
   color: #ffffff;
+}
+.category-wrap li.settingComponent {
+  position: relative;
+
+}
+.category-wrap li.logoutComponent {
+  position: relative;
+
+
 }
