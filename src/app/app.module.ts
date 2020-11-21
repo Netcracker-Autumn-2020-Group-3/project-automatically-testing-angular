@@ -8,8 +8,9 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
-import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
+import { AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 import { ManagerComponent } from './manager/manager.component';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { ManagerComponent } from './manager/manager.component';
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    ManagerComponent
+    ManagerComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
