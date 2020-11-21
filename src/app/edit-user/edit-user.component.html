@@ -1,0 +1,50 @@
+
+<div class="edit-user-block">
+  <form [formGroup]="updateUserForm"  (ngSubmit)="onSubmit(updateUserForm.value)">
+
+    <div class="form-group">
+      <label>Name: {{user.name}}</label>
+      <input class="form-control" name="username" formControlName="name" id="username" type="text"
+             [placeholder]="user.name">
+    </div>
+
+
+    <div class="form-group">
+      <label>Surname: {{user.surname}}</label>
+      <input class="form-control" name="surname" type="text" formControlName="surname"
+             [placeholder]="user.surname">
+    </div>
+
+    <div class="form-group">
+      <label>Email: {{user.email}}</label>
+      <input class="form-control" name="email" type="email" formControlName="email"
+             [placeholder]="user.email">
+    </div>
+
+    <div class="form-group">
+      <label>Role: {{user.role}}</label>
+      <select class="form-control" id="role" name="role" formControlName="role">
+        <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+        <option value="ROLE_MANAGER">ROLE_MANAGER</option>
+        <option value="ROLE_ENGINEER">ROLE_ENGINEER</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Status:
+        <span *ngIf="user.enabled; else elseBlock">Active</span>
+        <ng-template #elseBlock>No active</ng-template>
+      </label>
+      <div>
+        <select class="form-control" id="enabled" name="enabled" formControlName="enabled">
+          <option value="activate">Activate</option>
+          <option value="deactivate">Deactivate</option>
+        </select>
+      </div>
+    </div>
+    <div class="edit-user-block-button">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>
+
