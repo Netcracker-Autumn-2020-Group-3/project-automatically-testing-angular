@@ -9,6 +9,13 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 import { ManagerComponent } from './manager/manager.component';
+import { MainLibraryListActionsComponent } from './main-library-list-actions/main-library-list-actions.component';
+import { SearchActionsComponent } from './main-library-list-actions/search-actions/search-actions.component';
+import { ListActionsComponent } from './main-library-list-actions/list-actions/list-actions.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+
+
 
 @NgModule({
   declarations: [
@@ -16,15 +23,20 @@ import { ManagerComponent } from './manager/manager.component';
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    ManagerComponent
+    ManagerComponent,
+    MainLibraryListActionsComponent,
+    SearchActionsComponent,
+    ListActionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
