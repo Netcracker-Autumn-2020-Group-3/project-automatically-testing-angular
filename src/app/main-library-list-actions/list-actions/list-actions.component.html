@@ -7,15 +7,19 @@
   </tr>
   </thead>
   <tbody>
+
   <tr *ngFor="let action of actions | paginate: { itemsPerPage: 9, currentPage: p};">
-    <th scope="row">{{action.id}}</th>
-    <td>{{action.name}}</td>
-    <td>{{action.description}}</td>
+    <td scope="row">{{action.actionId}}</td>
+    <td>{{action.actionName}}</td>
+    <td>{{action.actionDescription}}</td>
   </tr>
   </tbody>
 
 
+
 </table>
+
+
 <div class="d-flex justify-content-center fixed-bottom mb-5">
 <pagination-controls  class="" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
 </div>

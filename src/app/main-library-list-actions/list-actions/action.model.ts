@@ -1,12 +1,13 @@
-export class Actions{
-  public id: number;
-  public name: string;
-  public description: string;
+export class Action{
 
-  constructor(id: number, name: string, description: string) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
+
+  constructor(
+    // tslint:disable-next-line:variable-name
+    public actionId: string,
+    public actionName: string,
+    public actionDescription: string
+  ) {
+
   }
 
 }

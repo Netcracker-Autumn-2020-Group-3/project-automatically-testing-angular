@@ -4,8 +4,12 @@
          class="form-control mr-sm-3"
          placeholder="Name"
          aria-label="Username"
-         aria-describedby="basic-addon1">
+         aria-describedby="basic-addon1"
+         name="actionName"
+         [(ngModel)]="actionName">
+         <!--(ngModelChange)="search()">-->
   <button type="button" class="btn btn-outline-success" style="background: white" >Search</button>
 </div>
 </nav>
+<app-list-actions [actions]="actions"></app-list-actions>
 

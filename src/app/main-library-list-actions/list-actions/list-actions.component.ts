@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Actions} from './action.model';
+import {Action} from './action.model';
+import {LibraryActionService} from '../../services/library-action.service';
 
 @Component({
   selector: 'app-list-actions',
@@ -8,25 +9,20 @@ import {Actions} from './action.model';
 })
 export class ListActionsComponent implements OnInit {
 
-    actions: Actions[] = [new Actions(1, 'text', 'desc'),
-    new Actions(2, 'text', 'desc'),
-    new Actions(3, 'wext', 'desc'),
-    new Actions(4, 'sext', 'desc'),
-    new Actions(5, 'text', 'desc'),
-    new Actions(6, 'text', 'desc'),
-    new Actions(7, 'text', 'desc'),
-    new Actions(8, 'text', 'desc'),
-    new Actions(9, 'text', 'desc'),
-    new Actions(11, 'text', 'desc'),
-    new Actions(12, 'text', 'desc'),
-    new Actions(13, 'text', 'desc'),
-    new Actions(14, 'text', 'desc')];
+    @Input()actions: Action[];
 
     p = 1;
 
-  constructor() { }
+  constructor(private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
+
+    /*this.actionService.getActions().subscribe((response => {
+      this.actions = response;
+    }));*/
+
   }
+
+
 
 }
