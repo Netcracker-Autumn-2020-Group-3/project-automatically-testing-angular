@@ -48,7 +48,11 @@ export class UsersComponent implements OnInit {
   onSearchSubmit() {
     this.page = 1;
     this.userService.getPage(this.getParams()).subscribe(data => {
-      this.users = data;
+      this.users = data.map(user => {
+        user.role = user.role.toLocaleLowerCase().replace('role_', '');
+        user.enabled = user.enabled ? 'yes' : 'no';
+        return user;
+      });
     }, error => {
       console.log(error);
     });

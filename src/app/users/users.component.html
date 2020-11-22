@@ -1,16 +1,16 @@
 <h5>Users list (click to edit)</h5>
-<table class="table bg-light">
+<table class="table bg-light search-nav">
   <thead>
   <tr>
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
-                           [(ngModel)]="search.name"></th>
+                           [(ngModel)]="search.name" (change)="onSearchSubmit()"></th>
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Surname" aria-label="Search"
-                           [(ngModel)]="search.surname"></th>
+                           [(ngModel)]="search.surname" (change)="onSearchSubmit()"></th>
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search"
-                           [(ngModel)]="search.email"></th>
+                           [(ngModel)]="search.email" (change)="onSearchSubmit()"></th>
     <th scope="col">
       <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="role" [(ngModel)]="search.role">
+        <select class="custom-select mr-sm-2" id="role" [(ngModel)]="search.role" (change)="onSearchSubmit()">
           <option selected value="">Role</option>
           <option value="ROLE_ADMIN">Admin</option>
           <option value="ROLE_MANAGER">Manager</option>
@@ -20,16 +20,17 @@
     </th>
     <th scope="col">
       <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField">
+        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField"  (change)="onSearchSubmit()">
           <option selected value="">Sort by</option>
-          <option value="name">Name</option>
+          <option value="user_id">Id</option>
+          <option value="name" >Name</option>
           <option value="surname">Surname</option>
           <option value="email">Email</option>
         </select>
       </div>
     </th>
     <th scope="col">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="onSearchSubmit()">Search</button>
+      <button class="btn btn-outline-success" type="submit" (click)="onSearchSubmit()">Search</button>
     </th>
   </tr>
   </thead>
@@ -39,7 +40,7 @@
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">#</th>
+    <th scope="col">Id</th>
     <th scope="col">Name</th>
     <th scope="col">Surname</th>
     <th scope="col">Email</th>
