@@ -5,11 +5,11 @@ import {UserService} from '../services/user.service';
 import {HttpParams} from '@angular/common/http';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-users-list',
+  templateUrl: './users-list.component.html',
+  styleUrls: ['./users-list.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersListComponent implements OnInit {
 
   users: User[] = [];
   search = {
