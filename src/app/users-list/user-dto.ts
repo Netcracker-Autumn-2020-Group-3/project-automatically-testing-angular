@@ -1,4 +1,4 @@
-export interface UserNew {
+export interface UserDto {
   userId: string;
   name: string;
   surname: string;

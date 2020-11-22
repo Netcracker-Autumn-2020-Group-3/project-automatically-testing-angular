@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserNew} from './user';
-import {ActivatedRoute} from '@angular/router';
+import {UserDto} from './user-dto';
 import {UserService} from '../services/user.service';
 import {HttpParams} from '@angular/common/http';
 
@@ -11,7 +10,7 @@ import {HttpParams} from '@angular/common/http';
 })
 export class UsersListComponent implements OnInit {
 
-  users: UserNew[] = [];
+  users: UserDto[] = [];
   search = {
     name: '', surname: '', userId: '', role: '', email: '', enabled: '', sortField: ''
   };
@@ -40,7 +39,7 @@ export class UsersListComponent implements OnInit {
     return params;
   }
 
-  onSelect(user: UserNew) {
+  onSelect(user: UserDto) {
     console.log(user);
     // TODO route to edit page
   }
@@ -97,6 +96,4 @@ export class UsersListComponent implements OnInit {
       console.log(error);
     });
   }
-
-
 }

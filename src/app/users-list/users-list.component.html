@@ -51,7 +51,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users" (click)="onSelect(user)">
+  <tr *ngFor="let user of users" routerLink="/edituser/{{user.userId}}">
     <th scope="row">{{user.userId}}</th>
     <td>{{user.name}}</td>
     <td>{{user.surname}}</td>
