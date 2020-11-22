@@ -1,4 +1,6 @@
-<h5>Users list (click to edit)</h5>
+<div class="m-3">
+  <h5>Users list (click to edit)</h5>
+</div>
 <table class="table bg-light search-nav">
   <thead>
   <tr>
@@ -20,10 +22,10 @@
     </th>
     <th scope="col">
       <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField"  (change)="onSearchSubmit()">
+        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
           <option selected value="">Sort by</option>
           <option value="user_id">Id</option>
-          <option value="name" >Name</option>
+          <option value="name">Name</option>
           <option value="surname">Surname</option>
           <option value="email">Email</option>
         </select>
