@@ -13,6 +13,8 @@ import {LibraryActionService} from '../../services/library-action.service';
 export class SearchActionsComponent implements OnInit {
   actionName: string;
   actions: Action[];
+  reserveActions: Action[];
+  filterActions: Action[];
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -33,6 +35,18 @@ export class SearchActionsComponent implements OnInit {
       );
     }
   }
+
+  searchAction(){
+     if (this.actionName === ''){
+       this.actions = [];
+       this.actions = [... this.reserveActions];
+     }else{
+       this.reserveActions = [... this.actions];
+       this.actionService.getActionsByName(this.actionName).subscribe((response => {
+         this.actions = response;
+       }));
+     }
+   }
 
 
 

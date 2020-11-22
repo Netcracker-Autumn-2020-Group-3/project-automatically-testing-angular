@@ -1,5 +1,5 @@
 <nav class=" rounded navbar navbar-expand-lg navbar-light bg-light mb-4">
-<div class="input-group  ml-5 w-75" >
+<div class="input-group " >
   <input type="text"
          class="form-control mr-sm-3"
          placeholder="Name"
@@ -8,7 +8,7 @@
          name="actionName"
          [(ngModel)]="actionName">
          <!--(ngModelChange)="search()">-->
-  <button type="button" class="btn btn-outline-success" style="background: white" >Search</button>
+  <button type="button" class="btn btn-outline-success" (click)="searchAction()" style="background: white" >Search</button>
 </div>
 </nav>
 <app-list-actions [actions]="actions"></app-list-actions>
