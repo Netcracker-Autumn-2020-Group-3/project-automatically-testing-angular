@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {User} from '../interfaces/user';
+import {UserNew} from './user';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../services/user.service';
 import {HttpParams} from '@angular/common/http';
@@ -11,7 +11,7 @@ import {HttpParams} from '@angular/common/http';
 })
 export class UsersListComponent implements OnInit {
 
-  users: User[] = [];
+  users: UserNew[] = [];
   search = {
     name: '', surname: '', userId: '', role: '', email: '', enabled: '', sortField: ''
   };
@@ -40,7 +40,7 @@ export class UsersListComponent implements OnInit {
     return params;
   }
 
-  onSelect(user: User) {
+  onSelect(user: UserNew) {
     console.log(user);
     // TODO route to edit page
   }
