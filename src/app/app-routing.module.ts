@@ -6,6 +6,7 @@ import {HomeComponent} from './home/home.component';
 import {ManagerComponent} from './manager/manager.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
+import {UsersComponent} from './users/users.component';
 
 
 const routes: Routes = [
@@ -14,8 +15,7 @@ const routes: Routes = [
   { path: 'auth/login', component: LoginComponent},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'edituser/:id', component: EditUserComponent },
-  { path: 'home', component: HomeComponent, pathMatch: 'full'},
-  { path: 'users', component: UsersListComponent}
+  { path: 'users', component: UsersComponent}
 ];
 
 @NgModule({

@@ -8,6 +8,10 @@ import { UserNew } from '../users-list/user';
 //import {HttpClient, HttpParams} from '@angular/common/http';
 //import {Observable} from 'rxjs';
 //import {User} from '../interfaces/user';
+//import {Injectable} from '@angular/core';
+//import {HttpClient, HttpParams} from '@angular/common/http';
+//import {Observable} from 'rxjs';
+//import {User} from '../users-list/user';
 import {Params} from '@angular/router';
 
 @Injectable({

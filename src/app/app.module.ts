@@ -13,6 +13,7 @@ import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor
 import { ManagerComponent } from './manager/manager.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {UsersListComponent} from './users-list/users-list.component';
     HomeComponent,
     ManagerComponent,
     UsersListComponent,
-    EditUserComponent
+    EditUserComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
