@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 import { ManagerComponent } from './manager/manager.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
+import {UsersListComponent} from './users-list/users-list.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { EditUserComponent } from './edit-user/edit-user.component';
     AdminComponent,
     HomeComponent,
     ManagerComponent,
+    UsersListComponent,
     EditUserComponent
   ],
   imports: [

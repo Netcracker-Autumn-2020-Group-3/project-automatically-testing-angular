@@ -1,0 +1,74 @@
+<h5>Users list (click to edit)</h5>
+<table class="table bg-light search-nav">
+  <thead>
+  <tr>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
+                           [(ngModel)]="search.name" (change)="onSearchSubmit()"></th>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Surname" aria-label="Search"
+                           [(ngModel)]="search.surname" (change)="onSearchSubmit()"></th>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search"
+                           [(ngModel)]="search.email" (change)="onSearchSubmit()"></th>
+    <th scope="col">
+      <div class="col-auto">
+        <select class="custom-select mr-sm-2" id="role" [(ngModel)]="search.role" (change)="onSearchSubmit()">
+          <option selected value="">Role</option>
+          <option value="ROLE_ADMIN">Admin</option>
+          <option value="ROLE_MANAGER">Manager</option>
+          <option value="ROLE_ENGINEER">Engineer</option>
+        </select>
+      </div>
+    </th>
+    <th scope="col">
+      <div class="col-auto">
+        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField"  (change)="onSearchSubmit()">
+          <option selected value="">Sort by</option>
+          <option value="user_id">Id</option>
+          <option value="name" >Name</option>
+          <option value="surname">Surname</option>
+          <option value="email">Email</option>
+        </select>
+      </div>
+    </th>
+    <th scope="col">
+      <button class="btn btn-outline-success" type="submit" (click)="onSearchSubmit()">Search</button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Surname</th>
+    <th scope="col">Email</th>
+    <th scope="col">Role</th>
+    <th scope="col">Is enabled</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let user of users" (click)="onSelect(user)">
+    <th scope="row">{{user.userId}}</th>
+    <td>{{user.name}}</td>
+    <td>{{user.surname}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.role}}</td>
+    <td>{{user.enabled}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pagination nav justify-content-center">
+    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
+    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
+    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
+    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+
