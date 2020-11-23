@@ -15,14 +15,5 @@ export class ListActionsComponent implements OnInit {
 
   constructor(private actionService: LibraryActionService) { }
 
-  ngOnInit(): void {
-
-    /*this.actionService.getActions().subscribe((response => {
-      this.actions = response;
-    }));*/
-
-  }
-
-
-
+  ngOnInit(): void {}
 }

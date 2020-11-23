@@ -6,7 +6,6 @@ import {HomeComponent} from './home/home.component';
 import {ManagerComponent} from './manager/manager.component';
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 
-
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'admin', component: AdminComponent},
