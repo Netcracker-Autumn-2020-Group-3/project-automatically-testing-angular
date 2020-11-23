@@ -14,7 +14,7 @@ export class SearchActionsComponent implements OnInit {
   actionName: string;
   actions: Action[];
   reserveActions: Action[];
-  filterActions: Action[];
+
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
