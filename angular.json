@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "project-automatically-testing-angular"
+  "defaultProject": "project-automatically-testing-angular",
+  "cli": {
+    "analytics": "4e5aa2fd-798c-458e-8a8c-d46e99fd08ae"
+  }
 }

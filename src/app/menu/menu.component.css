@@ -1,0 +1,68 @@
+.category-wrap {
+  padding: 15px;
+  background: white;
+  width: 250px;
+  box-shadow: 2px 2px 8px rgba(0,0,0,.1);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-align: center;
+  height: 100%;
+}
+.category-wrap h3 {
+  font-size: 35;
+  color: #000000;
+  margin: 0 0 10px;
+  padding: 0 5px;
+  position: relative;
+  font-weight: bolder;
+
+}
+.category-wrap h3:after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  background: #123945;
+  position: absolute;
+  right: 5px;
+  bottom: 2px;
+  box-shadow: -8px -8px #73d4f5, 0 -8px #73d4f5, -8px 0 #73d4f5;
+}
+.category-wrap ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 0px solid #000000
+}
+.category-wrap li {margin: 12px 0 0 0px;}
+.category-wrap a {
+  text-decoration: black;
+  display: block;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: normal;
+  text-align: center;
+  color: #000000;
+  padding: 5px;
+  position: relative;
+  transition: .3s linear;
+}
+.category-wrap a:after {
+  content:"\f18e";
+  font-family: FontAwesome;
+  position: absolute;
+  right: 5px;
+  color: white;
+  transition: .2s linear;
+}
+.category-wrap a:hover {
+  background: #73d4f5;
+  color: #ffffff;
+}
+.category-wrap li.settingComponent {
+  position: relative;
+
+}
+.category-wrap li.logoutComponent {
+  position: relative;
+
+
+}
