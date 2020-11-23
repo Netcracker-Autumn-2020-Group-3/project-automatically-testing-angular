@@ -10,8 +10,8 @@ export class LibraryActionService {
 
   constructor(private http: HttpClient) { }
 
-  private getActionsUrl = 'http://localhost:8080/library/actions';
-  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
+  private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
+  private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
 
   getActions(): Observable<Action[]>{
     return this.http.get<Action[]>(this.getActionsUrl);
