@@ -1,0 +1,14 @@
+button{
+  width: 160px;
+  color: grey;
+  height: 40px;
+  border-color: #E5E5E5;
+}
+.button-selected{
+  background: white;
+  z-index: 2;
+  position: absolute;
+  /* height: 38px; */
+  border-bottom: 0;
+  height: 40px;
+}

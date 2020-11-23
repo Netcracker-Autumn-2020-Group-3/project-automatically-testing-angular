@@ -26,19 +26,7 @@ export class AuthService {
     return localStorage.getItem('token') as string;
   }
 
-
-
   attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
     return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
   }
-
-
-/*
- attemptAuth(credentials: AuthLoginInfo): Observable<JwtResponse> {
-    return this.http.post<JwtResponse>(this.loginUrl, credentials, httpOptions);
-  }
-*/
-
-
-
 }

@@ -16,8 +16,9 @@ import {UsersListComponent} from './users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
-
-
+import {ListActionsComponent} from './main-library-list-actions/list-actions/list-actions.component';
+import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
+import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,9 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     AdminComponent,
     HomeComponent,
     ManagerComponent,
+    ListActionsComponent,
+    MainLibraryListActionsComponent,
+    SearchActionsComponent,
     UsersListComponent,
     EditUserComponent,
     UsersComponent,
@@ -40,7 +44,7 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     NgxPaginationModule,
     Ng2SearchPipeModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
