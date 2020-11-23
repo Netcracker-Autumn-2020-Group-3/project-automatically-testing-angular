@@ -14,6 +14,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { UsersComponent } from './users/users.component';
     ManagerComponent,
     UsersListComponent,
     EditUserComponent,
-    UsersComponent
+    UsersComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
