@@ -7,11 +7,9 @@ import {ManagerComponent} from './manager/manager.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
-import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 
 
 const routes: Routes = [
-  { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'manager', component: ManagerComponent},
   { path: 'auth/login', component: LoginComponent},

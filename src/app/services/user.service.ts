@@ -15,9 +15,9 @@ export class UserService {
   private adminUrl = this.url + 'admin';
   private getUsersListUrl = this.url + 'users/list';
   private countPagesUrl = this.url + 'users/pages/count';
-  private managerUrl = 'http://localhost:8080/manager';
+
   //private adminUrl = 'https://automatically-testing-java.herokuapp.com/admin';
-  private adminUrl = 'http://localhost:8080/admin';
+
 
   constructor(private http: HttpClient) {
   }
