@@ -20,6 +20,7 @@ import {ListActionsComponent} from './main-library-list-actions/list-actions/lis
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { MenuComponent } from './menu/menu.component';
     EditUserComponent,
     UsersComponent,
     ManagerComponent,
-    MenuComponent
+    MenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

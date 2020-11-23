@@ -16,9 +16,6 @@ export class UserService {
   private getUsersListUrl = this.url + 'users/list';
   private countPagesUrl = this.url + 'users/pages/count';
 
-  //private adminUrl = 'https://automatically-testing-java.herokuapp.com/admin';
-
-
   constructor(private http: HttpClient) {
   }
 

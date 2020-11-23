@@ -1,3 +1,5 @@
+<div class="m-5">
+
 <ul class="nav nav-tabs">
   <li class="nav-item" >
     <a class="nav-link" #listTab (click)="onTabClick('list')">List</a>
@@ -10,3 +12,4 @@
 
 <app-users-list *ngIf="tab==='list'"></app-users-list>
 <app-manager *ngIf="tab==='add'"></app-manager>
+</div>

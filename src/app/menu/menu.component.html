@@ -1,13 +1,13 @@
 <div class="category-wrap">
-  <h3>Ivan Ivanov</h3>
-  <ul>
-    <li><a href="">Dashboard</a></li>
+  <h3 class="mb-5">{{name}}</h3>
+  <ul class="mt-4">
+    <li><a routerLink="/dashboard">Dashboard</a></li>
     <li><a href="">Projects</a></li>
-    <li><a href="">Libraries</a></li>
-    <li><a href="">Users</a></li>
-    <div style="padding-top: 60vh">
+    <li><a routerLink="/library/actions" >Libraries</a></li>
+    <li><a routerLink="/users">Users</a></li>
+    <div style="padding-top: 49vh">
       <li><a href="">Settings</a></li>
-      <li><a href="">Log out</a></li>
+      <li><a (click)="logout()">Log out</a></li>
     </div>
   </ul>
 </div>

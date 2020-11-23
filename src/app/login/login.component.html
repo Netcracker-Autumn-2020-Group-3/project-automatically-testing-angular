@@ -1,5 +1,4 @@
  <div *ngIf="isLoggedIn; else loggedOut">
-  Logged in as {{roles}}.
   </div>
   <ng-template #loggedOut>
       <form class="form-signin" name="form" (ngSubmit)="onSubmit()" #f="ngForm" novalidate>

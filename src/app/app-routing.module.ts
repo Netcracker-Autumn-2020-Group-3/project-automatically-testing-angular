@@ -10,16 +10,18 @@ import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'admin', component: AdminComponent},
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'manager', component: ManagerComponent},
   { path: 'auth/login', component: LoginComponent},
+  { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'edituser/:id', component: EditUserComponent },
-  { path: 'users', component: UsersComponent}
-  { path: 'home', component: HomeComponent, pathMatch: 'full'},
+  { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent}
 
 ];

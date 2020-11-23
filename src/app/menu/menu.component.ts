@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {TokenStorageService} from '../auth/token-storage.service';
+
 
 @Component({
   selector: 'app-menu',
@@ -7,10 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  name = '';
+
+
+  constructor(private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
+    this.name = this.tokenService.getUsername();
   }
 
+  logout() {
+    this.tokenService.signOut();
+    window.location.href = 'auth/login';
+  }
 
 }
