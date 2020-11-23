@@ -3,7 +3,10 @@
   max-width: 380px;
   padding: 15px;
   margin: auto;
-
+  /*---------------*/
+  margin-left: 220%;
+  margin-top: 72%;
+  /*---------------*/
   background: #FFFFFF;
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
@@ -18,7 +21,7 @@
   padding-bottom: 20px;
   padding-top: 20px;
 
-  color: #8B8B8B;
+  color: #8b8b8b;
 }
 .form-signin.form-control {
   position: relative;
@@ -40,4 +43,5 @@
 .alert-danger{
   margin-top: 5px;
 }
+
 

@@ -1,0 +1,27 @@
+
+<table class="table shadow">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Description</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let action of actions | paginate: { itemsPerPage: 9, currentPage: p};">
+    <td scope="row">{{action.actionId}}</td>
+    <td>{{action.actionName}}</td>
+    <td>{{action.actionDescription}}</td>
+  </tr>
+  </tbody>
+
+
+
+</table>
+
+
+<div class="d-flex justify-content-center fixed-bottom mb-5">
+<pagination-controls  class="" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
+</div>
+

@@ -9,11 +9,18 @@ import {FormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
-import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
+import { AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 import { ManagerComponent } from './manager/manager.component';
 import { EditUserComponent } from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {Ng2SearchPipeModule} from 'ng2-search-filter';
+import {ListActionsComponent} from './main-library-list-actions/list-actions/list-actions.component';
+import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
+import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
+import { MenuComponent } from './menu/menu.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 
 @NgModule({
@@ -23,19 +30,28 @@ import { RegisterComponent } from './register/register.component';
     AdminComponent,
     HomeComponent,
     ManagerComponent,
+    ListActionsComponent,
+    MainLibraryListActionsComponent,
+    SearchActionsComponent,
     UsersListComponent,
     EditUserComponent,
     UsersComponent,
     RegisterComponent
+    UsersComponent,
+    ManagerComponent,
+    MenuComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule
   ],
-  providers: [httpInterceptorProviders],
+  providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
