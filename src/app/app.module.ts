@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,9 +11,9 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import {AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
 import { ManagerComponent } from './manager/manager.component';
-import { MainLibraryListActionsComponent } from './main-library-list-actions/main-library-list-actions.component';
-import { SearchActionsComponent } from './main-library-list-actions/search-actions/search-actions.component';
-import { ListActionsComponent } from './main-library-list-actions/list-actions/list-actions.component';
+import { EditUserComponent } from './edit-user/edit-user.component';
+import {UsersListComponent} from './users-list/users-list.component';
+import { UsersComponent } from './users/users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 
@@ -25,19 +26,21 @@ import {Ng2SearchPipeModule} from 'ng2-search-filter';
     AdminComponent,
     HomeComponent,
     ManagerComponent,
-    MainLibraryListActionsComponent,
-    SearchActionsComponent,
-    ListActionsComponent
+    UsersListComponent,
+    EditUserComponent,
+    UsersComponent,
+    ManagerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule
   ],
-  providers: [httpInterceptorProviders, ListActionsComponent],
+  providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
