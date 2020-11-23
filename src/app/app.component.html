@@ -6,6 +6,9 @@
   <li *ngIf="authority === 'admin'" >
     <a  routerLink="edituser/2">user edit</a>
   </li>
+  <li *ngIf="authority === 'admin'" >
+    <a  routerLink="users">Users</a>
+  </li>
   <li *ngIf="!authority" >
     <a  routerLink="auth/login">Login</a>
   </li>

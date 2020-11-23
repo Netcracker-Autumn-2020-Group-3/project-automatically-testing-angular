@@ -28,9 +28,9 @@ export class UserService {
   }
 
   getUserById(id: number): Observable<User> {
-    const url = `${this.url}/users/${id}`;
+    const url = `${this.url}users/${id}`;
     return this.http.get<User>(url);
-    //return this.http.get<User>(`${this.url}/users/${id}`);
+    // return this.http.get<User>(`${this.url}/users/${id}`);
   }
   updateUser(user: User) {
     const url = `${this.url}/users/updateUser`;
