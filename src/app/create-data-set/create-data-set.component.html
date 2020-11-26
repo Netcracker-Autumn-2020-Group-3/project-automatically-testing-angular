@@ -1,0 +1,41 @@
+<div class="container">
+
+  <form [formGroup]="createDataSet" name="form"(ngSubmit)="onSubmit(createDataSet.value)" #f="ngForm" novalidate>
+    <div style="width: 450px">
+
+      <div class="form-group">
+        <label>Data Set Name:</label>
+        <input class="form-control" type="text" formControlName="name" [(ngModel)]="createDataSet.name" required />
+      </div>
+
+      <div *ngIf="f.submitted && !createDataSet.name" class="alert alert-danger">
+        <div>Data Set name is required</div>
+      </div>
+
+      <div style="text-align: right">
+        <button type="button" class="btn btn-outline-success" (click)="addValue()">Add Value</button>
+      </div>
+    </div>
+
+    <div class="values-box">
+      <div *ngFor="let in of indexes; let i = index">
+        <div class="form-group">
+          <label>Value {{i+1}}:</label>
+          <div class="input-group mb-3">
+            <input class="form-control" type="text" id="data_set_value">
+            <div class="input-group-append">
+              <button type="button" class="btn btn-danger input-group-text" (click)="delete(i)">X</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="indexes.length>0" class="submit-button">
+      <button type="submit" class="btn btn-outline-primary">Add Data Set</button>
+    </div>
+  </form>
+</div>
+
+
+
+
