@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from "@angular/forms";
+import { FormControl, FormGroup, FormArray } from "@angular/forms";
+import { DataSet } from "../model/dataSet";
+import { DataEntry } from "../model/dataEntry";
+import { DataSetService } from "../services/data-set.service";
 
 @Component({
   selector: 'app-create-data-set',
@@ -8,33 +11,37 @@ import { FormBuilder } from "@angular/forms";
 })
 export class CreateDataSetComponent implements OnInit {
 
-  createDataSet;
+  dataSet: DataSet;
+  dataEntry: DataEntry[];
+
+  data_set_values: [];
+
+  createDataSet = new FormGroup({
+    Name: new FormControl(''),
+    Data_set_values: new FormArray([new FormControl('')])
+  });
+
   indexes: number[];
   counter: number;
-  //valuesNew: any[];
-  //values: any;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.createDataSet = this.formBuilder.group({
-      name: '',
-      values: []
-    })
+  constructor(private services: DataSetService) {
   }
 
   ngOnInit(): void {
-    this.indexes = [];
+    this.indexes = [1];
     this.counter = 1;
   }
 
-  addValue() {
-
+  addValue(): void {
+    (<FormArray>this.createDataSet.controls["Data_set_values"]).push(new FormControl(''));
     this.indexes.push(this.counter++);
   }
   delete(i: number): void {
     this.indexes.splice(i,1);
+    (<FormArray>this.createDataSet.controls["Data_set_values"]).removeAt(i);
   }
   onSubmit(customerData: any){
-
+    this.services.addDataSet(customerData.Name, customerData.Data_set_values);
   }
 
 }
