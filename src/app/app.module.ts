@@ -21,6 +21,9 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
+import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
+import { MainEditCompoundComponent } from './compound/main-edit-compound.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UsersComponent,
     ManagerComponent,
     MenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditCompoundActionsComponent,
+    EditCompoundComponent,
+    MainEditCompoundComponent
   ],
   imports: [
     BrowserModule,

@@ -11,5 +11,8 @@
   <button type="button" class="btn btn-outline-success" (click)="searchAction()" style="background: white" >Search</button>
 
 </nav>
-<app-list-actions [actions]="actions"></app-list-actions>
+<app-list-actions [actions]="actions"
+                  [numberOfPages]="numberOfPages"
+                  [pageNumbers]="pageNumber"
+                  [pageSize]="pageSize"></app-list-actions>
 

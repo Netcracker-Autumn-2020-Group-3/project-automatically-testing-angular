@@ -1,0 +1,19 @@
+<div class="w-100  ">
+  <div class="row align-top">
+    <div class="col-10 p-4 ml-4">
+      <div class="ml-2 headbuttons">
+        <button class=" btn btn-default w-25"
+                routerLink="/edit/compound"
+                [ngClass]="{'button-selected':isActive}"
+                (click)="changePage('compound')">Edit Compound</button>
+        <button class="btn btn-default w-25"
+                routerLink="/edit/compound/actions"
+                [ngClass]="{'button-selected':!isActive}"
+                (click)="changePage('compoundActions')">Edit CompoundActions</button>
+      </div>
+      <hr class=" mt-0" style="position: relative; top: -0.7px">
+      <!--<app-edit-compound *ngIf="page === 'compound'"></app-edit-compound>-->
+      <!--<app-edit-compound-actions *ngIf="page === 'compoundActions'"></app-edit-compound-actions>-->
+    </div>
+  </div>
+</div>

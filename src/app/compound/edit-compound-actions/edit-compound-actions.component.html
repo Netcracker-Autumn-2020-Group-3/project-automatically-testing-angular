@@ -1,0 +1,77 @@
+<app-main-edit-compound [isActive]="false"></app-main-edit-compound>
+<form class="form ml-4">
+  <nav class=" rounded navbar navbar-expand-lg navbar-light bg-light mb-4" style="width: 1100px">
+
+  <label class="float-left mr-5 " style="width: 160px">Search Action</label>
+    <input type="text"
+           class="form-control  mr-sm-3 w-50"
+           placeholder="Name"
+           aria-label="Username"
+           aria-describedby="basic-addon1"
+           name="actionName" >
+      <button type="button" class="btn btn-outline-success bg-white" >Search</button>
+      <button type="button" class="btn btn-outline-success ml-3 mr-3 bg-white" >Show All</button>
+    <select class="custom-select border-success " id="sortBy" style="width: 100px;" >
+      <option selected value="">Sort by</option>
+      <option value="user_id">Id</option>
+      <option value="name">Name</option>
+    </select>
+  </nav>
+  <div class=" d-flex table-actions" >
+
+    <table class="table ml-4 shadow"  >
+      <thead class="shadow">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col" >Description</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody >
+      <tr>
+        <th scope="row">1</th>
+        <th scope="row">navigate</th>
+        <td>desc</td>
+        <td><button class="btn btn-outline-success bg-white p-1">Add</button></td>
+      </tr><tr>
+        <th scope="row">2</th>
+        <th scope="row">login</th>
+        <td>desc</td>
+        <td><button class="btn btn-outline-success bg-white p-1">Add</button></td>
+      </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <nav aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+          <span class="sr-only">Previous</span>
+        </a>
+      </li>
+      <li class="page-item"><a class="page-link" >1</a></li>
+      <li class="page-item"><a class="page-link" >2</a></li>
+      <li class="page-item"><a class="page-link" >3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+          <span class="sr-only">Next</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</form>
+
+
+<!--<th width="50">1</th>
+        <th width="25">
+          <input type="number" class="priority border-0" value="1">
+        </th>
+        <td>Mark</td>
+        <td>Otto</td>-->

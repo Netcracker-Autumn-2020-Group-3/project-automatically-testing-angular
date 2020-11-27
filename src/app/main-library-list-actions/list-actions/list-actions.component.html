@@ -9,7 +9,7 @@
   </thead>
   <tbody>
 
-  <tr *ngFor="let action of actions | paginate: { itemsPerPage: 9, currentPage: p};">
+  <tr *ngFor="let action of actions">
     <td scope="row">{{action.actionId}}</td>
     <td>{{action.actionName}}</td>
     <td>{{action.actionDescription}}</td>
@@ -21,7 +21,26 @@
 </table>
 
 
-<div class="d-flex justify-content-center fixed-bottom mb-5">
-<pagination-controls  class="" previousLabel="" nextLabel="" (pageChange)="p = $event"></pagination-controls>
-</div>
+
+<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+  <ul class="pagination" >
+    <li class="page-item">
+      <a class="page-link" (click)="getPrevious()" aria-label="Previous">
+        <span aria-hidden="true" >&laquo;</span>
+      </a>
+    </li>
+
+    <li class="page-item" *ngFor="let page of [].constructor(numberOfPages); let i = index">
+      <a class="page-link" (click)="getPage(i+1)" >{{i+1}}</a>
+    </li>
+
+    <li class="page-item">
+      <a class="page-link" (click)="getNext()" aria-label="Next">
+        <span aria-hidden="true" >&raquo;</span>
+
+      </a>
+    </li>
+  </ul>
+</nav>
+
 

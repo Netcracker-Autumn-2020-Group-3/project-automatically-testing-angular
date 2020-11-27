@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ListActionsComponent} from '../list-actions/list-actions.component';
 import {Action} from '../list-actions/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
+import {HttpParams} from '@angular/common/http';
+
 
 
 
@@ -14,36 +16,39 @@ export class SearchActionsComponent implements OnInit {
   actionName: string;
   actions: Action[];
   reserveActions: Action[];
-
+  pageNumber: number;
+  numberOfActions: number;
+  numberOfPages: number;
+  pageSize = 2;
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
-    this.actionService.getActions().subscribe((response => {
-      this.actions = response;
-    }));
-  }
+    this.pageNumber = 1;
 
-  search(){
-    if (this.actionName === ''){
-      this.ngOnInit();
-    }else{
-      this.actions = this.actions.filter(
-        res => {
-          return res.actionName.toLocaleLowerCase().match(this.actionName.toLocaleLowerCase());
-        }
-      );
-    }
+    this.actionService.getNumberOfActions().subscribe(( res => {
+      this.numberOfPages = Math.round(res / this.pageSize);
+    }));
+
+    const param = new HttpParams()
+      .append('page', String(this.pageNumber))
+      .append('pageSize', String(this.pageSize));
+    this.actionService.getActions(param).subscribe(( res => {
+      this.actions = res;
+    }));
   }
 
   searchAction(){
      if (this.actionName === ''){
-       this.actions = [];
-       this.actions = [... this.reserveActions];
+       this.ngOnInit();
      }else{
-       this.reserveActions = [... this.actions];
-       this.actionService.getActionsByName(this.actionName).subscribe((response => {
+       this.pageNumber = 1;
+       const param = new HttpParams()
+         .append('page', String(this.pageNumber))
+         .append('pageSize', String(this.pageSize));
+       this.actionService.getActionsByName(param, this.actionName).subscribe((response => {
          this.actions = response;
+         this.numberOfPages = response.length;
        }));
      }
    }

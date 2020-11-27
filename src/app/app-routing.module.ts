@@ -11,9 +11,14 @@ import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
+import {MainEditCompoundComponent} from './compound/main-edit-compound.component';
+import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
+  { path: 'edit/compound', component: EditCompoundComponent},
+  { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'manager', component: ManagerComponent},
