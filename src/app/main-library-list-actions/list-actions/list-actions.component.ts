@@ -22,9 +22,9 @@ export class ListActionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //TODO when click pagination it works incorrect with search!!!
   getListOfActions(page: number){
-    const param = new HttpParams().append('page', String(page));
-    param.append('pageSize', String(this.pageSize));
+    const param = new HttpParams().append('page', String(page)).append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
     }));

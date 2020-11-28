@@ -24,6 +24,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
 import { MainEditCompoundComponent } from './compound/main-edit-compound.component';
+import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
+import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
+import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { MainEditCompoundComponent } from './compound/main-edit-compound.compone
     DashboardComponent,
     EditCompoundActionsComponent,
     EditCompoundComponent,
-    MainEditCompoundComponent
+    MainEditCompoundComponent,
+    EditDataSetComponent,
+    EditNameDataSetComponent,
+    EditDataEntryComponent
   ],
   imports: [
     BrowserModule,
