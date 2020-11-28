@@ -1,3 +1,7 @@
+<div>
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchedDataSet"
+          placeholder="search data set">
+</div>
 
 <table class="table" style="width: 500px">
   <thead>
@@ -7,10 +11,10 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let item of allDataSet | slice:start:end" >
-    <th scope="row">{{item.id}}</th>
-    <td>{{item.name}}</td>
-  </tr>
+    <tr *ngFor="let item of allDataSetTest | slice:start:end | filter:searchedDataSet">
+      <th scope="row">{{item.id}}</th>
+      <td>{{item.name}}</td>
+    </tr>
   </tbody>
 </table>
 
