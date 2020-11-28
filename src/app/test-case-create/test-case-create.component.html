@@ -1,13 +1,40 @@
+<div class="container-fluid mr-5 mt-5">
 
+  <div class="choose-scenario-dataset">
+    <div class="form-row">
 
+      <div class="form-group col-md-6">
+        <div class="col-auto">
+          <select class="custom-select mr-sm-2" [(ngModel)]="scenario" (change)="onScenarioChosen()">
+            <option [value]=undefined selected disabled> Choose scenario</option>
+            <option *ngFor="let availableScenario of scenarios" [value]="availableScenario">
+              {{availableScenario.name}}
+            </option>
+          </select>
+        </div>
+      </div>
 
-<div class="m-5">
-  <div class="container-fluid">
-    <div class="row">
-      <input class="form-control"  [(ngModel)]="testCaseName" placeholder="Enter name">
+      <div class="form-group col-md-6">
+        <div class="col-auto">
+          <select class="custom-select mr-sm-2" [(ngModel)]="dataset" (change)="onDatasetChosen()">
+            <option [value]=undefined selected disabled> Choose dataset</option>
+            <option *ngFor="let availableDataset of datasets" [value]="availableDataset">
+              {{availableDataset.name}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="testcase-form" *ngIf="showForm">
+    <div class="form-group m-3">
+      <input class="form-control" [(ngModel)]="testCaseName" placeholder="Enter name">
     </div>
 
-    <div *ngFor="let step of scenario; let i=index">
+
+    <div class="form-group  m-4" *ngFor="let step of scenarioSteps; let i=index">
       <div *ngIf="step.compound != null">
 
         <div class="row my-3">
@@ -24,15 +51,14 @@
             <p>Action name: {{action.name}}</p>
           </div>
           <div class="col">
-            <div class="row" *ngFor="let variable of action.variables; let k=index">
-              <div class="col-auto">
-                <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][j][k].dataEntryId" (change)="onDataEntrySelect(i, j, k)">
-                  <option [value]=-1 selected disabled>{{variable.name}}</option>
-                  <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
-                    {{dataEntry.value}}
-                  </option>
-                </select>
-              </div>
+            <div class="row mb-3" *ngFor="let variable of action.variables; let k=index">
+              <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][j][k].dataEntryId"
+                      (change)="onDataEntrySelect(i, j, k)">
+                <option [value]=-1 selected disabled>{{variable.name}}</option>
+                <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
+                  {{dataEntry.value}}
+                </option>
+              </select>
             </div>
           </div>
         </div>
@@ -43,18 +69,18 @@
           <h5>{{step.priority}} Action name: {{step.actions[0].name}}</h5>
         </div>
         <div class="col">
-          <div class="row" *ngFor="let variable of step.actions[0].variables; let k=index">
-            <div class="col-auto">
-              <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][0][k].dataEntryId" (change)="onDataEntrySelect(i, 0, k)">
-                <option [value]=-1 selected disabled>{{variable.name}}</option>
-                <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
-                  {{dataEntry.value}}
-                </option>
-              </select>
-            </div>
+          <div class="row mb-3" *ngFor="let variable of step.actions[0].variables; let k=index">
+            <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][0][k].dataEntryId"
+                    (change)="onDataEntrySelect(i, 0, k)">
+              <option [value]=-1 selected disabled>{{variable.name}}</option>
+              <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
+                {{dataEntry.value}}
+              </option>
+            </select>
           </div>
         </div>
       </div>
     </div>
   </div>
+
 </div>

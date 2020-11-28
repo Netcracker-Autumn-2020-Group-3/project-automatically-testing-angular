@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ScenarioStep} from '../model/scenario-step';
 import {VariableValue} from '../model/variable-value';
 import {DataEntry} from '../model/data-entry';
+import {Scenario} from '../model/scenario';
+import {Dataset} from '../model/dataset';
 
 
 @Component({
@@ -11,15 +13,23 @@ import {DataEntry} from '../model/data-entry';
 })
 export class TestCaseCreateComponent implements OnInit {
 
-  scenario: ScenarioStep[];
+  scenarioSteps: ScenarioStep[] = [];
   dataEntries: DataEntry[] = [];
-  variableValues: VariableValue[] = [];
-  selectedDataEntryId = 0;
   varvals: VariableValue[][][] = [];
   testCaseName = '';
+  scenario: Scenario;
+  scenarios: Scenario[] = [];
+  dataset: Dataset;
+  datasets: Dataset[] = [];
+  showForm = false;
 
   constructor() {
-    this.scenario = [
+
+  }
+
+  onScenarioChosen() {
+    // get load scenario steps
+    this.scenarioSteps = [
       {
         priority: 1,
         compound: {id: 1, name: 'login compound'},
@@ -37,6 +47,14 @@ export class TestCaseCreateComponent implements OnInit {
       }
     ];
 
+    if (this.dataEntries !== undefined && this.dataEntries.length !== 0) {
+      this.showForm = true;
+      this.initVarVals();
+    }
+  }
+
+  onDatasetChosen() {
+    // get load data entries
     this.dataEntries = [{id: 64, value: 'login input id'},
       {id: 65, value: 'login input id'},
       {id: 66, value: 'password input id'},
@@ -45,22 +63,27 @@ export class TestCaseCreateComponent implements OnInit {
       {id: 69, value: 'qwerty1'},
       {id: 70, value: 'qwerty2'},
       {id: 71, value: 'logout button'}];
-
-    this.scenario.forEach((step, i) => {
+    if (this.scenarioSteps !== undefined && this.scenarioSteps.length !== 0) {
+      this.showForm = true;
+      this.initVarVals();
+    }
+  }
+  initVarVals() {
+    this.scenarioSteps.forEach((step, i) => {
       this.varvals[i] = [];
       step.actions.forEach((action, j) => {
         this.varvals[i][j] = [];
         action.variables.forEach((variable, k) => {
-          this.variableValues.push(new VariableValue(action.id, variable.id));
-          // this.varvals.push([action.id, variable.id]);
           this.varvals[i][j][k] = new VariableValue(action.id, variable.id);
         });
       });
     });
-
   }
 
   ngOnInit(): void {
+    // load scenarios and datasets
+    this.scenarios = [{id: 123, name: 'Login-logout scenario'}];
+    this.datasets = [{id: 665, name: 'Login-logout dataset'}];
   }
 
   onDataEntrySelect(i: number, j: number, k: number): void {
