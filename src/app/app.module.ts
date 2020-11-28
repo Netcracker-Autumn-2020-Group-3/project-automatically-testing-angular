@@ -22,6 +22,7 @@ import {SearchActionsComponent} from './main-library-list-actions/search-actions
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
+import { ListOfDataSetComponent } from './list-of-data-set/list-of-data-set.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { CreateDataSetComponent } from './create-data-set/create-data-set.compon
     ManagerComponent,
     MenuComponent,
     DashboardComponent,
-    CreateDataSetComponent
+    CreateDataSetComponent,
+    ListOfDataSetComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,7 @@ import {MenuComponent} from './menu/menu.component';
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {CreateDataSetComponent} from "./create-data-set/create-data-set.component";
+import {ListOfDataSetComponent} from "./list-of-data-set/list-of-data-set.component";
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'createDataSet', component: CreateDataSetComponent }
+  { path: 'createDataSet', component: CreateDataSetComponent },
+  { path: 'listOfDataSet', component: ListOfDataSetComponent }
 
 ];
 
