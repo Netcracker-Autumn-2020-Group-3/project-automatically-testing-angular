@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ScenarioStep} from '../model/scenario-step';
-import {VariableValue} from '../model/variable-value';
-import {DataEntry} from '../model/data-entry';
-import {Scenario} from '../model/scenario';
-import {Dataset} from '../model/dataset';
+import {ScenarioStep} from '../model/test-case/scenario-step';
+import {VariableValue} from '../model/test-case/variable-value';
+import {DataEntry} from '../model/test-case/data-entry';
+import {Scenario} from '../model/test-case/scenario';
+import {Dataset} from '../model/test-case/dataset';
 
 
 @Component({
@@ -15,7 +15,7 @@ export class TestCaseCreateComponent implements OnInit {
 
   scenarioSteps: ScenarioStep[] = [];
   dataEntries: DataEntry[] = [];
-  varvals: VariableValue[][][] = [];
+  varVals: VariableValue[][][] = [];
   testCaseName = '';
   scenario: Scenario;
   scenarios: Scenario[] = [];
@@ -70,11 +70,11 @@ export class TestCaseCreateComponent implements OnInit {
   }
   initVarVals() {
     this.scenarioSteps.forEach((step, i) => {
-      this.varvals[i] = [];
+      this.varVals[i] = [];
       step.actions.forEach((action, j) => {
-        this.varvals[i][j] = [];
+        this.varVals[i][j] = [];
         action.variables.forEach((variable, k) => {
-          this.varvals[i][j][k] = new VariableValue(action.id, variable.id);
+          this.varVals[i][j][k] = new VariableValue(action.id, variable.id);
         });
       });
     });
@@ -87,7 +87,7 @@ export class TestCaseCreateComponent implements OnInit {
   }
 
   onDataEntrySelect(i: number, j: number, k: number): void {
-    console.log(this.varvals[i][j][k]);
+    console.log(this.varVals[i][j][k]);
   }
 
 }
