@@ -1,0 +1,60 @@
+
+
+
+<div class="m-5">
+  <div class="container-fluid">
+    <div class="row">
+      <input class="form-control"  [(ngModel)]="testCaseName" placeholder="Enter name">
+    </div>
+
+    <div *ngFor="let step of scenario; let i=index">
+      <div *ngIf="step.compound != null">
+
+        <div class="row my-3">
+          <div class="col">
+            <h5>{{step.priority}} Compound name: {{step.compound.name}}</h5>
+          </div>
+          <div class="col">
+
+          </div>
+        </div>
+
+        <div class="row" *ngFor="let action of step.actions; let j=index">
+          <div class="col">
+            <p>Action name: {{action.name}}</p>
+          </div>
+          <div class="col">
+            <div class="row" *ngFor="let variable of action.variables; let k=index">
+              <div class="col-auto">
+                <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][j][k].dataEntryId" (change)="onDataEntrySelect(i, j, k)">
+                  <option [value]=-1 selected disabled>{{variable.name}}</option>
+                  <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
+                    {{dataEntry.value}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="row my-3" *ngIf="step.compound == null">
+        <div class="col">
+          <h5>{{step.priority}} Action name: {{step.actions[0].name}}</h5>
+        </div>
+        <div class="col">
+          <div class="row" *ngFor="let variable of step.actions[0].variables; let k=index">
+            <div class="col-auto">
+              <select class="custom-select mr-sm-2" [(ngModel)]="varvals[i][0][k].dataEntryId" (change)="onDataEntrySelect(i, 0, k)">
+                <option [value]=-1 selected disabled>{{variable.name}}</option>
+                <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
+                  {{dataEntry.value}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

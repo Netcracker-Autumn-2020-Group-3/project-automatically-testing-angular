@@ -21,6 +21,7 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { TestCaseCreateComponent } from './test-case-create/test-case-create.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     UsersComponent,
     ManagerComponent,
     MenuComponent,
-    DashboardComponent
+    DashboardComponent,
+    TestCaseCreateComponent
   ],
   imports: [
     BrowserModule,
