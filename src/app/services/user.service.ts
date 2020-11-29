@@ -9,8 +9,8 @@ import {Params} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  // private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  // private url = 'http://localhost:8080/';
   private managerUrl = this.url + 'manager';
   private adminUrl = this.url + 'admin';
   private getUsersListUrl = this.url + 'users/list';
