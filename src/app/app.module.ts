@@ -21,6 +21,7 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
 import { TestCaseCreateComponent } from './test-case-create/test-case-create.component';
 
 @NgModule({
@@ -39,6 +40,7 @@ import { TestCaseCreateComponent } from './test-case-create/test-case-create.com
     ManagerComponent,
     MenuComponent,
     DashboardComponent,
+    CreateDataSetComponent,
     TestCaseCreateComponent
   ],
   imports: [
