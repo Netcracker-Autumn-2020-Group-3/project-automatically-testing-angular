@@ -17,6 +17,8 @@ export class LibraryActionService {
  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
  private getNumberOfActionsUrl = 'http://localhost:8080/library/actions/count';
 
+
+
   getActions(paramsVal: Params): Observable<Action[]>{
     return this.http.get<Action[]>(this.getActionsUrl, {
       params: paramsVal
