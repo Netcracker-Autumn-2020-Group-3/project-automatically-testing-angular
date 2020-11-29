@@ -5,9 +5,9 @@
 
       <div class="form-group col-md-6">
         <div class="col-auto">
-          <select class="custom-select mr-sm-2" [(ngModel)]="scenario" (change)="onScenarioChosen()">
-            <option [value]=undefined selected disabled> Choose scenario</option>
-            <option *ngFor="let availableScenario of scenarios" [value]="availableScenario">
+          <select class="custom-select mr-sm-2" [(ngModel)]="scenarioId" (change)="onScenarioChosen()">
+            <option [value]=-1 selected disabled> Choose scenario</option>
+            <option *ngFor="let availableScenario of scenarios" [value]="availableScenario.id">
               {{availableScenario.name}}
             </option>
           </select>
@@ -16,9 +16,9 @@
 
       <div class="form-group col-md-6">
         <div class="col-auto">
-          <select class="custom-select mr-sm-2" [(ngModel)]="dataset" (change)="onDatasetChosen()">
-            <option [value]=undefined selected disabled> Choose dataset</option>
-            <option *ngFor="let availableDataset of datasets" [value]="availableDataset">
+          <select class="custom-select mr-sm-2" [(ngModel)]="datasetId" (change)="onDatasetChosen()">
+            <option [value]=-1 selected disabled> Choose dataset</option>
+            <option *ngFor="let availableDataset of datasets" [value]="availableDataset.id">
               {{availableDataset.name}}
             </option>
           </select>
@@ -35,11 +35,11 @@
 
 
     <div class="form-group  m-4" *ngFor="let step of scenarioSteps; let i=index">
-      <div *ngIf="step.compound != null">
+      <div *ngIf="step.compound !== undefined ">
 
         <div class="row my-3">
           <div class="col">
-            <h5>{{step.priority}} Compound name: {{step.compound.name}}</h5>
+            <h5>Compound: {{step.compound.name}}</h5>
           </div>
           <div class="col">
 
@@ -48,13 +48,13 @@
 
         <div class="row" *ngFor="let action of step.actions; let j=index">
           <div class="col">
-            <p>Action name: {{action.name}}</p>
+            <p>Action: {{action.name}}</p>
           </div>
           <div class="col">
             <div class="row mb-3" *ngFor="let variable of action.variables; let k=index">
               <select class="custom-select mr-sm-2" [(ngModel)]="varVals[i][j][k].dataEntryId"
                       (change)="onDataEntrySelect(i, j, k)">
-                <option [value]=-1 selected disabled>{{variable.name}}</option>
+                <option [value]=-1 selected disabled>Enter {{variable.name}}</option>
                 <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
                   {{dataEntry.value}}
                 </option>
@@ -64,15 +64,15 @@
         </div>
 
       </div>
-      <div class="row my-3" *ngIf="step.compound == null">
+      <div class="row my-3" *ngIf="step.compound === undefined">
         <div class="col">
-          <h5>{{step.priority}} Action name: {{step.actions[0].name}}</h5>
+          <h5>Action: {{step.actions[0].name}}</h5>
         </div>
         <div class="col">
           <div class="row mb-3" *ngFor="let variable of step.actions[0].variables; let k=index">
             <select class="custom-select mr-sm-2" [(ngModel)]="varVals[i][0][k].dataEntryId"
                     (change)="onDataEntrySelect(i, 0, k)">
-              <option [value]=-1 selected disabled>{{variable.name}}</option>
+              <option [value]=-1 selected disabled>Enter {{variable.name}}</option>
               <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
                 {{dataEntry.value}}
               </option>
@@ -81,6 +81,11 @@
         </div>
       </div>
     </div>
+  </div>
+
+
+  <div class="container-fluid mr-5 mt-5" *ngIf="showForm">
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
   </div>
 
 </div>

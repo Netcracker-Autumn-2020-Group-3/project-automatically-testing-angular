@@ -11,7 +11,7 @@ import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {CreateDataSetComponent} from "./create-data-set/create-data-set.component";
+import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
 
 const routes: Routes = [
@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'testcase/create', component: TestCaseCreateComponent}
+  { path: 'testcase/create', component: TestCaseCreateComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'createDataSet', component: CreateDataSetComponent }
 

@@ -3,7 +3,8 @@ import {ScenarioStep} from '../model/test-case/scenario-step';
 import {VariableValue} from '../model/test-case/variable-value';
 import {DataEntry} from '../model/test-case/data-entry';
 import {Scenario} from '../model/test-case/scenario';
-import {Dataset} from '../model/test-case/dataset';
+import {DataSet} from '../model/test-case/data-set';
+import {TestCaseService} from '../services/test-case.service';
 
 
 @Component({
@@ -18,34 +19,40 @@ export class TestCaseCreateComponent implements OnInit {
   varVals: VariableValue[][][] = [];
   testCaseName = '';
   scenario: Scenario;
+  scenarioId = -1;
+  datasetId = -1;
   scenarios: Scenario[] = [];
-  dataset: Dataset;
-  datasets: Dataset[] = [];
+  dataset: DataSet;
+  datasets: DataSet[] = [];
   showForm = false;
 
-  constructor() {
+  variableValues: VariableValue[] = [];
+
+  constructor(private testCaseService: TestCaseService) {
+
+  }
+
+  ngOnInit(): void {
+    this.testCaseService.getTestScenarioList().subscribe(data => {
+      console.log('getTestScenarioList' + data);
+      this.scenarios = data;
+    }, error => {
+    });
+
+    this.testCaseService.getDataSetList().subscribe(data => {
+      console.log('getDataSetList' + data);
+      this.datasets = data;
+    }, error => {
+    });
 
   }
 
   onScenarioChosen() {
-    // get load scenario steps
-    this.scenarioSteps = [
-      {
-        priority: 1,
-        compound: {id: 1, name: 'login compound'},
-        actions: [
-          {id: 1, name: 'Enter login', variables: [{id: 45, name: 'input element'}, {id: 46, name: 'login'}]},
-          {id: 2, name: 'Enter password', variables: [{id: 47, name: 'input element'}, {id: 48, name: 'passsword'}]},
-          {id: 3, name: 'Submit', variables: [{id: 49, name: 'submit button'}]}
-        ]
-      },
-      {
-        priority: 2,
-        actions: [
-          {id: 4, name: 'Logout', variables: [{id: 50, name: 'logout button'}]}
-        ]
-      }
-    ];
+
+    this.testCaseService.getTestScenarioSteps(this.scenarioId).subscribe(data => {
+      this.scenarioSteps = data;
+    });
+
 
     if (this.dataEntries !== undefined && this.dataEntries.length !== 0) {
       this.showForm = true;
@@ -54,40 +61,45 @@ export class TestCaseCreateComponent implements OnInit {
   }
 
   onDatasetChosen() {
-    // get load data entries
-    this.dataEntries = [{id: 64, value: 'login input id'},
-      {id: 65, value: 'login input id'},
-      {id: 66, value: 'password input id'},
-      {id: 67, value: 'login1'},
-      {id: 68, value: 'login2'},
-      {id: 69, value: 'qwerty1'},
-      {id: 70, value: 'qwerty2'},
-      {id: 71, value: 'logout button'}];
+
+    this.testCaseService.getDataSetEntries(this.datasetId).subscribe(data => {
+      this.dataEntries = data;
+    });
+
+
     if (this.scenarioSteps !== undefined && this.scenarioSteps.length !== 0) {
       this.showForm = true;
       this.initVarVals();
     }
   }
+
   initVarVals() {
     this.scenarioSteps.forEach((step, i) => {
       this.varVals[i] = [];
       step.actions.forEach((action, j) => {
         this.varVals[i][j] = [];
-        action.variables.forEach((variable, k) => {
-          this.varVals[i][j][k] = new VariableValue(action.id, variable.id);
+        action.variables.forEach((actionVariable, k) => {
+          this.varVals[i][j][k] = new VariableValue(action.id, actionVariable.id, this.scenarioId);
         });
       });
     });
   }
 
-  ngOnInit(): void {
-    // load scenarios and datasets
-    this.scenarios = [{id: 123, name: 'Login-logout scenario'}];
-    this.datasets = [{id: 665, name: 'Login-logout dataset'}];
-  }
 
   onDataEntrySelect(i: number, j: number, k: number): void {
     console.log(this.varVals[i][j][k]);
+  }
+
+  onSubmit() {
+    this.scenarioSteps.forEach((step, i) => {
+      step.actions.forEach((action, j) => {
+        action.variables.forEach((actionVariable, k) => {
+          this.variableValues.push(this.varVals[i][j][k]);
+        });
+      });
+    });
+
+    this.testCaseService.postTestCase(this.testCaseName, 42, this.datasetId, this.scenarioId, this.variableValues);
   }
 
 }
