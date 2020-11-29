@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output,EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {DataSet} from '../../model/dataSet';
 import {DataEntry} from '../../model/dataEntry';
 import {EditDataSetService} from '../../services/edit-data-set.service';
@@ -17,7 +17,7 @@ export class EditDataEntryComponent implements OnInit {
   @Input()dataEntry: DataEntry[];
   @Input()dataSetId: number;
 
-  @Output()editedDataEntry = new EventEmitter<DataEntry[]>();
+ /* @Output()editedDataEntry = new EventEmitter<DataEntry[]>();*/
 
   datas = 'dsssda';
 
@@ -42,7 +42,7 @@ export class EditDataEntryComponent implements OnInit {
 
   saveChanges(dataSet: DataSet) {
     this.dataSetService.updateDataEntry(this.dataEntry, dataSet).subscribe();
-    this.editedDataEntry.emit(this.dataEntry);
+    //this.editedDataEntry.emit(this.dataEntry);
   }
 
 

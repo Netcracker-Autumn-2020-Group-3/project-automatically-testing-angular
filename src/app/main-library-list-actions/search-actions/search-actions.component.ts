@@ -15,9 +15,7 @@ import {HttpParams} from '@angular/common/http';
 export class SearchActionsComponent implements OnInit {
   actionName: string;
   actions: Action[];
-  reserveActions: Action[];
   pageNumber: number;
-  numberOfActions: number;
   numberOfPages: number;
   pageSize = 2;
 
