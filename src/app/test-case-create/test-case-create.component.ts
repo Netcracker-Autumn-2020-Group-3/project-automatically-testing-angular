@@ -18,11 +18,9 @@ export class TestCaseCreateComponent implements OnInit {
   dataEntries: DataEntry[] = [];
   varVals: VariableValue[][][] = [];
   testCaseName = '';
-  scenario: Scenario;
   scenarioId = -1;
   datasetId = -1;
   scenarios: Scenario[] = [];
-  dataset: DataSet;
   datasets: DataSet[] = [];
   showForm = false;
 
