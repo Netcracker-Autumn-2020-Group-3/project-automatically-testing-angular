@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  get f() { return this.registerForm.controls; }
 
   onSubmit(customerData: any) {
       this.user.email = customerData.email;

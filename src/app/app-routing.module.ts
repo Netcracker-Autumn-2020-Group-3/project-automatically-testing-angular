@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
-  {path: 'users/addUser', component: RegisterComponent}
+  {path: 'users/addUser', component: RegisterComponent},
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent}
 

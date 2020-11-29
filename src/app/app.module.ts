@@ -21,7 +21,6 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,7 @@ import { RegisterComponent } from './register/register.component';
     UsersListComponent,
     EditUserComponent,
     UsersComponent,
-    RegisterComponent
+    RegisterComponent,
     UsersComponent,
     ManagerComponent,
     MenuComponent,
