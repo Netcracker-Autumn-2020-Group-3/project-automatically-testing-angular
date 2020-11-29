@@ -7,11 +7,11 @@ import {ManagerComponent} from './manager/manager.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
 import {UsersListComponent} from './users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
-import {RegisterComponent} from './register/register.component';
 import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {CreateDataSetComponent} from "./create-data-set/create-data-set.component";
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -23,9 +23,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
-  {path: 'users/addUser', component: RegisterComponent},
-  { path: 'users', component: UsersComponent},
-  { path: 'menu', component: MenuComponent}
+  { path: 'menu', component: MenuComponent},
+  { path: 'createDataSet', component: CreateDataSetComponent }
 
 ];
 
