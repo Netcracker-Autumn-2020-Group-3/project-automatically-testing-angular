@@ -24,7 +24,7 @@
       <div class="col-auto">
         <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
           <option selected value="">Sort by</option>
-          <option value="user_id">Id</option>
+          <option value="id">Id</option>
           <option value="name">Name</option>
           <option value="surname">Surname</option>
           <option value="email">Email</option>
@@ -51,8 +51,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let user of users" routerLink="/edituser/{{user.userId}}">
-    <th scope="row">{{user.userId}}</th>
+  <tr *ngFor="let user of users" routerLink="/edituser/{{user.id}}">
+    <th scope="row">{{user.id}}</th>
     <td>{{user.name}}</td>
     <td>{{user.surname}}</td>
     <td>{{user.email}}</td>

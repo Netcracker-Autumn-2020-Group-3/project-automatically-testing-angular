@@ -16,6 +16,7 @@ import {EditCompoundComponent} from './compound/edit-compound/edit-compound.comp
 import {MainEditCompoundComponent} from './compound/main-edit-compound.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
+import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -30,6 +31,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
+  { path: 'menu', component: MenuComponent},
+  { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'createDataSet', component: CreateDataSetComponent }
 

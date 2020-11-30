@@ -12,7 +12,7 @@ export class UsersListComponent implements OnInit {
 
   users: UserDto[] = [];
   search = {
-    name: '', surname: '', userId: '', role: '', email: '', enabled: '', sortField: ''
+    name: '', surname: '', id: '', role: '', email: '', enabled: '', sortField: ''
   };
   page = 1;
   numberOfPages = 1;
@@ -48,6 +48,7 @@ export class UsersListComponent implements OnInit {
     this.page = 1;
     this.userService.getPage(this.getParams()).subscribe(data => {
       this.users = data.map(user => {
+        console.log(user);
         user.role = user.role.toLocaleLowerCase().replace('role_', '');
         user.enabled = user.enabled ? 'yes' : 'no';
         return user;
