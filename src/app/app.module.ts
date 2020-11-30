@@ -21,6 +21,7 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
 import { MainEditCompoundComponent } from './compound/main-edit-compound.component';
@@ -43,6 +44,8 @@ import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-dat
     UsersComponent,
     ManagerComponent,
     MenuComponent,
+    DashboardComponent,
+    CreateDataSetComponent,
     DashboardComponent,
     EditCompoundActionsComponent,
     EditCompoundComponent,
