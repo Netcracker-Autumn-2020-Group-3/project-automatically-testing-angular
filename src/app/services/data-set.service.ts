@@ -10,8 +10,8 @@ import {DataSet} from "../model/dataSet";
 export class DataSetService {
   [x: string]: any;
 
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:9003/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  //private url = 'http://localhost:9003/';
   private url_get_all_data_set = this.url+"allDataSet";
 
 

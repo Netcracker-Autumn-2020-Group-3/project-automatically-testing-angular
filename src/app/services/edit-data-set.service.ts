@@ -10,10 +10,11 @@ export class EditDataSetService {
 
   dataEntryList = ['jo', 'go', 'mo'];
 
-  private getDataSetForEditUrl = 'http://localhost:8080/dataset/edit/';
-  private getDataEntryForEditUrl = 'http://localhost:8080/dataentry/edit/';
-  private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/4/';
-  private deleteDataEntryUrl = 'http://localhost:8080/dataset/edit/4/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  private getDataSetForEditUrl = this.url+'dataset/edit/';
+  private getDataEntryForEditUrl = this.url+'dataentry/edit/';
+  private updateDataEntryUrl = this.url+'dataset/edit/4/';
+  private deleteDataEntryUrl = this.url+'dataset/edit/4/';
  /* private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/1/update';*/
 
   constructor(private http: HttpClient) { }
