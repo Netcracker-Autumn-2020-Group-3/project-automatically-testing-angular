@@ -1,14 +1,14 @@
 import {Compound} from './compound';
-import {Action} from './action';
+import {ActionDto} from './action-dto';
 
 export class ScenarioStep {
   priority: number;
   compound?: Compound;
-  actions: Action[];
+  actionDto: ActionDto[];
 
-  constructor(priority: number, compound: Compound, actions: Action[]) {
+  constructor(priority: number, compound: Compound, actions: ActionDto[]) {
     this.priority = priority;
     this.compound = compound;
-    this.actions = actions;
+    this.actionDto = actions;
   }
 }

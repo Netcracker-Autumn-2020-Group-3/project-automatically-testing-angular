@@ -4,6 +4,7 @@ import {VariableValue} from '../model/test-case/variable-value';
 import {DataEntry} from '../model/test-case/data-entry';
 import {Scenario} from '../model/test-case/scenario';
 import {DataSet} from '../model/test-case/data-set';
+import {ActionDto} from '../model/test-case/action-dto';
 import {TestCaseService} from '../services/test-case.service';
 
 
@@ -74,7 +75,7 @@ export class TestCaseCreateComponent implements OnInit {
   initVarVals() {
     this.scenarioSteps.forEach((step, i) => {
       this.varVals[i] = [];
-      step.actions.forEach((action, j) => {
+      step.actionDto.forEach((action, j) => {
         this.varVals[i][j] = [];
         action.variables.forEach((actionVariable, k) => {
           this.varVals[i][j][k] = new VariableValue(action.id, actionVariable.id, this.scenarioId);
@@ -90,7 +91,7 @@ export class TestCaseCreateComponent implements OnInit {
 
   onSubmit() {
     this.scenarioSteps.forEach((step, i) => {
-      step.actions.forEach((action, j) => {
+      step.actionDto.forEach((action, j) => {
         action.variables.forEach((actionVariable, k) => {
           this.variableValues.push(this.varVals[i][j][k]);
         });

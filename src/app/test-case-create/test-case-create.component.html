@@ -35,7 +35,7 @@
 
 
     <div class="form-group  m-4" *ngFor="let step of scenarioSteps; let i=index">
-      <div *ngIf="step.compound !== undefined ">
+      <div *ngIf="step.compound !== undefined && step.compound !== null ">
 
         <div class="row my-3">
           <div class="col">
@@ -46,9 +46,9 @@
           </div>
         </div>
 
-        <div class="row" *ngFor="let action of step.actions; let j=index">
+        <div class="row" *ngFor="let action of step.actionDto; let j=index">
           <div class="col">
-            <p>Action: {{action.name}}</p>
+            <p>ActionDto: {{action.name}}</p>
           </div>
           <div class="col">
             <div class="row mb-3" *ngFor="let variable of action.variables; let k=index">
@@ -64,12 +64,12 @@
         </div>
 
       </div>
-      <div class="row my-3" *ngIf="step.compound === undefined">
+      <div class="row my-3" *ngIf="step.compound === undefined || step.compound === null">
         <div class="col">
-          <h5>Action: {{step.actions[0].name}}</h5>
+          <h5>ActionDto: {{step.actionDto[0].name}}</h5>
         </div>
         <div class="col">
-          <div class="row mb-3" *ngFor="let variable of step.actions[0].variables; let k=index">
+          <div class="row mb-3" *ngFor="let variable of step.actionDto[0].variables; let k=index">
             <select class="custom-select mr-sm-2" [(ngModel)]="varVals[i][0][k].dataEntryId"
                     (change)="onDataEntrySelect(i, 0, k)">
               <option [value]=-1 selected disabled>Enter {{variable.name}}</option>

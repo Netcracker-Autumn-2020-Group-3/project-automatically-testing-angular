@@ -1,6 +1,6 @@
 import {Variable} from './variable';
 
-export class Action {
+export class ActionDto {
   id: number;
   name: string;
   variables: Variable[];
