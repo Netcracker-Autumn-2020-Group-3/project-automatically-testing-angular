@@ -14,7 +14,7 @@ export class ListActionsComponent implements OnInit {
     @Input()pageNumbers: number;
     @Input()numberOfPages: number;
     @Input()pageSize: number;
-
+    @Input()orderSearch: string;
     p = 1;
 
   constructor(private actionService: LibraryActionService) { }
@@ -24,7 +24,10 @@ export class ListActionsComponent implements OnInit {
 
   //TODO when click pagination it works incorrect with search!!!
   getListOfActions(page: number){
-    const param = new HttpParams().append('page', String(page)).append('pageSize', String(this.pageSize));
+    const param = new HttpParams()
+      .append('page', String(page))
+      .append('orderSearch', String(this.orderSearch))
+      .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
     }));

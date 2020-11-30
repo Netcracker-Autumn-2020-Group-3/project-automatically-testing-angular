@@ -32,8 +32,8 @@ export class EditDataSetComponent implements OnInit {
     this.getUserById(this.idParam);
   }*/
   ngOnInit(): void {
-    this.getDataSetById(1);
-    this.getDataEntryById(1);
+    this.getDataSetById(4);
+    this.getDataEntryById(4);
   }
 
   getDataSetById(id: number){

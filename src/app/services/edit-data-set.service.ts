@@ -12,10 +12,15 @@ export class EditDataSetService {
 
   private getDataSetForEditUrl = 'http://localhost:8080/dataset/edit/';
   private getDataEntryForEditUrl = 'http://localhost:8080/dataentry/edit/';
-  private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/1/';
+  private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/4/';
+  private deleteDataEntryUrl = 'http://localhost:8080/dataset/edit/4/';
  /* private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/1/update';*/
 
   constructor(private http: HttpClient) { }
+
+  deleteFromDataEntryById(dataEntryId: number){
+    return this.http.delete<string>(this.deleteDataEntryUrl + dataEntryId + '/delete');
+  }
 
   getDataSetByIdForEdit(id: number){
 

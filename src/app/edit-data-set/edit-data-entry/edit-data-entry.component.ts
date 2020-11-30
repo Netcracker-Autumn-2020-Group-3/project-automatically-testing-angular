@@ -16,6 +16,7 @@ export class EditDataEntryComponent implements OnInit {
   @Input()arrayValue = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6'];
   @Input()dataEntry: DataEntry[];
   @Input()dataSetId: number;
+  deletedDataEntryItems = [];
 
  /* @Output()editedDataEntry = new EventEmitter<DataEntry[]>();*/
 
@@ -32,22 +33,22 @@ export class EditDataEntryComponent implements OnInit {
     this.dataEntry.push(new DataEntry());
   }
 
-  deleteValue(i: number) {
+  deleteValue(i: number, dataEntryId: number) {
     this.dataEntry.splice(i, 1);
-    for (let j = 1; j <= this.dataEntry.length; j++) {
-      this.dataEntry[j - 1].id = j;
-    }
+    // @ts-ignore
+    this.deletedDataEntryItems.push(dataEntryId);
   }
 
 
   saveChanges(dataSet: DataSet) {
+    for (const value of this.deletedDataEntryItems){
+      this.dataSetService.deleteFromDataEntryById(value).subscribe();
+    }
     this.dataSetService.updateDataEntry(this.dataEntry, dataSet).subscribe();
-    //this.editedDataEntry.emit(this.dataEntry);
   }
 
 
   setValue(value: string, i: number) {
-   this.dataEntry[i].id = i + 1;
    this.dataEntry[i].data_set_id = this.dataSetId;
    this.dataEntry[i].value = value;
   }

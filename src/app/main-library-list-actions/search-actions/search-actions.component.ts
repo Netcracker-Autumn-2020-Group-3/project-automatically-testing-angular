@@ -4,9 +4,6 @@ import {Action} from '../list-actions/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
 
-
-
-
 @Component({
   selector: 'app-search-actions',
   templateUrl: './search-actions.component.html',
@@ -18,6 +15,7 @@ export class SearchActionsComponent implements OnInit {
   pageNumber: number;
   numberOfPages: number;
   pageSize = 2;
+  orderSearch = '';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -30,6 +28,7 @@ export class SearchActionsComponent implements OnInit {
 
     const param = new HttpParams()
       .append('page', String(this.pageNumber))
+      .append('orderSearch', String(this.orderSearch))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
@@ -37,12 +36,14 @@ export class SearchActionsComponent implements OnInit {
   }
 
   searchAction(){
-     if (this.actionName === ''){
+     if (this.actionName === '' && this.orderSearch === ''){
        this.ngOnInit();
      }else{
+       console.log(this.orderSearch);
        this.pageNumber = 1;
        const param = new HttpParams()
          .append('page', String(this.pageNumber))
+         .append('orderSearch', String(this.orderSearch))
          .append('pageSize', String(this.pageSize));
        this.actionService.getActionsByName(param, this.actionName).subscribe((response => {
          this.actions = response;
@@ -50,7 +51,17 @@ export class SearchActionsComponent implements OnInit {
        }));
      }
    }
-
-
-
+  getOrderSearch() {
+    this.pageNumber = 1;
+    this.actionService.getNumberOfActions().subscribe(( res => {
+      this.numberOfPages = Math.round(res / this.pageSize);
+    }));
+    const param = new HttpParams()
+      .append('page', String(this.pageNumber))
+      .append('orderSearch', String(this.orderSearch))
+      .append('pageSize', String(this.pageSize));
+    this.actionService.getActions(param).subscribe(( res => {
+      this.actions = res;
+    }));
+  }
 }

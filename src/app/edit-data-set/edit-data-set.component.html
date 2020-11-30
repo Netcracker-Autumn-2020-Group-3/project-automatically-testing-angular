@@ -12,7 +12,11 @@
 
 <app-edit-name-data-set [dataSet]="dataSet"></app-edit-name-data-set>
 <app-edit-data-entry [dataEntry]="dataEntry" [dataSetId]="dataSet.id"></app-edit-data-entry>
+<div class="row ">
+  <div class="col-11 p-4 ml-5 d-flex justify-content-end">
+    <button class="btn mb-4 btn-outline-success bg-white" (click)="saveChanges()">Save changes</button>
+  </div>
+</div>
 
-<button class="btn btn-outline-success bg-white" (click)="saveChanges()">Save changes</button>
 
 

@@ -1,24 +1,26 @@
 <app-main-edit-compound [isActive]="false"></app-main-edit-compound>
-<form class="form ml-4">
+<!--<form class="form ml-4">-->
+<div class="row align-top">
+  <div class="col-10 p-4 ml-4">
+
   <nav class=" rounded navbar navbar-expand-lg navbar-light bg-light mb-4" style="width: 1100px">
-
-  <label class="float-left mr-5 " style="width: 160px">Search Action</label>
-    <input type="text"
-           class="form-control  mr-sm-3 w-50"
-           placeholder="Name"
-           aria-label="Username"
-           aria-describedby="basic-addon1"
-           name="actionName" >
-      <button type="button" class="btn btn-outline-success bg-white" >Search</button>
-      <button type="button" class="btn btn-outline-success ml-3 mr-3 bg-white" >Show All</button>
-    <select class="custom-select border-success " id="sortBy" style="width: 100px;" >
-      <option selected value="">Sort by</option>
-      <option value="user_id">Id</option>
-      <option value="name">Name</option>
-    </select>
+    <label class="float-left mr-5 " style="width: 160px">Search Action</label>
+      <input type="text"
+             class="form-control  mr-sm-3 w-50"
+             placeholder="Name"
+             aria-label="Username"
+             aria-describedby="basic-addon1"
+             name="actionName" >
+        <button type="button" class="btn btn-outline-success bg-white" >Search</button>
+        <button type="button" class="btn btn-outline-success ml-3 mr-3 bg-white" >Show All</button>
+      <select class="custom-select border-success " id="sortBy" style="width: 100px;" >
+        <option selected value="">Sort by</option>
+        <option value="user_id">Id</option>
+        <option value="name">Name</option>
+      </select>
   </nav>
-  <div class=" d-flex table-actions" >
 
+  <div class=" d-flex table-actions" >
     <table class="table ml-4 shadow"  >
       <thead class="shadow">
       <tr>
@@ -66,9 +68,9 @@
       </li>
     </ul>
   </nav>
-  <label class="float-left mr-5 " style="width: 160px">Search Action</label>
-  <div class=" d-flex table-actions" >
+  <label class="float-left mr-5 " style="width: 160px">Compound Action</label>
 
+  <div class=" d-flex table-actions" >
     <table class="table ml-4 shadow"  >
       <thead class="shadow">
       <tr>
@@ -118,7 +120,9 @@
       </li>
     </ul>
   </nav>
-</form>
+  </div>
+</div>
+<!--</form>-->
 
 
 <!--<th width="50">1</th>

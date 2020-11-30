@@ -1,18 +1,27 @@
-<nav class=" rounded navbar navbar-expand-lg navbar-light bg-light mb-4" style="width: 1100px">
+<div class="row align-top">
+  <div class="col-11 p-4 ml-4">
+    <nav class=" rounded navbar navbar-expand-lg navbar-light bg-light " style="width: 1100px">
 
-  <input type="text"
-         class="form-control  mr-sm-3"
-         placeholder="Name"
-         aria-label="Username"
-         aria-describedby="basic-addon1"
-         name="actionName"
-         [(ngModel)]="actionName">
+      <input type="text"
+             class="form-control  mr-sm-3"
+             placeholder="Name"
+             aria-label="Username"
+             aria-describedby="basic-addon1"
+             name="actionName"
+             [(ngModel)]="actionName">
 
-  <button type="button" class="btn btn-outline-success" (click)="searchAction()" style="background: white" >Search</button>
-
-</nav>
+      <button type="button" class="btn btn-outline-success mr-3" (click)="searchAction()" style="background: white" >Search</button>
+      <select class="custom-select border-success"  [(ngModel)]="orderSearch" (change)="getOrderSearch()" id="sortBy" style="width: 100px;" >
+        <option selected value="">Sort by</option>
+        <option value="id">Id</option>
+        <option value="name">Name</option>
+      </select>
+    </nav>
+  </div>
+</div>
 <app-list-actions [actions]="actions"
                   [numberOfPages]="numberOfPages"
                   [pageNumbers]="pageNumber"
-                  [pageSize]="pageSize"></app-list-actions>
+                  [pageSize]="pageSize"
+                  [orderSearch]="orderSearch"></app-list-actions>
 
