@@ -12,7 +12,7 @@ export class DataSetService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = 'http://localhost:9003/';
-  private url_get_all_data_set = this.url+"/getDataSet";
+  private url_get_all_data_set = this.url+"allDataSet";
 
   constructor(private http: HttpClient) { }
 

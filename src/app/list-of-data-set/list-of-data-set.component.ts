@@ -18,7 +18,7 @@ export class ListOfDataSetComponent implements OnInit {
 
   allDataSet: DataSet[];
 
-  allDataSetTest = [
+  /*allDataSetTest = [
     {id: 1, name: "test"},
     {id: 2, name: "newtest"},
     {id: 3, name: "werwer"},
@@ -32,11 +32,12 @@ export class ListOfDataSetComponent implements OnInit {
     {id: 5, name: "7824"},
     {id: 6, name: "yuyueqwe"},
     {id: 1, name: "filt"}
-  ]
+  ]*/
 
   constructor(private service: DataSetService) { }
 
   ngOnInit(): void {
+    this.getAllDataSet().subscribe(dataSet => this.allDataSet = dataSet);
     this.start = 0;
     this.end = this.step;
   }
@@ -47,12 +48,12 @@ export class ListOfDataSetComponent implements OnInit {
     }
   }
   nextPage() {
-    if(this.end <= this.allDataSetTest.length) {
+    if(this.end <= this.allDataSet.length) {
       this.start = this.start + this.step;
       this.end = this.end + this.step;
     }
   }
-  getAllDataSet() {
-     this.service.getAllDataSet();
+  getAllDataSet(): Observable<DataSet[]> {
+     return this.service.getAllDataSet();
   }
 }
