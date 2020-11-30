@@ -23,6 +23,13 @@ import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
 import { ListOfDataSetComponent } from './list-of-data-set/list-of-data-set.component';
+import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
+import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
+import { MainEditCompoundComponent } from './compound/main-edit-compound.component';
+import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
+import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
+import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
+import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +48,17 @@ import { ListOfDataSetComponent } from './list-of-data-set/list-of-data-set.comp
     MenuComponent,
     DashboardComponent,
     CreateDataSetComponent,
-    ListOfDataSetComponent
+    ListOfDataSetComponent,
+    CreateDataSetComponent,
+    TestCaseCreateComponent,
+    CreateDataSetComponent,
+    DashboardComponent,
+    EditCompoundActionsComponent,
+    EditCompoundComponent,
+    MainEditCompoundComponent,
+    EditDataSetComponent,
+    EditNameDataSetComponent,
+    EditDataEntryComponent
   ],
   imports: [
     BrowserModule,

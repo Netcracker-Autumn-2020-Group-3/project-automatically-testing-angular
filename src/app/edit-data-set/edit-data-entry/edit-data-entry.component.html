@@ -1,0 +1,22 @@
+<div class="row ">
+  <div class="col-11 pl-4 ml-5">
+    <button class="btn mb-4 btn-outline-success bg-white" (click)="addValue()">Add Value</button>
+    <div class="scroll">
+        <div  class="input-group mb-3 w-50" style=" margin-left: 300px;" *ngFor="let value of dataEntry; let i = index">
+          <div class="input-group-prepend">
+            <span class="input-group-text bg-white">Value</span>
+          </div>
+          <input type="text"
+                 class="form-control"
+                 aria-label="Default"
+                 value="{{value.value}}"
+                 [(ngModel)]="value.value"
+                 (change)="setValue(value.value,i)"
+                 aria-describedby="inputGroup-sizing-default">
+            <div class="input-group-prepend">
+            <button class="input-group-text bg-white" (click)="deleteValue(i,value.id)">Delete</button>
+          </div>
+       </div>
+    </div>
+  </div>
+</div>
