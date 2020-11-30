@@ -44,7 +44,7 @@ export class TestCaseService {
 
   }
 
-  postTestCase(testCaseNameValue: string, projectIdValue: number, dataSetIdValue: number, testScenarioIdValue: number, varVals: VariableValue[]) {
+  postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number, testScenarioIdValue: number, varVals: VariableValue[]) {
     return this.http.post(this.postTestCaseUrl, {
       testCaseName: testCaseNameValue,
       projectId: projectIdValue,

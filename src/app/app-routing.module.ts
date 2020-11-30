@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'testcase/create', component: TestCaseCreateComponent},
+  { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'createDataSet', component: CreateDataSetComponent }
 

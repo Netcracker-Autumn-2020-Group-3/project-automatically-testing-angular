@@ -6,6 +6,7 @@ import {Scenario} from '../model/test-case/scenario';
 import {DataSet} from '../model/test-case/data-set';
 import {ActionDto} from '../model/test-case/action-dto';
 import {TestCaseService} from '../services/test-case.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class TestCaseCreateComponent implements OnInit {
 
   variableValues: VariableValue[] = [];
 
-  constructor(private testCaseService: TestCaseService) {
+  constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
 
   }
 
@@ -97,8 +98,17 @@ export class TestCaseCreateComponent implements OnInit {
         });
       });
     });
-
-    this.testCaseService.postTestCase(this.testCaseName, 42, this.datasetId, this.scenarioId, this.variableValues);
+    let projectId;
+    this.route.paramMap.subscribe(value => {
+      projectId = value.get('project_id');
+    });
+    console.log('project id: ' + projectId);
+    if (projectId !== undefined ) {
+      this.testCaseService.postTestCase(this.testCaseName,
+        projectId, this.datasetId, this.scenarioId, this.variableValues);
+    } else{
+      console.log('project id undefined: ' + projectId);
+    }
   }
 
 }
