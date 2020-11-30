@@ -47,7 +47,7 @@ export class ListOfDataSetComponent implements OnInit {
     }
   }
   nextPage() {
-    if(this.end != this.allDataSetTest.length) {
+    if(this.end <= this.allDataSetTest.length) {
       this.start = this.start + this.step;
       this.end = this.end + this.step;
     }

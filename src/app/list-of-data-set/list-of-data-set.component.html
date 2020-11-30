@@ -1,7 +1,12 @@
-<div>
-  <input class="form-control" type="text" name="search" [(ngModel)]="searchedDataSet"
-          placeholder="search data set">
-</div>
+
+  <div>
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchedDataSet"
+            placeholder="search data set">
+  </div>
+
+  <div style="text-align: right; margin: 10px">
+    <button type="button" class="btn btn-outline-primary" routerLink="/createDataSet">Create Data Set</button>
+  </div>
 
 <table class="table" style="width: 500px">
   <thead>
@@ -18,16 +23,16 @@
   </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" style="margin-left: 30%">
   <ul class="pagination">
     <li class="page-item">
       <a class="page-link"  aria-label="Previous" (click)="previousPage()">
-        <span aria-hidden="true">&laquo;</span>
+        <span aria-hidden="true"><</span>
       </a>
     </li>
     <li class="page-item">
       <a class="page-link"  aria-label="Next" (click)="nextPage()">
-        <span aria-hidden="true">&raquo;</span>
+        <span aria-hidden="true">></span>
       </a>
     </li>
   </ul>
