@@ -9,7 +9,7 @@ export class DataSetService {
   [x: string]: any;
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:9003/';
+  private url = 'http://localhost:8080/';
 
   constructor(private http: HttpClient) { }
 
