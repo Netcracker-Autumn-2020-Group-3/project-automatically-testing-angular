@@ -15,22 +15,13 @@ export class EditDataSetComponent implements OnInit {
   dataSet: DataSet;
   dataEntry: DataEntry[];
 
-
-
   @ViewChild(EditDataEntryComponent) editDataEntry: EditDataEntryComponent;
   @ViewChild(EditNameDataSetComponent) editDataSet: EditNameDataSetComponent;
-
 
 
   constructor(private dataSetService: EditDataSetService) { }
 
   //TODO route from list of all dataSet
-  /*ngOnInit(): void {
-    this.route.paramMap.subscribe(value => {
-      this.idParam = value.get("id");
-    })
-    this.getUserById(this.idParam);
-  }*/
   ngOnInit(): void {
     this.getDataSetById(4);
     this.getDataEntryById(4);
@@ -47,9 +38,6 @@ export class EditDataSetComponent implements OnInit {
       dataEntry => this.dataEntry = dataEntry
     );
   }
-  /*updateDataEntryById() {
-    this.dataSetService.getDataSet().subscribe();
-  }*/
 
   saveChanges() {
     this.dataSet = this.editDataSet.save();

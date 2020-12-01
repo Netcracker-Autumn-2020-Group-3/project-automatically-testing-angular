@@ -13,15 +13,12 @@ import {EditNameDataSetComponent} from '../edit-name-data-set/edit-name-data-set
 })
 export class EditDataEntryComponent implements OnInit {
 
-  @Input()arrayValue = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6'];
+  //@Input()arrayValue = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6'];
   @Input()dataEntry: DataEntry[];
   @Input()dataSetId: number;
-  deletedDataEntryItems = [];
+  deletedDataEntryItems: number[] = [];
 
- /* @Output()editedDataEntry = new EventEmitter<DataEntry[]>();*/
-
-  datas = 'dsssda';
-
+  //smart and presentational component
 
   constructor(private dataSetService: EditDataSetService) {}
 
@@ -35,11 +32,10 @@ export class EditDataEntryComponent implements OnInit {
 
   deleteValue(i: number, dataEntryId: number) {
     this.dataEntry.splice(i, 1);
-    // @ts-ignore
     this.deletedDataEntryItems.push(dataEntryId);
   }
 
-
+//delete
   saveChanges(dataSet: DataSet) {
     for (const value of this.deletedDataEntryItems){
       this.dataSetService.deleteFromDataEntryById(value).subscribe();
