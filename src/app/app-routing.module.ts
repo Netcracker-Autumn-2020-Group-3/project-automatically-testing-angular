@@ -5,7 +5,7 @@ import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {ManagerComponent} from './manager/manager.component';
 import {EditUserComponent} from './edit-user/edit-user.component';
-import {UsersListComponent} from './users-list/users-list.component';
+import {UsersListComponent} from './users/users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
@@ -18,7 +18,8 @@ import {EditCompoundComponent} from './compound/edit-compound/edit-compound.comp
 import {MainEditCompoundComponent} from './compound/main-edit-compound.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
-import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import {TestCaseCreateComponent} from './test-case/test-case-create/test-case-create.component';
+import {TestCaseComponent} from './test-case/test-case.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -34,9 +35,10 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
+  // { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
   { path: 'createDataSet', component: CreateDataSetComponent },
-  { path: 'listOfDataSet', component: ListOfDataSetComponent }
+  { path: 'listOfDataSet', component: ListOfDataSetComponent },
+  { path: 'projects/:project_id/testcase', component: TestCaseComponent}
 
 ];
 

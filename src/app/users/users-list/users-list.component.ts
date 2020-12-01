@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserDto} from './user-dto';
-import {UserService} from '../services/user.service';
+import {UserService} from '../../services/user.service';
 import {HttpParams} from '@angular/common/http';
 
 @Component({

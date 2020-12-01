@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {User} from '../model/user';
 import {Params} from '@angular/router';
-import {UserDto} from '../users-list/user-dto';
+import {UserDto} from '../users/users-list/user-dto';
 import {HttpClient} from '@angular/common/http';
 import {DataSet} from '../model/test-case/data-set';
 import {Scenario} from '../model/test-case/scenario';

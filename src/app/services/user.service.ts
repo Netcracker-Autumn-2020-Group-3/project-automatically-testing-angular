@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import { UserDto } from '../users-list/user-dto';
+import { UserDto } from '../users/users-list/user-dto';
 import {Params} from '@angular/router';
 
 @Injectable({

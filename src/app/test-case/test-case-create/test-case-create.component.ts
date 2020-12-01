@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
-import {ScenarioStep} from '../model/test-case/scenario-step';
-import {VariableValue} from '../model/test-case/variable-value';
-import {DataEntry} from '../model/test-case/data-entry';
-import {Scenario} from '../model/test-case/scenario';
-import {DataSet} from '../model/test-case/data-set';
-import {ActionDto} from '../model/test-case/action-dto';
-import {TestCaseService} from '../services/test-case.service';
+import {ScenarioStep} from '../../model/test-case/scenario-step';
+import {VariableValue} from '../../model/test-case/variable-value';
+import {DataEntry} from '../../model/test-case/data-entry';
+import {Scenario} from '../../model/test-case/scenario';
+import {DataSet} from '../../model/test-case/data-set';
+import {ActionDto} from '../../model/test-case/action-dto';
+import {TestCaseService} from '../../services/test-case.service';
 import {ActivatedRoute} from '@angular/router';
 
 
