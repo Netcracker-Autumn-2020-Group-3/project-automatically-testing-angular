@@ -42,7 +42,7 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit(customerData: any) {
-    this.user.userId = this.idParam;
+    this.user.id = this.idParam;
     this.user.email = customerData.email;
     this.user.name = customerData.name;
     this.user.surname = customerData.surname;
