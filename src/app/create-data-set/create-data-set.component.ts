@@ -37,12 +37,15 @@ export class CreateDataSetComponent implements OnInit {
     (this.createDataSet.controls.Data_set_values as FormArray).push(new FormControl(''));
     this.indexes.push(this.counter++);
   }
+
   delete(i: number): void {
     this.indexes.splice(i, 1);
     (this.createDataSet.controls.Data_set_values as FormArray).removeAt(i);
   }
-  onSubmit(customerData: any){
-    this.services.addDataSet(customerData.Name, customerData.Data_set_values);
-  }
 
+  onSubmit(customerData: any){
+    this.services.addDataSet(customerData.Name, customerData.Data_set_values.filter(function (el: any) {
+      return el != "";
+    }));
+  }
 }
