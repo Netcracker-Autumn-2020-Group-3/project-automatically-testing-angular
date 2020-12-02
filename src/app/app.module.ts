@@ -30,6 +30,7 @@ import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
 import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
 import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import { CreateActionComponent } from './create-action/create-action.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {TestCaseCreateComponent} from './test-case-create/test-case-create.compo
     MainEditCompoundComponent,
     EditDataSetComponent,
     EditNameDataSetComponent,
-    EditDataEntryComponent
+    EditDataEntryComponent,
+    CreateActionComponent
   ],
   imports: [
     BrowserModule,

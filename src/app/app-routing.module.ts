@@ -19,6 +19,7 @@ import {MainEditCompoundComponent} from './compound/main-edit-compound.component
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import {CreateActionComponent} from "./create-action/create-action.component";
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -36,8 +37,8 @@ const routes: Routes = [
   { path: 'menu', component: MenuComponent},
   { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
+  { path: 'create-action', component: CreateActionComponent },
   { path: 'listOfDataSet', component: ListOfDataSetComponent }
-
 ];
 
 @NgModule({
