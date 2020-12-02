@@ -1,18 +1,20 @@
 
 <table class="table shadow">
-  <thead>
+  <thead class="shadow">
   <tr>
     <th scope="col">#</th>
     <th scope="col">Name</th>
     <th scope="col">Description</th>
+    <th scope="col" *ngIf="createCompound">#</th>
   </tr>
   </thead>
   <tbody>
 
-  <tr *ngFor="let action of actions">
+  <tr *ngFor="let action of actions; let i = index">
     <td scope="row">{{action.actionId}}</td>
     <td>{{action.actionName}}</td>
     <td>{{action.actionDescription}}</td>
+    <td *ngIf="createCompound"><button (click)="createActionForCompound(action,i)"  class="btn btn-outline-success bg-white">Add</button></td>
   </tr>
   </tbody>
 

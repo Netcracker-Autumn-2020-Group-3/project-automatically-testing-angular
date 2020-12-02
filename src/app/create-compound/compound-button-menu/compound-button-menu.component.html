@@ -1,0 +1,15 @@
+<div class="w-100">
+  <div class="row align-top">
+    <div class="col-12 p-4 ml-4">
+      <div class="ml-2 headbuttons">
+        <button class=" btn btn-default w-25"
+                [ngClass]="{'button-selected':isActive}"
+                (click)="changePage(true)">Edit Compound</button>
+        <button class="btn btn-default w-25"
+                [ngClass]="{'button-selected':!isActive}"
+                (click)="changePage(false)">Edit CompoundActions</button>
+      </div>
+      <hr class=" mt-0" style="position: relative;width: 1000px; top: -0.7px">
+    </div>
+  </div>
+</div>

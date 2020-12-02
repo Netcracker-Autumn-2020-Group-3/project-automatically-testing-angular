@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {Observable} from "rxjs";
-import {DataSet} from "../model/dataSet";
+import {Observable} from 'rxjs';
+import {DataSet} from '../model/dataSet';
 
 
 @Injectable({
@@ -10,9 +10,10 @@ import {DataSet} from "../model/dataSet";
 export class DataSetService {
   [x: string]: any;
 
-  private url = 'https://automatically-testing-java.herokuapp.com/';
-  //private url = 'http://localhost:9003/';
-  private url_get_all_data_set = this.url+"allDataSet";
+  //private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:8080/';
+  // tslint:disable-next-line:variable-name
+  private url_get_all_data_set = this.url + 'allDataSet';
 
 
   constructor(private http: HttpClient) { }
@@ -21,12 +22,13 @@ export class DataSetService {
     return this.http.get<DataSet[]>(this.url_get_all_data_set);
   }
 
-  addDataSet(dataSetName: String, values: string[]) {
+  addDataSet(dataSetName: string, values: string[]) {
     const url = `${this.url}createDataSet`;
     const urlDAtaEntry = `${this.url}createDataEntry/${dataSetName}`;
     const body = {id: null, name: dataSetName};
     this.http.put(url, body).toPromise();
-    for(var i=0; i<values.length; i++){
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < values.length; i++){
       const b = {id: null, data_set_id: null, value: values[i]};
       this.http.put(urlDAtaEntry, b).toPromise();
     }

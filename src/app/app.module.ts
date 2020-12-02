@@ -30,6 +30,10 @@ import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
 import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
 import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import { CreateCompoundComponent } from './create-compound/create-compound.component';
+import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
+import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
+import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,11 @@ import {TestCaseCreateComponent} from './test-case-create/test-case-create.compo
     MainEditCompoundComponent,
     EditDataSetComponent,
     EditNameDataSetComponent,
-    EditDataEntryComponent
+    EditDataEntryComponent,
+    CreateCompoundComponent,
+    CompoundButtonMenuComponent,
+    CreateCompoundNameComponent,
+    CreateCompoundActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +75,7 @@ import {TestCaseCreateComponent} from './test-case-create/test-case-create.compo
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]
