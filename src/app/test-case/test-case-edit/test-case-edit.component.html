@@ -1,1 +1,16 @@
-<p>test-case-edit works!</p>
+<div class="container-fluid mr-5 mt-5">
+
+  <div class="testcase-form">
+    <div class="form-group m-3">
+      <input class="form-control" [(ngModel)]="testCase.name" placeholder="Enter name">
+    </div>
+
+    <app-test-case-body (showFormButton)="showForm = $event"></app-test-case-body>
+  </div>
+
+
+  <div class="container-fluid mr-5 mt-5">
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+  </div>
+
+</div>

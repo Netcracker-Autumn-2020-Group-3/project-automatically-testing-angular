@@ -33,6 +33,7 @@ import {TestCaseCreateComponent} from './test-case/test-case-create/test-case-cr
 import { TestCaseComponent } from './test-case/test-case.component';
 import { TestCaseEditComponent } from './test-case/test-case-edit/test-case-edit.component';
 import { TabsComponent } from './tabs/tabs.component';
+import { TestCaseBodyComponent } from './test-case/test-case-body/test-case-body.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TabsComponent } from './tabs/tabs.component';
     EditDataEntryComponent,
     TestCaseComponent,
     TestCaseEditComponent,
-    TabsComponent
+    TabsComponent,
+    TestCaseBodyComponent
   ],
   imports: [
     BrowserModule,

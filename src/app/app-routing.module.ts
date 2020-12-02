@@ -20,6 +20,7 @@ import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edi
 import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
 import {TestCaseCreateComponent} from './test-case/test-case-create/test-case-create.component';
 import {TestCaseComponent} from './test-case/test-case.component';
+import {TestCaseEditComponent} from './test-case/test-case-edit/test-case-edit.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -35,10 +36,11 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  // { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
+  { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
+  { path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
   { path: 'createDataSet', component: CreateDataSetComponent },
   { path: 'listOfDataSet', component: ListOfDataSetComponent },
-  { path: 'projects/:project_id/testcase', component: TestCaseComponent}
+ // { path: 'projects/:project_id/testcase', component: TestCaseComponent}
 
 ];
 

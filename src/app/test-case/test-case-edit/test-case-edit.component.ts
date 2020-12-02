@@ -1,15 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component';
+import {ScenarioStep} from '../../model/test-case/scenario-step';
+import {DataEntry} from '../../model/test-case/data-entry';
+import {VariableValue} from '../../model/test-case/variable-value';
+import {ActivatedRoute} from '@angular/router';
+import {TestCaseService} from '../../services/test-case.service';
+import {TestCase} from '../../model/test-case/test-case';
 
 @Component({
   selector: 'app-test-case-edit',
   templateUrl: './test-case-edit.component.html',
   styleUrls: ['./test-case-edit.component.css']
 })
-export class TestCaseEditComponent implements OnInit {
+export class TestCaseEditComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
+  scenarioStepsWithData: ScenarioStep[];
+  dataEntries: DataEntry[];
+  variableValues: VariableValue[] = [];
+  testCase: TestCase;
+  testCaseId: number;
+  showForm = false;
 
-  ngOnInit(): void {
+  @ViewChild(TestCaseBodyComponent)
+  formBody: TestCaseBodyComponent;
+
+  constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
+
   }
 
+  ngAfterViewInit() {
+    this.formBody.scenarioSteps = this.testCase.scenarioStepsWithData;
+    this.formBody.dataEntries = this.dataEntries;
+    this.formBody.initVarVals();
+    this.formBody.showForm = true;
+  }
+
+  ngOnInit(): void {
+    // get test case id
+    this.route.paramMap.subscribe(value => {
+      const testCaseId = value.get('test_case_id');
+      this.testCaseId = testCaseId === null ? -1 : parseInt(testCaseId, 10);
+    });
+
+    // get test case by id
+    this.testCaseService.getTestCaseById(this.testCaseId).subscribe(data => {
+      this.testCase = data;
+      this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
+    });
+
+
+    // get test case dataset entries
+    this.testCaseService.getDataSetEntries(this.testCase.dataSetId).subscribe(data => {
+      this.dataEntries = data;
+    });
+    this.showForm = true;
+    this.ngAfterViewInit();
+
+  }
+
+  onSubmit() {
+    this.variableValues = this.formBody.flattenVarVals();
+    let projectId;
+    this.route.paramMap.subscribe(value => {
+      projectId = value.get('project_id');
+    });
+    console.log('project id: ' + projectId);
+    if (projectId !== undefined) {
+      this.testCaseService.updateTestCase(this.testCase);
+    } else {
+      console.log('project id undefined: ' + projectId);
+    }
+  }
 }

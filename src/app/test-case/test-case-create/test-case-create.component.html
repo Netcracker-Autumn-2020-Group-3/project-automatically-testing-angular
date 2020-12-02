@@ -28,59 +28,12 @@
     </div>
   </div>
 
-  <div class="testcase-form" *ngIf="showForm">
+  <div class="testcase-form">
     <div class="form-group m-3">
       <input class="form-control" [(ngModel)]="testCaseName" placeholder="Enter name">
     </div>
 
-
-    <div class="form-group  m-4" *ngFor="let step of scenarioSteps; let i=index">
-      <div *ngIf="step.compound !== undefined && step.compound !== null ">
-
-        <div class="row my-3">
-          <div class="col">
-            <h5>Compound: {{step.compound.name}}</h5>
-          </div>
-          <div class="col">
-
-          </div>
-        </div>
-
-        <div class="row" *ngFor="let action of step.actionDto; let j=index">
-          <div class="col">
-            <p>ActionDto: {{action.name}}</p>
-          </div>
-          <div class="col">
-            <div class="row mb-3" *ngFor="let variable of action.variables; let k=index">
-              <select class="custom-select mr-sm-2" [(ngModel)]="varVals[i][j][k].dataEntryId"
-                      (change)="onDataEntrySelect(i, j, k)">
-                <option [value]=-1 selected disabled>Enter {{variable.name}}</option>
-                <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
-                  {{dataEntry.value}}
-                </option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="row my-3" *ngIf="step.compound === undefined || step.compound === null">
-        <div class="col">
-          <h5>ActionDto: {{step.actionDto[0].name}}</h5>
-        </div>
-        <div class="col">
-          <div class="row mb-3" *ngFor="let variable of step.actionDto[0].variables; let k=index">
-            <select class="custom-select mr-sm-2" [(ngModel)]="varVals[i][0][k].dataEntryId"
-                    (change)="onDataEntrySelect(i, 0, k)">
-              <option [value]=-1 selected disabled>Enter {{variable.name}}</option>
-              <option *ngFor="let dataEntry of dataEntries" [value]="dataEntry.id">
-                {{dataEntry.value}}
-              </option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
+    <app-test-case-body (showFormButton)="showForm = $event"></app-test-case-body>
   </div>
 
 
