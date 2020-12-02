@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Action} from '../main-library-list-actions/list-actions/action.model';
+import {Action} from '../model/action.model';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
 
@@ -11,8 +11,8 @@ export class LibraryActionService {
 
   constructor(private http: HttpClient) { }
 
-  private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
-  //private getActionsUrl = 'http://localhost:8080/library/actions';
+  //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
+  private getActionsUrl = 'http://localhost:8080/library/actions';
  //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
  private getNumberOfActionsUrl = 'http://localhost:8080/library/actions/count';

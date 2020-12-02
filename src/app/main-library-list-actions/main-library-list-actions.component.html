@@ -8,11 +8,15 @@
         <button class="btn btn-default button-selected " >Actions</button>
       </div>
       <hr class=" mt-0" style="position: relative; top: -0.7px">
-      <app-search-actions></app-search-actions>
-    <!--  <app-list-actions [actions]="actions"
+      <app-search-actions
+                        [orderSearch]="orderSearch"
+                        (actions)="getActionsFromSearch($event)"
+                        (numberOfPages)="getNumberOfPagesFromSearch($event)"></app-search-actions>
+      <app-list-actions [actions]="actions"
                         [numberOfPages]="numberOfPages"
                         [pageNumbers]="pageNumber"
-                        [pageSize]="pageSize"></app-list-actions>-->
+                        [pageSize]="pageSize"
+                        [orderSearch]="orderSearch"></app-list-actions>
     </div>
   </div>
 </div>
