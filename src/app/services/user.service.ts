@@ -48,4 +48,10 @@ export class UserService {
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
   }
+
+  addUser(user:User){
+   const url = `${this.url}register`;
+   const body = { email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
+   return this.http.post(url,body).toPromise();
+  }
 }

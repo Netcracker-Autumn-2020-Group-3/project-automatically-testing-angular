@@ -10,10 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  form: any;
   user: User;
-  loading = false;
-  submitted = false;
   registerForm;
 
   constructor(
@@ -42,7 +39,7 @@ export class RegisterComponent implements OnInit {
       this.user.surname = customerData.surname;
       this.user.password = customerData.password;
       this.user.role = customerData.role;
-        this.service.addUser(this.user)
+        this.service.addUser(this.user);
 
   }
 }
