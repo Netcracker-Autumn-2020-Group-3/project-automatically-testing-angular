@@ -3,7 +3,7 @@ import {DataEntry} from './data-entry';
 export class Variable {
   id: number;
   name: string;
-  dataEntry: DataEntry;
+  dataEntry?: DataEntry;
 
   constructor(id: number, name: string, dataEntry: DataEntry) {
     this.id = id;
