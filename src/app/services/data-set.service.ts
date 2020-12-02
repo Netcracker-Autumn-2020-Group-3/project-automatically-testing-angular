@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from "rxjs";
+import {DataSet} from "../model/dataSet";
 
 
 @Injectable({
@@ -8,10 +10,16 @@ import { HttpClient } from '@angular/common/http';
 export class DataSetService {
   [x: string]: any;
 
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:9003/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  //private url = 'http://localhost:9003/';
+  private url_get_all_data_set = this.url+"allDataSet";
+
 
   constructor(private http: HttpClient) { }
+
+  getAllDataSet(): Observable<DataSet[]> {
+    return this.http.get<DataSet[]>(this.url_get_all_data_set);
+  }
 
   addDataSet(dataSetName: String, values: string[]) {
     const url = `${this.url}createDataSet`;

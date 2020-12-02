@@ -1,0 +1,25 @@
+app-edit-data-set{
+
+}
+.table-actions{
+  margin-left: 205px;
+}
+
+th{
+
+}
+.form{
+  min-width: 1000px;
+}
+
+.input {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.input-field {
+  margin-left: 1em;
+  padding: .5em;
+  margin-bottom: .5em;
+}

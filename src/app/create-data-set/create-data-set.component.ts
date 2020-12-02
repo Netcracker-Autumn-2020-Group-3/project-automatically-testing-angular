@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from "@angular/forms";
-import { DataSet } from "../model/dataSet";
-import { DataEntry } from "../model/dataEntry";
-import { DataSetService } from "../services/data-set.service";
+import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import { DataSet } from '../model/dataSet';
+import { DataEntry } from '../model/dataEntry';
+import { DataSetService } from '../services/data-set.service';
 
 @Component({
   selector: 'app-create-data-set',
@@ -14,6 +14,7 @@ export class CreateDataSetComponent implements OnInit {
   dataSet: DataSet;
   dataEntry: DataEntry[];
 
+  // tslint:disable-next-line:variable-name
   data_set_values: [];
 
   createDataSet = new FormGroup({
@@ -33,12 +34,12 @@ export class CreateDataSetComponent implements OnInit {
   }
 
   addValue(): void {
-    (<FormArray>this.createDataSet.controls["Data_set_values"]).push(new FormControl(''));
+    (this.createDataSet.controls.Data_set_values as FormArray).push(new FormControl(''));
     this.indexes.push(this.counter++);
   }
   delete(i: number): void {
-    this.indexes.splice(i,1);
-    (<FormArray>this.createDataSet.controls["Data_set_values"]).removeAt(i);
+    this.indexes.splice(i, 1);
+    (this.createDataSet.controls.Data_set_values as FormArray).removeAt(i);
   }
   onSubmit(customerData: any){
     this.services.addDataSet(customerData.Name, customerData.Data_set_values);

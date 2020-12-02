@@ -9,8 +9,9 @@ import {Params} from '@angular/router';
   providedIn: 'root'
 })
 export class UserService {
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:9003/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+ // private url = 'http://localhost:8080/';
+  //private url = 'http://localhost:9003/';
   private managerUrl = this.url + 'manager';
   private adminUrl = this.url + 'admin';
   private getUsersListUrl = this.url + 'users/list';
@@ -34,7 +35,8 @@ export class UserService {
   }
   updateUser(user: User) {
     const url = `${this.url}users/updateUser`;
-    const body = {userId: user.userId, email: user.email, name: user.name, surname: user.surname, role: user.role, enabled: user.enabled};
+    const body = {id: user.id, email: user.email, name: user.name, surname: user.surname, role: user.role, enabled: user.enabled};
+    // const body = {userId: user.userId, email: user.email, name: user.name, surname: user.surname, role: user.role, enabled: user.enabled};
     return this.http.post(url, body).toPromise();
   }
 
@@ -43,14 +45,7 @@ export class UserService {
       params: paramsVal
     });
   }
-
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
-  }
-
-  addUser(user: User){
-    const url = `${this.url}users/addUser`;
-       const body = { email: user.email, name: user.name, surname: user.surname, role: user.role};
-       return this.http.post(url, body).toPromise();
   }
 }

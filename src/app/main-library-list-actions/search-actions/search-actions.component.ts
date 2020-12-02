@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ListActionsComponent} from '../list-actions/list-actions.component';
 import {Action} from '../list-actions/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
-
-
+import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-search-actions',
@@ -13,41 +12,56 @@ import {LibraryActionService} from '../../services/library-action.service';
 export class SearchActionsComponent implements OnInit {
   actionName: string;
   actions: Action[];
-  reserveActions: Action[];
-
+  pageNumber: number;
+  numberOfPages: number;
+  pageSize = 2;
+  orderSearch = '';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
-    this.actionService.getActions().subscribe((response => {
-      this.actions = response;
+    this.pageNumber = 1;
+
+    this.actionService.getNumberOfActions().subscribe(( res => {
+      this.numberOfPages = Math.round(res / this.pageSize);
+    }));
+
+    const param = new HttpParams()
+      .append('page', String(this.pageNumber))
+      .append('orderSearch', String(this.orderSearch))
+      .append('pageSize', String(this.pageSize));
+    this.actionService.getActions(param).subscribe(( res => {
+      this.actions = res;
     }));
   }
 
-  search(){
-    if (this.actionName === ''){
-      this.ngOnInit();
-    }else{
-      this.actions = this.actions.filter(
-        res => {
-          return res.actionName.toLocaleLowerCase().match(this.actionName.toLocaleLowerCase());
-        }
-      );
-    }
-  }
-
   searchAction(){
-     if (this.actionName === ''){
-       this.actions = [];
-       this.actions = [... this.reserveActions];
+     if (this.actionName === '' && this.orderSearch === ''){
+       this.ngOnInit();
      }else{
-       this.reserveActions = [... this.actions];
-       this.actionService.getActionsByName(this.actionName).subscribe((response => {
+       console.log(this.orderSearch);
+       this.pageNumber = 1;
+       const param = new HttpParams()
+         .append('page', String(this.pageNumber))
+         .append('orderSearch', String(this.orderSearch))
+         .append('pageSize', String(this.pageSize));
+       this.actionService.getActionsByName(param, this.actionName).subscribe((response => {
          this.actions = response;
+         this.numberOfPages = response.length;
        }));
      }
    }
-
-
-
+  getOrderSearch() {
+    this.pageNumber = 1;
+    this.actionService.getNumberOfActions().subscribe(( res => {
+      this.numberOfPages = Math.round(res / this.pageSize);
+    }));
+    const param = new HttpParams()
+      .append('page', String(this.pageNumber))
+      .append('orderSearch', String(this.orderSearch))
+      .append('pageSize', String(this.pageSize));
+    this.actionService.getActions(param).subscribe(( res => {
+      this.actions = res;
+    }));
+  }
 }
