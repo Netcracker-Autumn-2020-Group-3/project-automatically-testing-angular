@@ -10,8 +10,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
-import { ManagerComponent } from './manager/manager.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
 import {UsersListComponent} from './users/users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
@@ -50,7 +49,6 @@ import { CreateCompoundActionsComponent } from './create-compound/create-compoun
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    ManagerComponent,
     ListActionsComponent,
     MainLibraryListActionsComponent,
     SearchActionsComponent,
@@ -59,7 +57,6 @@ import { CreateCompoundActionsComponent } from './create-compound/create-compoun
     UsersComponent,
     RegisterComponent,
     UsersComponent,
-    ManagerComponent,
     MenuComponent,
     DashboardComponent,
     CreateDataSetComponent,

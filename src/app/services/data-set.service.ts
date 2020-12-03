@@ -12,8 +12,8 @@ import {DataEntryCreate} from '../create-data-set/dataEntryCreate';
 export class DataSetService {
   [x: string]: any;
 
- // private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  //private url = 'http://localhost:8080/';
   private url_get_all_data_set = this.url + 'allDataSet';
 
 

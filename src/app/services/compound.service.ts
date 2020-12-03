@@ -8,9 +8,10 @@ import {CompoundAction} from '../model/compoundAction';
 })
 export class CompoundService {
 
-  private checkCompoundNameUrl = 'http://localhost:8080/compounds/create/check/';
-  private createCompoundUrl = 'http://localhost:8080/compounds/create';
-  private createCompoundActionsUrl = 'http://localhost:8080/compounds/create/actions';
+  private url = 'https://automatically-testing-java.herokuapp.com/';
+  private checkCompoundNameUrl = this.url + 'compounds/create/check/';
+  private createCompoundUrl = this.url + 'compounds/create';
+  private createCompoundActionsUrl = this.url + 'compounds/create/actions';
 
   constructor(private http: HttpClient) { }
 

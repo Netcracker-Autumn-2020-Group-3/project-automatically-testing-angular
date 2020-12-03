@@ -3,8 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from './login/login.component';
 import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
-import {ManagerComponent} from './manager/manager.component';
-import {EditUserComponent} from './edit-user/edit-user.component';
+import {EditUserComponent} from './users/edit-user/edit-user.component';
 import {UsersListComponent} from './users/users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
@@ -34,7 +33,6 @@ const routes: Routes = [
   { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'manager', component: ManagerComponent},
   { path: 'auth/login', component: LoginComponent},
   { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
