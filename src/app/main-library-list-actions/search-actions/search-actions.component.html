@@ -1,5 +1,5 @@
 <div class="row align-top">
-  <div class="col-11 p-4 ml-4">
+  <div class="col-11 pl-4 pb-4 ml-4">
     <nav class=" rounded navbar navbar-expand-lg navbar-light bg-light " style="width: 1100px">
 
       <input type="text"
@@ -11,6 +11,8 @@
              [(ngModel)]="actionName">
 
       <button type="button" class="btn btn-outline-success mr-3" (click)="searchAction()" style="background: white" >Search</button>
+      <button class="btn btn-outline-success bg-white mr-3" *ngIf="createCompoundSearchActions" (click)="getAllActions()">ShowAll</button>
+
       <select class="custom-select border-success"  [(ngModel)]="orderSearch" (change)="getOrderSearch()" id="sortBy" style="width: 100px;" >
         <option selected value="">Sort by</option>
         <option value="id">Id</option>
@@ -19,9 +21,9 @@
     </nav>
   </div>
 </div>
-<app-list-actions [actions]="actions"
+<!--<app-list-actions [actions]="actions"
                   [numberOfPages]="numberOfPages"
                   [pageNumbers]="pageNumber"
                   [pageSize]="pageSize"
-                  [orderSearch]="orderSearch"></app-list-actions>
+                  [orderSearch]="orderSearch"></app-list-actions>-->
 

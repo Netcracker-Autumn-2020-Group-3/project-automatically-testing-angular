@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {DataSet} from '../model/dataSet';
 import {DataEntry} from '../model/dataEntry';
+import { ActivatedRoute } from '@angular/router';
 import {EditDataSetService} from '../services/edit-data-set.service';
 import {EditDataEntryComponent} from './edit-data-entry/edit-data-entry.component';
 import {EditNameDataSetComponent} from './edit-name-data-set/edit-name-data-set.component';
@@ -14,17 +15,23 @@ export class EditDataSetComponent implements OnInit {
 
   dataSet: DataSet;
   dataEntry: DataEntry[];
+  idDataSet: any;
+
+
 
   @ViewChild(EditDataEntryComponent) editDataEntry: EditDataEntryComponent;
   @ViewChild(EditNameDataSetComponent) editDataSet: EditNameDataSetComponent;
 
 
-  constructor(private dataSetService: EditDataSetService) { }
 
-  //TODO route from list of all dataSet
+  constructor(private dataSetService: EditDataSetService, private route: ActivatedRoute) { }
+
   ngOnInit(): void {
-    this.getDataSetById(4);
-    this.getDataEntryById(4);
+    this.route.paramMap.subscribe(value => {
+      this.idDataSet = value.get('id');
+    });
+    this.getDataSetById(this.idDataSet);
+    this.getDataEntryById(this.idDataSet);
   }
 
   getDataSetById(id: number){
@@ -38,6 +45,9 @@ export class EditDataSetComponent implements OnInit {
       dataEntry => this.dataEntry = dataEntry
     );
   }
+  /*updateDataEntryById() {
+    this.dataSetService.getDataSet().subscribe();
+  }*/
 
   saveChanges() {
     this.dataSet = this.editDataSet.save();

@@ -11,18 +11,21 @@ import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {CreateDataSetComponent} from "./create-data-set/create-data-set.component";
-import {ListOfDataSetComponent} from "./list-of-data-set/list-of-data-set.component";
+import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
+import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
 
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
 import {MainEditCompoundComponent} from './compound/main-edit-compound.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
 import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import {CreateActionComponent} from "./create-action/create-action.component";
+import {CreateCompoundComponent} from './create-compound/create-compound.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
-  { path: 'dataset/edit', component: EditDataSetComponent},
+  { path: 'compound/create', component: CreateCompoundComponent},
+  { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'edit/compound', component: EditCompoundComponent},
   { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
   { path: 'admin', component: AdminComponent},
@@ -35,7 +38,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
   { path: 'projects/:project_id/testcase/create', component: TestCaseCreateComponent},
-  { path: 'createDataSet', component: CreateDataSetComponent },
+  { path: 'create-data-set', component: CreateDataSetComponent },
+  { path: 'create-action', component: CreateActionComponent },
   { path: 'listOfDataSet', component: ListOfDataSetComponent }
 
 ];
