@@ -1,8 +1,7 @@
 export class Compound{
 
   constructor(
-    // tslint:disable-next-line:variable-name
-    public id: string,
+    public id: number,
     public name: string,
     public description: string
   ) {
