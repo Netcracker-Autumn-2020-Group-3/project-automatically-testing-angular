@@ -50,7 +50,7 @@ export class UserService {
   }
 
   addUser(user:User){
-   const url = `${this.url}register`;
+   const url = `${this.url}users/addUser`;
    const body = { email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
    return this.http.post(url,body).toPromise();
   }

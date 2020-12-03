@@ -13,6 +13,8 @@ export class RegisterComponent implements OnInit {
   user: User;
   registerForm;
 
+
+
   constructor(
    private route: ActivatedRoute,
    private formBuilder: FormBuilder,
@@ -30,6 +32,13 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  this.user = {id: 1,
+  email: '',
+                  password: '',
+                  name: '',
+                  surname: '',
+                  role: '',
+                  enabled: true};
 
   }
 
