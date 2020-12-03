@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
 import {DataSet} from "../model/dataSet";
 import {DataEntry} from "../model/dataEntry";
+import {DataEntryCreate} from "../create-data-set/dataEntryCreate";
 
 
 @Injectable({
@@ -22,7 +23,7 @@ export class DataSetService {
     return this.http.get<DataSet[]>(this.url_get_all_data_set);
   }
 
-  addDataSet(dataSetName: String, values: string[]) {
+  addDataSet(dataSetName: String, values: DataEntryCreate[]) {
     const url = `${this.url}create-data-set/${dataSetName}`;
     this.http.post(url, values).toPromise();
   }

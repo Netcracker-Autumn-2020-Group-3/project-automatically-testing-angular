@@ -68,9 +68,9 @@ export class CreateCompoundActionsComponent implements OnInit {
   }
 
   alert() {
-    Swal.fire({icon: 'error',
-      title: 'Oops...',
-      text: 'Something went wrong!'});
+     Swal.fire({icon: 'error',
+     title: 'Oops...',
+     text: 'Something went wrong!'});
   }
 
 
