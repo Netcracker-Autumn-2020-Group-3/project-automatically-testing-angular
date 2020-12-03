@@ -30,6 +30,7 @@ import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
 import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
 import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import {RegisterComponent} from './register/register.component';
 import { CreateActionComponent } from './create-action/create-action.component';
 import { CreateCompoundComponent } from './create-compound/create-compound.component';
 import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
@@ -48,6 +49,8 @@ import { CreateCompoundActionsComponent } from './create-compound/create-compoun
     SearchActionsComponent,
     UsersListComponent,
     EditUserComponent,
+    UsersComponent,
+    RegisterComponent,
     UsersComponent,
     ManagerComponent,
     MenuComponent,

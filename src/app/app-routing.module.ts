@@ -21,10 +21,11 @@ import {EditDataSetComponent} from './edit-data-set/edit-data-set.component';
 import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
 import {CreateActionComponent} from "./create-action/create-action.component";
 import {CreateCompoundComponent} from './create-compound/create-compound.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
-  { path: 'compound/create', component: CreateCompoundComponent},
+  { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'edit/compound', component: EditCompoundComponent},
   { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
