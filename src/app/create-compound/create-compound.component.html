@@ -1,7 +1,18 @@
 
 <div class="ml-5 mt-2 mr-5 mb-2" >
   <app-compound-button-menu (changedPage)="onChangedPage($event)"></app-compound-button-menu>
-  <app-create-compound-name *ngIf="compoundActions"></app-create-compound-name>
-  <app-create-compound-actions *ngIf="!compoundActions"></app-create-compound-actions>
+  <app-create-compound-name *ngIf="pageCompoundActions"
+                            (name)="setName($event)"
+                            (description)="setDescription($event)"
+                            [compoundName]="compound.name"
+                            [compoundDescription]="compound.description"
+                           ></app-create-compound-name>
+  <app-create-compound-actions *ngIf="!pageCompoundActions"
+                               [addedActionForCompound]="compoundActions"
+                               (chosenAction)="save($event)"></app-create-compound-actions>
+
+    <div class="d-flex justify-content-center fixed-bottom" style="bottom: 20px;">
+      <button class="btn btn-outline-success w-25" (click)="createCompound()">Create Compound</button>
+    </div>
 </div>
 
