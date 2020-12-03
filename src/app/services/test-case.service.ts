@@ -98,7 +98,7 @@ export class TestCaseService {
   }
 
   updateTestCase(testCase: TestCase) {
-    return this.http.post(this.updateTestCaseUrl, testCase).toPromise();
+    return this.http.post(this.updateTestCaseUrl, testCase);
   }
 
   postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,
@@ -109,7 +109,7 @@ export class TestCaseService {
       dataSetId: dataSetIdValue,
       testScenarioId: testScenarioIdValue,
       variableValues: varVals
-    }).toPromise();
+    });
   }
 
 }

@@ -34,6 +34,9 @@ import { TestCaseComponent } from './test-case/test-case.component';
 import { TestCaseEditComponent } from './test-case/test-case-edit/test-case-edit.component';
 import { TabsComponent } from './tabs/tabs.component';
 import { TestCaseBodyComponent } from './test-case/test-case-body/test-case-body.component';
+import { ProjectComponent } from './project/project.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { TestCaseBodyComponent } from './test-case/test-case-body/test-case-body
     TestCaseComponent,
     TestCaseEditComponent,
     TabsComponent,
-    TestCaseBodyComponent
+    TestCaseBodyComponent,
+    ProjectComponent,
+    ProjectListComponent,
+    ProjectCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -40,5 +40,11 @@
   <div class="container-fluid mr-5 mt-5" *ngIf="showForm">
     <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
   </div>
+  <div class="container-fluid mr-5 mt-5">
+    <div [className]="'alert ' + progressTypeClass" role="alert" *ngIf="showSaveProgress">
+      {{progressMessage}}
+    </div>
+  </div>
+
 
 </div>

@@ -1,0 +1,63 @@
+<div class="m-3">
+  <h5>Projects list (click to see testcases)</h5>
+</div>
+<table class="table bg-light search-nav">
+  <thead>
+  <tr>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
+                           [(ngModel)]="search.name" (change)="onSearchSubmit()"></th>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Surname" aria-label="Search"
+                           [(ngModel)]="search.link" (change)="onSearchSubmit()"></th>
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search"
+                           [(ngModel)]="search.userId" (change)="onSearchSubmit()"></th>
+    <th scope="col">
+      <div class="col-auto">
+        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
+          <option selected value="">Sort by</option>
+          <option value="id">Id</option>
+          <option value="name">Name</option>
+          <option value="link">Link</option>
+        </select>
+      </div>
+    </th>
+    <th scope="col">
+      <button class="btn btn-outline-success" type="submit" (click)="onSearchSubmit()">Search</button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Link</th>
+    <th scope="col">userId</th>
+    <th scope="col">isArchived</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let project of projects" routerLink="/projects/{{project.id}}/testcase">
+    <th scope="row">{{project.id}}</th>
+    <td>{{project.name}}</td>
+    <td>{{project.link}}</td>
+    <td>{{project.userId}}</td>
+    <td>{{project.isArchived}}</td>
+  </tr>
+
+  </tbody>
+</table>
+
+<nav>
+  <ul class="pagination nav justify-content-center">
+    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
+    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
+    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
+    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
+    </li>
+  </ul>
+</nav>
+
+
