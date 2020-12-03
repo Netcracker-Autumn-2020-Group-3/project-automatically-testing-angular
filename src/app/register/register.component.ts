@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../model/user';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -39,6 +40,7 @@ export class RegisterComponent implements OnInit {
       this.user.surname = customerData.surname;
       this.user.password = customerData.password;
       this.user.role = customerData.role;
+      console.log("OK");
         this.service.addUser(this.user);
 
   }

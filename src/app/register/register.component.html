@@ -1,21 +1,25 @@
-
+<body>
+<head>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <h2>Register</h2>
+<div class="adduser" style="width: 700px">
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm.value)">
   <div class="form-group">
     <label>email</label>
-    <input type="text" formControlName="email" id="email"  class="form-control" [placeholder]="user.email"/>
+    <input type="text"  name="email" class="form-control"  formControlName="email" [placeholder]="user.email">
     </div>
   <div class = "form-group">
     <label>Password</label>
-    <input type="text" formControlName="password" id="password" class="form-control" [placeholder]="user.password">
+    <input type="text"  name="password" class="form-control" formControlName="password" [placeholder]="user.password">
   </div>
   <div class="form-group">
     <label> Name</label>
-    <input type="text" formControlName="name" id="username" class="form-control" [placeholder]="user.name">
+    <input type="text"  name="name" class="form-control" id="username" formControlName="name" [placeholder]="user.name">
     </div>
   <div class="form-group">
     <label>surname</label>
-    <input type="text" formControlName="surname" id="surname" class="form-control" [placeholder]="user.surname">>
+    <input type="text" name="surname"  class="form-control"  formControlName="surname" [placeholder]="user.surname">
     </div>
 
   <div class="form-group">
@@ -25,7 +29,9 @@
       <option value="ROLE_ENGINEER">ROLE_ENGINEER</option>
     </select>
   </div>
-  <div class="add-user-block-button">
-    <button type="submit" class="button">Submit</button>
+  <div class="adduser-button">
+    <button type="submit" class="btn btn-primary">Register</button>
   </div>
 </form>
+</div>
+</body>
