@@ -9,13 +9,13 @@ import {DataEntry} from '../model/dataEntry';
 export class EditDataSetService {
 
 
-  private url = 'https://automatically-testing-java.herokuapp.com/';
-  //private url = 'http://localhost:8080/';
+  //private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:8080/';
   //private url = 'http://localhost:9003/';
   private getDataSetForEditUrl = this.url + 'dataset/edit/';
   private getDataEntryForEditUrl = this.url + 'dataentry/edit/';
-  private updateDataEntryUrl = this.url + 'dataset/edit/4/';
-  private deleteDataEntryUrl = this.url + 'dataset/edit/4/';
+  private updateDataEntryUrl = this.url + 'dataset/edit/';
+  private deleteDataEntryUrl = this.url + 'dataset/edit/';
 
   /* private updateDataEntryUrl = 'http://localhost:8080/dataset/edit/1/update';*/
 

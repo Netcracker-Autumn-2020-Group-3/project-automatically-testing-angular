@@ -11,7 +11,7 @@ export class LibraryActionService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:9003/';
+  private url = 'http://localhost:8080/';
   //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
   private getActionsUrl = 'http://localhost:8080/library/actions';
   //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';

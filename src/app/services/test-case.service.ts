@@ -16,8 +16,8 @@ import {TestCase} from '../model/test-case/test-case';
 })
 export class TestCaseService {
 
-   private url = 'https://automatically-testing-java.herokuapp.com/';
-  //private url = 'http://localhost:8080/';
+  // private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:8080/';
   //private url = 'http://localhost:9003/';
   private getDataSetListUrl = this.url + 'data-set/list';
   private getTestScenarioListUrl = this.url + 'test-scenario/list';
