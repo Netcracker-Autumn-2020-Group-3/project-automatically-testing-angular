@@ -8,9 +8,9 @@ import {CompoundAction} from '../model/compoundAction';
 })
 export class CompoundService {
 
-  private checkCompoundNameUrl = 'http://localhost:8080/compound/create/check/';
-  private createCompoundUrl = 'http://localhost:8080/compound/create';
-  private createCompoundActionsUrl = 'http://localhost:8080/compound/create/actions';
+  private checkCompoundNameUrl = 'http://localhost:8080/compounds/create/check/';
+  private createCompoundUrl = 'http://localhost:8080/compounds/create';
+  private createCompoundActionsUrl = 'http://localhost:8080/compounds/create/actions';
 
   constructor(private http: HttpClient) { }
 
