@@ -22,26 +22,31 @@ import {TestCaseCreateComponent} from './test-case/test-case-create/test-case-cr
 import {TestCaseComponent} from './test-case/test-case.component';
 import {TestCaseEditComponent} from './test-case/test-case-edit/test-case-edit.component';
 import {ProjectComponent} from './project/project.component';
+import {CreateActionComponent} from './create-action/create-action.component';
+import {CreateCompoundComponent} from './create-compound/create-compound.component';
+import {RegisterComponent} from './register/register.component';
 
 const routes: Routes = [
-  {path: 'library/actions', component: MainLibraryListActionsComponent},
-  {path: 'dataset/edit', component: EditDataSetComponent},
-  {path: 'edit/compound', component: EditCompoundComponent},
-  {path: 'edit/compound/actions', component: EditCompoundActionsComponent},
-  {path: 'admin', component: AdminComponent},
-  {path: 'dashboard', component: DashboardComponent},
-  {path: 'manager', component: ManagerComponent},
-  {path: 'auth/login', component: LoginComponent},
-  {path: '', component: LoginComponent},
-  {path: 'home', component: HomeComponent, pathMatch: 'full'},
-  {path: 'edituser/:id', component: EditUserComponent},
-  {path: 'users', component: UsersComponent},
-  {path: 'menu', component: MenuComponent},
-  {path: 'createDataSet', component: CreateDataSetComponent},
-  {path: 'listOfDataSet', component: ListOfDataSetComponent},
+  { path: 'library/actions', component: MainLibraryListActionsComponent},
+  { path: 'compounds/create', component: CreateCompoundComponent},
+  { path: 'dataset/edit/:id', component: EditDataSetComponent},
+  { path: 'edit/compound', component: EditCompoundComponent},
+  { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
+  { path: 'admin', component: AdminComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'manager', component: ManagerComponent},
+  { path: 'auth/login', component: LoginComponent},
+  { path: '', component: LoginComponent},
+  { path: 'home', component: HomeComponent, pathMatch: 'full'},
+  { path: 'edituser/:id', component: EditUserComponent },
+  { path: 'users', component: UsersComponent},
+  { path: 'menu', component: MenuComponent},
   {path: 'projects/:project_id/testcase', component: TestCaseComponent},
   {path: 'projects', component: ProjectComponent},
-  {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent}
+  {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
+  { path: 'create-data-set', component: CreateDataSetComponent },
+  { path: 'create-action', component: CreateActionComponent },
+  { path: 'listOfDataSet', component: ListOfDataSetComponent }
 
 ];
 

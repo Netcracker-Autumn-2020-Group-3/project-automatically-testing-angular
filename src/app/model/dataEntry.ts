@@ -3,4 +3,5 @@ export class DataEntry {
   // tslint:disable-next-line:variable-name
   data_set_id: number;
   value: string;
+
 }

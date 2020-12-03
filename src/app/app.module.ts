@@ -37,6 +37,12 @@ import { TestCaseBodyComponent } from './test-case/test-case-body/test-case-body
 import { ProjectComponent } from './project/project.component';
 import { ProjectListComponent } from './project/project-list/project-list.component';
 import { ProjectCreateComponent } from './project/project-create/project-create.component';
+import {RegisterComponent} from './register/register.component';
+import { CreateActionComponent } from './create-action/create-action.component';
+import { CreateCompoundComponent } from './create-compound/create-compound.component';
+import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
+import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
+import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +56,8 @@ import { ProjectCreateComponent } from './project/project-create/project-create.
     SearchActionsComponent,
     UsersListComponent,
     EditUserComponent,
+    UsersComponent,
+    RegisterComponent,
     UsersComponent,
     ManagerComponent,
     MenuComponent,
@@ -72,7 +80,13 @@ import { ProjectCreateComponent } from './project/project-create/project-create.
     TestCaseBodyComponent,
     ProjectComponent,
     ProjectListComponent,
-    ProjectCreateComponent
+    ProjectCreateComponent,
+    EditDataEntryComponent,
+    CreateActionComponent,
+    CreateCompoundComponent,
+    CompoundButtonMenuComponent,
+    CreateCompoundNameComponent,
+    CreateCompoundActionsComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +95,7 @@ import { ProjectCreateComponent } from './project/project-create/project-create.
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]

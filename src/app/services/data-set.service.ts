@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {Observable} from "rxjs";
 import {DataSet} from "../model/dataSet";
+import {DataEntry} from "../model/dataEntry";
+import {DataEntryCreate} from "../create-data-set/dataEntryCreate";
 
 
 @Injectable({
@@ -10,8 +12,8 @@ import {DataSet} from "../model/dataSet";
 export class DataSetService {
   [x: string]: any;
 
-  private url = 'https://automatically-testing-java.herokuapp.com/';
-  //private url = 'http://localhost:9003/';
+  //private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:9003/';
   private url_get_all_data_set = this.url+"allDataSet";
 
 
@@ -21,14 +23,8 @@ export class DataSetService {
     return this.http.get<DataSet[]>(this.url_get_all_data_set);
   }
 
-  addDataSet(dataSetName: String, values: string[]) {
-    const url = `${this.url}createDataSet`;
-    const urlDAtaEntry = `${this.url}createDataEntry/${dataSetName}`;
-    const body = {id: null, name: dataSetName};
-    this.http.put(url, body).toPromise();
-    for(var i=0; i<values.length; i++){
-      const b = {id: null, data_set_id: null, value: values[i]};
-      this.http.put(urlDAtaEntry, b).toPromise();
-    }
+  addDataSet(dataSetName: String, values: DataEntryCreate[]) {
+    const url = `${this.url}create-data-set/${dataSetName}`;
+    this.http.post(url, values).toPromise();
   }
 }

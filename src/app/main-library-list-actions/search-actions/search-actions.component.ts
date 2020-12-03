@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, ViewChild} from '@angular/core';
 import {ListActionsComponent} from '../list-actions/list-actions.component';
-import {Action} from '../list-actions/action.model';
+import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
+import {CreateCompoundActionsComponent} from '../../create-compound/create-compound-actions/create-compound-actions.component';
 
 @Component({
   selector: 'app-search-actions',
@@ -10,29 +11,21 @@ import {HttpParams} from '@angular/common/http';
   styleUrls: ['./search-actions.component.css']
 })
 export class SearchActionsComponent implements OnInit {
+
+  @Input()createCompoundSearchActions = false;
+  @Output()createActionsCompound = new EventEmitter<any>();
+
   actionName: string;
-  actions: Action[];
+  @Output()actions = new EventEmitter<Action[]>();
   pageNumber: number;
-  numberOfPages: number;
+  @Output()numberOfPages = new EventEmitter<number>();
   pageSize = 2;
-  orderSearch = '';
+  @Input()orderSearch = '';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
-    this.pageNumber = 1;
 
-    this.actionService.getNumberOfActions().subscribe(( res => {
-      this.numberOfPages = Math.round(res / this.pageSize);
-    }));
-
-    const param = new HttpParams()
-      .append('page', String(this.pageNumber))
-      .append('orderSearch', String(this.orderSearch))
-      .append('pageSize', String(this.pageSize));
-    this.actionService.getActions(param).subscribe(( res => {
-      this.actions = res;
-    }));
   }
 
   searchAction(){
@@ -46,22 +39,26 @@ export class SearchActionsComponent implements OnInit {
          .append('orderSearch', String(this.orderSearch))
          .append('pageSize', String(this.pageSize));
        this.actionService.getActionsByName(param, this.actionName).subscribe((response => {
-         this.actions = response;
-         this.numberOfPages = response.length;
+         this.actions.emit(response);
+         this.numberOfPages.emit(response.length);
        }));
      }
    }
   getOrderSearch() {
     this.pageNumber = 1;
     this.actionService.getNumberOfActions().subscribe(( res => {
-      this.numberOfPages = Math.round(res / this.pageSize);
+      this.numberOfPages.emit(Math.round(res / this.pageSize));
     }));
     const param = new HttpParams()
       .append('page', String(this.pageNumber))
       .append('orderSearch', String(this.orderSearch))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
-      this.actions = res;
+      this.actions.emit(res);
     }));
+  }
+
+  getAllActions() {
+    this.createActionsCompound.emit();
   }
 }
