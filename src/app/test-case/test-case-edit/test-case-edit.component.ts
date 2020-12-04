@@ -5,7 +5,7 @@ import {DataEntry} from '../../model/test-case/data-entry';
 import {VariableValue} from '../../model/test-case/variable-value';
 import {ActivatedRoute} from '@angular/router';
 import {TestCaseService} from '../../services/test-case.service';
-import {TestCase} from '../../model/test-case/test-case';
+import {TestCaseDto} from '../../model/test-case/test-case-dto';
 
 @Component({
   selector: 'app-test-case-edit',
@@ -17,7 +17,7 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
   scenarioStepsWithData: ScenarioStep[];
   dataEntries: DataEntry[];
   variableValues: VariableValue[] = [];
-  testCase: TestCase;
+  testCase: TestCaseDto;
   testCaseId: number;
   showForm = false;
 
@@ -42,19 +42,21 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
       this.testCaseId = testCaseId === null ? -1 : parseInt(testCaseId, 10);
     });
 
+
+    console.log('GETTTTTING TEST CAE' + this.testCaseId);
     // get test case by id
     this.testCaseService.getTestCaseById(this.testCaseId).subscribe(data => {
       this.testCase = data;
       this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
-    });
 
+      // get test case dataset entries
+      this.testCaseService.getDataSetEntries(this.testCase.testCase.dataSetId).subscribe(dataEntries => {
+        this.dataEntries = dataEntries;
+        this.ngAfterViewInit();
+      });
+      this.showForm = true;
 
-    // get test case dataset entries
-    this.testCaseService.getDataSetEntries(this.testCase.dataSetId).subscribe(data => {
-      this.dataEntries = data;
     });
-    this.showForm = true;
-    this.ngAfterViewInit();
 
   }
 

@@ -9,7 +9,7 @@ import {Scenario} from '../model/test-case/scenario';
 import {ScenarioStep} from '../model/test-case/scenario-step';
 import {DataEntry} from '../model/test-case/data-entry';
 import {VariableValue} from '../model/test-case/variable-value';
-import {TestCase} from '../model/test-case/test-case';
+import {TestCaseDto} from '../model/test-case/test-case-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +50,8 @@ export class TestCaseService {
 
   getTestCaseById(testCaseId: number) {
     const url = this.url + `test-case/${testCaseId}`;
-    return this.http.get<TestCase>(url);
+    console.log('user: ' + url);
+    return this.http.get<TestCaseDto>(url);
     /*const testCase: TestCase =  {
       name: 'dog',
       userId: 1,
@@ -97,7 +98,7 @@ export class TestCaseService {
     return testCase;*/
   }
 
-  updateTestCase(testCase: TestCase) {
+  updateTestCase(testCase: TestCaseDto) {
     return this.http.post(this.updateTestCaseUrl, testCase);
   }
 
