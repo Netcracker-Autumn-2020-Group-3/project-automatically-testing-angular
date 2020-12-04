@@ -17,7 +17,7 @@ export class ListOfTestCasesComponent implements OnInit {
 
   allTestCases: TestCaseAll[];
 
-  allTestCasesTest = [
+  /*allTestCasesTest = [
     {id: 1, name: "test"},
     {id: 2, name: "newtest"},
     {id: 3, name: "werwer"},
@@ -31,12 +31,12 @@ export class ListOfTestCasesComponent implements OnInit {
     {id: 5, name: "7824"},
     {id: 6, name: "yuyueqwe"},
     {id: 1, name: "filt"}
-  ]
+  ]*/
 
   constructor(private service: TestCaseService) { }
 
   ngOnInit(): void {
-    //this.getAllTestCases().subscribe(dataSet => this.allTestCases = dataSet);
+    this.getAllTestCases().subscribe(dataSet => this.allTestCases = dataSet);
     this.start = 0;
     this.end = this.step;
   }
@@ -47,7 +47,7 @@ export class ListOfTestCasesComponent implements OnInit {
     }
   }
   nextPage() {
-    if(this.end <= this.allTestCasesTest.length) {
+    if(this.end <= this.allTestCases.length) {
       this.start = this.start + this.step;
       this.end = this.end + this.step;
     }
