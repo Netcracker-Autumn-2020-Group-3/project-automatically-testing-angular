@@ -1,12 +1,7 @@
-
-  <div>
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchedDataSet"
-            placeholder="search data set">
-  </div>
-
-  <div style="text-align: right; margin: 10px">
-    <button type="button" class="btn btn-outline-primary" routerLink="/create-data-set">Create Data Set</button>
-  </div>
+<div>
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchedTestCase"
+         placeholder="search test case">
+</div>
 
 <table class="table" style="width: 500px">
   <thead>
@@ -16,10 +11,11 @@
   </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let item of allDataSet | slice:start:end | filter:searchedDataSet" routerLink="/dataset/edit/{{item.id}}">
-      <th scope="row">{{item.id}}</th>
-      <td>{{item.name}}</td>
-    </tr>
+  <tr *ngFor="let item of allTestCases | slice:start:end | filter:searchedTestCase">
+    <th scope="row">{{item.id}}</th>
+    <td>{{item.name}}</td>
+    <button type="button" class="btn btn-success">run</button>
+  </tr>
   </tbody>
 </table>
 

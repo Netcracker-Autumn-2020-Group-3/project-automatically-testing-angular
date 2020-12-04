@@ -18,9 +18,9 @@ export class AuthService {
 
   constructor(private http: HttpClient) {
   }
-  private loginUrl = 'http://localhost:8080/login';
+  //private loginUrl = 'http://localhost:8080/login';
   //private loginUrl = 'http://localhost:9003/login';
-  //private loginUrl = 'https://automatically-testing-java.herokuapp.com/login';
+  private loginUrl = 'https://automatically-testing-java.herokuapp.com/login';
   //private signupUrl = 'http://localhost:8080/api/auth/signup';
 
   public getToken(): string {
