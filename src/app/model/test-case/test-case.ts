@@ -1,5 +1,3 @@
-import {ScenarioStep} from './scenario-step';
-
 export interface TestCase {
   id: number;
   name: string;
@@ -7,5 +5,4 @@ export interface TestCase {
   projectId: number;
   dataSetId: number;
   testScenarioId: number;
-  scenarioStepsWithData: ScenarioStep[];
 }

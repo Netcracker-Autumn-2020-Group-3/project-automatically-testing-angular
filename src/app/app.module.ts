@@ -42,6 +42,7 @@ import { CreateCompoundComponent } from './create-compound/create-compound.compo
 import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
 import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
 import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
+import { ListOfTestCasesComponent } from './list-of-test-cases/list-of-test-cases.component';
 import { TestScenarioEditComponent } from './test-scenario/test-scenario-edit/test-scenario-edit.component';
 import { TestScenarioCreateComponent } from './test-scenario/test-scenario-create/test-scenario-create.component';
 import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
@@ -91,7 +92,9 @@ import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-
     TestScenarioEditComponent,
     TestScenarioCreateComponent,
     TestScenarioAddActionComponent,
-    TestScenarioAddCompoundComponent
+    TestScenarioAddCompoundComponent,
+    CreateCompoundActionsComponent,
+    ListOfTestCasesComponent
   ],
   imports: [
     BrowserModule,

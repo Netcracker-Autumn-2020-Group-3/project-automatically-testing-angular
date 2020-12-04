@@ -8,7 +8,8 @@ import {CompoundAction} from '../model/compoundAction';
 })
 export class CompoundService {
 
-  private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:8080/';
+  //private url = 'https://automatically-testing-java.herokuapp.com/';
   private checkCompoundNameUrl = this.url + 'compounds/create/check/';
   private createCompoundUrl = this.url + 'compounds/create';
   private createCompoundActionsUrl = this.url + 'compounds/create/actions';
