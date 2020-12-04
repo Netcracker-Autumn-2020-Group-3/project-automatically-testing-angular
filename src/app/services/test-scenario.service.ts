@@ -7,8 +7,8 @@ import {TestScenario} from '../model/test-scenario/TestScenario';
 @Injectable({providedIn: 'root'})
 export class TestScenarioService {
 
-  private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
-  // private url = 'http://localhost:8080/test-scenarios';
+  // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
+  private url = 'http://localhost:8080/test-scenario';
   constructor(private http: HttpClient) {}
   getAllCompoundsWithIdAndName(): Observable<EntityIdName[]> {
     return this.http.get<EntityIdName[]>(`${this.url}/compounds`);
