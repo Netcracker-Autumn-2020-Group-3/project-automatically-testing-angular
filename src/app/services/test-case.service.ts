@@ -10,6 +10,7 @@ import {ScenarioStep} from '../model/test-case/scenario-step';
 import {DataEntry} from '../model/test-case/data-entry';
 import {VariableValue} from '../model/test-case/variable-value';
 import {TestCase} from '../model/test-case/test-case';
+import {TestCaseAll} from "../list-of-test-cases/TestCaseAll";
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,13 @@ export class TestCaseService {
   private getTestScenarioListUrl = this.url + 'test-scenario/list';
   private postTestCaseUrl = this.url + 'test-case/create';
   private updateTestCaseUrl = this.url + 'test-case/update';
+  private getTestCases = this.url + 'test-case/list';
 
   constructor(private http: HttpClient) {
+  }
+
+  getAllTestCases(): Observable<TestCaseAll[]> {
+    return this.http.get<TestCase[]>(this.getTestCases);
   }
 
   getDataSetList() {
