@@ -24,8 +24,10 @@ import {ProjectComponent} from './project/project.component';
 import {CreateActionComponent} from './create-action/create-action.component';
 import {CreateCompoundComponent} from './create-compound/create-compound.component';
 import {RegisterComponent} from './register/register.component';
+import {TestScenarioCreateComponent} from './test-scenario/test-scenario-create/test-scenario-create.component';
 
 const routes: Routes = [
+  { path: 'create/test-scenario', component: TestScenarioCreateComponent},
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},

@@ -1,0 +1,11 @@
+<div class="container-lg border border-secondary">
+  <strong>Action: </strong>
+  <label>
+    <select #actionName>
+      <option *ngFor="let action of actions">{{action.name}}</option>
+    </select>
+  </label>
+  <br>
+  <button class="btn btn-outline-success" type="button" (click)="createAction()">Create</button>
+  <button class="btn btn-outline-danger" type="button" (click)="cancelAction()">Cancel</button>
+</div>
