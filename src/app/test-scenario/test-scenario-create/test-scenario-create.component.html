@@ -1,0 +1,44 @@
+<div class="container-md">
+  <form>
+    <label>
+      <strong>Name:</strong>
+      <input type="text" class="form-control" [formControl]="formName">
+      <small *ngIf="formName.invalid && formName.touched" style="color: red">Name is not defined!</small>
+    </label>
+  </form>
+  <button class="btn btn-outline-primary" type="button" (click)="addCompoundForm()">Add Compound</button>
+  <button class="btn btn-outline-primary" type="button" (click)="addActionForm()">Add Action</button>
+  <button class="btn btn-outline-success" type="button" (click)="createTestScenario()" [disabled]="formName.invalid">Create</button>
+  <button class="btn btn-outline-danger" type="button" (click)="cancelTestScenario()">Cancel</button>
+  <app-test-scenario-add-compound *ngIf="isAddCompound"
+                                  (onCancel)="cancelCompoundForm()"
+                                  (onCreate)="addCompoundToTestScenario($event)"
+                                  [compounds]="compounds"
+  ></app-test-scenario-add-compound>
+  <app-test-scenario-add-action *ngIf="isAddAction"
+                                (onCancel)="cancelActionForm()"
+                                (onCreate)="addActionToTestScenario($event)"
+                                [actions]="actions"
+  ></app-test-scenario-add-action>
+  <table class="table" *ngIf="items.length > 0">
+    <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Type</th>
+      <th scope="col">Priority</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of items">
+      <td>{{map.get(item)}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.priority}}</td>
+      <td>
+        <button type="button" class="btn btn-outline-danger"
+                (click)="deleteItemFromTestScenario(item)"
+        >&times;
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>

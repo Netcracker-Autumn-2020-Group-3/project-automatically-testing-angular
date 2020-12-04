@@ -43,6 +43,10 @@ import { CompoundButtonMenuComponent } from './create-compound/compound-button-m
 import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
 import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
 import { ListOfTestCasesComponent } from './list-of-test-cases/list-of-test-cases.component';
+import { TestScenarioEditComponent } from './test-scenario/test-scenario-edit/test-scenario-edit.component';
+import { TestScenarioCreateComponent } from './test-scenario/test-scenario-create/test-scenario-create.component';
+import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
+import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-add-compound/test-scenario-add-compound.component';
 
 @NgModule({
   declarations: [
@@ -84,6 +88,11 @@ import { ListOfTestCasesComponent } from './list-of-test-cases/list-of-test-case
     CreateCompoundComponent,
     CompoundButtonMenuComponent,
     CreateCompoundNameComponent,
+    CreateCompoundActionsComponent,
+    TestScenarioEditComponent,
+    TestScenarioCreateComponent,
+    TestScenarioAddActionComponent,
+    TestScenarioAddCompoundComponent,
     CreateCompoundActionsComponent,
     ListOfTestCasesComponent
   ],

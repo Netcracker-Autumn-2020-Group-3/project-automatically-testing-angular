@@ -1,0 +1,11 @@
+<div class="container-lg border border-secondary">
+  <strong>Compound:</strong>
+  <label>
+    <select #compoundName>
+      <option *ngFor="let compound of compounds">{{compound.name}}</option>
+    </select>
+  </label>
+  <br>
+  <button class="btn btn-outline-success" type="button" (click)="createCompound()">Create</button>
+  <button class="btn btn-outline-danger" type="button" (click)="cancelCompound()">Cancel</button>
+</div>
