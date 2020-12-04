@@ -45,7 +45,7 @@ const routes: Routes = [
   {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
-  { path: 'listOfDataSet', component: ListOfDataSetComponent },
+  { path: 'list-of-data-set', component: ListOfDataSetComponent },
   { path: 'list-of-test-cases', component: ListOfTestCasesComponent }
 ];
 
