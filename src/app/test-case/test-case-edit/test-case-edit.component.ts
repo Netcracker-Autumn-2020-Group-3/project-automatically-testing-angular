@@ -42,8 +42,6 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
       this.testCaseId = testCaseId === null ? -1 : parseInt(testCaseId, 10);
     });
 
-
-    console.log('GETTTTTING TEST CAE' + this.testCaseId);
     // get test case by id
     this.testCaseService.getTestCaseById(this.testCaseId).subscribe(data => {
       this.testCase = data;
