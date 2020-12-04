@@ -24,6 +24,7 @@ import {ProjectComponent} from './project/project.component';
 import {CreateActionComponent} from './create-action/create-action.component';
 import {CreateCompoundComponent} from './create-compound/create-compound.component';
 import {RegisterComponent} from './register/register.component';
+import {ListOfTestCasesComponent} from "./list-of-test-cases/list-of-test-cases.component";
 
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
@@ -44,8 +45,8 @@ const routes: Routes = [
   {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
-  { path: 'listOfDataSet', component: ListOfDataSetComponent }
-
+  { path: 'listOfDataSet', component: ListOfDataSetComponent },
+  { path: 'list-of-test-cases', component: ListOfTestCasesComponent }
 ];
 
 @NgModule({
