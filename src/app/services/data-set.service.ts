@@ -15,6 +15,7 @@ export class DataSetService {
   //private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = 'http://localhost:8080/';
   private url_get_all_data_set = this.url + 'allDataSet';
+  private url_delete_data_set = this.url + 'delete-data-set/';
 
 
   constructor(private http: HttpClient) { }
@@ -26,5 +27,10 @@ export class DataSetService {
   addDataSet(dataSetName: string, values: DataEntryCreate[]) {
     const url = `${this.url}create-data-set/${dataSetName}`;
     this.http.post(url, values).toPromise();
+  }
+
+  delete(id: number): Promise<Object> {
+    const url = `${this.url_delete_data_set}${id}`;
+    return this.http.delete(url).toPromise();
   }
 }
