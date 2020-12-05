@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Action} from '../model/action.model';
 import {ListActionsComponent} from './list-actions/list-actions.component';
 import {LibraryActionService} from '../services/library-action.service';
@@ -11,6 +11,10 @@ import {HttpParams} from '@angular/common/http';
 })
 export class MainLibraryListActionsComponent implements OnInit {
 
+  @ViewChild('buttonActions') elemRefButActions: ElementRef;
+  @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
+  isButtonActions = true;
+  isButtonCompounds = false;
   actionName: string;
   actions: Action[];
   pageNumber: number;
@@ -36,12 +40,25 @@ export class MainLibraryListActionsComponent implements OnInit {
     }));
   }
 
-
   getActionsFromSearch(actionsSearch: Action[]) {
     this.actions = actionsSearch;
   }
 
   getNumberOfPagesFromSearch(pageNumbers: number) {
     this.numberOfPages = pageNumbers;
+  }
+
+  clickButtonActions() {
+    this.isButtonActions = true;
+    this.isButtonCompounds = false;
+    this.elemRefButActions.nativeElement.classList.add('active');
+    this.elemRefButCompounds.nativeElement.classList.remove('active');
+  }
+
+  clickButtonCompounds() {
+    this.isButtonActions = false;
+    this.isButtonCompounds = true;
+    this.elemRefButActions.nativeElement.classList.remove('active');
+    this.elemRefButCompounds.nativeElement.classList.add('active');
   }
 }
