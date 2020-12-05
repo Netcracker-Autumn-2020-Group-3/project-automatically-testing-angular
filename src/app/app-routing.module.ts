@@ -28,9 +28,8 @@ import {RegisterComponent} from './register/register.component';
 const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
+  { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
-  { path: 'edit/compound', component: EditCompoundComponent},
-  { path: 'edit/compound/actions', component: EditCompoundActionsComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'dashboard', component: DashboardComponent},
   { path: 'auth/login', component: LoginComponent},

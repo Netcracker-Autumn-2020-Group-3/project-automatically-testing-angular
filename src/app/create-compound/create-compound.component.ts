@@ -26,8 +26,8 @@ export class CreateCompoundComponent implements OnInit {
 
   }
 
-  onChangedPage(a: any){
-    this.pageCompoundActions = a;
+  onChangedPage(page: any){
+    this.pageCompoundActions = page;
   }
 
 
