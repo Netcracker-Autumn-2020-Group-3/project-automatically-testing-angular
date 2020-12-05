@@ -1,0 +1,13 @@
+<div class="m-3 border border-primary rounded">
+  <div class="m-3">
+    <label class="font-weight-bold">Action:</label><br>
+    <label>
+      <select class="custom-select mr-sm-2" #actionName>
+        <option *ngFor="let action of actions">{{action.name}}</option>
+      </select>
+    </label>
+    <br>
+    <button class="btn btn-outline-success m-1" type="button" (click)="createAction()">Create</button>
+    <button class="btn btn-outline-danger m-1" type="button" (click)="cancelAction()">Cancel</button>
+  </div>
+</div>

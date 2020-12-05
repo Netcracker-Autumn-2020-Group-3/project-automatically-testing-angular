@@ -24,8 +24,14 @@ import {ProjectComponent} from './project/project.component';
 import {CreateActionComponent} from './create-action/create-action.component';
 import {CreateCompoundComponent} from './create-compound/create-compound.component';
 import {RegisterComponent} from './register/register.component';
+import {ListOfTestCasesComponent} from './list-of-test-cases/list-of-test-cases.component';
+import {TestScenarioCreateComponent} from './test-scenario/test-scenario-create/test-scenario-create.component';
+import {TestScenarioComponent} from './test-scenario/test-scenario.component';
+import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.component';
 
 const routes: Routes = [
+  { path: 'test-scenario', component: TestScenarioComponent},
+  { path: 'test-scenario/create', component: TestScenarioCreateComponent},
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
@@ -41,10 +47,11 @@ const routes: Routes = [
   {path: 'projects/:project_id/testcase', component: TestCaseComponent},
   {path: 'projects', component: ProjectComponent},
   {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
+  {path: 'projects/:project_id/testcase/:test_case_id', component: TestCaseViewComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
-  { path: 'listOfDataSet', component: ListOfDataSetComponent }
-
+  { path: 'list-of-data-set', component: ListOfDataSetComponent },
+  { path: 'list-of-test-cases', component: ListOfTestCasesComponent }
 ];
 
 @NgModule({

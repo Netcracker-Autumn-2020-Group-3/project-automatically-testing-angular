@@ -1,19 +1,18 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component';
 import {ScenarioStep} from '../../model/test-case/scenario-step';
 import {DataEntry} from '../../model/test-case/data-entry';
 import {VariableValue} from '../../model/test-case/variable-value';
+import {TestCaseDto} from '../../model/test-case/test-case-dto';
+import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component';
 import {ActivatedRoute} from '@angular/router';
 import {TestCaseService} from '../../services/test-case.service';
-import {TestCaseDto} from '../../model/test-case/test-case-dto';
 
 @Component({
-  selector: 'app-test-case-edit',
-  templateUrl: './test-case-edit.component.html',
-  styleUrls: ['./test-case-edit.component.css']
+  selector: 'app-test-case-view',
+  templateUrl: './test-case-view.component.html',
+  styleUrls: ['./test-case-view.component.css']
 })
-export class TestCaseEditComponent implements OnInit, AfterViewInit {
-
+export class TestCaseViewComponent implements OnInit, AfterViewInit {
   scenarioStepsWithData: ScenarioStep[];
   dataEntries: DataEntry[];
   variableValues: VariableValue[] = [];
@@ -33,6 +32,7 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
     this.formBody.dataEntries = this.dataEntries;
     this.formBody.initVarVals();
     this.formBody.showForm = true;
+    this.formBody.onlyView = true;
   }
 
   ngOnInit(): void {
@@ -58,17 +58,4 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
 
   }
 
-  onSubmit() {
-    this.variableValues = this.formBody.flattenVarVals();
-    let projectId;
-    this.route.paramMap.subscribe(value => {
-      projectId = value.get('project_id');
-    });
-    console.log('project id: ' + projectId);
-    if (projectId !== undefined) {
-      this.testCaseService.updateTestCase(this.testCase);
-    } else {
-      console.log('project id undefined: ' + projectId);
-    }
-  }
 }

@@ -1,6 +1,8 @@
 <div class="m-5">
 
+
   <app-tabs (tabChange)="tab = $event"></app-tabs>
- <!-- <app-users-list *ngIf="tab==='first'"></app-users-list>-->
+  <app-list-of-test-cases *ngIf="tab==='first'"></app-list-of-test-cases>
   <app-test-case-create *ngIf="tab==='second'"></app-test-case-create>
+
 </div>
