@@ -26,6 +26,7 @@ import {CreateCompoundComponent} from './create-compound/create-compound.compone
 import {RegisterComponent} from './register/register.component';
 import {ListOfTestCasesComponent} from './list-of-test-cases/list-of-test-cases.component';
 import {TestScenarioCreateComponent} from './test-scenario/test-scenario-create/test-scenario-create.component';
+import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.component';
 
 const routes: Routes = [
   { path: 'create/test-scenario', component: TestScenarioCreateComponent},
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path: 'projects/:project_id/testcase', component: TestCaseComponent},
   {path: 'projects', component: ProjectComponent},
   {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
+  {path: 'projects/:project_id/testcase/:test_case_id', component: TestCaseViewComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
   { path: 'list-of-data-set', component: ListOfDataSetComponent },
