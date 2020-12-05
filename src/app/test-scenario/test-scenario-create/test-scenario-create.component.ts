@@ -3,6 +3,7 @@ import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {FormControl, Validators} from '@angular/forms';
 import {EntityIdName} from '../../model/test-scenario/EntityIdName';
 import {TestScenarioService} from '../../services/test-scenario.service';
+import {TestScenario} from '../../model/test-scenario/TestScenario';
 
 @Component({
   selector: 'app-test-scenario-create',
@@ -13,6 +14,7 @@ export class TestScenarioCreateComponent implements OnInit {
   compounds: EntityIdName[];
   actions: EntityIdName[];
   formName = new FormControl('', [Validators.required]);
+  isCreated = '';
   isAddCompound = false;
   isAddAction = false;
   items: TestScenarioItem[] = [];
@@ -84,7 +86,7 @@ export class TestScenarioCreateComponent implements OnInit {
     const name = this.formName.value;
     this.testScenarioService.createTestScenario({name, items: this.items})
       .subscribe();
-    console.log('TEST SCENARIO', {name, items: this.items});
+    this.cancelTestScenario();
   }
 
   cancelTestScenario() {
