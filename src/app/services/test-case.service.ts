@@ -25,6 +25,7 @@ export class TestCaseService {
   private postTestCaseUrl = this.url + 'test-case/create';
   private updateTestCaseUrl = this.url + 'test-case/update';
   private getTestCases = this.url + 'test-case/list';
+  private executeTestCaseUrl = this.url + 'test-case/execute/';
 
   constructor(private http: HttpClient) {
   }
@@ -75,4 +76,8 @@ export class TestCaseService {
     });
   }
 
+  executeTestCase(id: number) {
+    const url = this.executeTestCaseUrl + id;
+    this.http.get(url).toPromise();
+}
 }

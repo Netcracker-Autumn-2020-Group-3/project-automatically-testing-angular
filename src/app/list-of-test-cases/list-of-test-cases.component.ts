@@ -55,4 +55,7 @@ export class ListOfTestCasesComponent implements OnInit {
   getAllTestCases(): Observable<TestCaseAll[]> {
     return this.service.getAllTestCases();
   }
+  run(id: number) {
+    this.service.executeTestCase(id);
+  }
 }
