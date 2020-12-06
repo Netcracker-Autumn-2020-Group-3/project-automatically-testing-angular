@@ -10,15 +10,8 @@ export class EditCompoundButtonMenuComponent implements OnInit {
   constructor() { }
 
 
-  isActive = true;
-
-
-  @Output() changedPage = new EventEmitter<boolean>();
 
   ngOnInit(): void {}
-  changePage(page: boolean){
-    this.isActive = page;
-    this.changedPage.emit(page);
-  }
+
 
 }

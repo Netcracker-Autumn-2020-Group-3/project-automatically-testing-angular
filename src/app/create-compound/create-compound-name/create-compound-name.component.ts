@@ -23,12 +23,12 @@ export class CreateCompoundNameComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setCompoundName(name: any) {
+  /*setCompoundName(name: any) {
 
   }
   setCompoundDesc(desc: any) {
 
-  }
+  }*/
 
   saveCompound(): void{
     this.compoundService.checkIfCompoundNameExist(this.compoundName).subscribe(res => {

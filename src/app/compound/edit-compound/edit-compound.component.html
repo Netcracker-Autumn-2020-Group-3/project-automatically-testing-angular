@@ -5,6 +5,7 @@
            class="form-control input-field"
            aria-label="Username"
            aria-describedby="basic-addon1"
+           [(ngModel)]="compound.name"
            value="{{compound.name}}">
   </div>
   <div class="input">
@@ -14,9 +15,10 @@
            placeholder="Name"
            aria-label="Username"
            aria-describedby="basic-addon1"
+           [(ngModel)]="compound.description"
            value="{{compound.description}}">
   </div>
   <div class="d-flex justify-content-end">
-    <button type="button" class=" btn btn-primary">Save changes</button>
+    <button type="button" class=" btn btn-primary" (click)="updateCompound()">Save changes</button>
   </div>
 </div>

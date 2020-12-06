@@ -12,6 +12,7 @@ export class MainEditCompoundComponent implements OnInit {
 
   pageCompoundActions = true;
   idCompound: any;
+  nameBefore: string;
   compound: Compound;
   constructor(private route: ActivatedRoute, private compoundService: CompoundService) { }
 
@@ -20,22 +21,13 @@ export class MainEditCompoundComponent implements OnInit {
       this.idCompound = value.get('id');
     });
     this.getCompound(this.idCompound);
-    this.getCompoundActions(this.idCompound);
-  }
-
-
-  onChangedPage(page: any){
-    this.pageCompoundActions = page;
   }
 
   getCompound(idCompound: any) {
     this.compoundService.getCompound(idCompound).subscribe(res => {
-      console.log(res);
       this.compound = res;
+      this.nameBefore = this.compound.name;
     });
   }
 
-  getCompoundActions(idCompound: any) {
-    this.compoundService.getCompoundActions(idCompound).subscribe();
-  }
 }
