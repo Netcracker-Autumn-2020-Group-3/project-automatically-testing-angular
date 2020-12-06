@@ -3,6 +3,7 @@ import {Compound} from '../model/compound.model';
 import {CompoundAction} from '../model/compoundAction';
 import {Action} from '../model/action.model';
 import {CompoundService} from '../services/compound.service';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-compound',
@@ -51,7 +52,13 @@ export class CreateCompoundComponent implements OnInit {
        this.compoundActionPriority.push(new CompoundAction(this.compound.id, val.action.actionId, val.priority));
        console.log(this.compoundActionPriority.length);
      }
-     this.compoundService.createCompoundActions(this.compoundActionPriority).subscribe();
+     this.compoundService.createCompoundActions(this.compoundActionPriority).subscribe(ress => {
+
+         Swal.fire({icon: 'success',
+           title: 'Ok',
+           text: 'updated successfully!'});
+
+     });
    });
   }
 }

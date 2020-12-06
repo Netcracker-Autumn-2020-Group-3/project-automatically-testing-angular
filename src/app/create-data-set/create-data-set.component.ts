@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { DataSet } from '../model/dataSet';
 import { DataSetService } from '../services/data-set.service';
 import {DataEntryCreate} from "./dataEntryCreate";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-create-data-set',
@@ -59,7 +60,13 @@ export class CreateDataSetComponent implements OnInit {
   onSubmit(customerData: any){
     this.dataEntryCreate = customerData.Data_set_values;
     console.log(this.dataEntryCreate);
-    this.services.addDataSet(customerData.Name, this.dataEntryCreate);
+    this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
+
+      Swal.fire({icon: 'success',
+        title: 'Ok',
+        text: 'updated successfully!'});
+
+    });
     //this.services.addDataSet(customerData.Name, customerData.Data_set_values.filter(function (el: any) {
     // return el != "";
     //}));

@@ -1,4 +1,5 @@
 <div class="m-5">
   <app-tabs (tabChange)="tab = $event"></app-tabs>
   <app-users-list *ngIf="tab==='first'"></app-users-list>
+  <app-register *ngIf="tab==='second'"></app-register>
 </div>

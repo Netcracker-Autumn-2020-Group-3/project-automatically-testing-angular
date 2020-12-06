@@ -17,11 +17,11 @@ export class TestScenarioService {
 
   constructor(private http: HttpClient) {}
   getAllCompoundsWithIdAndName(): Observable<EntityIdName[]> {
-    return this.http.get<EntityIdName[]>(`${this.url}/compounds`);
+    return this.http.get<EntityIdName[]>(`${this.url}compounds`);
   }
 
   getAllActionsWithIdAndName(): Observable<EntityIdName[]> {
-    return this.http.get<EntityIdName[]>(`${this.url}/actions`);
+    return this.http.get<EntityIdName[]>(`${this.url}actions`);
   }
 
   createTestScenario(testScenario: TestScenario): Observable<HttpResponse<boolean>> {
