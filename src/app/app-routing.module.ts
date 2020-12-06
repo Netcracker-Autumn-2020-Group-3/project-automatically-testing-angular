@@ -26,6 +26,8 @@ import {CreateCompoundComponent} from './create-compound/create-compound.compone
 import {RegisterComponent} from './register/register.component';
 import {ListOfTestCasesComponent} from './list-of-test-cases/list-of-test-cases.component';
 import {TestScenarioCreateComponent} from './test-scenario/test-scenario-create/test-scenario-create.component';
+import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
+import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 
 const routes: Routes = [
   { path: 'create/test-scenario', component: TestScenarioCreateComponent},
@@ -48,7 +50,9 @@ const routes: Routes = [
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
   { path: 'list-of-data-set', component: ListOfDataSetComponent },
-  { path: 'list-of-test-cases', component: ListOfTestCasesComponent }
+  { path: 'list-of-test-cases', component: ListOfTestCasesComponent },
+  { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
+  { path: 'list-of-test-cases-pagination', component: TestCaseListComponent}
 ];
 
 @NgModule({

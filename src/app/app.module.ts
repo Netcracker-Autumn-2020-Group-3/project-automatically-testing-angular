@@ -47,6 +47,8 @@ import { TestScenarioEditComponent } from './test-scenario/test-scenario-edit/te
 import { TestScenarioCreateComponent } from './test-scenario/test-scenario-create/test-scenario-create.component';
 import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
 import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-add-compound/test-scenario-add-compound.component';
+import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
+import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,9 @@ import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-
     TestScenarioAddActionComponent,
     TestScenarioAddCompoundComponent,
     CreateCompoundActionsComponent,
-    ListOfTestCasesComponent
+    ListOfTestCasesComponent,
+    TestScenarioListComponent,
+    TestCaseListComponent
   ],
   imports: [
     BrowserModule,
