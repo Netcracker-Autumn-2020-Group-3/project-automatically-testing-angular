@@ -10,8 +10,8 @@ import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 })
 export class TestScenarioAddActionComponent implements OnInit {
 
-  @Output() onCreate: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
+  @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('actionName') elemRef: ElementRef;
   @Input() actions: EntityIdName[];
 
@@ -31,7 +31,7 @@ export class TestScenarioAddActionComponent implements OnInit {
   }
 
   cancelAction() {
-    this.onCancel.emit();
+    this.eventCancel.emit();
   }
 
   createAction() {
@@ -39,7 +39,7 @@ export class TestScenarioAddActionComponent implements OnInit {
     const action = new TestScenarioItem();
     action.id = (this.actions.filter(a => a.name === actionName).pop() as EntityIdName).id;
     action.type = 'Action';
-    this.onCreate.emit({action, actionName});
+    this.eventCreated.emit({action, actionName});
   }
 
 }

@@ -12,7 +12,10 @@
           <a class="nav-link" #buttonEdit (click)="clickButtonEdit()">Edit</a>
         </li>
       </ul>
-      <app-test-scenario-create *ngIf="isActiveButtonCreate"></app-test-scenario-create>
+      <app-test-scenario-create
+        *ngIf="isActiveButtonCreate"
+        (eventCreated)="clickButtonList()">
+      </app-test-scenario-create>
     </div>
   </div>
 </div>
