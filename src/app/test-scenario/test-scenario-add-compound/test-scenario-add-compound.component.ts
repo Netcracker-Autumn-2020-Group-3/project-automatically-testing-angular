@@ -10,8 +10,8 @@ import {EntityIdName} from '../../model/test-scenario/EntityIdName';
 })
 export class TestScenarioAddCompoundComponent implements OnInit {
 
-  @Output() onCreate: EventEmitter<any> = new EventEmitter<any>();
-  @Output() onCancel: EventEmitter<any> = new EventEmitter<any>();
+  @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
+  @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('compoundName') elemRef: ElementRef;
   @Input() compounds: EntityIdName[];
 
@@ -30,7 +30,7 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   cancelCompound() {
-    this.onCancel.emit();
+    this.eventCancel.emit();
   }
 
   createCompound() {
@@ -38,7 +38,7 @@ export class TestScenarioAddCompoundComponent implements OnInit {
     const compound = new TestScenarioItem();
     compound.id = (this.compounds.filter(c => c.name === compoundName).pop() as EntityIdName).id;
     compound.type = 'Compound';
-    this.onCreate.emit({compound, compoundName});
+    this.eventCreated.emit({compound, compoundName});
   }
 
 }

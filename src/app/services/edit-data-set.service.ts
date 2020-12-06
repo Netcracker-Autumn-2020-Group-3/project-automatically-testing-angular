@@ -36,7 +36,7 @@ export class EditDataSetService {
   }
 
   updateDataEntry(dataEntry: DataEntry[], dataSet: DataSet) {
-    return this.http.put<string>(this.updateDataEntryUrl + dataSet.name + '/update', dataEntry);
+    return this.http.put<string>(this.updateDataEntryUrl + dataSet.id + '/' + dataSet.name + '/update', dataEntry);
   }
 
 }

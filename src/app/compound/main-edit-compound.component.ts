@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import {CompoundService} from '../services/compound.service';
+import {Compound} from '../model/compound.model';
 
 @Component({
   selector: 'app-main-edit-compound',
@@ -7,16 +10,24 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class MainEditCompoundComponent implements OnInit {
 
-  page = 'compound';
-  @Input('isActive')isActive = true;
-  constructor() { }
+  pageCompoundActions = true;
+  idCompound: any;
+  nameBefore: string;
+  compound: Compound;
+  constructor(private route: ActivatedRoute, private compoundService: CompoundService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(value => {
+      this.idCompound = value.get('id');
+    });
+    this.getCompound(this.idCompound);
+  }
 
-
-  changePage(page: string){
-    this.page = page;
-    this.isActive = page === 'compound';
+  getCompound(idCompound: any) {
+    this.compoundService.getCompound(idCompound).subscribe(res => {
+      this.compound = res;
+      this.nameBefore = this.compound.name;
+    });
   }
 
 }
