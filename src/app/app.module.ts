@@ -51,6 +51,8 @@ import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-
 import { TestScenarioComponent } from './test-scenario/test-scenario.component';
 import { ListCompoundsComponent } from './main-library-list-actions/list-compounds/list-compounds.component';
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
+import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
+import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 
 @NgModule({
   declarations: [
@@ -104,7 +106,10 @@ import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view
     TestScenarioComponent,
     ListCompoundsComponent,
     ListOfTestCasesComponent,
-    TestCaseViewComponent
+    TestCaseViewComponent,
+    ListOfTestCasesComponent,
+    TestScenarioListComponent,
+    TestCaseListComponent
   ],
   imports: [
     BrowserModule,
