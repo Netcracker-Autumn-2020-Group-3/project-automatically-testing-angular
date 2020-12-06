@@ -18,6 +18,7 @@ import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dt
   providedIn: 'root'
 })
 export class TestCaseService {
+
   // private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = 'http://localhost:8080/';
   // private url = 'http://localhost:9003/';
@@ -28,6 +29,7 @@ export class TestCaseService {
   private updateTestCaseUrl = this.url + 'test-case/update';
   private getTestCases = this.url + 'test-case/list';
   private getTestCaseListUrl = this.url + 'test-case/list/page';
+  private executeTestCaseUrl = this.url + 'test-case/execute/';
 
   constructor(private http: HttpClient) {
   }
@@ -78,6 +80,10 @@ export class TestCaseService {
     });
   }
 
+  executeTestCase(id: number) {
+    const url = this.executeTestCaseUrl + id;
+    this.http.get(url).toPromise();
+}
   getPage(paramsVal: Params) {
     return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
       params: paramsVal

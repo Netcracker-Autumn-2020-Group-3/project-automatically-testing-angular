@@ -1,44 +1,55 @@
-<div class="container-md">
+<div class="container-fluid m-2">
   <form>
     <label>
       <strong>Name:</strong>
-      <input type="text" class="form-control" [formControl]="formName">
+      <input type="text" class="form-control"
+             [formControl]="formName"
+             (ngModelChange)="turnOnValidName()"
+             #inputElement>
       <small *ngIf="formName.invalid && formName.touched" style="color: red">Name is not defined!</small>
+      <small *ngIf="!isValidName" style="color: red">Name is already exists!</small>
     </label>
   </form>
-  <button class="btn btn-outline-primary" type="button" (click)="addCompoundForm()">Add Compound</button>
-  <button class="btn btn-outline-primary" type="button" (click)="addActionForm()">Add Action</button>
-  <button class="btn btn-outline-success" type="button" (click)="createTestScenario()" [disabled]="formName.invalid">Create</button>
-  <button class="btn btn-outline-danger" type="button" (click)="cancelTestScenario()">Cancel</button>
+  <button class="btn btn-outline-primary m-1" type="button" (click)="addCompoundForm()">Add Compound</button>
+  <button class="btn btn-outline-primary m-1" type="button" (click)="addActionForm()">Add Action</button>
+  <button class="btn btn-outline-success m-1" type="button" (click)="createTestScenario()" [disabled]="formName.invalid">Create</button>
+  <button class="btn btn-outline-danger m-1" type="button" (click)="cancelTestScenario()">Cancel</button>
   <app-test-scenario-add-compound *ngIf="isAddCompound"
-                                  (onCancel)="cancelCompoundForm()"
-                                  (onCreate)="addCompoundToTestScenario($event)"
+                                  (eventCancel)="cancelCompoundForm()"
+                                  (eventCreated)="addCompoundToTestScenario($event)"
                                   [compounds]="compounds"
   ></app-test-scenario-add-compound>
   <app-test-scenario-add-action *ngIf="isAddAction"
-                                (onCancel)="cancelActionForm()"
-                                (onCreate)="addActionToTestScenario($event)"
+                                (eventCancel)="cancelActionForm()"
+                                (eventCreated)="addActionToTestScenario($event)"
                                 [actions]="actions"
   ></app-test-scenario-add-action>
-  <table class="table" *ngIf="items.length > 0">
-    <thead>
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Type</th>
-      <th scope="col">Priority</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of items">
-      <td>{{map.get(item)}}</td>
-      <td>{{item.type}}</td>
-      <td>{{item.priority}}</td>
-      <td>
-        <button type="button" class="btn btn-outline-danger"
-                (click)="deleteItemFromTestScenario(item)"
-        >&times;
-        </button>
-      </td>
-    </tr>
-  </table>
+  <div *ngIf="isCreated" class="alert alert-success" role="alert"
+       style="width: 95%; margin-top: 10px">
+    Test Scenario is successfully created!
+  </div>
+  <div class="m-1">
+    <table class="table" *ngIf="items.length > 0">
+      <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Priority</th>
+        <th scope="col">Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{map.get(item)}}</td>
+        <td>{{item.type}}</td>
+        <td>{{item.priority}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger"
+                  (click)="deleteItemFromTestScenario(item)"
+          >&times;
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>

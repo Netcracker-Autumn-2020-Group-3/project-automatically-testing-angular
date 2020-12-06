@@ -18,6 +18,7 @@ export class TestCaseBodyComponent implements OnInit {
   dataEntries: DataEntry[] = [];
   varVals: VariableValue[][][] = [];
   showForm = false;
+  onlyView = false;
   @Output() showFormButton = new EventEmitter();
 
   constructor() {

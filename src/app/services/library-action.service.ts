@@ -13,10 +13,10 @@ export class LibraryActionService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = 'http://localhost:8080/';
-  private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
-  //private getActionsUrl = 'http://localhost:8080/library/actions';
-  private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
-  //private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
+  //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
+  private getActionsUrl = 'http://localhost:8080/library/actions';
+  //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
+  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
   private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
 
 

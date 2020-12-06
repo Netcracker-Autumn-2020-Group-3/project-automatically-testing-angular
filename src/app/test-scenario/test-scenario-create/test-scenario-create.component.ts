@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {FormControl, Validators} from '@angular/forms';
 import {EntityIdName} from '../../model/test-scenario/EntityIdName';
@@ -10,15 +10,19 @@ import {TestScenarioService} from '../../services/test-scenario.service';
   styleUrls: ['./test-scenario-create.component.css']
 })
 export class TestScenarioCreateComponent implements OnInit {
+  @ViewChild('inputElement') inputElemRef: ElementRef;
+  @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
   compounds: EntityIdName[];
   actions: EntityIdName[];
   formName = new FormControl('', [Validators.required]);
+  isCreated = false;
+  isValidName = true;
   isAddCompound = false;
   isAddAction = false;
   items: TestScenarioItem[] = [];
   map: Map<TestScenarioItem, string> = new Map<TestScenarioItem, string>();
 
-  constructor(private testScenarioService: TestScenarioService) { }
+  constructor(private testScenarioService: TestScenarioService, private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.setCompounds();
@@ -60,17 +64,6 @@ export class TestScenarioCreateComponent implements OnInit {
     this.map.set(itemNew, itemName);
   }
 
-  private setCompounds(): void {
-    this.testScenarioService.getAllCompoundsWithIdAndName()
-      .subscribe(compounds => this.compounds = compounds);
-  }
-
-  private setActions(): void {
-    this.testScenarioService.getAllActionsWithIdAndName()
-      .subscribe(actions => this.actions = actions);
-    console.log(this.actions);
-  }
-
   deleteItemFromTestScenario(item: TestScenarioItem) {
     this.map.delete(item);
     const index = (this.items as TestScenarioItem[]).indexOf(item);
@@ -79,12 +72,31 @@ export class TestScenarioCreateComponent implements OnInit {
       this.items[i].priority -= 1;
     }
   }
-  // TODO will do method
+
+  private setCompounds(): void {
+    this.testScenarioService.getAllCompoundsWithIdAndName()
+      .subscribe(compounds => this.compounds = compounds);
+  }
+
+  private setActions(): void {
+    this.testScenarioService.getAllActionsWithIdAndName()
+      .subscribe(actions => this.actions = actions);
+  }
+
   createTestScenario() {
     const name = this.formName.value;
     this.testScenarioService.createTestScenario({name, items: this.items})
-      .subscribe();
-    console.log('TEST SCENARIO', {name, items: this.items});
+      .subscribe(resp => {
+        this.checkValidTestScenarioName(resp.body);
+      });
+  }
+
+  private checkValidTestScenarioName(isCreated: boolean | null) {
+    if (isCreated) {
+      this.cancelTestScenario();
+    } else {
+      this.turnOffValidName();
+    }
   }
 
   cancelTestScenario() {
@@ -92,7 +104,22 @@ export class TestScenarioCreateComponent implements OnInit {
     this.cancelCompoundForm();
     this.formName.reset();
     this.items = [];
+    this.isCreated = true;
     this.map.clear();
+    setTimeout(() => {
+      this.isCreated = false;
+      this.eventCreated.emit();
+    }, 2000);
+  }
+
+  turnOnValidName() {
+    this.renderer.removeClass(this.inputElemRef.nativeElement, 'invalidInputForm');
+    this.isValidName = true;
+  }
+
+  private turnOffValidName() {
+    this.renderer.addClass(this.inputElemRef.nativeElement, 'invalidInputForm');
+    this.isValidName = false;
   }
 
 }

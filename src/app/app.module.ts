@@ -42,11 +42,15 @@ import { CreateCompoundComponent } from './create-compound/create-compound.compo
 import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
 import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
 import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
+import { EditCompoundButtonMenuComponent } from './compound/edit-compound-button-menu/edit-compound-button-menu.component';
 import { ListOfTestCasesComponent } from './list-of-test-cases/list-of-test-cases.component';
 import { TestScenarioEditComponent } from './test-scenario/test-scenario-edit/test-scenario-edit.component';
 import { TestScenarioCreateComponent } from './test-scenario/test-scenario-create/test-scenario-create.component';
 import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
 import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-add-compound/test-scenario-add-compound.component';
+import { TestScenarioComponent } from './test-scenario/test-scenario.component';
+import { ListCompoundsComponent } from './main-library-list-actions/list-compounds/list-compounds.component';
+import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 
@@ -91,11 +95,18 @@ import { TestCaseListComponent } from './test-case/test-case-list/test-case-list
     CompoundButtonMenuComponent,
     CreateCompoundNameComponent,
     CreateCompoundActionsComponent,
+    EditCompoundButtonMenuComponent,
+    CreateCompoundActionsComponent,
     TestScenarioEditComponent,
     TestScenarioCreateComponent,
     TestScenarioAddActionComponent,
     TestScenarioAddCompoundComponent,
     CreateCompoundActionsComponent,
+    ListOfTestCasesComponent,
+    TestScenarioComponent,
+    ListCompoundsComponent,
+    ListOfTestCasesComponent,
+    TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
     TestCaseListComponent
