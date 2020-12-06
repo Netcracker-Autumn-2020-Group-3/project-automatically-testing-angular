@@ -3,5 +3,7 @@ import {TestCase} from './test-case';
 
 export interface TestCaseDto {
   testCase: TestCase;
+  projectName?: string;
+  projectLink?: string;
   scenarioStepsWithData: ScenarioStep[];
 }

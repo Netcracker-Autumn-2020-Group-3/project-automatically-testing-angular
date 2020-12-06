@@ -23,7 +23,7 @@
                     (change)="onDataEntrySelect(i, j, k)">
               <option [value]=-1 disabled>Enter {{variable.name}}</option>
               <option *ngFor="let dataEntry of dataEntries" [selected]="varVals[i][j][k].dataEntryId === dataEntry.id" [value]="dataEntry.id">
-                {{dataEntry.value}}
+                {{dataEntry.key}}
               </option>
             </select>
           </div>
@@ -37,7 +37,7 @@
     <div class="row my-3" *ngIf="step.compound === undefined || step.compound === null">
 
       <div class="col">
-        <h5>ActionDto: {{step.actionDto[0].name}}</h5>
+        <h5>Action: {{step.actionDto[0].name}}</h5>
       </div>
 
       <div class="col">
@@ -46,7 +46,7 @@
                   (change)="onDataEntrySelect(i, 0, k)">
             <option [value]=-1 disabled>Enter {{variable.name}}</option>
             <option *ngFor="let dataEntry of dataEntries" [selected]="varVals[i][0][k].dataEntryId === dataEntry.id" [value]="dataEntry.id">
-              {{dataEntry.value}}
+              {{dataEntry.key}}
             </option>
           </select>
         </div>
