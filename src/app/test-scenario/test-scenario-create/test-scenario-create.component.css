@@ -2,3 +2,11 @@ input.ng-invalid.ng-touched {
     border: 1px solid red;
    }
 
+input {
+  width: 200%;
+}
+
+.invalidInputForm {
+  border: 1px solid red;
+}
+

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {EntityIdName} from '../model/test-scenario/EntityIdName';
 import {TestScenario} from '../model/test-scenario/TestScenario';
@@ -18,8 +18,8 @@ export class TestScenarioService {
     return this.http.get<EntityIdName[]>(`${this.url}/actions`);
   }
 
-  createTestScenario(testScenario: TestScenario): Observable<TestScenario> {
-    return this.http.post<TestScenario>(this.url, testScenario);
+  createTestScenario(testScenario: TestScenario): Observable<HttpResponse<boolean>> {
+    return this.http.post<boolean>(this.url, testScenario, {observe: 'response'});
   }
 
 }
