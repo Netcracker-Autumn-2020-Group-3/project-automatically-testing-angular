@@ -2,8 +2,12 @@
   <form>
     <label>
       <strong>Name:</strong>
-      <input type="text" class="form-control" [formControl]="formName">
+      <input type="text" class="form-control"
+             [formControl]="formName"
+             (ngModelChange)="turnOnValidName()"
+             #inputElement>
       <small *ngIf="formName.invalid && formName.touched" style="color: red">Name is not defined!</small>
+      <small *ngIf="!isValidName" style="color: red">Name is already exists!</small>
     </label>
   </form>
   <button class="btn btn-outline-primary m-1" type="button" (click)="addCompoundForm()">Add Compound</button>
@@ -11,15 +15,19 @@
   <button class="btn btn-outline-success m-1" type="button" (click)="createTestScenario()" [disabled]="formName.invalid">Create</button>
   <button class="btn btn-outline-danger m-1" type="button" (click)="cancelTestScenario()">Cancel</button>
   <app-test-scenario-add-compound *ngIf="isAddCompound"
-                                  (onCancel)="cancelCompoundForm()"
-                                  (onCreate)="addCompoundToTestScenario($event)"
+                                  (eventCancel)="cancelCompoundForm()"
+                                  (eventCreated)="addCompoundToTestScenario($event)"
                                   [compounds]="compounds"
   ></app-test-scenario-add-compound>
   <app-test-scenario-add-action *ngIf="isAddAction"
-                                (onCancel)="cancelActionForm()"
-                                (onCreate)="addActionToTestScenario($event)"
+                                (eventCancel)="cancelActionForm()"
+                                (eventCreated)="addActionToTestScenario($event)"
                                 [actions]="actions"
   ></app-test-scenario-add-action>
+  <div *ngIf="isCreated" class="alert alert-success" role="alert"
+       style="width: 95%; margin-top: 10px">
+    Test Scenario is successfully created!
+  </div>
   <div class="m-1">
     <table class="table" *ngIf="items.length > 0">
       <thead>

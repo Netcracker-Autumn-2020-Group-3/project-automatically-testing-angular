@@ -19,8 +19,7 @@ export class LibraryCompoundService {
     const param = new HttpParams()
       .append('pageSize', '8')
       .append('page', '1')
-      .append('sortField', 'id')
-      .append('sortOrder', 'ASC');
+      .append('sortField', 'id');
     return this.http.get<Compound[]>(this.url, {params: param});
   }
 
