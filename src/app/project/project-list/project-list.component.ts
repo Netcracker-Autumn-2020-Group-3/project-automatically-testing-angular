@@ -29,6 +29,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   getParams() {
+    console.log(this.search);
     let params = new HttpParams().append('page', this.page.toString(10));
     Object.entries(this.search).forEach(([key, value]) => {
       if (value != null && value !== '') {
@@ -38,8 +39,10 @@ export class ProjectListComponent implements OnInit {
     return params;
   }
 
+
   onSearchSubmit() {
     this.page = 1;
+    console.log('submit');
     this.projectService.getPage(this.getParams()).subscribe(data => {
       this.projects = data.map(project => {
         console.log(project);

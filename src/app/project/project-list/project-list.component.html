@@ -6,10 +6,8 @@
   <tr>
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Name" aria-label="Search"
                            [(ngModel)]="search.name" (change)="onSearchSubmit()"></th>
-    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Surname" aria-label="Search"
+    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Link" aria-label="Search"
                            [(ngModel)]="search.link" (change)="onSearchSubmit()"></th>
-    <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search"
-                           [(ngModel)]="search.userId" (change)="onSearchSubmit()"></th>
     <th scope="col">
       <div class="col-auto">
         <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
