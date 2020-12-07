@@ -53,11 +53,11 @@ export class CreateCompoundComponent implements OnInit {
        console.log(this.compoundActionPriority.length);
      }
      this.compoundService.createCompoundActions(this.compoundActionPriority).subscribe(ress => {
-       if (ress === 'OK'){
+
          Swal.fire({icon: 'success',
            title: 'Ok',
            text: 'updated successfully!'});
-       }
+
      });
    });
   }

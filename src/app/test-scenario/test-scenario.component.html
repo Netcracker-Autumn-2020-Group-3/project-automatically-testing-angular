@@ -16,6 +16,8 @@
         *ngIf="isActiveButtonCreate"
         (eventCreated)="clickButtonList()">
       </app-test-scenario-create>
+      <app-test-scenario-list *ngIf="isActiveButtonList">
+      </app-test-scenario-list>
     </div>
   </div>
 </div>

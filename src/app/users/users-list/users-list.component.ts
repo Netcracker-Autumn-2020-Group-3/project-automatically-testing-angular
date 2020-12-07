@@ -41,7 +41,6 @@ export class UsersListComponent implements OnInit {
 
   onSelect(user: UserDto) {
     console.log(user);
-    // TODO route to edit page
   }
 
   onSearchSubmit() {

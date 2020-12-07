@@ -19,7 +19,7 @@ export class MainLibraryListActionsComponent implements OnInit {
   actions: Action[];
   pageNumber: number;
   numberOfPages: number;
-  pageSize = 2;
+  pageSize = 5;
   orderSearch = '';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
