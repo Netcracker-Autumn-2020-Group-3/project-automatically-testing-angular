@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Compound} from '../model/compound.model';
 import {CompoundAction} from '../model/compoundAction';
+import {CompoundDto} from '../model/compound-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import {CompoundAction} from '../model/compoundAction';
 export class CompoundService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'http://localhost:8081/';
   private checkCompoundNameUrl = this.url + 'compounds/create/check/';
   private createCompoundUrl = this.url + 'compounds/create';
   private createCompoundActionsUrl = this.url + 'compounds/create/actions';
@@ -24,14 +25,15 @@ export class CompoundService {
     return this.http.get<boolean>(this.checkCompoundNameUrl + String(name));
   }
 
-  createCompound(compound: Compound){
-    return this.http.post<number>(this.createCompoundUrl, compound);
+  createCompound(compoundActions: CompoundDto){
+    return this.http.post<string>(this.createCompoundUrl, compoundActions);
   }
 
   createCompoundActions(compoundActionPriority: CompoundAction[]) {
-
     return this.http.put<string>(this.createCompoundActionsUrl, compoundActionPriority);
   }
+
+
 
   getCompound(compoundId: number){
     return this.http.get<Compound>(this.compoundUrlEditGet + String(compoundId));
