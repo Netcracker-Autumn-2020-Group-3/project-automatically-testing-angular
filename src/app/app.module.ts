@@ -54,6 +54,7 @@ import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -117,6 +118,7 @@ import { ResetPasswordComponent } from './register/reset-password/reset-password
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DragDropModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,

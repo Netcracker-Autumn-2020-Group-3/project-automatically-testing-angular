@@ -12,12 +12,13 @@ export class LibraryActionService {
   constructor(private http: HttpClient) { }
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'http://localhost:8081/';
   //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
-  private getActionsUrl = 'http://localhost:8080/library/actions';
+  private getActionsUrl = 'http://localhost:8081/library/actions';
   //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
-  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
+  private getActionsByNameUrl = 'http://localhost:8081/library/actions/';
   private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
+  private getAllActionsUrl = this.getActionsByNameUrl + 'get/all';
 
 
 
@@ -39,4 +40,8 @@ export class LibraryActionService {
    const url = this.url + "create-action/" + name + "/" + description;
    this.http.post(url,variableValues).toPromise();
  }
+
+  getAllActions() {
+    return this.http.get<Action[]>(this.getAllActionsUrl);
+  }
 }
