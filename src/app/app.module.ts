@@ -53,6 +53,7 @@ import { ListCompoundsComponent } from './main-library-list-actions/list-compoun
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
+import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -109,7 +110,8 @@ import { TestCaseListComponent } from './test-case/test-case-list/test-case-list
     TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
-    TestCaseListComponent
+    TestCaseListComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

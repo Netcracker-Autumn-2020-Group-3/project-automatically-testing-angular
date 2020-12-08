@@ -54,4 +54,10 @@ export class UserService {
    const body = { email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
    return this.http.post(url, body).toPromise();
   }
+
+  resetPassword(passwordToken: string, pass: string){
+  const url = `${this.url}users/resetpass`;
+  const body = {token: passwordToken, password: pass};
+  return this.http.put(url,body).toPromise();
+  }
 }
