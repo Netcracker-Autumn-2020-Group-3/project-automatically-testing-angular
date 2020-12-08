@@ -14,12 +14,12 @@ import Swal from "sweetalert2";
 })
 export class EditDataEntryComponent implements OnInit {
 
-  //@Input()arrayValue = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6'];
+
   @Input()dataEntry: DataEntry[];
   @Input()dataSetId: number;
   deletedDataEntryItems: number[] = [];
 
-  //smart and presentational component
+
 
   constructor(private dataSetService: EditDataSetService) {}
 

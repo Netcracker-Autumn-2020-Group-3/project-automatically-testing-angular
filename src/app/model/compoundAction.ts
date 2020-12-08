@@ -4,8 +4,7 @@ export class CompoundAction{
   actionId: number;
   priority: number;
 
-  constructor(compoundId: number, actionId: number, priority: number) {
-    this.compoundId = compoundId;
+  constructor(actionId: number, priority: number) {
     this.actionId = actionId;
     this.priority = priority;
   }

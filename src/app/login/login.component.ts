@@ -4,6 +4,8 @@ import {AuthLoginInfo} from '../auth/login-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
 import { NgForm } from '@angular/forms';
+// @ts-ignore
+import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
@@ -30,12 +32,15 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
 
-    console.log(this.form);
 
+
+    //const pass = bcrypt.hashSync(this.form.password, bcrypt.genSaltSync(10));
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
       this.form.password);
+      // pass);
 
+    console.log(this.loginInfo);
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
         console.log(data.token);

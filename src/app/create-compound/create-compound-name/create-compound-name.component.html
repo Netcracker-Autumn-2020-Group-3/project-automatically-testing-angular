@@ -1,14 +1,15 @@
 <div>
   <div class="mb-4 input">
     <label class="float-left mr-5" style="width: 160px">Name</label>
-    <input type="text" class="form-control input-field" [(ngModel)]="compoundName"  placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+    <input type="text"
+           class="form-control input-field"
+           [(ngModel)]="compoundName"
+           (ngModelChange)="setNameDescription()"
+           placeholder="Name">
   </div>
   <div class="input">
     <label class="float-left mr-5" style="width: 160px;">Description</label>
-    <input type="text" class="form-control input-field" [(ngModel)]="compoundDescription"  placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
-  </div>
-  <div class="d-flex justify-content-end">
-    <button type="button" class=" btn btn-outline-success bg-white" (click)="saveCompound()">Save changes</button>
+    <input type="text" class="form-control input-field"  [(ngModel)]="compoundDescription" (ngModelChange)="setNameDescription()"   placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
 
