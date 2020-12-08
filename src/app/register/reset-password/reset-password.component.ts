@@ -5,15 +5,20 @@ import { FormBuilder, FormGroup, Validators, ValidatorFn , AbstractControl} from
 import { Router } from '@angular/router';
 
 
-const isEqualValidator: ValidatorFn = (fg: AbstractControl) => {
+/*const isEqualValidator: ValidatorFn = (fg: ValidatorFn) => {
+valuePass: string = fg.get('password').value;
+valuePAssRepeat: string = fg.get('passwordRepeat').value;
+if((valuePass && valuePAssRepeat) !== null){
 const first = fg.get('password').value;
 const second = fg.get('passwordRepeat').value;
+
 return first !== null && second !== null && first === second
  ? null
  : { equal: true};
+ }
 };
 
-
+*/
 
 
 @Component({
@@ -31,10 +36,13 @@ export class ResetPasswordComponent implements OnInit {
   private route: ActivatedRoute,
   private formBuilder: FormBuilder,
   private router: Router) {
-     this.resetPasswordForm = this.formBuilder.group({
+     /*this.resetPasswordForm = this.formBuilder.group({
         password: [null, Validators.required],
         passwordRepeat: [null, Validators.required]
-     },{ validator: isEqualValidator});
+     },{ validator: isEqualValidator});*/
+     this.resetPasswordForm = this.formBuilder.group({
+             password: '',
+             passwordRepeat: ''});
    }
 
 
