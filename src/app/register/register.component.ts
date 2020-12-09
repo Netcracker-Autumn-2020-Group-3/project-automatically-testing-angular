@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../model/user';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup,
+Validators,
+ValidatorFn , AbstractControl,
+FormControl,
+FormsModule} from '@angular/forms';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -22,11 +26,11 @@ export class RegisterComponent implements OnInit {
 
  ) {
   this.registerForm = this.formBuilder.group({
-        email: '',
-        password: '',
-        name: '',
-        surname: '',
-        role: ''
+        email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}')]],
+        name: ['',[ Validators.required, Validators.maxLength(40)]],
+        surname: ['', [Validators.required, Validators.maxLength(40)]],
+        role: ['', Validators.required]
 
     });
   }

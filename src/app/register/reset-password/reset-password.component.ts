@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { FormBuilder, FormGroup, Validators, ValidatorFn , AbstractControl} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup,
+Validators,
+ValidatorFn , AbstractControl,
+FormControl,
+FormsModule} from '@angular/forms';
 
 
 /*const isEqualValidator: ValidatorFn = (fg: ValidatorFn) => {
@@ -21,6 +24,20 @@ return first !== null && second !== null && first === second
 */
 
 
+/*
+function isEqualValidator (passChecked: string){
+ return (control: AbstractControl):{[key: string]: any } | null => {
+  const pass: string = control.value;
+  const passCheck = passChecked;
+  if (passCheck === null && pass !== passCheck){
+      return {
+      'isEqual': false
+      };
+  }
+  return null;
+};
+}*/
+
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.component.html',
@@ -34,17 +51,23 @@ export class ResetPasswordComponent implements OnInit {
 
   constructor(private service: UserService,
   private route: ActivatedRoute,
-  private formBuilder: FormBuilder,
-  private router: Router) {
-     /*this.resetPasswordForm = this.formBuilder.group({
-        password: [null, Validators.required],
-        passwordRepeat: [null, Validators.required]
-     },{ validator: isEqualValidator});*/
+  private formBuilder: FormBuilder) {
      this.resetPasswordForm = this.formBuilder.group({
-             password: '',
-             passwordRepeat: ''});
+        password: ['', Validators.required],
+        passwordRepeat: ['', Validators.required]
+     }, {validator: this.checkPasswords});
+
+    // this.resetPasswordForm = this.formBuilder.group({
+     //        password: '',
+    //         passwordRepeat: ''});
    }
 
+   checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+     let pass = group.get('password')!.value;
+     let confirmPass = group.get('passwordRepeat')!.value;
+
+     return pass === confirmPass ? null : { notSame: true }
+   }
 
 
   ngOnInit(): void {
