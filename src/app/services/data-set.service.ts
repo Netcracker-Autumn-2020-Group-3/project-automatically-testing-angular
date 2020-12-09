@@ -25,8 +25,9 @@ export class DataSetService {
   }
 
   addDataSet(dataSetName: string, values: DataEntryCreate[]) {
-    const url = `${this.url}create-data-set/${dataSetName}`;
-    return this.http.post(url, values);
+    const url = `${this.url}create-data-set`;
+    const body = { dataSetName: dataSetName, dataEntryValues: values };
+    return this.http.post(url, body);
   }
 
   delete(id: number): Promise<Object> {

@@ -14,12 +14,8 @@
         <div class="form-group">
           <label>Value {{i+1}}:</label>
           <div class="input-group mb-3" [formGroupName]="i" >
-            <label>
-              <input class="form-control" type="text" id="data_key{{i}}" formControlName="key" placeholder="key">
-            </label>
-            <label>
-              <input class="form-control" type="text" id="data_set_value{{i}}" formControlName="value" placeholder="value">
-            </label>
+            <input class="form-control" type="text" id="data_key{{i}}" formControlName="key" placeholder="key">
+            <input class="form-control" type="text" id="data_set_value{{i}}" formControlName="value" placeholder="value">
             <div class="input-group-append">
               <button type="button" class="btn btn-danger input-group-text" (click)="delete(i)">X</button>
             </div>
