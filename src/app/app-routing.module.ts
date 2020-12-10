@@ -31,6 +31,7 @@ import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.c
 import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
+import {SettingsComponent} from './users/settings/settings.component';
 
 const routes: Routes = [
   { path: 'test-scenario', component: TestScenarioComponent},
@@ -57,7 +58,8 @@ const routes: Routes = [
   { path: 'list-of-test-cases', component: ListOfTestCasesComponent },
   { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
-  { path: 'reset-password/:token', component: ResetPasswordComponent}
+  { path: 'reset-password/:token', component: ResetPasswordComponent},
+  { path:'settings', component: SettingsComponent}
 ];
 
 @NgModule({
