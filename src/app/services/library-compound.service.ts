@@ -13,7 +13,7 @@ export class LibraryCompoundService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/compounds';
   // private url = 'http://localhost:9003/compounds';
-  private url = 'http://localhost:8081/compounds';
+  private url = 'http://localhost:8080/compounds';
 
   getCompounds(): Observable<Compound[]> {
     const param = new HttpParams()

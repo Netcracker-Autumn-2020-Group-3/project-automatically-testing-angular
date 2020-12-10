@@ -54,6 +54,7 @@ import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { ActionExecutionComponent } from './action-execution/action-execution.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +111,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
-    TestCaseListComponent
+    TestCaseListComponent,
+    ActionExecutionComponent
   ],
   imports: [
     BrowserModule,
