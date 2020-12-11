@@ -5,14 +5,15 @@
            class="form-control mr-sm-3"
            placeholder="Search"
            aria-label="Search"
-           [(ngModel)]="currentSearch" (ngModelChange)="getSearchInfo()">
+           [(ngModel)]="currentSearch"
+           (keyup.enter)="eventClickSearch()">
 
-    <button type="button" class="btn btn-outline-success mr-3">Search</button>
+    <button type="button" class="btn btn-outline-success mr-3"
+            (click)="eventClickSearch()">Search</button>
 
     <label class="m-0 p-0">
       <select class="custom-select border-success" style="width: 100px"
-              [(ngModel)]="currentSort"
-              (ngModelChange)="getSearchInfo()">
+              [(ngModel)]="currentSort">
         <option value="{{sort}}" *ngFor="let sort of sorts">{{sort}}</option>
       </select>
     </label>

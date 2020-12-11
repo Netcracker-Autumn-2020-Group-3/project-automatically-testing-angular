@@ -25,20 +25,20 @@ export class PaginationComponent implements OnInit {
   constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    setTimeout(() => this.getPage(this.currentPage), 1);
+    setTimeout(() => this.eventClickPage(this.currentPage), 1);
   }
 
-  getPage(page: number) {
-    this.setActiveButton(page);
+  eventClickPage(page: number) {
     this.clickPage.emit(page);
+    this.setActiveButton(page);
   }
 
   getNextPage() {
-    this.getPage(this.currentPage + 1);
+    this.eventClickPage(this.currentPage + 1);
   }
 
   getPreviousPage() {
-    this.getPage(this.currentPage - 1);
+    this.eventClickPage(this.currentPage - 1);
   }
 
   private setActiveButton(page: number) {

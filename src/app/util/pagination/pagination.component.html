@@ -10,7 +10,7 @@
 
     <li class="page-item" #pageElement
         *ngFor="let page of [].constructor(quantityPages); index as index">
-      <a class="page-link" (click)="getPage(index + 1)">{{index + 1}}</a>
+      <a class="page-link" (click)="eventClickPage(index + 1)">{{index + 1}}</a>
     </li>
 
     <li class="page-item">

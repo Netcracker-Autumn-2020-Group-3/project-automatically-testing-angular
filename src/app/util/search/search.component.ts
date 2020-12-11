@@ -15,17 +15,17 @@ export class SearchComponent implements OnInit {
   currentSearch: string;
   currentSort: string;
   @Input() sorts: string[];
-  @Output() changeSearch: EventEmitter<Search> = new EventEmitter<Search>();
+  @Output() clickSearch: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.setDefaultFields();
-    this.getSearchInfo();
+    this.eventClickSearch();
   }
 
-  getSearchInfo() {
-    this.changeSearch.emit({search: this.currentSearch, sort: this.currentSort});
+  eventClickSearch() {
+    this.clickSearch.emit({search: this.currentSearch, sort: this.currentSort});
   }
 
   private setDefaultFields() {
