@@ -22,8 +22,8 @@ export class SettingsComponent implements OnInit {
   private route: ActivatedRoute,
    private formBuilder: FormBuilder,) {
    this.settingsUserForm = this.formBuilder.group({
-         name: '',
-         surname: ''
+         name: [''],
+         surname: ['']
          });
    }
 

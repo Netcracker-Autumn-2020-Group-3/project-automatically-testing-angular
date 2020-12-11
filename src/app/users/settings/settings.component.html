@@ -1,22 +1,23 @@
-<h2>Settings</h2>
+<h2 class="header-settings">Settings</h2>
 <div  class="settings"   style="width: 800px">
+
   <form [formGroup]="settingsUserForm"  (ngSubmit)="onSubmit(settingsUserForm.value)">
 
     <h3>Personal information</h3>
     <div class="form-group">
       <label>Name</label>
       <input class="form-control" name="username" formControlName="name" id="username" type="text"
-             [placeholder]="user.name">
+             [placeholder]="settingsUserForm.controls.name.dirty ? '' : user.name">
     </div>
 
 
     <div class="form-group">
       <label>Surname</label>
       <input class="form-control" name="surname" type="text" formControlName="surname"
-             [placeholder]="user.surname">
+             [placeholder]="settingsUserForm.controls.surname.dirty ? '' : user.surname">
     </div>
     <div class="button-settings">
-      <button type="submit" class="button" [disabled]="!(settingsUserForm.controls.name.dirty || settingsUserForm.controls.surname.dirty ) ">Submit</button>
+      <button type="submit" class="button" [disabled]="!(settingsUserForm.controls.name.dirty   || settingsUserForm.controls.surname.dirty ) ">Submit</button>
     </div>
   </form>
   <a class="nav-link"(click)="resetPassword()">Reset password</a>
