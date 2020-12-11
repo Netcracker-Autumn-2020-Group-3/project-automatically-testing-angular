@@ -21,6 +21,12 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
   testCaseId: number;
   showForm = false;
 
+  showEditProgress = false;
+  progressMessage = '';
+  progressTypeClass = '';
+  progressSuccess = 'alert-success';
+  progressFail = 'alert-danger';
+
   @ViewChild(TestCaseBodyComponent)
   formBody: TestCaseBodyComponent;
 
@@ -61,14 +67,51 @@ export class TestCaseEditComponent implements OnInit, AfterViewInit {
   onSubmit() {
     this.variableValues = this.formBody.flattenVarVals();
     let projectId;
+    console.log('saving edit');
     this.route.paramMap.subscribe(value => {
       projectId = value.get('project_id');
     });
     console.log('project id: ' + projectId);
     if (projectId !== undefined) {
-      this.testCaseService.updateTestCase(this.testCase);
+      this.testCaseService.updateTestCase(
+        this.testCase.testCase.name, this.testCase.testCase.id, this.variableValues
+      )
+        .subscribe(data => {
+          this.progressMessage = 'Successfully created.';
+          this.progressTypeClass = this.progressSuccess;
+          this.showEditProgress = true;
+        },
+        error => {
+          this.progressMessage = 'Error uploading data entries.';
+          this.progressTypeClass = this.progressFail;
+          this.showEditProgress = true;
+        }
+      );
     } else {
       console.log('project id undefined: ' + projectId);
     }
+
+/*    console.log('project id: ' + projectId);
+    if (projectId !== undefined) {
+      this.testCaseService.postTestCase(this.testCaseName,
+        projectId, this.datasetId, this.scenarioId, this.variableValues).subscribe(data => {
+          this.progressMessage = 'Successfully created.';
+          this.progressTypeClass = this.progressSuccess;
+          this.showSaveProgress = true;
+        },
+        error => {
+          this.progressMessage = 'Error uploading data entries.';
+          this.progressTypeClass = this.progressFail;
+          this.showSaveProgress = true;
+        }
+      );
+      console.log(this.testCaseName,
+        projectId, this.datasetId, this.scenarioId, this.variableValues);
+    } else {
+      console.log('project id undefined: ' + projectId);
+    }
+    */
+
+
   }
 }

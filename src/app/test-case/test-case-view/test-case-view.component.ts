@@ -26,7 +26,7 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
   constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
 
   }
-
+//rename
   ngAfterViewInit() {
     this.formBody.scenarioSteps = this.testCase.scenarioStepsWithData;
     this.formBody.dataEntries = this.dataEntries;

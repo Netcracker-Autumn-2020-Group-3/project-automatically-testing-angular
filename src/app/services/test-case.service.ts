@@ -70,8 +70,10 @@ export class TestCaseService {
     return this.http.get<TestCaseDto>(url);
   }
 
-  updateTestCase(testCase: TestCaseDto) {
-    return this.http.post(this.updateTestCaseUrl, testCase);
+  updateTestCase( newTestCaseName: string, testCaseId: number, newVariableValues: VariableValue[]) {
+    console.log('serivce update');
+    return this.http.post(this.updateTestCaseUrl, {testCaseName: newTestCaseName, id: testCaseId,
+      variableValues: newVariableValues});
   }
 
   postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,

@@ -30,6 +30,8 @@ import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.c
 import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
+import {ProjectViewComponent} from './project/project-view/project-view.component';
+import {ProjectEditComponent} from './project/project-edit/project-edit.component';
 
 const routes: Routes = [
   { path: 'test-scenario', component: TestScenarioComponent},
@@ -48,6 +50,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
   {path: 'projects/:project_id/testcase', component: TestCaseComponent},
+  {path: 'projects/:project_id/edit', component: ProjectEditComponent},
+  {path: 'projects/:project_id', component: ProjectViewComponent},
   {path: 'projects', component: ProjectComponent},
   {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
   {path: 'projects/:project_id/testcase/:test_case_id', component: TestCaseViewComponent},

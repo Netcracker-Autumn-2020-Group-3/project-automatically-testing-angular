@@ -57,6 +57,8 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DashboardTopSubscribedTestCasesComponent } from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import { PaginationComponent } from './util/pagination/pagination.component';
 import { SearchComponent } from './util/search/search.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -116,7 +118,10 @@ import { SearchComponent } from './util/search/search.component';
     TestCaseListComponent,
     DashboardTopSubscribedTestCasesComponent,
     PaginationComponent,
-    SearchComponent
+    SearchComponent,
+    TestCaseListComponent,
+    ProjectViewComponent,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule,
