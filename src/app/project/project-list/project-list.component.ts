@@ -45,8 +45,8 @@ export class ProjectListComponent implements OnInit {
     console.log('submit');
     this.projectService.getPage(this.getParams()).subscribe(data => {
       this.projects = data.map(project => {
-        console.log(project);
-        project.isArchived = project.isArchived ? 'yes' : 'no';
+        console.log('pr: ' + project);
+        // project.archived = project.archived === 'true' ? 'yes' : 'no';
         return project;
       });
     }, error => {
