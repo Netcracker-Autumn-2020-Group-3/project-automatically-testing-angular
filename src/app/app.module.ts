@@ -53,6 +53,7 @@ import { ListCompoundsComponent } from './main-library-list-actions/list-compoun
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 
@@ -119,6 +120,7 @@ import { ProjectEditComponent } from './project/project-edit/project-edit.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DragDropModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,

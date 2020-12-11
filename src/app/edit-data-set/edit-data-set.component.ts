@@ -17,12 +17,8 @@ export class EditDataSetComponent implements OnInit {
   dataEntry: DataEntry[];
   idDataSet: any;
 
-
-
   @ViewChild(EditDataEntryComponent) editDataEntry: EditDataEntryComponent;
   @ViewChild(EditNameDataSetComponent) editDataSet: EditNameDataSetComponent;
-
-
 
   constructor(private dataSetService: EditDataSetService, private route: ActivatedRoute) { }
 
@@ -45,9 +41,6 @@ export class EditDataSetComponent implements OnInit {
       dataEntry => this.dataEntry = dataEntry
     );
   }
-  /*updateDataEntryById() {
-    this.dataSetService.getDataSet().subscribe();
-  }*/
 
   saveChanges() {
     this.dataSet = this.editDataSet.save();
