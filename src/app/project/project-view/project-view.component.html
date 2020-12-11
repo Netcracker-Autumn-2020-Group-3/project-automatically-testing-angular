@@ -46,9 +46,12 @@
         <button class="btn btn-primary">Edit</button>
       </a>
     </div>
+
     <div class="d-inline ml-4">
-      <a>
-        <button class="btn btn-primary" (click)="archive()" [disabled]="project.archived">Archive</button>
+      <a >
+        <button [className]="project.archived ? 'btn btn-primary' : 'btn btn-danger'"
+                [textContent]="project.archived ? 'Unarchive' : 'Archive'"
+                (click)="onArchiveButton()"></button>
       </a>
     </div>
   </div>

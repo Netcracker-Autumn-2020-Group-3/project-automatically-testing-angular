@@ -19,6 +19,7 @@ export class ProjectService {
   private countPagesUrl = this.url + 'projects/pages/count';
   private createProjectUrl = this.url + 'projects/create';
   private archiveProjectUrl = this.url + 'projects/archive';
+  private unarchiveProjectUrl = this.url + 'projects/unarchive';
 
   constructor(private http: HttpClient) {
   }
@@ -48,5 +49,9 @@ export class ProjectService {
 
   archive(projectId: number) {
     return this.http.post(this.archiveProjectUrl, projectId);
+  }
+
+  unarchive(projectId: number) {
+    return this.http.post(this.unarchiveProjectUrl, projectId);
   }
 }
