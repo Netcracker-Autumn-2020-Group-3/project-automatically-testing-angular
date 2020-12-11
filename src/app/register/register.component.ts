@@ -36,23 +36,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  this.user = {id: 1,
-  email: '',
-                  password: '',
-                  name: '',
-                  surname: '',
-                  role: '',
-                  enabled: true};
 
   }
 
   onSubmit(customerData: any) {
-      this.user.email = customerData.email;
-      this.user.name = customerData.name;
-      this.user.surname = customerData.surname;
-      this.user.password = customerData.password;
-      this.user.role = customerData.role;
-        this.service.addUser(this.user);
+        this.service.addUser(this.registerForm.value);
 
   }
 }
