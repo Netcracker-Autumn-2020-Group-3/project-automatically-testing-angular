@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {User} from '../model/user';
 import {Params} from '@angular/router';
 import {UserDto} from '../users/users-list/user-dto';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {DataSet} from '../model/test-case/data-set';
 import {Scenario} from '../model/test-case/scenario';
 import {ScenarioStep} from '../model/test-case/scenario-step';
@@ -30,6 +30,9 @@ export class TestCaseService {
   private getTestCases = this.url + 'test-case/list';
   private getTestCaseListUrl = this.url + 'test-case/list/page';
   private executeTestCaseUrl = this.url + 'test-case/execute/';
+  private isFollowedUrl = this.url + '';
+  private followUrl = this.url + 'follow';
+  private unfollowUrl = this.url + 'unfollow';
 
   constructor(private http: HttpClient) {
   }
@@ -65,10 +68,12 @@ export class TestCaseService {
     return this.http.get<TestCaseDto>(url);
   }
 
-  updateTestCase( newTestCaseName: string, testCaseId: number, newVariableValues: VariableValue[]) {
+  updateTestCase(newTestCaseName: string, testCaseId: number, newVariableValues: VariableValue[]) {
     console.log('serivce update');
-    return this.http.post(this.updateTestCaseUrl, {testCaseName: newTestCaseName, id: testCaseId,
-      variableValues: newVariableValues});
+    return this.http.post(this.updateTestCaseUrl, {
+      testCaseName: newTestCaseName, id: testCaseId,
+      variableValues: newVariableValues
+    });
   }
 
   postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,
@@ -85,14 +90,28 @@ export class TestCaseService {
   executeTestCase(id: number) {
     const url = this.executeTestCaseUrl + id;
     this.http.get(url).toPromise();
-}
+  }
+
   getPage(paramsVal: Params) {
     return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
       params: paramsVal
     });
   }
+
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
+  }
+
+  follow(testCaseId: number) {
+    return this.http.post(this.url + 'test-case/follow', testCaseId);
+  }
+
+  unfollow(testCaseId: number) {
+    return this.http.post(this.url + 'test-case/unfollow', testCaseId);
+  }
+
+  isFollowed(testCaseId: number) {
+    return this.http.get<boolean>(this.url + 'test-case/' + testCaseId + '/is-followed');
   }
 
 }

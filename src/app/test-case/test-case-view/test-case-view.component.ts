@@ -20,12 +20,15 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
   testCaseId: number;
   showForm = false;
 
+  isFollowed: boolean;
+
   @ViewChild(TestCaseBodyComponent)
   formBody: TestCaseBodyComponent;
 
   constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
 
   }
+
 //rename
   ngAfterViewInit() {
     this.formBody.scenarioSteps = this.testCase.scenarioStepsWithData;
@@ -56,6 +59,21 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
 
     });
 
+    // check if test case is followed
+    this.testCaseService.isFollowed(this.testCaseId).subscribe(data => {
+      this.isFollowed = data;
+    });
+
+  }
+
+  onFollowButton() {
+    if (this.isFollowed) {
+      this.testCaseService.unfollow(this.testCaseId).subscribe();
+      this.isFollowed = false;
+    } else {
+      this.testCaseService.follow(this.testCaseId).subscribe();
+      this.isFollowed = true;
+    }
   }
 
 }

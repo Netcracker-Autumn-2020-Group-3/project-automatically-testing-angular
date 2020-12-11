@@ -36,19 +36,19 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <div class="d-inline ml-3">
       <a routerLink="testcase">
         <button class="btn btn-primary">Test Cases</button>
       </a>
     </div>
-    <div class="col">
+    <div class="d-inline ml-4">
       <a routerLink="edit">
         <button class="btn btn-primary">Edit</button>
       </a>
     </div>
-    <div class="col">
+    <div class="d-inline ml-4">
       <a>
-        <button class="btn btn-primary" (click)="archive()" [disabled]="project.isArchived">Archive</button>
+        <button class="btn btn-primary" (click)="archive()" [disabled]="project.archived">Archive</button>
       </a>
     </div>
   </div>
