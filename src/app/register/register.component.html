@@ -48,7 +48,7 @@
     </select>
   </div>
   <div class="add-user-button">
-    <button type="submit" class="button" [disabled]="!(registerForm.controls.email.valid && registerForm.controls.password.valid &&
+    <button type="submit" class="btn btn-primary" [disabled]="!(registerForm.controls.email.valid && registerForm.controls.password.valid &&
     registerForm.controls.name.valid && registerForm.controls.surname.valid && registerForm.controls.role.valid)">Submit</button>
   </div>
 </form>

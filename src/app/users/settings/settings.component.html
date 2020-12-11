@@ -17,7 +17,7 @@
              [placeholder]="settingsUserForm.controls.surname.dirty ? '' : user.surname">
     </div>
     <div class="button-settings">
-      <button type="submit" class="button" [disabled]="!(settingsUserForm.controls.name.dirty   || settingsUserForm.controls.surname.dirty ) ">Submit</button>
+      <button type="submit" class="btn btn-primary" [disabled]="!(settingsUserForm.controls.name.dirty   || settingsUserForm.controls.surname.dirty ) ">Submit</button>
     </div>
   </form>
   <a class="nav-link"(click)="resetPassword()">Reset password</a>
