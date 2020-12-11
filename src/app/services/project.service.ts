@@ -23,11 +23,6 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-/*  getProjectById(id: number) {
-    const url = `${this.url}projects/${id}`;
-    return this.http.get<Project>(url);
-  }*/
-
   updateProject(project: Project) {
     return this.http.post(this.updateProjectUrl, project);
   }
