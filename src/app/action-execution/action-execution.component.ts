@@ -12,6 +12,7 @@ export class ActionExecutionComponent implements OnInit {
 
   testCaseExecutionId: any;
   actionExecution: ActionExecutionDto[];
+  status: string;
 
   constructor(private actionExecutionService: ActionExecutionService, private route: ActivatedRoute) { }
 
