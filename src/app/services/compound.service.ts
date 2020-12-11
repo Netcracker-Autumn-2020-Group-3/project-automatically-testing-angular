@@ -10,7 +10,7 @@ import {CompoundDto} from '../model/compound-dto';
 export class CompoundService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8081/';
+  private url = 'http://localhost:8080/';
   private checkCompoundNameUrl = this.url + 'compounds/create/check/';
   private createCompoundUrl = this.url + 'compounds/create';
   private createCompoundActionsUrl = this.url + 'compounds/create/actions';

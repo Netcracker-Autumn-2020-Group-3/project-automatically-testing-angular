@@ -2,13 +2,37 @@
   <div class="m-3">
     <label class="font-weight-bold">Compound:</label><br>
     <label>
-      <select class="custom-select mr-sm-2" #compoundName>
+      <select class="custom-select mr-sm-2" [(ngModel)]="currentCompoundName" (ngModelChange)="setCompound()">
         <option *ngFor="let compound of compounds">{{compound.name}}</option>
       </select>
     </label>
     <br>
-    <button class="btn btn-outline-success m-1" type="button" (click)="createCompound()">Create</button>
+    <button class="btn btn-outline-success m-1" type="button" [disabled]="!init" (click)="createCompound()">Create</button>
     <button class="btn btn-outline-danger m-1" type="button" (click)="cancelCompound()">Cancel</button>
+    <div class="m-1" *ngIf="init && compoundActions.length > 0">
+      <table class="table" [formGroup]="form">
+        <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">Void</th>
+          <th scope="col">Variable</th>
+          <th scope="col">Priority</th>
+        </tr>
+        </thead>
+        <tbody formArrayName="inputs">
+        <tr *ngFor="let action of compoundActions; let i = index">
+          <td>{{getActionNameById(action.actionId)}}</td>
+          <td>{{getActionVoidById(action.actionId).toString() | uppercase}}</td>
+          <td>
+            <label>
+              <input type="text" class="form-control"
+                     [formControlName]="i">
+            </label>
+          </td>
+          <td>{{action.priority}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
 

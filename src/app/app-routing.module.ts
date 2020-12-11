@@ -12,7 +12,6 @@ import {MainLibraryListActionsComponent} from './main-library-list-actions/main-
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
-
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
 import {MainEditCompoundComponent} from './compound/main-edit-compound.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
@@ -30,12 +29,14 @@ import {TestScenarioComponent} from './test-scenario/test-scenario.component';
 import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.component';
 import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
+import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
 
 const routes: Routes = [
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
+  { path: 'dashboard', component: DashboardTopSubscribedTestCasesComponent},
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},

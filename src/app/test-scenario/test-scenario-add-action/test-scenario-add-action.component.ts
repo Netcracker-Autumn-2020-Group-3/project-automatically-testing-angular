@@ -1,7 +1,7 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TestScenarioService} from '../../services/test-scenario.service';
-import {EntityIdName} from '../../model/test-scenario/EntityIdName';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
+import {Action} from '../../model/test-scenario/Action';
 
 @Component({
   selector: 'app-test-scenario-add-action',
@@ -12,17 +12,21 @@ export class TestScenarioAddActionComponent implements OnInit {
 
   @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
   @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild('actionName') elemRef: ElementRef;
-  @Input() actions: EntityIdName[];
+  @Input() actions: Action[];
+  @Input() currentPriority: number;
+  init = false;
+  currentActionName: string;
+  currentAction: Action;
+  currentVariableText: string | null = null;
 
   constructor(private testScenarioService: TestScenarioService) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
   getAllActionsWithIdAndName(): void {
-    this.testScenarioService.getAllActionsWithIdAndName()
+    this.testScenarioService.getAllActions()
       .subscribe(actions => this.actions = actions,
         error => {
           console.log(error);
@@ -35,11 +39,21 @@ export class TestScenarioAddActionComponent implements OnInit {
   }
 
   createAction() {
-    const actionName = this.elemRef.nativeElement.value;
     const action = new TestScenarioItem();
-    action.id = (this.actions.filter(a => a.name === actionName).pop() as EntityIdName).id;
+    action.id = this.currentAction.id;
+    action.contextInstanceName = this.currentVariableText;
     action.type = 'Action';
-    this.eventCreated.emit({action, actionName});
+    console.log(action);
+    this.eventCreated.emit({action, actionName: this.currentActionName});
+  }
+
+  setAction() {
+    this.currentAction = this.getActionByName(this.currentActionName);
+    this.init = true;
+  }
+
+  private getActionByName(name: string): Action {
+    return this.actions.filter(a => a.name === name).pop() as Action;
   }
 
 }

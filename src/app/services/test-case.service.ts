@@ -13,6 +13,7 @@ import {TestCaseDto} from '../model/test-case/test-case-dto';
 import {TestCaseAll} from '../list-of-test-cases/TestCaseAll';
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
 import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dto-for-pagination';
+import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,10 @@ export class TestCaseService {
     const url = this.url + `data-set/${dataSetId}/entries`;
     return this.http.get<DataEntry[]>(url);
 
+  }
+
+  getTopFiveSubscribedTestCases(): Observable<TestCaseTopSubscribed[]> {
+    return this.http.get<TestCaseTopSubscribed[]>(`${this.url}dashboard/top-subscribed-test-cases`);
   }
 
 
