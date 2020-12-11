@@ -19,12 +19,14 @@ export class LibraryCompoundService {
     const param = new HttpParams()
       .append('pageSize', '' + pageSize)
       .append('page', '' + page)
+      .append('search', search)
       .append('sortField', sort);
     return this.http.get<Compound[]>(this.url, {params: param});
   }
 
-  getQuantityCompounds(): Observable<number> {
-    return this.http.get<number>(`${this.url}/quantity`);
+  getQuantityCompounds(search: string): Observable<number> {
+    const params = new HttpParams().append('search', search);
+    return this.http.get<number>(`${this.url}/quantity`, {params});
   }
 
 }

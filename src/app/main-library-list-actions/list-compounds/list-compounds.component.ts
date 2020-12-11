@@ -14,24 +14,25 @@ export class ListCompoundsComponent implements OnInit {
   compounds: Compound[];
   quantityPages: number;
   sorts = ['id', 'name'];
-  currentPage: number;
+  currentPage = 1;
   currentPageSize = 5;
   currentSearch: string;
   currentSort: string;
   constructor(private service: LibraryCompoundService) { }
 
   ngOnInit(): void {
-    this.getQuantityPages();
   }
 
-  getSearch(search: Search) {
+  getEventClickSearch(search: Search) {
     this.currentSearch = search.search;
     this.currentSort = search.sort;
+    this.getQuantityPages();
     this.getCompounds();
   }
 
-  getPage(page: number) {
+  getEventChangePage(page: number) {
     this.currentPage = page;
+    this.getQuantityPages();
     this.getCompounds();
   }
 
@@ -41,7 +42,7 @@ export class ListCompoundsComponent implements OnInit {
   }
 
   private getQuantityPages() {
-    this.service.getQuantityCompounds()
+    this.service.getQuantityCompounds(this.currentSearch)
       .subscribe(quantity => {
         this.quantityPages = Math.ceil(quantity / this.currentPageSize);
       });
