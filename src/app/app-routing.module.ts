@@ -30,6 +30,7 @@ import {TestScenarioComponent} from './test-scenario/test-scenario.component';
 import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.component';
 import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
+import {ListOfTestCaseExecutionComponent} from "./list-of-test-case-execution/list-of-test-case-execution.component";
 
 const routes: Routes = [
   { path: 'test-scenario', component: TestScenarioComponent},
@@ -55,7 +56,8 @@ const routes: Routes = [
   { path: 'list-of-data-set', component: ListOfDataSetComponent },
   { path: 'list-of-test-cases', component: ListOfTestCasesComponent },
   { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
-  { path: 'list-of-test-cases-pagination', component: TestCaseListComponent}
+  { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
+  { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent }
 ];
 
 @NgModule({
