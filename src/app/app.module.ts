@@ -54,6 +54,9 @@ import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DashboardTopSubscribedTestCasesComponent } from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
+import { PaginationComponent } from './util/pagination/pagination.component';
+import { SearchComponent } from './util/search/search.component';
 
 @NgModule({
   declarations: [
@@ -110,7 +113,10 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
-    TestCaseListComponent
+    TestCaseListComponent,
+    DashboardTopSubscribedTestCasesComponent,
+    PaginationComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

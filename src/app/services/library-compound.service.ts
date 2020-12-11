@@ -13,14 +13,18 @@ export class LibraryCompoundService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/compounds';
   // private url = 'http://localhost:9003/compounds';
-  private url = 'http://localhost:8081/compounds';
+  private url = 'http://localhost:8080/compounds';
 
-  getCompounds(): Observable<Compound[]> {
+  getCompounds(page: number, pageSize: number, search: string, sort: string): Observable<Compound[]> {
     const param = new HttpParams()
-      .append('pageSize', '8')
-      .append('page', '1')
-      .append('sortField', 'id');
+      .append('pageSize', '' + pageSize)
+      .append('page', '' + page)
+      .append('sortField', sort);
     return this.http.get<Compound[]>(this.url, {params: param});
+  }
+
+  getQuantityCompounds(): Observable<number> {
+    return this.http.get<number>(`${this.url}/quantity`);
   }
 
 }

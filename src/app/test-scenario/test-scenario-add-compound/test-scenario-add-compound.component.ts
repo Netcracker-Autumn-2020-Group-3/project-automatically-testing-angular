@@ -1,7 +1,10 @@
-import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TestScenarioService} from '../../services/test-scenario.service';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
-import {EntityIdName} from '../../model/test-scenario/EntityIdName';
+import {Compound} from '../../model/test-scenario/Compound';
+import {Action} from '../../model/test-scenario/Action';
+import {ActionWithPriority} from '../../model/test-scenario/ActionWithPriority';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-test-scenario-add-compound',
@@ -12,8 +15,15 @@ export class TestScenarioAddCompoundComponent implements OnInit {
 
   @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
   @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
-  @ViewChild('compoundName') elemRef: ElementRef;
-  @Input() compounds: EntityIdName[];
+  @Input() actions: Action[];
+  @Input() compounds: Compound[];
+  compoundActions: ActionWithPriority[] = [];
+  init = false;
+  currentCompoundName: string;
+  currentCompound: Compound;
+  form = new FormGroup({
+    inputs: new FormArray([])
+  });
 
   constructor(private testScenarioService: TestScenarioService) {
   }
@@ -22,7 +32,7 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   getAllCompoundsWithIdAndName() {
-    this.testScenarioService.getAllCompoundsWithIdAndName()
+    this.testScenarioService.getAllCompounds()
       .subscribe(
         compounds => this.compounds = compounds,
         error => console.log(error)
@@ -34,11 +44,58 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   createCompound() {
-    const compoundName = this.elemRef.nativeElement.value;
     const compound = new TestScenarioItem();
-    compound.id = (this.compounds.filter(c => c.name === compoundName).pop() as EntityIdName).id;
+    compound.id = this.currentCompound.id;
     compound.type = 'Compound';
-    this.eventCreated.emit({compound, compoundName});
+    compound.items = this.getActionInstances();
+    this.eventCreated.emit({compound, compoundName: this.currentCompoundName});
+  }
+
+  setCompound() {
+    this.currentCompound = this.getCompoundByName(this.currentCompoundName);
+    this.testScenarioService.getAllCompoundActionsByCompoundId(this.currentCompound.id)
+      .subscribe(actions => {
+        this.compoundActions = actions;
+        this.addControlsToFormArray();
+      });
+    this.init = true;
+  }
+
+  private getActionInstances(): TestScenarioItem[] {
+    const actions: TestScenarioItem[] = [];
+    for (let i = 0; i < this.compoundActions.length; i++) {
+      const action = new TestScenarioItem();
+      const inputValue = (this.form.get('inputs') as FormArray).controls[i].value;
+      action.id = this.compoundActions[i].actionId;
+      action.type = 'Action';
+      action.priority = this.compoundActions[i].priority;
+      action.contextInstanceName = inputValue === '' ? null : inputValue;
+      actions.push(action);
+    }
+    return actions;
+  }
+
+  private addControlsToFormArray() {
+    for (let i = 0; i < this.compoundActions.length; i++) {
+      (this.form.get('inputs') as FormArray)
+        .push(new FormControl(
+          {
+            value: null,
+            disabled: !this.getActionVoidById(this.compoundActions[i].actionId)},
+          [Validators.required]));
+    }
+  }
+
+  private getCompoundByName(name: string): Compound {
+    return this.compounds.filter(c => c.name === name).pop() as Compound;
+  }
+
+  getActionNameById(id: number): string {
+    return (this.actions.filter(a => a.id === id).pop() as Action).name;
+  }
+
+  getActionVoidById(id: number): boolean {
+    return (this.actions.filter(a => a.id === id).pop() as Action).void;
   }
 
 }

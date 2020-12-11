@@ -1,3 +1,7 @@
+<app-search [sorts]="sorts"
+            (changeSearch)="getSearch($event)">
+</app-search>
+
 <table class="table shadow" style="width: 1100px">
   <thead class="shadow">
   <tr>
@@ -15,3 +19,8 @@
   </tr>
   </tbody>
 </table>
+
+<app-pagination [quantityPages]="quantityPages"
+                [sizePage]="currentPageSize"
+                (clickPage)="getPage($event)"
+></app-pagination>

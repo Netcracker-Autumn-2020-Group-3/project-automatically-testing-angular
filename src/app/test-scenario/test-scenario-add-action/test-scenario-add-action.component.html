@@ -2,12 +2,37 @@
   <div class="m-3">
     <label class="font-weight-bold">Action:</label><br>
     <label>
-      <select class="custom-select mr-sm-2" #actionName>
+      <select class="custom-select mr-sm-2" [(ngModel)]="currentActionName" (ngModelChange)="setAction()">
         <option *ngFor="let action of actions">{{action.name}}</option>
       </select>
     </label>
     <br>
-    <button class="btn btn-outline-success m-1" type="button" (click)="createAction()">Create</button>
+    <button class="btn btn-outline-success m-1" type="button" [disabled]="!init" (click)="createAction()">Create</button>
     <button class="btn btn-outline-danger m-1" type="button" (click)="cancelAction()">Cancel</button>
+    <div class="m-1" *ngIf="init">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Void</th>
+          <th scope="col">Variable</th>
+          <th scope="col">Priority</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <td>{{currentAction.name}}</td>
+          <td>{{currentAction.void.toString() | uppercase}}</td>
+          <td>
+            <label>
+              <input type="text" class="form-control"
+                     [(ngModel)]="currentVariableText"
+                     [disabled]="!currentAction.void">
+            </label>
+          </td>
+          <td>{{currentPriority}}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
