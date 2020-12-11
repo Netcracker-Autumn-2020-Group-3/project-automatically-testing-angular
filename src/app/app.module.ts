@@ -10,9 +10,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { AuthInterceptor, httpInterceptorProviders} from './auth/auth-interceptor';
-import { ManagerComponent } from './manager/manager.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
-import {UsersListComponent} from './users-list/users-list.component';
+import { EditUserComponent } from './users/edit-user/edit-user.component';
+import {UsersListComponent} from './users/users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
@@ -29,8 +28,40 @@ import { MainEditCompoundComponent } from './compound/main-edit-compound.compone
 import { EditDataSetComponent } from './edit-data-set/edit-data-set.component';
 import { EditNameDataSetComponent } from './edit-data-set/edit-name-data-set/edit-name-data-set.component';
 import { EditDataEntryComponent } from './edit-data-set/edit-data-entry/edit-data-entry.component';
-import {TestCaseCreateComponent} from './test-case-create/test-case-create.component';
+import {TestCaseCreateComponent} from './test-case/test-case-create/test-case-create.component';
+import { TestCaseComponent } from './test-case/test-case.component';
+import { TestCaseEditComponent } from './test-case/test-case-edit/test-case-edit.component';
+import { TabsComponent } from './tabs/tabs.component';
+import { TestCaseBodyComponent } from './test-case/test-case-body/test-case-body.component';
+import { ProjectComponent } from './project/project.component';
+import { ProjectListComponent } from './project/project-list/project-list.component';
+import { ProjectCreateComponent } from './project/project-create/project-create.component';
 import {RegisterComponent} from './register/register.component';
+import { CreateActionComponent } from './create-action/create-action.component';
+import { CreateCompoundComponent } from './create-compound/create-compound.component';
+import { CompoundButtonMenuComponent } from './create-compound/compound-button-menu/compound-button-menu.component';
+import { CreateCompoundNameComponent } from './create-compound/create-compound-name/create-compound-name.component';
+import { CreateCompoundActionsComponent } from './create-compound/create-compound-actions/create-compound-actions.component';
+import { EditCompoundButtonMenuComponent } from './compound/edit-compound-button-menu/edit-compound-button-menu.component';
+import { ListOfTestCasesComponent } from './list-of-test-cases/list-of-test-cases.component';
+import { TestScenarioEditComponent } from './test-scenario/test-scenario-edit/test-scenario-edit.component';
+import { TestScenarioCreateComponent } from './test-scenario/test-scenario-create/test-scenario-create.component';
+import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
+import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-add-compound/test-scenario-add-compound.component';
+import { TestScenarioComponent } from './test-scenario/test-scenario.component';
+import { ListCompoundsComponent } from './main-library-list-actions/list-compounds/list-compounds.component';
+import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
+import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
+import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
+import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SettingsComponent } from './users/settings/settings.component';
+import { ResetPasswordSettingsComponent } from './users/settings/reset-password-settings/reset-password-settings.component';
+import { DashboardTopSubscribedTestCasesComponent } from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
+import { PaginationComponent } from './util/pagination/pagination.component';
+import { SearchComponent } from './util/search/search.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +69,6 @@ import {RegisterComponent} from './register/register.component';
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    ManagerComponent,
     ListActionsComponent,
     MainLibraryListActionsComponent,
     SearchActionsComponent,
@@ -47,7 +77,6 @@ import {RegisterComponent} from './register/register.component';
     UsersComponent,
     RegisterComponent,
     UsersComponent,
-    ManagerComponent,
     MenuComponent,
     DashboardComponent,
     CreateDataSetComponent,
@@ -61,16 +90,55 @@ import {RegisterComponent} from './register/register.component';
     MainEditCompoundComponent,
     EditDataSetComponent,
     EditNameDataSetComponent,
-    EditDataEntryComponent
+    EditDataEntryComponent,
+    TestCaseComponent,
+    TestCaseEditComponent,
+    TabsComponent,
+    TestCaseBodyComponent,
+    ProjectComponent,
+    ProjectListComponent,
+    ProjectCreateComponent,
+    EditDataEntryComponent,
+    CreateActionComponent,
+    CreateCompoundComponent,
+    CompoundButtonMenuComponent,
+    CreateCompoundNameComponent,
+    CreateCompoundActionsComponent,
+    EditCompoundButtonMenuComponent,
+    CreateCompoundActionsComponent,
+    TestScenarioEditComponent,
+    TestScenarioCreateComponent,
+    TestScenarioAddActionComponent,
+    TestScenarioAddCompoundComponent,
+    CreateCompoundActionsComponent,
+    ListOfTestCasesComponent,
+    TestScenarioComponent,
+    ListCompoundsComponent,
+    ListOfTestCasesComponent,
+    TestCaseViewComponent,
+    ListOfTestCasesComponent,
+    TestScenarioListComponent,
+    TestCaseListComponent,
+    ResetPasswordComponent,
+    SettingsComponent,
+    ResetPasswordSettingsComponent,
+    TestCaseListComponent,
+    DashboardTopSubscribedTestCasesComponent,
+    PaginationComponent,
+    SearchComponent,
+    TestCaseListComponent,
+    ProjectViewComponent,
+    ProjectEditComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    DragDropModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
   ],
   providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {Action} from './action.model';
+import {Component, Input, OnInit, Output,EventEmitter} from '@angular/core';
+import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
 
@@ -15,6 +15,9 @@ export class ListActionsComponent implements OnInit {
     @Input()numberOfPages: number;
     @Input()pageSize: number;
     @Input()orderSearch: string;
+    @Input()createCompound = false;
+    @Output()actionForCompound = new EventEmitter<Action>();
+    click: boolean;
     p = 1;
 
   constructor(private actionService: LibraryActionService) { }
@@ -51,5 +54,8 @@ export class ListActionsComponent implements OnInit {
     }
   }
 
+  createActionForCompound(action: Action, i: number) {
+    this.actionForCompound.emit(action);
+  }
 }
 

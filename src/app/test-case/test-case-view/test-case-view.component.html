@@ -1,0 +1,18 @@
+<div class="container-fluid mr-5 mt-5">
+
+  <div class="testcase-form">
+    <div class="form-group m-3">
+      <input class="select-test-case form-control" [(ngModel)]="testCase.testCase.name" disabled>
+    </div>
+
+    <app-test-case-body (showFormButton)="showForm = $event"></app-test-case-body>
+  </div>
+
+
+  <div class="container-fluid mr-5 mt-5">
+    <a  routerLink="/projects/{{testCase.testCase.projectId}}/testcase/{{testCase.testCase.id}}/edit">
+    <button class="btn btn-primary">Edit</button>
+    </a>
+  </div>
+
+</div>

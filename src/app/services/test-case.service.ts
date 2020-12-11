@@ -10,22 +10,27 @@ import {ScenarioStep} from '../model/test-case/scenario-step';
 import {DataEntry} from '../model/test-case/data-entry';
 import {VariableValue} from '../model/test-case/variable-value';
 import {TestCaseDto} from '../model/test-case/test-case-dto';
-import {TestCaseAll} from "../list-of-test-cases/TestCaseAll";
+import {TestCaseAll} from '../list-of-test-cases/TestCaseAll';
+import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
+import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dto-for-pagination';
+import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TestCaseService {
 
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
+  // private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = 'http://localhost:8080/';
   // private url = 'http://localhost:9003/';
+  private countPagesUrl = this.url + 'test-case/pages/count';
   private getDataSetListUrl = this.url + 'data-set/list';
   private getTestScenarioListUrl = this.url + 'test-scenario/list';
   private postTestCaseUrl = this.url + 'test-case/create';
   private updateTestCaseUrl = this.url + 'test-case/update';
   private getTestCases = this.url + 'test-case/list';
-  private countPagesUrl = this.url + 'test-case/pages';
+  private getTestCaseListUrl = this.url + 'test-case/list/page';
+  private executeTestCaseUrl = this.url + 'test-case/execute/';
 
   constructor(private http: HttpClient) {
   }
@@ -54,6 +59,10 @@ export class TestCaseService {
 
   }
 
+  getTopFiveSubscribedTestCases(): Observable<TestCaseTopSubscribed[]> {
+    return this.http.get<TestCaseTopSubscribed[]>(`${this.url}dashboard/top-subscribed-test-cases`);
+  }
+
 
   getTestCaseById(testCaseId: number) {
     const url = this.url + `test-case/${testCaseId}`;
@@ -61,8 +70,10 @@ export class TestCaseService {
     return this.http.get<TestCaseDto>(url);
   }
 
-  updateTestCase(testCase: TestCaseDto) {
-    return this.http.post(this.updateTestCaseUrl, testCase);
+  updateTestCase( newTestCaseName: string, testCaseId: number, newVariableValues: VariableValue[]) {
+    console.log('serivce update');
+    return this.http.post(this.updateTestCaseUrl, {testCaseName: newTestCaseName, id: testCaseId,
+      variableValues: newVariableValues});
   }
 
   postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,
@@ -76,14 +87,17 @@ export class TestCaseService {
     });
   }
 
-    getPage(paramsVal: Params) {
-      return this.http.get<TestCaseAll[]>(this.getTestCases, {
-        params: paramsVal
-      });
-    }
-
-    countPages() {
-      return this.http.get<number>(this.countPagesUrl);
-    }
+  executeTestCase(id: number) {
+    const url = this.executeTestCaseUrl + id;
+    this.http.get(url).toPromise();
+}
+  getPage(paramsVal: Params) {
+    return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
+      params: paramsVal
+    });
+  }
+  countPages() {
+    return this.http.get<number>(this.countPagesUrl);
+  }
 
 }

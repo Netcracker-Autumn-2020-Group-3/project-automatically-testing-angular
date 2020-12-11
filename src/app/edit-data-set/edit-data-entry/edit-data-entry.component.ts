@@ -5,6 +5,7 @@ import {EditDataSetService} from '../../services/edit-data-set.service';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {EditDataSetComponent} from '../edit-data-set.component';
 import {EditNameDataSetComponent} from '../edit-name-data-set/edit-name-data-set.component';
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-data-entry',
@@ -13,14 +14,11 @@ import {EditNameDataSetComponent} from '../edit-name-data-set/edit-name-data-set
 })
 export class EditDataEntryComponent implements OnInit {
 
-  @Input()arrayValue = ['value1', 'value2', 'value3', 'value4', 'value5', 'value6'];
+
   @Input()dataEntry: DataEntry[];
   @Input()dataSetId: number;
-  deletedDataEntryItems = [];
+  deletedDataEntryItems: number[] = [];
 
- /* @Output()editedDataEntry = new EventEmitter<DataEntry[]>();*/
-
-  datas = 'dsssda';
 
 
   constructor(private dataSetService: EditDataSetService) {}
@@ -35,21 +33,31 @@ export class EditDataEntryComponent implements OnInit {
 
   deleteValue(i: number, dataEntryId: number) {
     this.dataEntry.splice(i, 1);
-    // @ts-ignore
     this.deletedDataEntryItems.push(dataEntryId);
   }
 
-
+//delete
   saveChanges(dataSet: DataSet) {
     for (const value of this.deletedDataEntryItems){
       this.dataSetService.deleteFromDataEntryById(value).subscribe();
     }
-    this.dataSetService.updateDataEntry(this.dataEntry, dataSet).subscribe();
+    this.dataSetService.updateDataEntry(this.dataEntry, dataSet).subscribe(res => {
+      if(res === 'OK'){
+        Swal.fire({icon: 'success',
+          title: 'Ok',
+          text: 'updated successfully!'});
+      }
+    });
   }
 
 
   setValue(value: string, i: number) {
    this.dataEntry[i].data_set_id = this.dataSetId;
    this.dataEntry[i].value = value;
+  }
+
+  setKey(key: string, i: number) {
+    this.dataEntry[i].data_set_id = this.dataSetId;
+    this.dataEntry[i].key = key;
   }
 }

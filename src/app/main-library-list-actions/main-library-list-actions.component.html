@@ -3,16 +3,40 @@
 
     <div class="col-12">
       <div class="ml-2">
-        <button class="btn btn-default" >Libraries</button>
-        <button class=" btn btn-default mr-3 ml-3 " >Compound</button>
-        <button class="btn btn-default button-selected " >Actions</button>
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" #buttonActions (click)="clickButtonActions()">Actions</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" #buttonCompounds (click)="clickButtonCompounds()">Compounds</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/create-action">Create Action</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/compounds/create">Create Compound</a>
+          </li>
+        </ul>
       </div>
-      <hr class=" mt-0" style="position: relative; top: -0.7px">
-      <app-search-actions></app-search-actions>
-    <!--  <app-list-actions [actions]="actions"
-                        [numberOfPages]="numberOfPages"
-                        [pageNumbers]="pageNumber"
-                        [pageSize]="pageSize"></app-list-actions>-->
+
+      <div class="m-3">
+        <div *ngIf="isButtonActions">
+          <app-search-actions
+            [orderSearch]="orderSearch"
+            (actions)="getActionsFromSearch($event)"
+            (numberOfPages)="getNumberOfPagesFromSearch($event)"></app-search-actions>
+          <app-list-actions [actions]="actions"
+                            [numberOfPages]="numberOfPages"
+                            [pageNumbers]="pageNumber"
+                            [pageSize]="pageSize"
+                            [orderSearch]="orderSearch"></app-list-actions>
+        </div>
+
+        <div *ngIf="isButtonCompounds">
+          <app-list-compounds></app-list-compounds>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

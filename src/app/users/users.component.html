@@ -1,15 +1,5 @@
 <div class="m-5">
-
-<ul class="nav nav-tabs">
-  <li class="nav-item" >
-    <a class="nav-link" #listTab (click)="onTabClick('list')">List</a>
-  </li>
-  <li class="nav-item" >
-    <a class="nav-link" #addTab (click)="onTabClick('add')">Add user</a>
-  </li>
-</ul>
-
-
-<app-users-list *ngIf="tab==='list'"></app-users-list>
-<app-manager *ngIf="tab==='add'"></app-manager>
+  <app-tabs (tabChange)="tab = $event"></app-tabs>
+  <app-users-list *ngIf="tab==='first'"></app-users-list>
+  <app-register *ngIf="tab==='second'"></app-register>
 </div>

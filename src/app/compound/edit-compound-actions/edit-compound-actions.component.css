@@ -8,9 +8,9 @@ app-edit-data-set{
 th{
 
 }
-.form{
+/*.form{
   min-width: 1000px;
-}
+}*/
 
 .input {
   display: flex;

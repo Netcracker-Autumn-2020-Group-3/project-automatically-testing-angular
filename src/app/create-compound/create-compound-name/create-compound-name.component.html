@@ -1,0 +1,16 @@
+<div>
+  <div class="mb-4 input">
+    <label class="float-left mr-5" style="width: 160px">Name</label>
+    <input type="text"
+           class="form-control input-field"
+           [(ngModel)]="compoundName"
+           (ngModelChange)="setNameDescription()"
+           placeholder="Name">
+  </div>
+  <div class="input">
+    <label class="float-left mr-5" style="width: 160px;">Description</label>
+    <input type="text" class="form-control input-field"  [(ngModel)]="compoundDescription" (ngModelChange)="setNameDescription()"   placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+</div>
+
+

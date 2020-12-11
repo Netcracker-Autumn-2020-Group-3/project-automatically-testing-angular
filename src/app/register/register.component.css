@@ -1,6 +1,12 @@
-.adduser {
-  padding: 30px;
-}
-.adduser-button {
-  float: right;
-}
+    .add-user {
+      padding: 50px;
+    }
+    .add-user-button {
+      float: right;
+    }
+input.ng-invalid.ng-touched {
+    border: 1px solid red;
+ }
+ input.ng-valid.ng-touched {
+     border: 1px solid green;
+  }

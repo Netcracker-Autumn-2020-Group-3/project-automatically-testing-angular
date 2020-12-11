@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Action} from '../main-library-list-actions/list-actions/action.model';
+import {Action} from '../model/action.model';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
 
@@ -11,11 +11,14 @@ export class LibraryActionService {
 
   constructor(private http: HttpClient) { }
 
-  private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
-  //private getActionsUrl = 'http://localhost:8080/library/actions';
- //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
- private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
- private getNumberOfActionsUrl = 'http://localhost:8080/library/actions/count';
+  //private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = 'http://localhost:8080/';
+  //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
+  private getActionsUrl = 'http://localhost:8080/library/actions';
+  //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
+  private getActionsByNameUrl = 'http://localhost:8080/library/actions/';
+  private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
+  private getAllActionsUrl = this.getActionsByNameUrl + 'get/all';
 
 
 
@@ -33,6 +36,12 @@ export class LibraryActionService {
     return this.http.get<number>(this.getNumberOfActionsUrl);
   }
 
+ createAction(name: string, description: string, variableValues: string[]) {
+   const url = this.url + "create-action/" + name + "/" + description;
+   this.http.post(url,variableValues).toPromise();
+ }
 
-
+  getAllActions() {
+    return this.http.get<Action[]>(this.getAllActionsUrl);
+  }
 }

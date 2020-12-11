@@ -9,24 +9,15 @@ import {DataSet} from '../../model/dataSet';
 })
 export class EditNameDataSetComponent implements OnInit {
 
-
   @Input()dataSet: DataSet;
-
-
-
+  //todo output to parent
   ngOnInit(): void {
-  }
-
-  addValue() {
-
   }
 
   save(){
     return this.dataSet;
   }
-
   setValue(name: string) {
     this.dataSet.name = name;
-
   }
 }

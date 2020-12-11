@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user';
-import { UserDto } from '../users-list/user-dto';
+import { UserDto } from '../users/users-list/user-dto';
 import {Params} from '@angular/router';
 
 @Injectable({
@@ -10,8 +10,8 @@ import {Params} from '@angular/router';
 })
 export class UserService {
   //private url = 'https://automatically-testing-java.herokuapp.com/';
- // private url = 'http://localhost:8080/';
-  private url = 'http://localhost:9003/';
+  private url = 'http://localhost:8080/';
+  //private url = 'http://localhost:9003/';
   private managerUrl = this.url + 'manager';
   private adminUrl = this.url + 'admin';
   private getUsersListUrl = this.url + 'users/list';
@@ -51,7 +51,27 @@ export class UserService {
 
   addUser(user: User){
    const url = `${this.url}users/addUser`;
-   const body = {email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
+   const body = { email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
    return this.http.post(url, body).toPromise();
+  }
+
+  resetPassword(passwordToken: string, pass: string){
+  const url = `${this.url}users/resetpass`;
+  const body = {token: passwordToken, password: pass};
+  return this.http.put(url,body).toPromise();
+  }
+  getUserSettings(){
+  const url = `${this.url}settings`;
+  return this.http.get<User>(url).toPromise();
+  }
+  updateUserSettings(user: User){
+  const url = `${this.url}settings`;
+      const body = { name: user.name, surname: user.surname};
+      return this.http.put(url, body).toPromise();
+  }
+  resetPasswordSettings(user: User){
+  const url = `${this.url}settings/password`;
+    const body = {email: user.email, password: user.password};
+    return this.http.put(url,body).toPromise();
   }
 }
