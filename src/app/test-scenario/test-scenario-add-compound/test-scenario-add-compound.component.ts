@@ -81,7 +81,7 @@ export class TestScenarioAddCompoundComponent implements OnInit {
         .push(new FormControl(
           {
             value: null,
-            disabled: !this.getActionVoidById(this.compoundActions[i].actionId)},
+            disabled: this.getActionVoidById(this.compoundActions[i].actionId)},
           [Validators.required]));
     }
   }
@@ -95,6 +95,7 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   getActionVoidById(id: number): boolean {
+    console.log('VOID', (this.actions.filter(a => a.id === id).pop() as Action).void);
     return (this.actions.filter(a => a.id === id).pop() as Action).void;
   }
 
