@@ -31,8 +31,10 @@ import {TestCaseViewComponent} from './test-case/test-case-view/test-case-view.c
 import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test-scenario-list.component';
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 import {ListOfTestCaseExecutionComponent} from "./list-of-test-case-execution/list-of-test-case-execution.component";
+import {ActionExecutionComponent} from './action-execution/action-execution.component';
 
 const routes: Routes = [
+  { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
   { path: 'library/actions', component: MainLibraryListActionsComponent},
