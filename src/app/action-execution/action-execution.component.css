@@ -1,0 +1,28 @@
+button{
+  /*  width: 160px;*/
+  margin-left: 15px;
+  color: grey;
+  height: 40px;
+  border-color: #E5E5E5;
+}
+.button-selected{
+  background: white;
+  z-index: 4;
+  /*position: absolute;*/
+  /* height: 38px; */
+  border-bottom: 0;
+  height: 40px;
+}
+
+.headbuttons{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.failedStatus{
+  background-color: lightcoral;
+}
+
+.passedStatus{
+  background-color: lightgreen;
+}

@@ -13,6 +13,7 @@ import {TestCaseDto} from '../model/test-case/test-case-dto';
 import {TestCaseAll} from '../list-of-test-cases/TestCaseAll';
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
 import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dto-for-pagination';
+import {TokenStorageService} from '../auth/token-storage.service';
 import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
 
 @Injectable({
@@ -31,8 +32,9 @@ export class TestCaseService {
   private getTestCases = this.url + 'test-case/list';
   private getTestCaseListUrl = this.url + 'test-case/list/page';
   private executeTestCaseUrl = this.url + 'test-case/execute/';
+  private testCaseExecutionUrl = this.url + 'test-case-execution';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
 
   getAllTestCases(): Observable<TestCaseAll[]> {
@@ -87,10 +89,11 @@ export class TestCaseService {
     });
   }
 
-  executeTestCase(id: number) {
+  /*executeTestCase(id: number) {
     const url = this.executeTestCaseUrl + id;
-    this.http.get(url).toPromise();
-}
+    return this.http.get(url).subscribe();
+  }*/
+
   getPage(paramsVal: Params) {
     return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
       params: paramsVal
@@ -98,6 +101,12 @@ export class TestCaseService {
   }
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
+  }
+
+  executeTestCase(id: number) {
+    const body = this.tokenStorage.getUsername();
+    const url = this.testCaseExecutionUrl + "/execute/" + id;
+    return this.http.post(url, body).subscribe();
   }
 
 }

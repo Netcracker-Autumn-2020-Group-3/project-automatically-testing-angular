@@ -34,8 +34,11 @@ import {SettingsComponent} from './users/settings/settings.component';
 import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
+import {ListOfTestCaseExecutionComponent} from "./list-of-test-case-execution/list-of-test-case-execution.component";
+import {ActionExecutionComponent} from './action-execution/action-execution.component';
 
 const routes: Routes = [
+  { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
   { path: 'dashboard', component: DashboardTopSubscribedTestCasesComponent},
@@ -62,6 +65,8 @@ const routes: Routes = [
   { path: 'list-of-data-set', component: ListOfDataSetComponent },
   { path: 'list-of-test-cases', component: ListOfTestCasesComponent },
   { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
+  { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
+  { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent },
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
   { path:'settings', component: SettingsComponent}

@@ -62,6 +62,8 @@ import { PaginationComponent } from './util/pagination/pagination.component';
 import { SearchComponent } from './util/search/search.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
+import { ActionExecutionComponent } from './action-execution/action-execution.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +130,11 @@ import { ProjectEditComponent } from './project/project-edit/project-edit.compon
     SearchComponent,
     TestCaseListComponent,
     ProjectViewComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    TestCaseListComponent,
+    ListOfTestCaseExecutionComponent,
+    TestCaseListComponent,
+    ActionExecutionComponent
   ],
   imports: [
     BrowserModule,

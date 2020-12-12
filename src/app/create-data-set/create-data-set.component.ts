@@ -18,11 +18,6 @@ export class CreateDataSetComponent implements OnInit {
   // tslint:disable-next-line:variable-name
   data_set_values: [];
 
-  /*createDataSet = new FormGroup({
-    Name: new FormControl(''),
-    Data_set_values: new FormArray( [new FormControl('')])
-  });*/
-
   createDataSet = new FormGroup({
     Name: new FormControl(''),
     Data_set_values: new FormArray([
@@ -61,11 +56,14 @@ export class CreateDataSetComponent implements OnInit {
     this.dataEntryCreate = customerData.Data_set_values;
     console.log(this.dataEntryCreate);
     this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
-
       Swal.fire({icon: 'success',
         title: 'Ok',
-        text: 'updated successfully!'});
-
+        text: 'created successfully!'});
+    }, error => {
+      Swal.fire({
+        icon: "error",
+        title: "error"
+      })
     });
     //this.services.addDataSet(customerData.Name, customerData.Data_set_values.filter(function (el: any) {
     // return el != "";
