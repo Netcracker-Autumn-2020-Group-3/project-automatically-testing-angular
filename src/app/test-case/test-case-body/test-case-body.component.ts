@@ -35,7 +35,9 @@ export class TestCaseBodyComponent implements OnInit {
         this.varVals[i][j] = [];
         action.variables.forEach((actionVariable, k) => {
           this.varVals[i][j][k] = new VariableValue(action.id, actionVariable.id,
-            (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ? -1 : actionVariable.dataEntry.id);
+            (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ? -1 : actionVariable.dataEntry.id,
+            (actionVariable.variableValueId === undefined || actionVariable.variableValueId === null) ?
+              -1 : actionVariable.variableValueId);
           console.log(this.varVals[i][j][k]);
         });
       });

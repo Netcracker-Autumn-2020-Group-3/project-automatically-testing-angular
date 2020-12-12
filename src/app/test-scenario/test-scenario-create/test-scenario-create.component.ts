@@ -1,8 +1,9 @@
 import {Component, ElementRef, EventEmitter, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {FormControl, Validators} from '@angular/forms';
-import {EntityIdName} from '../../model/test-scenario/EntityIdName';
 import {TestScenarioService} from '../../services/test-scenario.service';
+import {Compound} from '../../model/test-scenario/Compound';
+import {Action} from '../../model/test-scenario/Action';
 
 @Component({
   selector: 'app-test-scenario-create',
@@ -12,15 +13,17 @@ import {TestScenarioService} from '../../services/test-scenario.service';
 export class TestScenarioCreateComponent implements OnInit {
   @ViewChild('inputElement') inputElemRef: ElementRef;
   @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
-  compounds: EntityIdName[];
-  actions: EntityIdName[];
   formName = new FormControl('', [Validators.required]);
+  compounds: Compound[];
+  actions: Action[];
+  items: TestScenarioItem[] = [];
+
+  mapItemNames: Map<TestScenarioItem, string> = new Map<TestScenarioItem, string>();
   isCreated = false;
   isValidName = true;
+
   isAddCompound = false;
   isAddAction = false;
-  items: TestScenarioItem[] = [];
-  map: Map<TestScenarioItem, string> = new Map<TestScenarioItem, string>();
 
   constructor(private testScenarioService: TestScenarioService, private renderer: Renderer2) { }
 
@@ -61,11 +64,11 @@ export class TestScenarioCreateComponent implements OnInit {
     const itemNew = item;
     itemNew.priority = (this.items as TestScenarioItem[]).length + 1;
     (this.items as TestScenarioItem[]).push(itemNew);
-    this.map.set(itemNew, itemName);
+    this.mapItemNames.set(itemNew, itemName);
   }
 
   deleteItemFromTestScenario(item: TestScenarioItem) {
-    this.map.delete(item);
+    this.mapItemNames.delete(item);
     const index = (this.items as TestScenarioItem[]).indexOf(item);
     this.items = (this.items as TestScenarioItem[]).filter(a => a !== item);
     for (let i: number = index; i < this.items.length; i++) {
@@ -74,17 +77,18 @@ export class TestScenarioCreateComponent implements OnInit {
   }
 
   private setCompounds(): void {
-    this.testScenarioService.getAllCompoundsWithIdAndName()
+    this.testScenarioService.getAllCompounds()
       .subscribe(compounds => this.compounds = compounds);
   }
 
   private setActions(): void {
-    this.testScenarioService.getAllActionsWithIdAndName()
+    this.testScenarioService.getAllActions()
       .subscribe(actions => this.actions = actions);
   }
 
   createTestScenario() {
     const name = this.formName.value;
+    console.log({name, items: this.items});
     this.testScenarioService.createTestScenario({name, items: this.items})
       .subscribe(resp => {
         this.checkValidTestScenarioName(resp.body);
@@ -93,23 +97,27 @@ export class TestScenarioCreateComponent implements OnInit {
 
   private checkValidTestScenarioName(isCreated: boolean | null) {
     if (isCreated) {
-      this.cancelTestScenario();
+      this.finishCreateTestScenario();
     } else {
       this.turnOffValidName();
     }
   }
 
-  cancelTestScenario() {
+  private finishCreateTestScenario() {
     this.cancelActionForm();
     this.cancelCompoundForm();
     this.formName.reset();
     this.items = [];
     this.isCreated = true;
-    this.map.clear();
+    this.mapItemNames.clear();
     setTimeout(() => {
       this.isCreated = false;
       this.eventCreated.emit();
     }, 2000);
+  }
+
+  cancelTestScenario() {
+    this.eventCreated.emit();
   }
 
   turnOnValidName() {
@@ -120,6 +128,10 @@ export class TestScenarioCreateComponent implements OnInit {
   private turnOffValidName() {
     this.renderer.addClass(this.inputElemRef.nativeElement, 'invalidInputForm');
     this.isValidName = false;
+  }
+
+  getCurrentPriority() {
+    return this.items.length + 1;
   }
 
 }

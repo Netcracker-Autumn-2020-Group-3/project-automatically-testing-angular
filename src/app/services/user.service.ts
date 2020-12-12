@@ -54,4 +54,24 @@ export class UserService {
    const body = { email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
    return this.http.post(url, body).toPromise();
   }
+
+  resetPassword(passwordToken: string, pass: string){
+  const url = `${this.url}users/resetpass`;
+  const body = {token: passwordToken, password: pass};
+  return this.http.put(url,body).toPromise();
+  }
+  getUserSettings(){
+  const url = `${this.url}settings`;
+  return this.http.get<User>(url).toPromise();
+  }
+  updateUserSettings(user: User){
+  const url = `${this.url}settings`;
+      const body = { name: user.name, surname: user.surname};
+      return this.http.put(url, body).toPromise();
+  }
+  resetPasswordSettings(user: User){
+  const url = `${this.url}settings/password`;
+    const body = {email: user.email, password: user.password};
+    return this.http.put(url,body).toPromise();
+  }
 }
