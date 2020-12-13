@@ -70,7 +70,7 @@ const routes: Routes = [
   { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent },
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
-  { path:'settings', component: SettingsComponent},
+  { path: 'settings', component: SettingsComponent},
   { path:'action-execution-dashboard', component: ActionExecutionDashboardComponent }
 ];
 

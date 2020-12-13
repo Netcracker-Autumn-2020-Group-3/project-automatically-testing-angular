@@ -69,6 +69,10 @@ import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
 import { ActionExecutionDashboardComponent } from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
 
+import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboard-test-case-executions-by-dates/dashboard-test-case-executions-by-dates.component';
+import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -140,7 +144,10 @@ import { ActionExecutionDashboardComponent } from './dashboard/action-execution-
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,
     ActionExecutionComponent,
-    ActionExecutionDashboardComponent
+    ActionExecutionDashboardComponent,
+    ActionExecutionComponent,
+    DashboardTestcaseExecutionNumberComponent,
+    DashboardTestCaseExecutionsByDatesComponent
   ],
   imports: [
     BrowserModule,
@@ -151,7 +158,9 @@ import { ActionExecutionDashboardComponent } from './dashboard/action-execution-
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
-    ChartModule
+    ChartModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders, ListActionsComponent,
     { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }],

@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {DataSet} from '../model/dataSet';
 import {DataEntry} from "../model/dataEntry";
 import {DataEntryCreate} from '../create-data-set/dataEntryCreate';
+import {environment} from 'src/environments/environment';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ export class DataSetService {
   [x: string]: any;
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = `${environment.url}`;
   private url_get_all_data_set = this.url + 'allDataSet';
   private url_delete_data_set = this.url + 'delete-data-set/';
 

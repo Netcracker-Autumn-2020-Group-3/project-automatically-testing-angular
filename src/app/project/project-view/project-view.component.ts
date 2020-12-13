@@ -30,7 +30,20 @@ export class ProjectViewComponent implements OnInit {
   archive(): void {
     this.projectService.archive(this.project.id).subscribe(data =>{
       console.log('archived');
-    })
+    });
+  }
+  onArchiveButton(){
+    if(this.project.archived){
+      this.projectService.unarchive(this.project.id).subscribe(data =>{
+        console.log('unarchived');
+      });
+      this.project.archived = false;
+    } else {
+      this.projectService.archive(this.project.id).subscribe(data =>{
+        console.log('archived');
+      });
+      this.project.archived = true;
+    }
   }
 
 }
