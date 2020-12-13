@@ -62,6 +62,7 @@ import { PaginationComponent } from './util/pagination/pagination.component';
 import { SearchComponent } from './util/search/search.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,8 @@ import { ProjectEditComponent } from './project/project-edit/project-edit.compon
     SearchComponent,
     TestCaseListComponent,
     ProjectViewComponent,
-    ProjectEditComponent
+    ProjectEditComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

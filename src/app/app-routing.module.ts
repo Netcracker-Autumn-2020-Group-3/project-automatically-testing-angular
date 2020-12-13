@@ -34,6 +34,7 @@ import {SettingsComponent} from './users/settings/settings.component';
 import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
+import {NotificationsComponent} from './notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'test-scenario', component: TestScenarioComponent},
@@ -64,7 +65,8 @@ const routes: Routes = [
   { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
-  { path:'settings', component: SettingsComponent}
+  { path: 'settings', component: SettingsComponent},
+  { path: 'notification', component: NotificationsComponent}
 ];
 
 @NgModule({
