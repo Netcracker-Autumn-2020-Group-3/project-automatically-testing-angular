@@ -64,6 +64,7 @@ import { ProjectViewComponent } from './project/project-view/project-view.compon
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboard-test-case-executions-by-dates/dashboard-test-case-executions-by-dates.component';
 
 @NgModule({
   declarations: [
@@ -134,7 +135,8 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     TestCaseListComponent,
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,
-    ActionExecutionComponent
+    ActionExecutionComponent,
+    DashboardTestCaseExecutionsByDatesComponent
   ],
   imports: [
     BrowserModule,

@@ -62,4 +62,8 @@ export class TestCaseBodyComponent implements OnInit {
     return variableValues;
   }
 
+  areVariableValuesAllFilled(variableValues: VariableValue[]){
+    return variableValues.map(vv => vv.dataEntryId).filter(deId => deId === -1).length > 0;
+  }
+
 }

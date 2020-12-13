@@ -9,9 +9,17 @@
   </div>
 
 
-  <div class="container-fluid mr-5 mt-5">
+  <div class="d-inline ml-3">
     <a  routerLink="/projects/{{testCase.testCase.projectId}}/testcase/{{testCase.testCase.id}}/edit">
     <button class="btn btn-primary">Edit</button>
+    </a>
+  </div>
+
+  <div class="d-inline m-4">
+    <a >
+      <button [className]="isFollowed ? 'btn btn-danger' : 'btn btn-primary'"
+              [textContent]="isFollowed ? 'Unfollow' : 'Follow'"
+      (click)="onFollowButton()"></button>
     </a>
   </div>
 
