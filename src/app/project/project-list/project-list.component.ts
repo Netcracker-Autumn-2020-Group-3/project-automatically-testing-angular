@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpParams} from '@angular/common/http';
 import {ProjectService} from '../../services/project.service';
 import {Project} from '../../model/project';
+import {PaginationComponent} from '../../util/pagination/pagination.component';
 
 @Component({
   selector: 'app-project-list',
@@ -12,11 +13,14 @@ export class ProjectListComponent implements OnInit {
 
   projects: Project[] = [];
   search = {
-    name: '', link: '', userId: '', sortField: 'id', sortOrder: 'ASC', pageSize: '3'
-  };
+    name: '', link: '', userId: '', sortField: 'id', sortOrder: 'ASC', pageSize: '3'};
 
   page = 1;
   numberOfPages = 1;
+  pageSize = 3;
+
+  @ViewChild(PaginationComponent)
+  pagination: PaginationComponent;
 
   constructor(private projectService: ProjectService) {
   }
@@ -39,59 +43,19 @@ export class ProjectListComponent implements OnInit {
     return params;
   }
 
+  getPage(page: number) {
+    this.page = page;
+    this.projectService.getPage(this.getParams()).subscribe(data => {
+      this.projects = data;
+    }, error => {
+      console.log(error);
+    });
+  }
+
 
   onSearchSubmit() {
     this.page = 1;
-    console.log('submit');
-    this.projectService.getPage(this.getParams()).subscribe(data => {
-      this.projects = data.map(project => {
-        console.log(project);
-        project.isArchived = project.isArchived ? 'yes' : 'no';
-        return project;
-      });
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  onNextPage() {
-    if (this.page !== this.numberOfPages) {
-      this.page += 1;
-      this.projectService.getPage(this.getParams()).subscribe(data => {
-        this.projects = data;
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
-
-  onPreviousPage() {
-    if (this.page !== 1) {
-      this.page -= 1;
-      this.projectService.getPage(this.getParams()).subscribe(data => {
-        this.projects = data;
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
-
-  onFirstPage() {
-    this.page = 1;
-    this.projectService.getPage(this.getParams()).subscribe(data => {
-      this.projects = data;
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  onLastPage() {
-    this.page = this.numberOfPages;
-    this.projectService.getPage(this.getParams()).subscribe(data => {
-      this.projects = data;
-    }, error => {
-      console.log(error);
-    });
+    this.pagination.eventClickPage(1);
   }
 
 }

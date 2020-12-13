@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Action} from '../model/action.model';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +13,11 @@ export class LibraryActionService {
   constructor(private http: HttpClient) { }
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8081/';
+  private url = `${environment.url}`;
   //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
-  private getActionsUrl = 'http://localhost:8081/library/actions';
+  private getActionsUrl = `${this.url}library/actions`;
   //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
-  private getActionsByNameUrl = 'http://localhost:8081/library/actions/';
+  private getActionsByNameUrl = `${this.url}library/actions/`;
   private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
   private getAllActionsUrl = this.getActionsByNameUrl + 'get/all';
 

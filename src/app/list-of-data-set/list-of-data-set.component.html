@@ -1,4 +1,4 @@
-<div style="margin-left: 30px; margin-top: 30px;">
+<div class="container-fluid m-5">
   <div>
     <input class="form-control" type="text" name="search" [(ngModel)]="searchedDataSet"
             placeholder="search data set">
@@ -31,14 +31,10 @@
   <nav aria-label="Page navigation example" style="margin-left: 30%">
     <ul class="pagination">
       <li class="page-item">
-        <a class="page-link"  aria-label="Previous" (click)="previousPage()">
-          <span aria-hidden="true"><</span>
-        </a>
+        <button class="page-link" (click)="previousPage()"><</button>
       </li>
       <li class="page-item">
-        <a class="page-link"  aria-label="Next" (click)="nextPage()">
-          <span aria-hidden="true">></span>
-        </a>
+        <button class="page-link" (click)="nextPage()">></button>
       </li>
     </ul>
   </nav>

@@ -1,4 +1,4 @@
-export interface EntityIdName {
+export interface Compound {
   id: number;
   name: string;
 }

@@ -18,11 +18,12 @@
                                   (eventCancel)="cancelCompoundForm()"
                                   (eventCreated)="addCompoundToTestScenario($event)"
                                   [compounds]="compounds"
+                                  [actions]="actions"
   ></app-test-scenario-add-compound>
   <app-test-scenario-add-action *ngIf="isAddAction"
                                 (eventCancel)="cancelActionForm()"
                                 (eventCreated)="addActionToTestScenario($event)"
-                                [actions]="actions"
+                                [actions]="actions" [currentPriority]="getCurrentPriority()"
   ></app-test-scenario-add-action>
   <div *ngIf="isCreated" class="alert alert-success" role="alert"
        style="width: 95%; margin-top: 10px">
@@ -40,7 +41,7 @@
       </thead>
       <tbody>
       <tr *ngFor="let item of items">
-        <td>{{map.get(item)}}</td>
+        <td>{{mapItemNames.get(item)}}</td>
         <td>{{item.type}}</td>
         <td>{{item.priority}}</td>
         <td>

@@ -3,7 +3,7 @@ import {Observable} from 'rxjs';
 import {User} from '../model/user';
 import {Params} from '@angular/router';
 import {UserDto} from '../users/users-list/user-dto';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {DataSet} from '../model/test-case/data-set';
 import {Scenario} from '../model/test-case/scenario';
 import {ScenarioStep} from '../model/test-case/scenario-step';
@@ -13,6 +13,10 @@ import {TestCaseDto} from '../model/test-case/test-case-dto';
 import {TestCaseAll} from '../list-of-test-cases/TestCaseAll';
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
 import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dto-for-pagination';
+import {TokenStorageService} from '../auth/token-storage.service';
+import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
+import {environment} from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -20,77 +24,73 @@ import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dt
 export class TestCaseService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8081/';
-  // private url = 'http://localhost:9003/';
-  private countPagesUrl = this.url + 'test-case/pages/count';
-  private getDataSetListUrl = this.url + 'data-set/list';
-  private getTestScenarioListUrl = this.url + 'test-scenario/list';
-  private postTestCaseUrl = this.url + 'test-case/create';
-  private updateTestCaseUrl = this.url + 'test-case/update';
-  private getTestCases = this.url + 'test-case/list';
-  private getTestCaseListUrl = this.url + 'test-case/list/page';
-  private executeTestCaseUrl = this.url + 'test-case/execute/';
+  private url = `${environment.url}test-case/`;
 
-  constructor(private http: HttpClient) {
+  private executeTestCaseUrl = environment.url + 'test-case/execute/';
+  private testCaseExecutionUrl = environment.url + 'test-case-execution';
+
+  constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
-
   getAllTestCases(): Observable<TestCaseAll[]> {
-    return this.http.get<TestCaseAll[]>(this.getTestCases);
+    return this.http.get<TestCaseAll[]>(`${this.url}list`);
   }
 
   getDataSetList() {
-    return this.http.get<DataSet[]>(this.getDataSetListUrl);
+    return this.http.get<DataSet[]>(`${environment.url}data-set/list`);
   }
 
   getTestScenarioList() {
-    return this.http.get<Scenario[]>(this.getTestScenarioListUrl);
+    return this.http.get<Scenario[]>(`${environment.url}test-scenario/list`);
   }
 
   getTestScenarioSteps(testScenarioId: number) {
-    const url = this.url + `test-scenario/${testScenarioId}/steps`;
-    return this.http.get<ScenarioStep[]>(url);
-
+    return this.http.get<ScenarioStep[]>(`${environment.url}test-scenario/${testScenarioId}/steps`);
   }
 
   getDataSetEntries(dataSetId: number) {
-    const url = this.url + `data-set/${dataSetId}/entries`;
-    return this.http.get<DataEntry[]>(url);
+    return this.http.get<DataEntry[]>(`${environment.url}data-set/${dataSetId}/entries`);
+  }
 
+  getTopFiveSubscribedTestCases(): Observable<TestCaseTopSubscribed[]> {
+    return this.http.get<TestCaseTopSubscribed[]>(`${environment.url}dashboard/top-subscribed-test-cases`);
   }
 
 
   getTestCaseById(testCaseId: number) {
-    const url = this.url + `test-case/${testCaseId}`;
-    console.log('user: ' + url);
-    return this.http.get<TestCaseDto>(url);
+    return this.http.get<TestCaseDto>(`${this.url}${testCaseId}`);
   }
 
-  updateTestCase(testCase: TestCaseDto) {
-    return this.http.post(this.updateTestCaseUrl, testCase);
+  updateTestCase(testCaseName: string, id: number, variableValues: VariableValue[]) {
+    return this.http.put(`${this.url}${id}`, {testCaseName, id, variableValues});
   }
 
-  postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,
-               testScenarioIdValue: number, varVals: VariableValue[]) {
-    return this.http.post(this.postTestCaseUrl, {
-      testCaseName: testCaseNameValue,
-      projectId: projectIdValue,
-      dataSetId: dataSetIdValue,
-      testScenarioId: testScenarioIdValue,
-      variableValues: varVals
-    });
+  postTestCase(testCaseName: string, projectId: string, dataSetId: number, testScenarioId: number, variableValues: VariableValue[]) {
+    return this.http.post(`${this.url}`, {testCaseName, projectId, dataSetId, testScenarioId, variableValues});
   }
 
-  executeTestCase(id: number) {
-    const url = this.executeTestCaseUrl + id;
-    this.http.get(url).toPromise();
-}
-  getPage(paramsVal: Params) {
-    return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
-      params: paramsVal
-    });
+  getPage(params: Params) {
+    return this.http.get<TestCaseDtoForPagination[]>(`${this.url}list/page`, {params});
   }
+
   countPages() {
-    return this.http.get<number>(this.countPagesUrl);
+    return this.http.get<number>(`${this.url}pages/count`);
+  }
+
+  follow(testCaseId: number) {
+    return this.http.patch(`${this.url}${testCaseId}/follow`, {});
+  }
+
+  unfollow(testCaseId: number) {
+    return this.http.patch(`${this.url}${testCaseId}/unfollow`, {});
+  }
+
+  isFollowed(testCaseId: number) {
+    return this.http.get<boolean>(`${this.url}${testCaseId}/is-followed`);
+  }
+  executeTestCase(id: number) {
+    const body = this.tokenStorage.getUsername();
+    const url = this.testCaseExecutionUrl + '/execute/' + id;
+    return this.http.post(url, body).subscribe();
   }
 
 }

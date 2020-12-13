@@ -5,7 +5,7 @@ import {Action} from '../model/action.model';
 import {CompoundService} from '../services/compound.service';
 import { Location } from '@angular/common';
 
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {CompoundDto} from '../model/compound-dto';
 import {Router} from '@angular/router';

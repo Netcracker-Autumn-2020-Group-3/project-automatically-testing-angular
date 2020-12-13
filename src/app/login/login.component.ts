@@ -1,19 +1,13 @@
 import {Component, NgModule, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
 import {AuthLoginInfo} from '../auth/login-info';
 import {AuthService} from '../auth/auth.service';
 import {TokenStorageService} from '../auth/token-storage.service';
-import { NgForm } from '@angular/forms';
-// @ts-ignore
-import * as bcrypt from 'bcryptjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
-
 export class LoginComponent implements OnInit {
   form: any = {};
   isLoggedIn = false;
@@ -31,19 +25,12 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
-
-
-    //const pass = bcrypt.hashSync(this.form.password, bcrypt.genSaltSync(10));
     this.loginInfo = new AuthLoginInfo(
       this.form.username,
-      this.form.password);
-      // pass);
+      btoa(this.form.password));
 
-    console.log(this.loginInfo);
     this.authService.attemptAuth(this.loginInfo).subscribe(
       data => {
-        console.log(data.token);
         this.tokenStorage.saveToken(data.token);
         this.tokenStorage.saveUsername(data.username);
         this.tokenStorage.saveAuthorities(data.authorities);
@@ -64,9 +51,4 @@ export class LoginComponent implements OnInit {
   reloadPage() {
     window.location.href = 'dashboard';
   }
-
-
-
-
-
 }

@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartModule, HIGHCHARTS_MODULES } from "angular-highcharts";
+import * as more from 'highcharts/highcharts-more.src';
+import * as exporting from 'highcharts/modules/exporting.src';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -53,7 +56,23 @@ import { ListCompoundsComponent } from './main-library-list-actions/list-compoun
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
+import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SettingsComponent } from './users/settings/settings.component';
+import { ResetPasswordSettingsComponent } from './users/settings/reset-password-settings/reset-password-settings.component';
+import { DashboardTopSubscribedTestCasesComponent } from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
+import { PaginationComponent } from './util/pagination/pagination.component';
+import { SearchComponent } from './util/search/search.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
+import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { ActionExecutionDashboardComponent } from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
+
+import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboard-test-case-executions-by-dates/dashboard-test-case-executions-by-dates.component';
+import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -110,7 +129,25 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
-    TestCaseListComponent
+    TestCaseListComponent,
+    ResetPasswordComponent,
+    SettingsComponent,
+    ResetPasswordSettingsComponent,
+    TestCaseListComponent,
+    DashboardTopSubscribedTestCasesComponent,
+    PaginationComponent,
+    SearchComponent,
+    TestCaseListComponent,
+    ProjectViewComponent,
+    ProjectEditComponent,
+    TestCaseListComponent,
+    ListOfTestCaseExecutionComponent,
+    TestCaseListComponent,
+    ActionExecutionComponent,
+    ActionExecutionDashboardComponent,
+    ActionExecutionComponent,
+    DashboardTestcaseExecutionNumberComponent,
+    DashboardTestCaseExecutionsByDatesComponent
   ],
   imports: [
     BrowserModule,
@@ -121,8 +158,12 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    ChartModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
-  providers: [httpInterceptorProviders, ListActionsComponent],
+  providers: [httpInterceptorProviders, ListActionsComponent,
+    { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
