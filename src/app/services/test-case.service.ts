@@ -20,7 +20,7 @@ import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dt
 export class TestCaseService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'http://localhost:8081/';
   // private url = 'http://localhost:9003/';
   private countPagesUrl = this.url + 'test-case/pages/count';
   private getDataSetListUrl = this.url + 'data-set/list';

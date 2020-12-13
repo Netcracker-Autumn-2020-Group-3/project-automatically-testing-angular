@@ -11,7 +11,7 @@ import {Project} from '../model/project';
 })
 export class ProjectService {
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = 'http://localhost:8081/';
   private getProjectsListUrl = this.url + 'projects/list';
   private updateProjectUrl = this.url + 'projects/update';
   private countPagesUrl = this.url + 'projects/pages/count';

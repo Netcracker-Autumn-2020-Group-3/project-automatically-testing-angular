@@ -11,7 +11,7 @@ import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario
 export class TestScenarioService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
-  private url = 'http://localhost:8080/test-scenario/';
+  private url = 'http://localhost:8081/test-scenario/';
   private getTestScenarioListUrl = this.url + 'list/page/';
   private countPagesUrl = this.url + 'pages/count/';
 
