@@ -9,7 +9,7 @@ import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {DashboardCountComponent} from './dashboard-count/dashboard-count.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
@@ -48,7 +48,7 @@ const routes: Routes = [
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'admin', component: AdminComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard-count', component: DashboardCountComponent},
   { path: 'auth/login', component: LoginComponent},
   { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
