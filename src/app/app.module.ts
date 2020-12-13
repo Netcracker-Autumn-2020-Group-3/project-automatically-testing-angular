@@ -64,6 +64,9 @@ import { ProjectViewComponent } from './project/project-view/project-view.compon
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -134,7 +137,8 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     TestCaseListComponent,
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,
-    ActionExecutionComponent
+    ActionExecutionComponent,
+    DashboardTestcaseExecutionNumberComponent
   ],
   imports: [
     BrowserModule,
@@ -145,6 +149,8 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
   providers: [httpInterceptorProviders, ListActionsComponent],
   bootstrap: [AppComponent]

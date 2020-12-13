@@ -41,7 +41,7 @@ const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
-  { path: 'dashboard', component: DashboardTopSubscribedTestCasesComponent},
+ /* { path: 'dashboard', component: DashboardTopSubscribedTestCasesComponent},*/
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
@@ -69,7 +69,7 @@ const routes: Routes = [
   { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent },
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
-  { path:'settings', component: SettingsComponent}
+  { path: 'settings', component: SettingsComponent}
 ];
 
 @NgModule({

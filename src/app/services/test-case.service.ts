@@ -88,12 +88,6 @@ export class TestCaseService {
       variableValues: varVals
     });
   }
-
-  /*executeTestCase(id: number) {
-    const url = this.executeTestCaseUrl + id;
-    return this.http.get(url).subscribe();
-  }*/
-
   getPage(paramsVal: Params) {
     return this.http.get<TestCaseDtoForPagination[]>(this.getTestCaseListUrl, {
       params: paramsVal
@@ -102,11 +96,9 @@ export class TestCaseService {
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
   }
-
   executeTestCase(id: number) {
     const body = this.tokenStorage.getUsername();
     const url = this.testCaseExecutionUrl + '/execute/' + id;
     return this.http.post(url, body).subscribe();
   }
-
 }

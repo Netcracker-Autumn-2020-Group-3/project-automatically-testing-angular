@@ -1,0 +1,23 @@
+<div style="text-align:center">
+  <div class="row ml-5">
+  <div class="col">
+    <div class="row">
+      <div *ngIf="isEnableData">
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [results]="array"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [legend]="showLegend"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical>
+     </div>
+    </div>
+  </div>
+  </div>
+</div>
