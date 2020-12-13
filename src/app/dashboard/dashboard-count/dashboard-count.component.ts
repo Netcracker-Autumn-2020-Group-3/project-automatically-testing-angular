@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {DashboardService} from '../services/dashboard.service';
+import {DashboardService} from '../../services/dashboard.service';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-dashboard-count',
   templateUrl: './dashboard-count.component.html',
   styleUrls: ['./dashboard-count.component.css']
 })
