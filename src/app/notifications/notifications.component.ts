@@ -55,14 +55,8 @@ export class NotificationsComponent implements OnInit {
                                   console.log(this.dataList);
                                    // localStorage.setItem("dataList", JSON.stringify(this.dataList));
                                    //this.storedNames = JSON.parse(localStorage.getItem("dataList")|| '{}')
-
-
-
-
                                });
          } );
-
-
 
   }
 
