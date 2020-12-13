@@ -98,7 +98,7 @@ export class TestCaseService {
 
   executeTestCase(id: number) {
     const body = this.tokenStorage.getUsername();
-    const url = this.testCaseExecutionUrl + "/execute/" + id;
+    const url = this.testCaseExecutionUrl + '/execute/' + id;
     return this.http.post(url, body).subscribe();
   }
 
