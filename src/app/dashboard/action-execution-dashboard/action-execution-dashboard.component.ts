@@ -12,7 +12,7 @@ export class ActionExecutionDashboardComponent implements OnInit {
   failedActionsData: any;
   passedActionsData: any;
   chart: Chart;
-
+  isEnabled = false;
   constructor(private service: ActionExecutionService) {
   }
 
@@ -21,7 +21,7 @@ export class ActionExecutionDashboardComponent implements OnInit {
       return [Date.UTC(Number(point.date.substr(0,4)),Number(point.date.substr(5,2))-1,
         Number(point.date.substr(8,2))), point.quantity];
     }));
-    this.service.getFailedPassedActionsExecution('PASSED').subscribe(data => this.passedActionsData = data.map(function (point) {
+    this.service.getFailedPassedActionsExecution('PASSED').subscribe(data => this.passedActionsData = data.map((point) => {
       return [Date.UTC(Number(point.date.substr(0,4)),Number(point.date.substr(5,2))-1,
         Number(point.date.substr(8,2))), point.quantity];
     }));
