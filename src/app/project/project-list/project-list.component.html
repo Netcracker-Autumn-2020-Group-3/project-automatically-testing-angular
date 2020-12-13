@@ -48,14 +48,8 @@
   </tbody>
 </table>
 
-<nav>
-  <ul class="pagination nav justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
-    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
-    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
-    </li>
-  </ul>
-</nav>
+<app-pagination [quantityPages]="numberOfPages"
+                [sizePage]="pageSize"
+                (clickPage)="getPage($event)"></app-pagination>
 
 
