@@ -9,7 +9,7 @@ import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
-import {DashboardCountComponent} from './dashboard-count/dashboard-count.component';
+import {DashboardCountComponent} from './dashboard/dashboard-count/dashboard-count.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
@@ -34,8 +34,10 @@ import {SettingsComponent} from './users/settings/settings.component';
 import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
-import {ListOfTestCaseExecutionComponent} from "./list-of-test-case-execution/list-of-test-case-execution.component";
+import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/list-of-test-case-execution.component';
 import {ActionExecutionComponent} from './action-execution/action-execution.component';
+import {ActionExecutionDashboardComponent} from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
 import {ActionExecutionDashboardComponent} from "./dashboard/action-execution-dashboard/action-execution-dashboard.component";
 import {NotificationsComponent} from './notifications/notifications.component';
 
@@ -56,12 +58,12 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  {path: 'projects/:project_id/testcase', component: TestCaseComponent},
-  {path: 'projects/:project_id/edit', component: ProjectEditComponent},
-  {path: 'projects/:project_id', component: ProjectViewComponent},
-  {path: 'projects', component: ProjectComponent},
-  {path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
-  {path: 'projects/:project_id/testcase/:test_case_id', component: TestCaseViewComponent},
+  { path: 'projects/:project_id/testcase', component: TestCaseComponent},
+  { path: 'projects/:project_id/edit', component: ProjectEditComponent},
+  { path: 'projects/:project_id', component: ProjectViewComponent},
+  { path: 'projects', component: ProjectComponent},
+  { path: 'projects/:project_id/testcase/:test_case_id/edit', component: TestCaseEditComponent},
+  { path: 'projects/:project_id/testcase/:test_case_id', component: TestCaseViewComponent},
   { path: 'create-data-set', component: CreateDataSetComponent },
   { path: 'create-action', component: CreateActionComponent },
   { path: 'list-of-data-set', component: ListOfDataSetComponent },
@@ -74,7 +76,8 @@ const routes: Routes = [
   { path: 'settings', component: SettingsComponent},
   { path:'action-execution-dashboard', component: ActionExecutionDashboardComponent },
   { path: 'settings', component: SettingsComponent},
-  { path: 'notification', component: NotificationsComponent}
+  { path: 'notification', component: NotificationsComponent},
+  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent }
 ];
 
 @NgModule({

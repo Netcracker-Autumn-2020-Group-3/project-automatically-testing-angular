@@ -22,7 +22,7 @@ import {ListActionsComponent} from './main-library-list-actions/list-actions/lis
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
-import { DashboardCountComponent } from './dashboard-count/dashboard-count.component';
+import { DashboardCountComponent } from './dashboard/dashboard-count/dashboard-count.component';
 import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
 import { ListOfDataSetComponent } from './list-of-data-set/list-of-data-set.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
@@ -73,6 +73,7 @@ import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboa
 import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
@@ -150,7 +151,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ActionExecutionDashboardComponent,
     ActionExecutionComponent,
     DashboardTestcaseExecutionNumberComponent,
-    DashboardTestCaseExecutionsByDatesComponent
+    DashboardTestCaseExecutionsByDatesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
