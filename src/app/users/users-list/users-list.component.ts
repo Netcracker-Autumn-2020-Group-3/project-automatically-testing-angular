@@ -12,7 +12,7 @@ export class UsersListComponent implements OnInit {
 
   users: UserDto[] = [];
   search = {
-    name: '', surname: '', id: '', role: '', email: '', enabled: '', sortField: ''
+    name: '', surname: '', id: '', role: '', email: '', enabled: '', sortField: 'id', pageSize: '3', sortOrder: 'ASC'
   };
   page = 1;
   numberOfPages = 1;

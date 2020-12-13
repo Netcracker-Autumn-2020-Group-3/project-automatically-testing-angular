@@ -1,1 +1,25 @@
-<p>dashboard-test-case-executions-by-dates works!</p>
+<div style="text-align:center">
+  <div class="row ml-5">
+    <div class="col">
+      <h4>
+        Number of test case executions by dates
+      </h4>
+      <div class="row">
+        <div *ngIf="isEnableData">
+          <ngx-charts-bar-vertical
+            [view]="view"
+            [results]="array"
+            [gradient]="gradient"
+            [xAxis]="showXAxis"
+            [yAxis]="showYAxis"
+            [legend]="showLegend"
+            [showXAxisLabel]="showXAxisLabel"
+            [showYAxisLabel]="showYAxisLabel"
+            [xAxisLabel]="xAxisLabel"
+            [yAxisLabel]="yAxisLabel">
+          </ngx-charts-bar-vertical>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
