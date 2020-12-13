@@ -3,11 +3,11 @@ import {DashboardService} from '../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  templateUrl: './dashboard-count.component.html',
+  styleUrls: ['./dashboard-count.component.css']
 })
 
-export class DashboardComponent implements OnInit {
+export class DashboardCountComponent implements OnInit {
   constructor(private dashboardService: DashboardService) {
   }
   userCount = 0;
