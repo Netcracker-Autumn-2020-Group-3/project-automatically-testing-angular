@@ -4,14 +4,14 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { UserDto } from '../users/users-list/user-dto';
 import {Params} from '@angular/router';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
-  //private url = 'http://localhost:9003/';
+  // private url = 'https://automatically-testing-java.herokuapp.com/';
+  private url = `${environment.url}`;
   private managerUrl = this.url + 'manager';
   private adminUrl = this.url + 'admin';
   private getUsersListUrl = this.url + 'users/list';

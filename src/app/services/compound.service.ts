@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Compound} from '../model/compound.model';
 import {CompoundAction} from '../model/compoundAction';
 import {CompoundDto} from '../model/compound-dto';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import {CompoundDto} from '../model/compound-dto';
 export class CompoundService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
-  private url = 'http://localhost:8080/';
+  private url = `${environment.url}`;
   private checkCompoundNameUrl = this.url + 'compounds/create/check/';
   private createCompoundUrl = this.url + 'compounds/create';
   private createCompoundActionsUrl = this.url + 'compounds/create/actions';

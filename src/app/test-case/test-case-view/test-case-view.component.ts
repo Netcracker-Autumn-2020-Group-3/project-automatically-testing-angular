@@ -20,13 +20,15 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
   testCaseId: number;
   showForm = false;
 
+  isFollowed: boolean;
+
   @ViewChild(TestCaseBodyComponent)
   formBody: TestCaseBodyComponent;
 
   constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
 
   }
-//rename
+
   ngAfterViewInit() {
     this.formBody.scenarioSteps = this.testCase.scenarioStepsWithData;
     this.formBody.dataEntries = this.dataEntries;
@@ -47,15 +49,35 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
       this.testCase = data;
       this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
 
-      // get test case dataset entries
-      this.testCaseService.getDataSetEntries(this.testCase.testCase.dataSetId).subscribe(dataEntries => {
-        this.dataEntries = dataEntries;
-        this.ngAfterViewInit();
+      const dataEntriesFlatten: DataEntry[] = [];
+      this.scenarioStepsWithData.forEach(step => {
+        step.actionDto.forEach(action => {
+          action.variables.forEach(variable => {
+            dataEntriesFlatten.push(variable.dataEntry === undefined ? new DataEntry(-1, '', -1, '') : variable.dataEntry);
+          });
+        });
       });
+      this.dataEntries = dataEntriesFlatten;
+
+      this.testCaseService.isFollowed(this.testCaseId).subscribe(data => {
+        this.isFollowed = data;
+      });
+
+      // this.ngAfterViewInit();
       this.showForm = true;
 
     });
 
+  }
+
+  onFollowButton() {
+    if (this.isFollowed) {
+      this.testCaseService.unfollow(this.testCaseId).subscribe();
+      this.isFollowed = false;
+    } else {
+      this.testCaseService.follow(this.testCaseId).subscribe();
+      this.isFollowed = true;
+    }
   }
 
 }

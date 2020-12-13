@@ -9,7 +9,7 @@ import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
+import {DashboardCountComponent} from './dashboard-count/dashboard-count.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
 import {EditCompoundComponent} from './compound/edit-compound/edit-compound.component';
@@ -34,18 +34,22 @@ import {SettingsComponent} from './users/settings/settings.component';
 import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
+import {ListOfTestCaseExecutionComponent} from "./list-of-test-case-execution/list-of-test-case-execution.component";
+import {ActionExecutionComponent} from './action-execution/action-execution.component';
+import {ActionExecutionDashboardComponent} from "./dashboard/action-execution-dashboard/action-execution-dashboard.component";
 import {NotificationsComponent} from './notifications/notifications.component';
 
 const routes: Routes = [
+  { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
-  { path: 'dashboard', component: DashboardTopSubscribedTestCasesComponent},
+  { path: 'dashboard', component: DashboardComponent},
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'admin', component: AdminComponent},
-  { path: 'dashboard', component: DashboardComponent},
+  { path: 'dashboard-count', component: DashboardCountComponent},
   { path: 'auth/login', component: LoginComponent},
   { path: '', component: LoginComponent},
   { path: 'home', component: HomeComponent, pathMatch: 'full'},
@@ -64,7 +68,11 @@ const routes: Routes = [
   { path: 'list-of-test-cases', component: ListOfTestCasesComponent },
   { path: 'list-of-test-scenarios', component : TestScenarioListComponent},
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
+  { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent },
+  { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
+  { path: 'settings', component: SettingsComponent},
+  { path:'action-execution-dashboard', component: ActionExecutionDashboardComponent },
   { path: 'settings', component: SettingsComponent},
   { path: 'notification', component: NotificationsComponent}
 ];

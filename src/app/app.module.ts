@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartModule, HIGHCHARTS_MODULES } from "angular-highcharts";
+import * as more from 'highcharts/highcharts-more.src';
+import * as exporting from 'highcharts/modules/exporting.src';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,7 +22,7 @@ import {ListActionsComponent} from './main-library-list-actions/list-actions/lis
 import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
 import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardCountComponent } from './dashboard-count/dashboard-count.component';
 import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
 import { ListOfDataSetComponent } from './list-of-data-set/list-of-data-set.component';
 import {EditCompoundActionsComponent} from './compound/edit-compound-actions/edit-compound-actions.component';
@@ -62,6 +65,14 @@ import { PaginationComponent } from './util/pagination/pagination.component';
 import { SearchComponent } from './util/search/search.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
+import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
+import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { ActionExecutionDashboardComponent } from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
+
+import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboard-test-case-executions-by-dates/dashboard-test-case-executions-by-dates.component';
+import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
@@ -79,13 +90,13 @@ import { NotificationsComponent } from './notifications/notifications.component'
     RegisterComponent,
     UsersComponent,
     MenuComponent,
-    DashboardComponent,
+    DashboardCountComponent,
     CreateDataSetComponent,
     ListOfDataSetComponent,
     CreateDataSetComponent,
     TestCaseCreateComponent,
     CreateDataSetComponent,
-    DashboardComponent,
+    DashboardCountComponent,
     EditCompoundActionsComponent,
     EditCompoundComponent,
     MainEditCompoundComponent,
@@ -130,7 +141,16 @@ import { NotificationsComponent } from './notifications/notifications.component'
     TestCaseListComponent,
     ProjectViewComponent,
     ProjectEditComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    ProjectEditComponent,
+    TestCaseListComponent,
+    ListOfTestCaseExecutionComponent,
+    TestCaseListComponent,
+    ActionExecutionComponent,
+    ActionExecutionDashboardComponent,
+    ActionExecutionComponent,
+    DashboardTestcaseExecutionNumberComponent,
+    DashboardTestCaseExecutionsByDatesComponent
   ],
   imports: [
     BrowserModule,
@@ -141,8 +161,12 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    ChartModule,
+    NgxChartsModule,
+    BrowserAnimationsModule
   ],
-  providers: [httpInterceptorProviders, ListActionsComponent],
+  providers: [httpInterceptorProviders, ListActionsComponent,
+    { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

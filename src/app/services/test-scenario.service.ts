@@ -8,14 +8,15 @@ import {Action} from '../model/test-scenario/Action';
 import {ActionWithPriority} from '../model/test-scenario/ActionWithPriority';
 import {TestScenarioWithIdNameArchived} from '../model/test-scenario/TestScenarioWithIdNameArchived';
 import {TestScenario} from '../model/test-scenario/TestScenario';
+import {environment} from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class TestScenarioService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
-  private url = 'http://localhost:8080/test-scenario';
-  private getTestScenarioListUrl = this.url + '/list/page/';
-  private countPagesUrl = this.url + '/pages/count/';
+  private url = `${environment.url}test-scenario/`;
+  private getTestScenarioListUrl = this.url + 'list/page/';
+  private countPagesUrl = this.url + 'pages/count/';
 
   constructor(private http: HttpClient) {}
   getAllCompounds(): Observable<Compound[]> {
