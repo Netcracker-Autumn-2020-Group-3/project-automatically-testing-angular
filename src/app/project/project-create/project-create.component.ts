@@ -14,7 +14,7 @@ export class ProjectCreateComponent implements OnInit {
 
   projectLink: string;
   projectName: string;
-  project: Project = {name: '', link: '', isArchived: ''};
+  project: Project = {name: '', link: '', archived: ''};
   projectForm;
 
   showSaveProgress = false;
@@ -38,7 +38,7 @@ export class ProjectCreateComponent implements OnInit {
     console.log('sumbit ' + projectForm.name);
     this.project.name = projectForm.name;
     this.project.link = projectForm.link;
-    this.project.isArchived = 'false';
+    this.project.archived = 'false';
     this.projectService.postProject(this.project).subscribe(data => {
         this.progressMessage = 'Successfully created.';
         this.progressTypeClass = this.progressSuccess;

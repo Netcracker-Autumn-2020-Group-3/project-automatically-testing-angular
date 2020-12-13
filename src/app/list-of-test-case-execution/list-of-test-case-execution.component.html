@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <tr *ngFor="let testCaseExecution of testCaseExecutions | filter:searchedTestCaseExecution | slice:start:end; let i = index"
-    routerLink="/list/actions-execution/{{testCaseExecution.id}}">
+        routerLink="/list/actions-execution/{{testCaseExecution.id}}">
       <th scope="row">{{testCaseExecution.id}}</th>
       <td>{{testCaseExecution.testCaseName}}</td>
       <td>{{testCaseExecution.startDateTime}}</td>

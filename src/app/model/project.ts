@@ -3,5 +3,5 @@ export interface Project {
   name: string;
   link: string;
   userId?: number;
-  isArchived: string;
+  archived: string;
 }

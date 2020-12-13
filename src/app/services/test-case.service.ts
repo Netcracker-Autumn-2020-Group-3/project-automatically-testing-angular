@@ -14,6 +14,7 @@ import {TestCaseAll} from '../list-of-test-cases/TestCaseAll';
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
 import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dto-for-pagination';
 import {TokenStorageService} from '../auth/token-storage.service';
+import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
 
 @Injectable({
   providedIn: 'root'
@@ -60,6 +61,10 @@ export class TestCaseService {
 
   }
 
+  getTopFiveSubscribedTestCases(): Observable<TestCaseTopSubscribed[]> {
+    return this.http.get<TestCaseTopSubscribed[]>(`${this.url}dashboard/top-subscribed-test-cases`);
+  }
+
 
   getTestCaseById(testCaseId: number) {
     const url = this.url + `test-case/${testCaseId}`;
@@ -67,8 +72,10 @@ export class TestCaseService {
     return this.http.get<TestCaseDto>(url);
   }
 
-  updateTestCase(testCase: TestCaseDto) {
-    return this.http.post(this.updateTestCaseUrl, testCase);
+  updateTestCase( newTestCaseName: string, testCaseId: number, newVariableValues: VariableValue[]) {
+    console.log('serivce update');
+    return this.http.post(this.updateTestCaseUrl, {testCaseName: newTestCaseName, id: testCaseId,
+      variableValues: newVariableValues});
   }
 
   postTestCase(testCaseNameValue: string, projectIdValue: string, dataSetIdValue: number,

@@ -53,7 +53,15 @@ import { ListCompoundsComponent } from './main-library-list-actions/list-compoun
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
+import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import { SettingsComponent } from './users/settings/settings.component';
+import { ResetPasswordSettingsComponent } from './users/settings/reset-password-settings/reset-password-settings.component';
+import { DashboardTopSubscribedTestCasesComponent } from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
+import { PaginationComponent } from './util/pagination/pagination.component';
+import { SearchComponent } from './util/search/search.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component';
+import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
 
@@ -112,6 +120,17 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     TestCaseViewComponent,
     ListOfTestCasesComponent,
     TestScenarioListComponent,
+    TestCaseListComponent,
+    ResetPasswordComponent,
+    SettingsComponent,
+    ResetPasswordSettingsComponent,
+    TestCaseListComponent,
+    DashboardTopSubscribedTestCasesComponent,
+    PaginationComponent,
+    SearchComponent,
+    TestCaseListComponent,
+    ProjectViewComponent,
+    ProjectEditComponent,
     TestCaseListComponent,
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,

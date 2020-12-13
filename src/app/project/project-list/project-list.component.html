@@ -37,12 +37,12 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let project of projects" routerLink="/projects/{{project.id}}/testcase">
+  <tr *ngFor="let project of projects" routerLink="/projects/{{project.id}}">
     <th scope="row">{{project.id}}</th>
     <td>{{project.name}}</td>
     <td>{{project.link}}</td>
     <td>{{project.userId}}</td>
-    <td>{{project.isArchived}}</td>
+    <td>{{project.archived}}</td>
   </tr>
 
   </tbody>
