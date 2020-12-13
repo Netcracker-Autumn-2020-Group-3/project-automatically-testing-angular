@@ -29,7 +29,6 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
 
   }
 
-//rename
   ngAfterViewInit() {
     this.formBody.scenarioSteps = this.testCase.scenarioStepsWithData;
     this.formBody.dataEntries = this.dataEntries;
@@ -50,18 +49,23 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
       this.testCase = data;
       this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
 
-      // get test case dataset entries
-      this.testCaseService.getDataSetEntries(this.testCase.testCase.dataSetId).subscribe(dataEntries => {
-        this.dataEntries = dataEntries;
-        this.ngAfterViewInit();
+      const dataEntriesFlatten: DataEntry[] = [];
+      this.scenarioStepsWithData.forEach(step => {
+        step.actionDto.forEach(action => {
+          action.variables.forEach(variable => {
+            dataEntriesFlatten.push(variable.dataEntry === undefined ? new DataEntry(-1, '', -1, '') : variable.dataEntry);
+          });
+        });
       });
+      this.dataEntries = dataEntriesFlatten;
+
+      this.testCaseService.isFollowed(this.testCaseId).subscribe(data => {
+        this.isFollowed = data;
+      });
+
+      // this.ngAfterViewInit();
       this.showForm = true;
 
-    });
-
-    // check if test case is followed
-    this.testCaseService.isFollowed(this.testCaseId).subscribe(data => {
-      this.isFollowed = data;
     });
 
   }

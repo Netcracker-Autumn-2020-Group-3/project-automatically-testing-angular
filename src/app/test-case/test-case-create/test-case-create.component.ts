@@ -100,10 +100,31 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
     }
   }
 
+  validate() {
+    if (this.testCaseName === '' || this.testCaseName === null || this.testCaseName === undefined) {
+      this.progressMessage = 'Enter test case name!';
+      this.progressTypeClass = this.progressFail;
+      this.showSaveProgress = true;
+      return false;
+    }
+    if (this.formBody.areVariableValuesAllFilled(this.variableValues)) {
+      this.progressMessage = 'Fill in all values for variables!';
+      this.progressTypeClass = this.progressFail;
+      this.showSaveProgress = true;
+      return false;
+    }
+    return true;
+  }
+
   onSubmit() {
     this.removeAlert();
 
     this.variableValues = this.formBody.flattenVarVals();
+
+    if (!this.validate()) {
+      return;
+    }
+
     let projectId;
     this.route.paramMap.subscribe(value => {
       projectId = value.get('project_id');
