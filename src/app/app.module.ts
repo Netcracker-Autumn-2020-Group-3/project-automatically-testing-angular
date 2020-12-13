@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ChartModule, HIGHCHARTS_MODULES } from "angular-highcharts";
+import * as more from 'highcharts/highcharts-more.src';
+import * as exporting from 'highcharts/modules/exporting.src';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -64,6 +67,8 @@ import { ProjectViewComponent } from './project/project-view/project-view.compon
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { ActionExecutionDashboardComponent } from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -134,7 +139,8 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     TestCaseListComponent,
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,
-    ActionExecutionComponent
+    ActionExecutionComponent,
+    ActionExecutionDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -145,8 +151,10 @@ import { ActionExecutionComponent } from './action-execution/action-execution.co
     ReactiveFormsModule,
     NgxPaginationModule,
     Ng2SearchPipeModule,
+    ChartModule
   ],
-  providers: [httpInterceptorProviders, ListActionsComponent],
+  providers: [httpInterceptorProviders, ListActionsComponent,
+    { provide: HIGHCHARTS_MODULES, useFactory: () => [ more, exporting ] }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
