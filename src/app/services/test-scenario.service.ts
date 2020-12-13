@@ -4,14 +4,14 @@ import {Observable} from 'rxjs';
 import {EntityIdName} from '../model/test-scenario/EntityIdName';
 import {TestScenario} from '../model/test-scenario/TestScenario';
 import {Params} from '@angular/router';
-
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
+import {environment} from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class TestScenarioService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
-  private url = 'http://localhost:8080/test-scenario/';
+  private url = `${environment.url}test-scenario/`;
   private getTestScenarioListUrl = this.url + 'list/page/';
   private countPagesUrl = this.url + 'pages/count/';
 
