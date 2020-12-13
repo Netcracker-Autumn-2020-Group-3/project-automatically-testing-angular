@@ -1,1 +1,28 @@
-<p>test-scenario-edit works!</p>
+<div class="container-fluid m-2">
+  <form [formGroup]="form">
+    <label>
+      <strong>Old name:</strong>
+      <input type="text" class="form-control" value="old" disabled>
+    </label><br>
+    <label>
+      <strong>New name:</strong>
+      <input type="text" class="form-control" formControlName="newName" #newName>
+      <small *ngIf="form.invalid && form.touched" style="color: red">Name is not defined!</small>
+      <small *ngIf="!isValidName" style="color: red">Name is already exists!</small>
+    </label><br>
+    <label>
+      <strong class="font-weight-bold">Archived:</strong>
+      <select class="custom-select mr-sm-2" formControlName="isArchived">
+        <option>True</option>
+        <option>False</option>
+      </select>
+    </label>
+    <br>
+    <button class="btn btn-outline-success m-1" type="button" (click)="updateTestScenario()" [disabled]="form.invalid">Update</button>
+    <button class="btn btn-outline-danger m-1" type="button" (click)="cancelTestScenario()">Cancel</button>
+    <div *ngIf="isCreated" class="alert alert-success" role="alert"
+         style="width: 95%; margin-top: 10px">
+      Test Scenario is successfully updated!
+    </div>
+  </form>
+</div>

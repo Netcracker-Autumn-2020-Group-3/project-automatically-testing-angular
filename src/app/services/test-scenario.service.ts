@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {EntityIdName} from '../model/test-scenario/EntityIdName';
-import {TestScenario} from '../model/test-scenario/TestScenario';
 import {Params} from '@angular/router';
 import {TestScenarioDto} from '../test-scenario/test-scenario-list/test-scenario-dto';
+import {Compound} from '../model/test-scenario/Compound';
+import {Action} from '../model/test-scenario/Action';
+import {ActionWithPriority} from '../model/test-scenario/ActionWithPriority';
+import {TestScenarioWithIdNameArchived} from '../model/test-scenario/TestScenarioWithIdNameArchived';
+import {TestScenario} from '../model/test-scenario/TestScenario';
 import {environment} from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
@@ -16,16 +19,24 @@ export class TestScenarioService {
   private countPagesUrl = this.url + 'pages/count/';
 
   constructor(private http: HttpClient) {}
-  getAllCompoundsWithIdAndName(): Observable<EntityIdName[]> {
-    return this.http.get<EntityIdName[]>(`${this.url}compounds`);
+  getAllCompounds(): Observable<Compound[]> {
+    return this.http.get<Compound[]>(`${this.url}/compounds`);
   }
 
-  getAllActionsWithIdAndName(): Observable<EntityIdName[]> {
-    return this.http.get<EntityIdName[]>(`${this.url}actions`);
+  getAllActions(): Observable<Action[]> {
+    return this.http.get<Action[]>(`${this.url}/actions`);
+  }
+
+  getAllCompoundActionsByCompoundId(id: number): Observable<ActionWithPriority[]> {
+    return this.http.get<ActionWithPriority[]>(`${this.url}/compounds-actions/${id}`);
   }
 
   createTestScenario(testScenario: TestScenario): Observable<HttpResponse<boolean>> {
     return this.http.post<boolean>(this.url, testScenario, {observe: 'response'});
+  }
+
+  updateTestScenarioById(testScenario: TestScenarioWithIdNameArchived): Observable<HttpResponse<boolean>> {
+    return this.http.put<boolean>(`${this.url}/${testScenario.id}`, testScenario, {observe: 'response'});
   }
 
 
