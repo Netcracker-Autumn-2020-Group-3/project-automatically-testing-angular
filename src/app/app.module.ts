@@ -64,6 +64,7 @@ import { ProjectViewComponent } from './project/project-view/project-view.compon
 import { ProjectEditComponent } from './project/project-edit/project-edit.component';
 import { ListOfTestCaseExecutionComponent } from './list-of-test-case-execution/list-of-test-case-execution.component';
 import { ActionExecutionComponent } from './action-execution/action-execution.component';
+import { DashboardTestCaseExecutionsByDatesComponent } from './dashboard/dashboard-test-case-executions-by-dates/dashboard-test-case-executions-by-dates.component';
 import { DashboardTestcaseExecutionNumberComponent } from './dashboard/dashboard-testcase-execution-number/dashboard-testcase-execution-number.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -138,7 +139,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ListOfTestCaseExecutionComponent,
     TestCaseListComponent,
     ActionExecutionComponent,
-    DashboardTestcaseExecutionNumberComponent
+    DashboardTestcaseExecutionNumberComponent,
+    DashboardTestCaseExecutionsByDatesComponent
   ],
   imports: [
     BrowserModule,
