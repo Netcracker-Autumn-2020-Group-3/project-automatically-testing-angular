@@ -1,12 +1,24 @@
-<div class="m-5">
-  <div class="float-left m-3">
-   <app-action-execution-dashboard></app-action-execution-dashboard>
+<div class="container-fluid">
+  <div class="row">
+    <div class="float-left m-3">
+      <app-action-execution-dashboard></app-action-execution-dashboard>
+    </div>
+    <div class="float-left m-3">
+      <app-dashboard-top-subscribed-test-cases></app-dashboard-top-subscribed-test-cases>
+    </div>
+    <div class="float-left m-3">
+      <app-dashboard-count></app-dashboard-count>
+    </div>
   </div>
-  <div class="float-left m-3">
-    <app-dashboard-top-subscribed-test-cases class="small"></app-dashboard-top-subscribed-test-cases>
+
+  <div class="row">
+    <div class="col">
+      <app-dashboard-testcase-execution-number></app-dashboard-testcase-execution-number>
+    </div>
+    <div class="col">
+      <app-dashboard-test-case-executions-by-dates></app-dashboard-test-case-executions-by-dates>
+    </div>
   </div>
-  <br>
-  <div class="float-left ">
-    <app-dashboard-testcase-execution-number></app-dashboard-testcase-execution-number>
-  </div>
+
+
 </div>
