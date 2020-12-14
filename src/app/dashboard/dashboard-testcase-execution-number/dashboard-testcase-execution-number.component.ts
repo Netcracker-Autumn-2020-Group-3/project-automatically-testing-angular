@@ -12,12 +12,12 @@ export class DashboardTestcaseExecutionNumberComponent implements OnInit {
 
   constructor(private dashboardService: DashboardService) {}
 
-  view: any[] = [600, 400];
+  view: any[] = [500, 300];
   groupedTestCaseExecutions: GroupedTestCaseExecutionDto[];
   array = Array<{value: number, name: string}>();
 
   isEnableData = false;
-  showXAxis = true;
+  showXAxis = false;
   showYAxis = true;
   gradient = false;
   showLegend = false;
