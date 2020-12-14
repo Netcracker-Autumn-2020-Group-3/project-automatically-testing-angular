@@ -21,7 +21,7 @@ export class DashboardTestcaseExecutionNumberComponent implements OnInit {
   showYAxis = true;
   gradient = false;
   showLegend = false;
-  showXAxisLabel = true;
+  showXAxisLabel = false;
   xAxisLabel = 'test case';
   showYAxisLabel = true;
   yAxisLabel = 'times';
