@@ -20,11 +20,11 @@ export class TestScenarioService {
 
   constructor(private http: HttpClient) {}
   getAllCompounds(): Observable<Compound[]> {
-    return this.http.get<Compound[]>(`${this.url}/compounds`);
+    return this.http.get<Compound[]>(`${this.url}compounds`);
   }
 
   getAllActions(): Observable<Action[]> {
-    return this.http.get<Action[]>(`${this.url}/actions`);
+    return this.http.get<Action[]>(`${this.url}actions`);
   }
 
   getAllCompoundActionsByCompoundId(id: number): Observable<ActionWithPriority[]> {

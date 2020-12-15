@@ -38,6 +38,7 @@ import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/li
 import {ActionExecutionComponent} from './action-execution/action-execution.component';
 import {ActionExecutionDashboardComponent} from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {EditViewActionComponent} from './main-library-list-actions/edit-view-action/edit-view-action.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
@@ -47,6 +48,7 @@ const routes: Routes = [
   { path: 'library/actions', component: MainLibraryListActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
+  { path: 'action/view-edit/:id', component: EditViewActionComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'dashboard-count', component: DashboardCountComponent},
