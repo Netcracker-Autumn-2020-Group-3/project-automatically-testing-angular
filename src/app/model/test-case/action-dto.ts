@@ -1,12 +1,12 @@
 import {Variable} from './variable';
 
 export class ActionDto {
-  id: number;
+  actionInstanceId: number;
   name: string;
   variables: Variable[];
 
-  constructor(id: number, name: string, variables: Variable[]) {
-    this.id = id;
+  constructor(actionInstanceId: number, name: string, variables: Variable[]) {
+    this.actionInstanceId = actionInstanceId;
     this.name = name;
     this.variables = variables;
   }
