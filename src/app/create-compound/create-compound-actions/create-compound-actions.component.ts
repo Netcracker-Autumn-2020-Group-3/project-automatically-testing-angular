@@ -11,6 +11,7 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
 export class CreateCompoundActionsComponent implements OnInit {
 
   actions: Action[];
+  actionsReserved: Action[] = [];
   actionsInCompound: Action[] = [];
   @Output()actionsInCompound1 = new EventEmitter<Action[]>();
   searchedAction: any;
@@ -19,7 +20,8 @@ export class CreateCompoundActionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.actionService.getAllActions().subscribe(( res => {
-      this.actions = res;
+      this.actions = Object.assign([], res);
+      this.actionsReserved = Object.assign([], res);
     }));
   }
 
@@ -28,6 +30,7 @@ export class CreateCompoundActionsComponent implements OnInit {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
+      this.actions = Object.assign([], this.actionsReserved);
     }
     this.actionsInCompound1.emit(this.actionsInCompound);
   }

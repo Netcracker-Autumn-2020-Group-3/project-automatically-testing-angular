@@ -28,6 +28,6 @@ export class ActionExecutionComponent implements OnInit {
   }
 
   sendReport() {
-    this.reportService.sendReport(this.actionExecution).subscribe();
+    this.reportService.sendReport(this.testCaseExecutionId, this.actionExecution).subscribe();
   }
 }

@@ -9,12 +9,12 @@ import {HttpClient} from '@angular/common/http';
 export class ReportService {
 
   private url = `${environment.url}`;
-  private sendReportUrl = this.url + 'send/report';
+  private sendReportUrl = this.url + 'send/report/';
 
   constructor(private http: HttpClient) { }
 
-  sendReport(actionExecution: ActionExecutionDto[]){
-    return this.http.post<string>(this.sendReportUrl, actionExecution);
+  sendReport(testCaseExecutionId: number, actionExecution: ActionExecutionDto[]){
+    return this.http.post<string>(this.sendReportUrl + String(testCaseExecutionId), actionExecution);
   }
 
 }
