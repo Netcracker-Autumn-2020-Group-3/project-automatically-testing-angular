@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ProjectDto} from '../project-dto';
 import {ProjectService} from '../../services/project.service';
 import {ActivatedRoute} from '@angular/router';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-project-view',
@@ -11,8 +12,9 @@ import {ActivatedRoute} from '@angular/router';
 export class ProjectViewComponent implements OnInit {
 
   project: ProjectDto;
+  isNotEngineer = this.tokenStorageService.getAuthorities().find(role => role === 'ROLE_ENGINEER') === undefined;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+  constructor(private tokenStorageService: TokenStorageService, private route: ActivatedRoute, private projectService: ProjectService) {
   }
 
   ngOnInit(): void {
