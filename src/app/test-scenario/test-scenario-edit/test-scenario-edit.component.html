@@ -1,12 +1,17 @@
-<div class="container-fluid m-2">
+<div class="container-fluid m-5" style="width: 1000px">
+  <h2 class="font-weight-bold text-center">Test Scenario</h2>
+
   <form [formGroup]="form">
     <label>
       <strong>Old name:</strong>
-      <input type="text" class="form-control" value="old" disabled>
+      <input type="text" class="form-control" style="width: 250%" value="{{currentTestScenario.name}}" disabled>
     </label><br>
     <label>
       <strong>New name:</strong>
-      <input type="text" class="form-control" formControlName="newName" #newName>
+      <input type="text" class="form-control"
+             style="width: 250%"
+             formControlName="newName"
+             #newName (ngModelChange)="changeValid()">
       <small *ngIf="form.invalid && form.touched" style="color: red">Name is not defined!</small>
       <small *ngIf="!isValidName" style="color: red">Name is already exists!</small>
     </label><br>
@@ -17,11 +22,16 @@
         <option>False</option>
       </select>
     </label>
-    <br>
-    <button class="btn btn-outline-success m-1" type="button" (click)="updateTestScenario()" [disabled]="form.invalid">Update</button>
-    <button class="btn btn-outline-danger m-1" type="button" (click)="cancelTestScenario()">Cancel</button>
-    <div *ngIf="isCreated" class="alert alert-success" role="alert"
-         style="width: 95%; margin-top: 10px">
+    <div class="col-12 pl-0 pt-2" style="width: 1000px; display: inherit">
+      <button class="btn btn-outline-success btn-lg m-1 w-25" type="button"
+              (click)="updateTestScenario()"
+              [disabled]="form.invalid">Update
+      </button>
+      <button class="btn btn-outline-danger btn-lg m-1 w-25" type="button"
+              (click)="cancelTestScenario()">Cancel
+      </button>
+    </div>
+    <div *ngIf="isCreated" class="alert alert-success w-50 mt-3" role="alert">
       Test Scenario is successfully updated!
     </div>
   </form>
