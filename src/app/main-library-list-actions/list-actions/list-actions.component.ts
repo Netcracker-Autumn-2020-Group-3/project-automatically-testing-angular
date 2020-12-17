@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output,EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
@@ -25,7 +25,6 @@ export class ListActionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO when click pagination it works incorrect with search!!!
   getListOfActions(page: number){
     const param = new HttpParams()
       .append('page', String(page))

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ActionExecutionService} from '../services/action-execution.service';
 import {ActionExecutionDto} from '../model/action-execution-dto';
+import {ReportService} from '../services/report.service';
 
 @Component({
   selector: 'app-action-execution',
@@ -14,7 +15,7 @@ export class ActionExecutionComponent implements OnInit {
   actionExecution: ActionExecutionDto[];
   status: string;
 
-  constructor(private actionExecutionService: ActionExecutionService, private route: ActivatedRoute) { }
+  constructor(private actionExecutionService: ActionExecutionService, private route: ActivatedRoute, private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(value => {
@@ -26,4 +27,7 @@ export class ActionExecutionComponent implements OnInit {
     });
   }
 
+  sendReport() {
+    this.reportService.sendReport(this.testCaseExecutionId, this.actionExecution).subscribe();
+  }
 }

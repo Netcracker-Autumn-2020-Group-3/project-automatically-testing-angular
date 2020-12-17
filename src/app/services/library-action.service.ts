@@ -4,6 +4,7 @@ import {Action} from '../model/action.model';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
 import {environment} from 'src/environments/environment';
+import {ActionVariableDto} from '../model/action-variable-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,8 @@ export class LibraryActionService {
   private getActionsByNameUrl = `${this.url}library/actions/`;
   private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
   private getAllActionsUrl = this.getActionsByNameUrl + 'get/all';
+  private getActionVariableUrl = this.url + 'action/view-edit/';
+  private updateActionVariableUrl = this.url + 'action/view-edit/update/';
 
 
 
@@ -33,6 +36,10 @@ export class LibraryActionService {
     return this.http.get<Action[]>(this.getActionsByNameUrl + actionName, {  params: paramsVal});
   }
 
+  getActionById(actionId: number){
+    return this.http.get<ActionVariableDto[]>(this.getActionVariableUrl + String(actionId));
+  }
+
   getNumberOfActions(){
     return this.http.get<number>(this.getNumberOfActionsUrl);
   }
@@ -44,5 +51,9 @@ export class LibraryActionService {
 
   getAllActions() {
     return this.http.get<Action[]>(this.getAllActionsUrl);
+  }
+
+  updateActionDescription(action: Action) {
+    return this.http.put<string>(this.updateActionVariableUrl + String(action.actionId), action);
   }
 }

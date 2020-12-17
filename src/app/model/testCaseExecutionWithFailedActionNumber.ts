@@ -6,5 +6,6 @@ export class TestCaseExecutionWithFailedActionNumber {
   userId: number;
   testCaseName: string;
   projectName: string;
-  numberOfFailedAction: number;
+  allActions: number;
+  passedActions: number;
 }
