@@ -47,7 +47,7 @@
       </a>
     </div>
 
-    <div class="d-inline ml-4">
+    <div class="d-inline ml-4" *ngIf="isNotEngineer">
       <a >
         <button [className]="project.archived ? 'btn btn-primary' : 'btn btn-danger'"
                 [textContent]="project.archived ? 'Unarchive' : 'Archive'"

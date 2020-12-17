@@ -1,7 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {UserDto} from './user-dto';
 import {UserService} from '../../services/user.service';
 import {HttpParams} from '@angular/common/http';
+import {UserSearchDto} from './user-search-dto';
+import {PaginationComponent} from '../../util/pagination/pagination.component';
 
 @Component({
   selector: 'app-users-list',
@@ -10,90 +12,83 @@ import {HttpParams} from '@angular/common/http';
 })
 export class UsersListComponent implements OnInit {
 
+  @ViewChild(PaginationComponent)
+  pagination: PaginationComponent;
+
   users: UserDto[] = [];
-  search = {
-    name: '', surname: '', id: '', role: '', email: '', enabled: '', sortField: 'id', pageSize: '3', sortOrder: 'ASC'
-  };
-  page = 1;
+
+  pageSize = 3;
   numberOfPages = 1;
+
+  search = {
+    name: '',
+    surname: '',
+    email: '',
+    onlyEnabled: 'true',
+    sortField: 'id',
+    pageSize: this.pageSize.toString(10),
+    page: '1',
+    sortOrder: 'ASC'
+  };
+  roles = {admin: true, engineer: true, manager: true};
 
   constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.userService.countPages().subscribe(data => {
-      this.numberOfPages = data;
-    }, error => {
-      console.log(error);
-    });
+    this.countPages();
     this.onSearchSubmit();
   }
 
+  countPages() {
+    this.userService.getCountPagesSearch(this.getParams()).subscribe(data => {
+      this.numberOfPages = data;
+    });
+  }
+
+  getPageString() {
+    return this.search.page.toString();
+  }
+
   getParams() {
-    let params = new HttpParams().append('page', this.page.toString(10));
+    let params = new HttpParams();
     Object.entries(this.search).forEach(([key, value]) => {
       if (value != null && value !== '') {
         params = params.append(key, value);
       }
     });
-    return params;
+    return params.append('roles', Array.from(Object.entries(this.roles)
+      .filter(([key, value]) => value)
+      .map(([key, value]) => 'ROLE_' + key.toLocaleUpperCase())).join(','));
   }
 
-  onSelect(user: UserDto) {
-    console.log(user);
+  onColumnNameClick(column: string) {
+    if (this.search.sortField !== column) {
+      this.search.sortField = column;
+      this.search.sortOrder = 'ASC';
+    } else {
+      this.search.sortOrder = (this.search.sortOrder === 'ASC' ? 'DESC' : 'ASC');
+    }
+
+    this.search.page = '1';
+    this.pagination.eventClickPage(1);
   }
 
-  onSearchSubmit() {
-    this.page = 1;
+  getPage(page: number) {
+    this.search.page = page.toString(10);
     this.userService.getPage(this.getParams()).subscribe(data => {
       this.users = data.map(user => {
-        console.log(user);
         user.role = user.role.toLocaleLowerCase().replace('role_', '');
         user.enabled = user.enabled ? 'yes' : 'no';
         return user;
       });
-    }, error => {
-      console.log(error);
     });
   }
 
-  onNextPage() {
-    if (this.page !== this.numberOfPages) {
-      this.page += 1;
-      this.userService.getPage(this.getParams()).subscribe(data => {
-        this.users = data;
-      }, error => {
-        console.log(error);
-      });
-    }
+  onSearchSubmit() {
+    this.search.page = '1';
+    this.countPages();
+    this.pagination.eventClickPage(1);
   }
 
-  onPreviousPage() {
-    if (this.page !== 1) {
-      this.page -= 1;
-      this.userService.getPage(this.getParams()).subscribe(data => {
-        this.users = data;
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
-
-  onFirstPage() {
-    this.page = 1;
-    this.userService.getPage(this.getParams()).subscribe(data => {
-      this.users = data;
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  onLastPage() {
-    this.page = this.numberOfPages;
-    this.userService.getPage(this.getParams()).subscribe(data => {
-      this.users = data;
-    }, error => {
-      console.log(error);
-    });
-  }
 }

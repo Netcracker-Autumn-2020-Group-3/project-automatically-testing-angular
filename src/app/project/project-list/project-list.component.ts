@@ -13,9 +13,8 @@ export class ProjectListComponent implements OnInit {
 
   projects: Project[] = [];
   search = {
-    name: '', link: '', userId: '', sortField: 'id', sortOrder: 'ASC', pageSize: '3'};
+    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '3', page: '1'};
 
-  page = 1;
   numberOfPages = 1;
   pageSize = 3;
 
@@ -34,7 +33,7 @@ export class ProjectListComponent implements OnInit {
 
   getParams() {
     console.log(this.search);
-    let params = new HttpParams().append('page', this.page.toString(10));
+    let params = new HttpParams();
     Object.entries(this.search).forEach(([key, value]) => {
       if (value != null && value !== '') {
         params = params.append(key, value);
@@ -44,7 +43,7 @@ export class ProjectListComponent implements OnInit {
   }
 
   getPage(page: number) {
-    this.page = page;
+    this.search.page = page.toString(10);
     this.projectService.getPage(this.getParams()).subscribe(data => {
       this.projects = data;
     }, error => {
@@ -52,9 +51,21 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
+  onColumnNameClick(column: string) {
+    if (this.search.sortField !== column) {
+      this.search.sortField = column;
+      this.search.sortOrder = 'ASC';
+    } else {
+      this.search.sortOrder = (this.search.sortOrder === 'ASC' ? 'DESC' : 'ASC');
+    }
+
+    this.search.page = '1';
+    this.pagination.eventClickPage(1);
+  }
+
 
   onSearchSubmit() {
-    this.page = 1;
+    this.search.page = '1';
     this.pagination.eventClickPage(1);
   }
 
