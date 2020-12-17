@@ -3,13 +3,15 @@ import {HttpClient} from '@angular/common/http';
 import {ActionExecutionDto} from '../model/action-execution-dto';
 import {Observable} from "rxjs";
 import {FailedPassedActionExecution} from "../model/dashboard/failedPassedActionExecution";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ActionExecutionService {
 
-  private url = 'http://localhost:8080/';
+  //private url = 'http://localhost:8080/';
+  private url = `${environment.url}`
   private getAllActionExecutionsUrl = this.url + 'list/actions-execution/';
   private getFailedPassedActionExecutionUrl = this.url + 'dashboard/action-execution/';
 

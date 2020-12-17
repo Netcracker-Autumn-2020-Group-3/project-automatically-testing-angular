@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Compound} from '../model/compound.model';
 import {Action} from '../model/test-scenario/Action';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class LibraryCompoundService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/compounds';
   // private url = 'http://localhost:9003/compounds';
-  private url = 'http://localhost:8080/compounds';
+  //private url = 'http://localhost:8080/compounds';
+  private url = `${environment.url}compounds`
 
   getCompounds(page: number, pageSize: number, search: string, sort: string): Observable<Compound[]> {
     const param = new HttpParams()
