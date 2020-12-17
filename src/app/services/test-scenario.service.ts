@@ -14,7 +14,7 @@ import {environment} from 'src/environments/environment';
 export class TestScenarioService {
 
   // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
-  private url = `${environment.url}test-scenario/`;
+  private url = `${environment.url}test-scenario`;
   private getTestScenarioListUrl = this.url + 'list/page/';
   private countPagesUrl = this.url + 'pages/count/';
 

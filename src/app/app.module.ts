@@ -75,6 +75,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListCompoundActionsComponent } from './compound/list-compound-actions/list-compound-actions.component';
+import { OrderByButtonComponent } from './list-of-test-case-execution/order-by-button/order-by-button.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +152,9 @@ import { ListCompoundActionsComponent } from './compound/list-compound-actions/l
     DashboardTestcaseExecutionNumberComponent,
     DashboardTestCaseExecutionsByDatesComponent,
     DashboardComponent,
-    ListCompoundActionsComponent
+    ListCompoundActionsComponent,
+    DashboardComponent,
+    OrderByButtonComponent
   ],
   imports: [
     BrowserModule,
