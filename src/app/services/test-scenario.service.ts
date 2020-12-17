@@ -19,6 +19,10 @@ export class TestScenarioService {
   private countPagesUrl = this.url + 'pages/count/';
 
   constructor(private http: HttpClient) {}
+  getTestScenarioById(id: number): Observable<TestScenarioWithIdNameArchived[]> {
+    return this.http.get<TestScenarioWithIdNameArchived[]>(`${this.url}${id}`);
+  }
+
   getAllCompounds(): Observable<Compound[]> {
     return this.http.get<Compound[]>(`${this.url}compounds`);
   }
@@ -28,7 +32,7 @@ export class TestScenarioService {
   }
 
   getAllCompoundActionsByCompoundId(id: number): Observable<ActionWithPriority[]> {
-    return this.http.get<ActionWithPriority[]>(`${this.url}/compounds-actions/${id}`);
+    return this.http.get<ActionWithPriority[]>(`${this.url}compounds-actions/${id}`);
   }
 
   createTestScenario(testScenario: TestScenario): Observable<HttpResponse<boolean>> {
@@ -36,7 +40,7 @@ export class TestScenarioService {
   }
 
   updateTestScenarioById(testScenario: TestScenarioWithIdNameArchived): Observable<HttpResponse<boolean>> {
-    return this.http.put<boolean>(`${this.url}/${testScenario.id}`, testScenario, {observe: 'response'});
+    return this.http.put<boolean>(`${this.url}${testScenario.id}`, testScenario, {observe: 'response'});
   }
 
 

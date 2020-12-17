@@ -8,14 +8,13 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   templateUrl: './create-compound-actions.component.html',
   styleUrls: ['./create-compound-actions.component.css']
 })
-export class CreateCompoundActionsComponent implements OnInit {
 
+export class CreateCompoundActionsComponent implements OnInit {
   actions: Action[];
   actionsReserved: Action[] = [];
   actionsInCompound: Action[] = [];
   @Output()actionsInCompound1 = new EventEmitter<Action[]>();
   searchedAction: any;
-
   constructor(private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
@@ -35,5 +34,3 @@ export class CreateCompoundActionsComponent implements OnInit {
     this.actionsInCompound1.emit(this.actionsInCompound);
   }
 }
-
-
