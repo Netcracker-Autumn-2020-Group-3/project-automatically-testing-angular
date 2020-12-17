@@ -1,7 +1,8 @@
 import {Component, ElementRef, EventEmitter, Input, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {TestScenarioService} from '../../services/test-scenario.service';
-import {TestScenarioDto} from '../test-scenario-list/test-scenario-dto';
+import {ActivatedRoute, Router} from '@angular/router';
+import {TestScenarioWithIdNameArchived} from '../../model/test-scenario/TestScenarioWithIdNameArchived';
 
 @Component({
   selector: 'app-test-scenario-edit',
@@ -10,9 +11,8 @@ import {TestScenarioDto} from '../test-scenario-list/test-scenario-dto';
 })
 export class TestScenarioEditComponent implements OnInit {
 
-  @Input() currentTestScenario: TestScenarioDto;
-  @Output() eventUpdated: EventEmitter<any> = new EventEmitter<any>();
   @ViewChild('newName') inputElemRef: ElementRef;
+  currentTestScenario: TestScenarioWithIdNameArchived = {id: 0, name: '', archived: false};
   isValidName = true;
   isCreated = false;
   form = new FormGroup({
@@ -20,18 +20,22 @@ export class TestScenarioEditComponent implements OnInit {
     isArchived: new FormControl('False')
   });
 
-  constructor(private testScenarioService: TestScenarioService, private renderer: Renderer2) { }
+  constructor(private testScenarioService: TestScenarioService,
+              private renderer: Renderer2,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.testScenarioService.getTestScenarioById(parseInt(params.get('id') as string, 0))
+        .subscribe(scenarios => this.currentTestScenario = scenarios[0]);
+    });
   }
 
-  // TODO исправить комментарий
   updateTestScenario() {
-    // const id = +this.currentTestScenario.id;
-    const id = 18;
     const name = (this.form.get('newName') as FormControl).value;
     const archived = (this.form.get('isArchived') as FormControl).value;
-    this.testScenarioService.updateTestScenarioById({id, name, archived})
+    this.testScenarioService.updateTestScenarioById({id: this.currentTestScenario.id, name, archived})
       .subscribe(response => {
         this.checkValidTestScenarioName(response.body);
       });
@@ -48,15 +52,20 @@ export class TestScenarioEditComponent implements OnInit {
   private finishUpdateTestScenario() {
     this.isCreated = true;
     setTimeout(() => {
-      this.eventUpdated.emit();
+      this.router.navigate(['/test-scenario']).then();
     }, 2000);
   }
 
   cancelTestScenario() {
-    this.eventUpdated.emit();
   }
   private turnOffValidName() {
+    console.log('TURN OFF');
     this.renderer.addClass(this.inputElemRef.nativeElement, 'invalidInputForm');
     this.isValidName = false;
+  }
+
+  changeValid() {
+    this.isValidName = true;
+    this.renderer.removeClass(this.inputElemRef.nativeElement, 'invalidInputForm');
   }
 }

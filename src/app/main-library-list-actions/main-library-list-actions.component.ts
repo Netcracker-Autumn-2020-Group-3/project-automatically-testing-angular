@@ -13,8 +13,12 @@ export class MainLibraryListActionsComponent implements OnInit {
 
   @ViewChild('buttonActions') elemRefButActions: ElementRef;
   @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
+  @ViewChild('buttonCreateAction') elemRefButCreateAction: ElementRef;
+  @ViewChild('buttonCreateCompound') elemRefButCreateCompound: ElementRef;
   isButtonActions = true;
   isButtonCompounds = false;
+  isButtonCreateAction = false;
+  isButtonCreateCompound = false;
   actionName: string;
   actions: Action[];
   pageNumber: number;
@@ -51,14 +55,44 @@ export class MainLibraryListActionsComponent implements OnInit {
   clickButtonActions() {
     this.isButtonActions = true;
     this.isButtonCompounds = false;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = false;
     this.elemRefButActions.nativeElement.classList.add('active');
     this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
   }
 
   clickButtonCompounds() {
     this.isButtonActions = false;
     this.isButtonCompounds = true;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = false;
     this.elemRefButActions.nativeElement.classList.remove('active');
     this.elemRefButCompounds.nativeElement.classList.add('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
+  }
+
+  clickButtonCreateAction() {
+    this.isButtonActions = false;
+    this.isButtonCompounds = false;
+    this.isButtonCreateAction = true;
+    this.isButtonCreateCompound = false;
+    this.elemRefButActions.nativeElement.classList.remove('active');
+    this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.add('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
+  }
+
+  clickButtonCreateCompound() {
+    this.isButtonActions = false;
+    this.isButtonCompounds = false;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = true;
+    this.elemRefButActions.nativeElement.classList.remove('active');
+    this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.add('active');
   }
 }

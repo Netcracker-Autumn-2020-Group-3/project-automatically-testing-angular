@@ -38,13 +38,17 @@ import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/li
 import {ActionExecutionComponent} from './action-execution/action-execution.component';
 import {ActionExecutionDashboardComponent} from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {ListCompoundActionsComponent} from './compound/list-compound-actions/list-compound-actions.component';
+import {TestScenarioEditComponent} from './test-scenario/test-scenario-edit/test-scenario-edit.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
   { path: 'test-scenario', component: TestScenarioComponent},
   { path: 'test-scenario/create', component: TestScenarioCreateComponent},
+  { path: 'test-scenario/edit/:id', component: TestScenarioEditComponent},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'library/actions', component: MainLibraryListActionsComponent},
+  { path: 'library', component: MainLibraryListActionsComponent},
+  { path: 'library/compound/:id', component: ListCompoundActionsComponent},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},

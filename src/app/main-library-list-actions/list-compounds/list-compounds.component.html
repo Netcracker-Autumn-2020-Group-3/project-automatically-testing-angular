@@ -10,9 +10,8 @@
     <th scope="col">Description</th>
   </tr>
   </thead>
-
   <tbody>
-  <tr *ngFor="let compound of compounds">
+  <tr *ngFor="let compound of compounds" routerLink="/library/compound/{{compound.id}}">
     <th scope="row">{{ compound.id }}</th>
     <td>{{ compound.name }}</td>
     <td>{{ compound.description }}</td>
