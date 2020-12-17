@@ -5,6 +5,7 @@ import {TestCaseExecution} from "../model/testCaseExecution";
 import {TestCaseExecutionWithFailedActionNumber} from "../model/testCaseExecutionWithFailedActionNumber";
 import {environment} from "../../environments/environment";
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +19,10 @@ export class TestCaseExecutionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number): Observable<TestCaseExecutionWithFailedActionNumber[]> {
-    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.getAllTestCaseExecutionWithFailedActionNumberUrl}/${limit}/${offset}`);
+  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: String, orderByClause: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
+    const body = {orderBy: orderBy};
+    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.getAllTestCaseExecutionWithFailedActionNumberUrl}/${limit}/${offset}
+    /${orderBy}/${orderByClause}`);
   }
 
   countTestCaseExecutions() {
