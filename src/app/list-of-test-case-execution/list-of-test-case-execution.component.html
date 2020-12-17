@@ -1,4 +1,4 @@
-<div class="container-fluid m-5">
+<div class="container-fluid m-5 w-100">
   <div>
     <input class="form-control" type="text" name="search" [(ngModel)]="searchedTestCaseExecution"
            placeholder="search data set">
@@ -25,17 +25,20 @@
       <td>{{testCaseExecution.endDateTime}}</td>
       <td>{{testCaseExecution.projectName}}</td>
       <td>{{testCaseExecution.status}}
-        <div *ngIf="testCaseExecution.numberOfFailedAction>0" class="alert alert-danger">
-           failed actions {{testCaseExecution.numberOfFailedAction}}</div>
+        <div class="alert alert-danger">
+            actions {{testCaseExecution.passedActions}} of {{testCaseExecution.allActions}}</div>
       </td>
     </tr>
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation example" style="margin-left: 30%">
+  <nav aria-label="Page navigation example" style="margin-left: 20%">
     <ul class="pagination">
       <li class="page-item">
         <button class="page-link" (click)="previousPage()"><</button>
+      </li>
+      <li class="page-item" *ngFor="let item of pagination; let i = index" (click)="onPage(i)">
+        <button class="page-link" (click)="previousPage()">{{i+1}}</button>
       </li>
       <li class="page-item">
         <button class="page-link" (click)="nextPage()">></button>

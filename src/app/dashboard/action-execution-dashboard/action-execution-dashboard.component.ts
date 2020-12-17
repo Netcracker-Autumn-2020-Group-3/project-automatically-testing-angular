@@ -49,8 +49,8 @@ export class ActionExecutionDashboardComponent implements OnInit {
       }));
     this.service.getFailedPassedActionsExecution('PASSED').subscribe(data =>
       this.passedActionsData = data.map((point) => {
-        return [Date.UTC(Number(point.date.substr(0, 4)), Number(point.date.substr(5, 2))-1,
-          Number(point.date.substr(8, 2))), point.quantity];
+          return [Date.UTC(Number(point.date.substr(0, 4)), Number(point.date.substr(5, 2)) - 1,
+            Number(point.date.substr(8, 2))), point.quantity];
       }));
   }
 

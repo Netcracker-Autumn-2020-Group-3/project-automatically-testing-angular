@@ -19,7 +19,7 @@
           "options": {
             "allowedCommonJsDependencies": [
               "rxjs-compat",
-              "lodash"
+              "highcharts"
             ],
             "outputPath": "dist/project-automatically-testing-angular",
             "index": "src/index.html",
