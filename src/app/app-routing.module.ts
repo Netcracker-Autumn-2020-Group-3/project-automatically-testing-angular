@@ -42,6 +42,7 @@ import {ListCompoundActionsComponent} from './compound/list-compound-actions/lis
 import {TestScenarioEditComponent} from './test-scenario/test-scenario-edit/test-scenario-edit.component';
 import {EditViewActionComponent} from './library/edit-view-action/edit-view-action.component';
 import {RoleGuard} from './guards/role.guard';
+import {ErrorComponent} from './error/error.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
@@ -79,7 +80,9 @@ const routes: Routes = [
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent},
   { path: 'reset-password/:token', component: ResetPasswordComponent},
   { path: 'settings', component: SettingsComponent},
-  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent }
+  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: '/error' }
 ];
 
 @NgModule({

@@ -77,6 +77,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListCompoundActionsComponent } from './compound/list-compound-actions/list-compound-actions.component';
 import { OrderByButtonComponent } from './list-of-test-case-execution/order-by-button/order-by-button.component';
 import { EditViewActionComponent } from './library/edit-view-action/edit-view-action.component';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import { EditViewActionComponent } from './library/edit-view-action/edit-view-ac
     DashboardComponent,
     OrderByButtonComponent,
     DashboardComponent,
-    EditViewActionComponent
+    EditViewActionComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
