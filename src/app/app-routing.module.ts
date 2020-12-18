@@ -8,7 +8,7 @@ import {UsersListComponent} from './users/users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
-import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
+import {LibraryComponent} from './library/library.component';
 import {DashboardCountComponent} from './dashboard/dashboard-count/dashboard-count.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
@@ -40,16 +40,17 @@ import {ActionExecutionDashboardComponent} from './dashboard/action-execution-da
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ListCompoundActionsComponent} from './compound/list-compound-actions/list-compound-actions.component';
 import {TestScenarioEditComponent} from './test-scenario/test-scenario-edit/test-scenario-edit.component';
-import {EditViewActionComponent} from './main-library-list-actions/edit-view-action/edit-view-action.component';
+import {EditViewActionComponent} from './library/edit-view-action/edit-view-action.component';
+import {RoleGuard} from './guards/role.guard';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
-  { path: 'test-scenario', component: TestScenarioComponent},
-  { path: 'test-scenario/create', component: TestScenarioCreateComponent},
-  { path: 'test-scenario/edit/:id', component: TestScenarioEditComponent},
+  { path: 'test-scenario', component: TestScenarioComponent, canActivate: [RoleGuard]},
+  { path: 'test-scenario/create', component: TestScenarioCreateComponent, canActivate: [RoleGuard]},
+  { path: 'test-scenario/edit/:id', component: TestScenarioEditComponent, canActivate: [RoleGuard]},
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'library', component: MainLibraryListActionsComponent},
-  { path: 'library/compound/:id', component: ListCompoundActionsComponent},
+  { path: 'library', component: LibraryComponent, canActivate: [RoleGuard]},
+  { path: 'library/compound/:id', component: ListCompoundActionsComponent, canActivate: [RoleGuard]},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
   { path: 'action/view-edit/:id', component: EditViewActionComponent},

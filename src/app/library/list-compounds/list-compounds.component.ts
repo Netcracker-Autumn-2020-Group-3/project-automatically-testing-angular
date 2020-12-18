@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {LibraryCompoundService} from '../../services/library-compound.service';
 import {Compound} from '../../model/compound.model';
 import {Search} from '../../util/search/search.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-list-compounds',
   templateUrl: './list-compounds.component.html',
   styleUrls: ['./list-compounds.component.css']
 })
-export class ListCompoundsComponent implements OnInit {
+export class ListCompoundsComponent implements OnInit, OnDestroy {
 
-  name = '';
+  subscription: Subscription = new Subscription();
   compounds: Compound[];
   quantityPages: number;
   sorts = ['id', 'name'];
@@ -18,9 +19,15 @@ export class ListCompoundsComponent implements OnInit {
   currentPageSize = 5;
   currentSearch: string;
   currentSort: string;
-  constructor(private service: LibraryCompoundService) { }
+
+  constructor(private service: LibraryCompoundService) {
+  }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getEventClickSearch(search: Search) {
@@ -37,15 +44,19 @@ export class ListCompoundsComponent implements OnInit {
   }
 
   private getCompounds(): void {
-    this.service.getCompounds(this.currentPage, this.currentPageSize, this.currentSearch, this.currentSort)
-      .subscribe(compounds => this.compounds = compounds);
+    this.subscription.add(
+      this.service.getCompounds(this.currentPage, this.currentPageSize, this.currentSearch, this.currentSort)
+        .subscribe(compounds => this.compounds = compounds,
+          error => console.log(error))
+    );
   }
 
   private getQuantityPages() {
-    this.service.getQuantityCompounds(this.currentSearch)
-      .subscribe(quantity => {
-        this.quantityPages = Math.ceil(quantity / this.currentPageSize);
-      });
+    this.subscription.add(
+      this.service.getQuantityCompounds(this.currentSearch)
+        .subscribe(quantity => this.quantityPages = Math.ceil(quantity / this.currentPageSize),
+          error => console.log(error))
+    );
   }
 
 }
