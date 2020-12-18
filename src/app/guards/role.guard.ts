@@ -1,12 +1,19 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  CanActivateChild,
+  Router,
+  RouterStateSnapshot,
+  UrlTree
+} from '@angular/router';
 import {Observable} from 'rxjs';
 import {TokenStorageService} from '../auth/token-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleGuard implements CanActivate {
+export class RoleGuard implements CanActivate, CanActivateChild {
 
   validRoles = ['ROLE_ADMIN', 'ROLE_MANAGER', 'ROLE_ENGINEER'];
 
@@ -20,6 +27,11 @@ export class RoleGuard implements CanActivate {
       return true;
     }
     return this.router.parseUrl('/auth/login');
+  }
+
+  canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+    Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+    return this.canActivate(childRoute, state);
   }
 
 }
