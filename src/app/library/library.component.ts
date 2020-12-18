@@ -6,10 +6,10 @@ import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-library-list-actions',
-  templateUrl: './main-library-list-actions.component.html',
-  styleUrls: ['./main-library-list-actions.component.css']
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
-export class MainLibraryListActionsComponent implements OnInit {
+export class LibraryComponent implements OnInit {
 
   @ViewChild('buttonActions') elemRefButActions: ElementRef;
   @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
