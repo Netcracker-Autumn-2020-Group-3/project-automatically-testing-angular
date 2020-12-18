@@ -31,7 +31,6 @@ import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 import {SettingsComponent} from './users/settings/settings.component';
-import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
 import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/list-of-test-case-execution.component';
@@ -46,9 +45,13 @@ import {ErrorComponent} from './error/error.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
-  { path: 'test-scenario', component: TestScenarioComponent, canActivate: [RoleGuard]},
-  { path: 'test-scenario/create', component: TestScenarioCreateComponent, canActivate: [RoleGuard]},
-  { path: 'test-scenario/edit/:id', component: TestScenarioEditComponent, canActivate: [RoleGuard]},
+  { path: 'test-scenario', component: TestScenarioComponent, canActivateChild: [RoleGuard], children: [
+      { path: '', pathMatch: 'full', redirectTo: 'list'},
+      { path: 'create', component: TestScenarioCreateComponent},
+      { path: 'edit/:id', component: TestScenarioEditComponent},
+      { path: 'list', component : TestScenarioListComponent},
+    ]
+  },
   { path: 'dashboard', component: DashboardComponent},
   { path: 'library', component: LibraryComponent, canActivate: [RoleGuard]},
   { path: 'library/compound/:id', component: ListCompoundActionsComponent, canActivate: [RoleGuard]},
