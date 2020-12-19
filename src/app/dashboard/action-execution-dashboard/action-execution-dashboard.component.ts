@@ -19,7 +19,7 @@ export class ActionExecutionDashboardComponent implements OnInit {
    setTimeout(()=> {
      this.refreshChartData();
     // this.cd.detectChanges();
-    }, 1000);
+    }, 2000);
   }
 
 /*  ngOnInit(): void {

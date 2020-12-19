@@ -19,10 +19,9 @@ export class TestCaseExecutionService {
 
   constructor(private http: HttpClient) { }
 
-  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: String, orderByClause: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
-    const body = {orderBy: orderBy};
+  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: string, orderByClause: string, testCaseName: string, projectName: string, status: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
     return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.getAllTestCaseExecutionWithFailedActionNumberUrl}/${limit}/${offset}
-    /${orderBy}/${orderByClause}`);
+    /${orderBy}/${orderByClause}/${testCaseName}/${projectName}/${status}`);
   }
 
   countTestCaseExecutions() {
