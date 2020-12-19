@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpParams} from '@angular/common/http';
 import {TestScenarioDto} from './test-scenario-dto';
 import {TestScenarioService} from '../../services/test-scenario.service';
+import {PaginationComponent} from '../../util/pagination/pagination.component';
 
 @Component({
   selector: 'app-test-scenario-list',
@@ -12,10 +13,12 @@ export class TestScenarioListComponent implements OnInit {
 
   testScenarios: TestScenarioDto[] = [];
   search = {
-    name: '', id: '', sortField: ''
-  };
-  page = 1;
+    name: '', id: '', sortField: '', pageSize: '3', page: '1'};
   numberOfPages = 1;
+  pageSize = 3;
+  page1 = 1;
+  @ViewChild(PaginationComponent)
+  pagination: PaginationComponent;
 
   constructor(private testScenarioService: TestScenarioService) {
   }
@@ -29,7 +32,8 @@ export class TestScenarioListComponent implements OnInit {
   }
 
   getParams() {
-    let params = new HttpParams().append('page', this.page.toString(10));
+    console.log(this.search);
+    let params = new HttpParams();
     Object.entries(this.search).forEach(([key, value]) => {
       if (value != null && value !== '') {
         params = params.append(key, value);
@@ -38,13 +42,22 @@ export class TestScenarioListComponent implements OnInit {
     return params;
   }
 
+  getPage(page: number) {
+    this.search.page = page.toString(10);
+    this.testScenarioService.getPage(this.getParams()).subscribe(data => {
+      this.testScenarios = data;
+    }, error => {
+      console.log(error);
+    });
+  }
+
   onSelect(testScenario: TestScenarioDto) {
     console.log(testScenario);
     // TODO route to edit page
   }
 
   onSearchSubmit() {
-    this.page = 1;
+    this.page1 = 1;
     this.testScenarioService.getPage(this.getParams()).subscribe(data => {
       this.testScenarios = data.map(testScenario => {
         console.log(testScenario);
@@ -55,43 +68,5 @@ export class TestScenarioListComponent implements OnInit {
     });
   }
 
-  onNextPage() {
-    if (this.page !== this.numberOfPages) {
-      this.page += 1;
-      this.testScenarioService.getPage(this.getParams()).subscribe(data => {
-        this.testScenarios = data;
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
 
-  onPreviousPage() {
-    if (this.page !== 1) {
-      this.page -= 1;
-      this.testScenarioService.getPage(this.getParams()).subscribe(data => {
-        this.testScenarios = data;
-      }, error => {
-        console.log(error);
-      });
-    }
-  }
-
-  onFirstPage() {
-    this.page = 1;
-    this.testScenarioService.getPage(this.getParams()).subscribe(data => {
-      this.testScenarios = data;
-    }, error => {
-      console.log(error);
-    });
-  }
-
-  onLastPage() {
-    this.page = this.numberOfPages;
-    this.testScenarioService.getPage(this.getParams()).subscribe(data => {
-      this.testScenarios = data;
-    }, error => {
-      console.log(error);
-    });
-  }
 }
