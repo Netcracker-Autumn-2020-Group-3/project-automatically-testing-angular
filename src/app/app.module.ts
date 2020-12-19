@@ -80,6 +80,7 @@ import { EditViewActionComponent } from './library/edit-view-action/edit-view-ac
 import { ErrorComponent } from './error/error.component';
 import { ActionExecutionSearchComponent } from './action-execution/action-execution-search/action-execution-search.component';
 
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -146,6 +147,8 @@ import { ActionExecutionSearchComponent } from './action-execution/action-execut
     SearchComponent,
     TestCaseListComponent,
     ProjectViewComponent,
+    ProjectEditComponent,
+    NotificationsComponent,
     ProjectEditComponent,
     TestCaseListComponent,
     ListOfTestCaseExecutionComponent,
