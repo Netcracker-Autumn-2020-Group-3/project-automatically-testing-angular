@@ -24,31 +24,44 @@
   <tbody>
   </tbody>
 </table>
-<table class="table">
-  <thead>
-  <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Name</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let testCase of testCases" routerLink="/edittestscenario/{{testCase.id}}">
-    <th scope="row">{{testCase.id}}</th>
-    <td>{{testCase.name}}</td>
+<!--<table class="table">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th scope="col">Id</th>-->
+<!--    <th scope="col">Name</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let testCase of testCases" routerLink="/edittestscenario/{{testCase.id}}">-->
+<!--    <th scope="row">{{testCase.id}}</th>-->
+<!--    <td>{{testCase.name}}</td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
 
-  </tr>
 
-  </tbody>
+<table class="table" style="width: 500px">
+<thead>
+<tr>
+  <th scope="col">Id</th>
+  <th scope="col">Name</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let item of testCases">
+  <th scope="row">{{item.id}}</th>
+  <td>{{item.name}}</td>
+  <button type="button" class="btn btn-success" routerLink="{{item.id}}">view</button>
+
+  <button type="button" class="btn btn-success" (click)="run(item.id)">run</button>
+</tr>
+</tbody>
 </table>
+<app-pagination [quantityPages]="numberOfPages"
+                [sizePage]="pageSize"
+                (clickPage)="getPage($event)"></app-pagination>
 
-<nav>
-  <ul class="pagination nav justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
-    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
-    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
-    </li>
-  </ul>
-</nav>
+
+
 
 

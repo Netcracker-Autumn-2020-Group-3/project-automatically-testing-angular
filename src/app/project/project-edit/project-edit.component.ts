@@ -26,7 +26,7 @@ export class ProjectEditComponent implements OnInit {
               private formBuilder: FormBuilder, private projectService: ProjectService) {
     this.route.paramMap.subscribe(value => {
       const projectId = value.get('project_id');
-      if (projectId !== null) {
+      if (projectId !== null)  {
         this.projectId = parseInt(projectId, 10);
         this.projectService.getProjectDtoById(parseInt(projectId, 10)).subscribe(data => {
           this.projectForm = this.formBuilder.group({

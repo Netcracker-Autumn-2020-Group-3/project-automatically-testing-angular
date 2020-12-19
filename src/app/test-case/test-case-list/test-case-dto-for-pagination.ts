@@ -1,4 +1,4 @@
 export interface TestCaseDtoForPagination {
-  id: string;
+  id: number;
   name: string;
 }
