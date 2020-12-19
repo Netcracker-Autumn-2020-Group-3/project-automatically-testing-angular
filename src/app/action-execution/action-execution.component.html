@@ -2,10 +2,12 @@
   <div class="row align-top">
     <div class="col-12 p-4 ml-4">
       <div class="ml-2 headbuttons">
-        <button class=" btn btn-default w-25 button-selected">Action Executions</button>
+        <button class=" btn btn-default w-25 button-selected" disabled>Action Executions</button>
       </div>
       <hr class="mb-0 mt-0" style="position: relative;width: 1200px; top: -0.7px">
-      <div class="col-12 pt-5 ">
+      <div class="col-12 pt-3">
+        <app-action-execution-search (clickSearch)="getEventClickSearch($event)">
+        </app-action-execution-search>
         <table class="table shadow">
           <thead class="shadow">
           <tr>
@@ -19,17 +21,24 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of actionExecution; let i = index">
-              <td scope="row" [ngClass]="{failedStatus: item.status === 'FAILED', passedStatus: item.status === 'PASSED'}">{{i+1}}</td>
+              <td scope="row" [ngClass]="{failedStatus: item.status === 'FAILED',
+                                          passedStatus: item.status === 'PASSED',
+                                          notStartedStatus: item.status === 'NOTSTARTED'}">{{offset + i+1}}</td>
               <td [ngClass]="{failedStatus: item.status === 'FAILED',
-                              passedStatus: item.status === 'PASSED'}">{{item.action.actionName}}</td>
+                              passedStatus: item.status === 'PASSED',
+                              notStartedStatus: item.status === 'NOTSTARTED'}">{{item.action.actionName}}</td>
               <td [ngClass]="{failedStatus: item.status === 'FAILED',
-                              passedStatus: item.status === 'PASSED'}">{{item.variable.name}}</td>
+                              passedStatus: item.status === 'PASSED',
+                              notStartedStatus: item.status === 'NOTSTARTED'}">{{item.variable.name}}</td>
               <td [ngClass]="{failedStatus: item.status === 'FAILED',
-                              passedStatus: item.status === 'PASSED'}">{{item.dataEntry.key}}</td>
+                              passedStatus: item.status === 'PASSED',
+                              notStartedStatus: item.status === 'NOTSTARTED'}">{{item.dataEntry.key}}</td>
               <td [ngClass]="{failedStatus: item.status === 'FAILED',
-                              passedStatus: item.status === 'PASSED'}">{{item.dataEntry.value}}</td>
+                              passedStatus: item.status === 'PASSED',
+                              notStartedStatus: item.status === 'NOTSTARTED'}">{{item.dataEntry.value}}</td>
               <td [ngClass]="{failedStatus: item.status === 'FAILED',
-                              passedStatus: item.status === 'PASSED'}">{{item.status}}</td>
+                              passedStatus: item.status === 'PASSED',
+                              notStartedStatus: item.status === 'NOTSTARTED'}">{{item.status}}</td>
           </tr>
           </tbody>
 
@@ -38,7 +47,10 @@
     </div>
 
   </div>
-  <div>
+  <app-pagination [quantityPages]="quantityPages"
+                  [sizePage]="currentPageSize"
+                  (clickPage)="getEventChangePage($event)"></app-pagination>
+  <div class="d-flex justify-content-end ">
     <button class="btn btn-outline-success" (click)="sendReport()">Send Report</button>
   </div>
 </div>

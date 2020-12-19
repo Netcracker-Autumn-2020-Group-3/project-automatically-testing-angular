@@ -18,9 +18,9 @@ import {UsersListComponent} from './users/users-list/users-list.component';
 import { UsersComponent } from './users/users.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
-import {ListActionsComponent} from './main-library-list-actions/list-actions/list-actions.component';
-import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
-import {SearchActionsComponent} from './main-library-list-actions/search-actions/search-actions.component';
+import {ListActionsComponent} from './library/list-actions/list-actions.component';
+import {LibraryComponent} from './library/library.component';
+import {SearchActionsComponent} from './library/search-actions/search-actions.component';
 import { MenuComponent } from './menu/menu.component';
 import { DashboardCountComponent } from './dashboard/dashboard-count/dashboard-count.component';
 import { CreateDataSetComponent } from './create-data-set/create-data-set.component';
@@ -52,7 +52,7 @@ import { TestScenarioCreateComponent } from './test-scenario/test-scenario-creat
 import { TestScenarioAddActionComponent } from './test-scenario/test-scenario-add-action/test-scenario-add-action.component';
 import { TestScenarioAddCompoundComponent } from './test-scenario/test-scenario-add-compound/test-scenario-add-compound.component';
 import { TestScenarioComponent } from './test-scenario/test-scenario.component';
-import { ListCompoundsComponent } from './main-library-list-actions/list-compounds/list-compounds.component';
+import { ListCompoundsComponent } from './library/list-compounds/list-compounds.component';
 import { TestCaseViewComponent } from './test-case/test-case-view/test-case-view.component';
 import { TestScenarioListComponent } from './test-scenario/test-scenario-list/test-scenario-list.component';
 import { TestCaseListComponent } from './test-case/test-case-list/test-case-list.component';
@@ -76,7 +76,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ListCompoundActionsComponent } from './compound/list-compound-actions/list-compound-actions.component';
 import { OrderByButtonComponent } from './list-of-test-case-execution/order-by-button/order-by-button.component';
-import { EditViewActionComponent } from './main-library-list-actions/edit-view-action/edit-view-action.component';
+import { EditViewActionComponent } from './library/edit-view-action/edit-view-action.component';
+import { ErrorComponent } from './error/error.component';
+import { ActionExecutionSearchComponent } from './action-execution/action-execution-search/action-execution-search.component';
 
 
 @NgModule({
@@ -86,7 +88,7 @@ import { EditViewActionComponent } from './main-library-list-actions/edit-view-a
     AdminComponent,
     HomeComponent,
     ListActionsComponent,
-    MainLibraryListActionsComponent,
+    LibraryComponent,
     SearchActionsComponent,
     UsersListComponent,
     EditUserComponent,
@@ -158,7 +160,9 @@ import { EditViewActionComponent } from './main-library-list-actions/edit-view-a
     DashboardComponent,
     OrderByButtonComponent,
     DashboardComponent,
-    EditViewActionComponent
+    EditViewActionComponent,
+    ErrorComponent,
+    ActionExecutionSearchComponent
   ],
   imports: [
     BrowserModule,

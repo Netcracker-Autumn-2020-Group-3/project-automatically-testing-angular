@@ -29,7 +29,7 @@
       (cdkDropListDropped)="drop($event)">
       <div  class="example-box" *ngFor="let item of actionsInCompound; let i = index" cdkDrag>
         <h6>{{item.actionName}} ( {{item.actionDescription}} ) </h6>
-        <div class="">
+        <div style="min-width: 90px;">
           <h6 class=" text-success">Priority [ {{i+1}} ]</h6>
         </div>
       </div>

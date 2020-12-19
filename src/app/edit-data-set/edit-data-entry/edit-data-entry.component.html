@@ -1,5 +1,7 @@
  <div class="col-12 pl-4 ml-5">
-    <button class="btn mb-4 btn-outline-success bg-white" (click)="addValue()">Add Value</button>
+   <div class="d-flex justify-content-end">
+     <button class="btn mb-4 btn-outline-success" (click)="addValue()">Add Value</button>
+   </div>
     <div class="scroll border-0">
         <div  class="input-group mb-3 " *ngFor="let value of dataEntry; let i = index">
 

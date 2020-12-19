@@ -6,10 +6,10 @@ import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-library-list-actions',
-  templateUrl: './main-library-list-actions.component.html',
-  styleUrls: ['./main-library-list-actions.component.css']
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
-export class MainLibraryListActionsComponent implements OnInit {
+export class LibraryComponent implements OnInit {
 
   @ViewChild('buttonActions') elemRefButActions: ElementRef;
   @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
@@ -24,7 +24,8 @@ export class MainLibraryListActionsComponent implements OnInit {
   pageNumber: number;
   numberOfPages: number;
   pageSize = 5;
-  orderSearch = '';
+  orderSearch = 'id';
+  orderSort = 'ASC';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -38,6 +39,7 @@ export class MainLibraryListActionsComponent implements OnInit {
     const param = new HttpParams()
       .append('page', String(this.pageNumber))
       .append('orderSearch', String(this.orderSearch))
+      .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
