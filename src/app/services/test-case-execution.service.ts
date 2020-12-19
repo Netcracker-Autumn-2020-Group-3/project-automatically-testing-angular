@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TestCaseExecution} from "../model/testCaseExecution";
@@ -17,7 +17,8 @@ export class TestCaseExecutionService {
   private countTestCaseExecutionsUrl = this.url + 'count';
 
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: string, orderByClause: string, testCaseName: string, projectName: string, status: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
     return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.getAllTestCaseExecutionWithFailedActionNumberUrl}/${limit}/${offset}
