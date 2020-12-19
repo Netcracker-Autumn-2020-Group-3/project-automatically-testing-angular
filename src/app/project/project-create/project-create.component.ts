@@ -1,20 +1,21 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Project} from '../../model/project';
 import {ProjectService} from '../../services/project.service';
-import {ActivatedRoute} from '@angular/router';
-import {UserService} from '../../services/user.service';
-import {FormBuilder} from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
   styleUrls: ['./project-create.component.css']
 })
-export class ProjectCreateComponent implements OnInit {
+export class ProjectCreateComponent implements OnInit, OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
 
   projectLink: string;
   projectName: string;
-  project: Project = {name: '', link: '', archived: ''};
+  project: Project = {name: '', link: '', archived: 'false'};
   projectForm;
 
   showSaveProgress = false;
@@ -26,20 +27,29 @@ export class ProjectCreateComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder, private projectService: ProjectService) {
     this.projectForm = this.formBuilder.group({
-      name: '',
-      link: ''
+      name: new FormControl(this.project.name, [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
+      link: new FormControl(this.project.link, [
+        Validators.required,
+        Validators.maxLength(50),
+      ]),
     });
   }
 
   ngOnInit(): void {
   }
 
-  onSubmit(projectForm: any) {
-    console.log('sumbit ' + projectForm.name);
-    this.project.name = projectForm.name;
-    this.project.link = projectForm.link;
-    this.project.archived = 'false';
-    this.projectService.postProject(this.project).subscribe(data => {
+  onSubmit() {
+    this.showSaveProgress = false;
+    if (this.projectForm.invalid) {
+      this.progressMessage = 'All fields should be filled with value of length less than 50 symbols.';
+      this.progressTypeClass = this.progressFail;
+      this.showSaveProgress = true;
+      return;
+    }
+    this.subscriptions.add(this.projectService.postProject(this.project).subscribe(data => {
         this.progressMessage = 'Successfully created.';
         this.progressTypeClass = this.progressSuccess;
         this.showSaveProgress = true;
@@ -49,7 +59,11 @@ export class ProjectCreateComponent implements OnInit {
         this.progressTypeClass = this.progressFail;
         this.showSaveProgress = true;
       }
-    );
+    ));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
 }
