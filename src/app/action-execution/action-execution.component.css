@@ -1,9 +1,7 @@
 button{
   /*  width: 160px;*/
   margin-left: 15px;
-  color: grey;
   height: 40px;
-  border-color: #E5E5E5;
 }
 .button-selected{
   background: white;
@@ -25,4 +23,7 @@ button{
 
 .passedStatus{
   background-color: lightgreen;
+}
+.notStartedStatus{
+  background-color: #FFF3CD;
 }

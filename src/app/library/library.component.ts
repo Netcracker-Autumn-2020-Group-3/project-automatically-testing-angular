@@ -6,21 +6,26 @@ import {HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-library-list-actions',
-  templateUrl: './main-library-list-actions.component.html',
-  styleUrls: ['./main-library-list-actions.component.css']
+  templateUrl: './library.component.html',
+  styleUrls: ['./library.component.css']
 })
-export class MainLibraryListActionsComponent implements OnInit {
+export class LibraryComponent implements OnInit {
 
   @ViewChild('buttonActions') elemRefButActions: ElementRef;
   @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
+  @ViewChild('buttonCreateAction') elemRefButCreateAction: ElementRef;
+  @ViewChild('buttonCreateCompound') elemRefButCreateCompound: ElementRef;
   isButtonActions = true;
   isButtonCompounds = false;
+  isButtonCreateAction = false;
+  isButtonCreateCompound = false;
   actionName: string;
   actions: Action[];
   pageNumber: number;
   numberOfPages: number;
   pageSize = 5;
-  orderSearch = '';
+  orderSearch = 'id';
+  orderSort = 'ASC';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -34,6 +39,7 @@ export class MainLibraryListActionsComponent implements OnInit {
     const param = new HttpParams()
       .append('page', String(this.pageNumber))
       .append('orderSearch', String(this.orderSearch))
+      .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
@@ -51,14 +57,44 @@ export class MainLibraryListActionsComponent implements OnInit {
   clickButtonActions() {
     this.isButtonActions = true;
     this.isButtonCompounds = false;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = false;
     this.elemRefButActions.nativeElement.classList.add('active');
     this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
   }
 
   clickButtonCompounds() {
     this.isButtonActions = false;
     this.isButtonCompounds = true;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = false;
     this.elemRefButActions.nativeElement.classList.remove('active');
     this.elemRefButCompounds.nativeElement.classList.add('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
+  }
+
+  clickButtonCreateAction() {
+    this.isButtonActions = false;
+    this.isButtonCompounds = false;
+    this.isButtonCreateAction = true;
+    this.isButtonCreateCompound = false;
+    this.elemRefButActions.nativeElement.classList.remove('active');
+    this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.add('active');
+    this.elemRefButCreateCompound.nativeElement.classList.remove('active');
+  }
+
+  clickButtonCreateCompound() {
+    this.isButtonActions = false;
+    this.isButtonCompounds = false;
+    this.isButtonCreateAction = false;
+    this.isButtonCreateCompound = true;
+    this.elemRefButActions.nativeElement.classList.remove('active');
+    this.elemRefButCompounds.nativeElement.classList.remove('active');
+    this.elemRefButCreateAction.nativeElement.classList.remove('active');
+    this.elemRefButCreateCompound.nativeElement.classList.add('active');
   }
 }

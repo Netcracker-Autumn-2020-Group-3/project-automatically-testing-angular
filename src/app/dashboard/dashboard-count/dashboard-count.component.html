@@ -1,9 +1,28 @@
-<html>
-<ul style="font-size: 20pt">
-  <h1 style="font-size: 30pt; font-style: italic">Count of users by role</h1>
-  <li>Quantity of users : {{userCount}}</li>
-  <li>Quantity of admins : {{adminCount}}</li>
-  <li>Quantity of managers : {{managerCount}}</li>
-  <li>Quantity of engineers : {{engineerCount}}</li>
-</ul>
-</html>
+<div class="container">
+  <div class="row">
+    <div class="four col-md-3">
+      <div class="counter-box colored"> <i class="fa fa-group"></i>
+        <p>Our site is used by</p>
+        <span class="counter" routerLink="/users">{{userCount}} users </span>
+      </div>
+    </div>
+    <div class="four col-md-3">
+      <div class="counter-box colored"> <i class="fa fa-user"></i>
+        <p>Number of our administrators</p>
+        <span class="counter">{{adminCount}}</span>
+      </div>
+    </div>
+    <div class="four col-md-3">
+      <div class="counter-box colored"> <i class="fa fa-user"></i>
+        <p>Number of our managers</p>
+        <span class="counter">{{managerCount}}</span>
+      </div>
+    </div>
+    <div class="four col-md-3">
+      <div class="counter-box colored"> <i class="fa fa-user"></i>
+        <p>Number of our engineers</p>
+        <span class="counter">{{engineerCount}}</span>
+      </div>
+    </div>
+  </div>
+</div>

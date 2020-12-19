@@ -11,26 +11,34 @@
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Email" aria-label="Search"
                            [(ngModel)]="search.email" (change)="onSearchSubmit()"></th>
     <th scope="col">
-      <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="role" [(ngModel)]="search.role" (change)="onSearchSubmit()">
-          <option selected value="">Role</option>
-          <option value="ROLE_ADMIN">Admin</option>
-          <option value="ROLE_MANAGER">Manager</option>
-          <option value="ROLE_ENGINEER">Engineer</option>
-        </select>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+               [(ngModel)]=roles.admin (change)="onSearchSubmit()">
+        <label class="form-check-label" for="inlineCheckbox1">Admin</label>
       </div>
     </th>
     <th scope="col">
-      <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
-          <option selected value="">Sort by</option>
-          <option value="id">Id</option>
-          <option value="name">Name</option>
-          <option value="surname">Surname</option>
-          <option value="email">Email</option>
-        </select>
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2"
+               [(ngModel)]=roles.manager (change)="onSearchSubmit()">
+        <label class="form-check-label" for="inlineCheckbox2">Manager</label>
       </div>
     </th>
+    <th scope="col">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"
+               [(ngModel)]=roles.engineer (change)="onSearchSubmit()">
+        <label class="form-check-label" for="inlineCheckbox3">Engineer</label>
+      </div>
+    </th>
+    <th scope="col">
+      <div class="form-check form-check-inline">
+        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option2"
+               [(ngModel)]=search.onlyEnabled (change)="onSearchSubmit()">
+        <label class="form-check-label" for="inlineCheckbox4">Only enabled</label>
+      </div>
+    </th>
+
     <th scope="col">
       <button class="btn btn-outline-success" type="submit" (click)="onSearchSubmit()">Search</button>
     </th>
@@ -42,12 +50,12 @@
 <table class="table">
   <thead>
   <tr>
-    <th scope="col">Id</th>
-    <th scope="col">Name</th>
-    <th scope="col">Surname</th>
-    <th scope="col">Email</th>
-    <th scope="col">Role</th>
-    <th scope="col">Is enabled</th>
+    <th scope="col" (click)="onColumnNameClick('id')">Id</th>
+    <th scope="col" (click)="onColumnNameClick('name')">Name</th>
+    <th scope="col" (click)="onColumnNameClick('surname')">Surname</th>
+    <th scope="col" (click)="onColumnNameClick('email')">Email</th>
+    <th scope="col" (click)="onColumnNameClick('role')">Role</th>
+    <th scope="col" (click)="onColumnNameClick('is_enabled')">Is enabled</th>
   </tr>
   </thead>
   <tbody>
@@ -63,14 +71,6 @@
   </tbody>
 </table>
 
-<nav>
-  <ul class="pagination nav justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
-    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
-    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
-    </li>
-  </ul>
-</nav>
-
-
+<app-pagination [quantityPages]="numberOfPages"
+                [sizePage]="pageSize"
+                (clickPage)="getPage($event)"></app-pagination>

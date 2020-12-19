@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
@@ -13,22 +13,27 @@ import {environment} from 'src/environments/environment';
 @Injectable({providedIn: 'root'})
 export class TestScenarioService {
 
-  // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
   private url = `${environment.url}test-scenario/`;
   private getTestScenarioListUrl = this.url + 'list/page/';
   private countPagesUrl = this.url + 'pages/count/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
+
+  getTestScenarioById(id: number): Observable<TestScenarioWithIdNameArchived[]> {
+    return this.http.get<TestScenarioWithIdNameArchived[]>(`${this.url}${id}`);
+  }
+
   getAllCompounds(): Observable<Compound[]> {
-    return this.http.get<Compound[]>(`${this.url}/compounds`);
+    return this.http.get<Compound[]>(`${this.url}compounds`);
   }
 
   getAllActions(): Observable<Action[]> {
-    return this.http.get<Action[]>(`${this.url}/actions`);
+    return this.http.get<Action[]>(`${this.url}actions`);
   }
 
   getAllCompoundActionsByCompoundId(id: number): Observable<ActionWithPriority[]> {
-    return this.http.get<ActionWithPriority[]>(`${this.url}/compounds-actions/${id}`);
+    return this.http.get<ActionWithPriority[]>(`${this.url}compounds-actions/${id}`);
   }
 
   createTestScenario(testScenario: TestScenario): Observable<HttpResponse<boolean>> {
@@ -36,7 +41,7 @@ export class TestScenarioService {
   }
 
   updateTestScenarioById(testScenario: TestScenarioWithIdNameArchived): Observable<HttpResponse<boolean>> {
-    return this.http.put<boolean>(`${this.url}/${testScenario.id}`, testScenario, {observe: 'response'});
+    return this.http.put<boolean>(`${this.url}${testScenario.id}`, testScenario, {observe: 'response'});
   }
 
 
@@ -45,6 +50,7 @@ export class TestScenarioService {
       params: paramsVal
     });
   }
+
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
   }

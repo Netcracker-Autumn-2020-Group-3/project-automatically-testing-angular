@@ -1,7 +1,8 @@
-import {Component, Input, OnInit, Output,EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
+import {Search} from '../../util/search/search.component';
 
 @Component({
   selector: 'app-list-actions',
@@ -15,6 +16,7 @@ export class ListActionsComponent implements OnInit {
     @Input()numberOfPages: number;
     @Input()pageSize: number;
     @Input()orderSearch: string;
+    @Input()orderSort: string;
     @Input()createCompound = false;
     @Output()actionForCompound = new EventEmitter<Action>();
     click: boolean;
@@ -25,11 +27,11 @@ export class ListActionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO when click pagination it works incorrect with search!!!
   getListOfActions(page: number){
     const param = new HttpParams()
       .append('page', String(page))
       .append('orderSearch', String(this.orderSearch))
+      .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
@@ -57,5 +59,6 @@ export class ListActionsComponent implements OnInit {
   createActionForCompound(action: Action, i: number) {
     this.actionForCompound.emit(action);
   }
+
 }
 

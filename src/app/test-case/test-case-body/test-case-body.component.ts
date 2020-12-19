@@ -34,7 +34,7 @@ export class TestCaseBodyComponent implements OnInit {
       step.actionDto.forEach((action, j) => {
         this.varVals[i][j] = [];
         action.variables.forEach((actionVariable, k) => {
-          this.varVals[i][j][k] = new VariableValue(action.id, actionVariable.id,
+          this.varVals[i][j][k] = new VariableValue(action.actionInstanceId, actionVariable.id,
             (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ? -1 : actionVariable.dataEntry.id,
             (actionVariable.variableValueId === undefined || actionVariable.variableValueId === null) ?
               -1 : actionVariable.variableValueId);

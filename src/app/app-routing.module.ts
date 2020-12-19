@@ -8,7 +8,7 @@ import {UsersListComponent} from './users/users-list/users-list.component';
 import {UsersComponent} from './users/users.component';
 import {MenuComponent} from './menu/menu.component';
 
-import {MainLibraryListActionsComponent} from './main-library-list-actions/main-library-list-actions.component';
+import {LibraryComponent} from './library/library.component';
 import {DashboardCountComponent} from './dashboard/dashboard-count/dashboard-count.component';
 import {CreateDataSetComponent} from './create-data-set/create-data-set.component';
 import {ListOfDataSetComponent} from './list-of-data-set/list-of-data-set.component';
@@ -31,23 +31,34 @@ import {TestScenarioListComponent} from './test-scenario/test-scenario-list/test
 import {TestCaseListComponent} from './test-case/test-case-list/test-case-list.component';
 import { ResetPasswordComponent } from './register/reset-password/reset-password.component';
 import {SettingsComponent} from './users/settings/settings.component';
-import {DashboardTopSubscribedTestCasesComponent} from './dashboard/dashboard-top-subscribed-test-cases/dashboard-top-subscribed-test-cases.component';
 import {ProjectViewComponent} from './project/project-view/project-view.component';
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
 import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/list-of-test-case-execution.component';
 import {ActionExecutionComponent} from './action-execution/action-execution.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
+import {ListCompoundActionsComponent} from './compound/list-compound-actions/list-compound-actions.component';
+import {TestScenarioEditComponent} from './test-scenario/test-scenario-edit/test-scenario-edit.component';
+import {EditViewActionComponent} from './library/edit-view-action/edit-view-action.component';
+import {RoleGuard} from './guards/role.guard';
+import {ErrorComponent} from './error/error.component';
 import {ActionExecutionDashboardComponent} from "./dashboard/action-execution-dashboard/action-execution-dashboard.component";
 import {NotificationsComponent} from './notifications/notifications.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
-  { path: 'test-scenario', component: TestScenarioComponent},
-  { path: 'test-scenario/create', component: TestScenarioCreateComponent},
+  { path: 'test-scenario', component: TestScenarioComponent, canActivateChild: [RoleGuard], children: [
+      { path: '', pathMatch: 'full', redirectTo: 'list'},
+      { path: 'create', component: TestScenarioCreateComponent},
+      { path: 'edit/:id', component: TestScenarioEditComponent},
+      { path: 'list', component : TestScenarioListComponent},
+    ]
+  },
   { path: 'dashboard', component: DashboardComponent},
-  { path: 'library/actions', component: MainLibraryListActionsComponent},
+  { path: 'library', component: LibraryComponent, canActivate: [RoleGuard]},
+  { path: 'library/compound/:id', component: ListCompoundActionsComponent, canActivate: [RoleGuard]},
   { path: 'compounds/create', component: CreateCompoundComponent},
   { path: 'compounds/edit/:id', component: MainEditCompoundComponent},
+  { path: 'action/view-edit/:id', component: EditViewActionComponent},
   { path: 'dataset/edit/:id', component: EditDataSetComponent},
   { path: 'admin', component: AdminComponent},
   { path: 'dashboard-count', component: DashboardCountComponent},
@@ -57,7 +68,7 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'projects/:project_id/testcase', component: TestCaseComponent},
+  { path: 'projects/:project_id/testcase', component: TestCaseListComponent},
   { path: 'projects/:project_id/edit', component: ProjectEditComponent},
   { path: 'projects/:project_id', component: ProjectViewComponent},
   { path: 'projects', component: ProjectComponent},
@@ -76,7 +87,10 @@ const routes: Routes = [
   { path:'action-execution-dashboard', component: ActionExecutionDashboardComponent },
   { path: 'settings', component: SettingsComponent},
   { path: 'notification', component: NotificationsComponent},
-  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent }
+  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent },
+  { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: '**', redirectTo: '/error' }
 ];
 
 @NgModule({

@@ -3,26 +3,13 @@
     <div class="col-12">
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" #buttonList (click)="clickButtonList()">List</a>
+          <a class="nav-link" [routerLink]="['/test-scenario','list']" routerLinkActive="active">List</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" #buttonCreate (click)="clickButtonCreate()">Create</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" #buttonEdit (click)="clickButtonEdit()">Edit</a>
+          <a class="nav-link" [routerLink]="['/test-scenario','create']" routerLinkActive="active">Create</a>
         </li>
       </ul>
-      <app-test-scenario-create
-        *ngIf="isActiveButtonCreate"
-        (eventCreated)="clickButtonList()">
-      </app-test-scenario-create>
-      <app-test-scenario-edit
-        *ngIf="isActiveButtonEdit"
-        (eventUpdated)="clickButtonList()">
-      </app-test-scenario-edit>
-      <app-test-scenario-list
-        *ngIf="isActiveButtonList">
-      </app-test-scenario-list>
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

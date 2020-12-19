@@ -72,8 +72,12 @@ export class TestCaseService {
     return this.http.get<TestCaseDtoForPagination[]>(`${this.url}list/page`, {params});
   }
 
-  countPages() {
-    return this.http.get<number>(`${this.url}pages/count`);
+  getPageByProjectId(params: Params, projectId: number) {
+    return this.http.get<TestCaseDtoForPagination[]>(`${this.url}${projectId}/list/page`, {params});
+  }
+
+  countPages(projectId: number) {
+    return this.http.get<number>(`${this.url}${projectId}/pages/count`);
   }
 
   follow(testCaseId: number) {

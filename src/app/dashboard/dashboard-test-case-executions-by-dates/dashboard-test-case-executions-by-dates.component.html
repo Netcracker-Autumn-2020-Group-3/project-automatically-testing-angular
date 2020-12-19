@@ -1,1 +1,15 @@
-<p>dashboard-test-case-executions-by-dates works!</p>
+<div style="text-align:center" *ngIf="isEnableData" routerLink="/list-of-test-case-execution">
+  <h4>Test case executions by dates</h4>
+  <ngx-charts-bar-vertical
+    [view]="view"
+    [results]="array"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel">
+  </ngx-charts-bar-vertical>
+</div>

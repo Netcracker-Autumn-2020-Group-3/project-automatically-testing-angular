@@ -33,7 +33,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let testScenario of testScenarios" routerLink="/edittestscenario/{{testScenario.id}}">
+  <tr *ngFor="let testScenario of testScenarios" routerLink="/test-scenario/edit/{{testScenario.id}}">
     <th scope="row">{{testScenario.id}}</th>
     <td>{{testScenario.name}}</td>
 
@@ -42,14 +42,11 @@
   </tbody>
 </table>
 
-<nav>
-  <ul class="pagination nav justify-content-center">
-    <li class="page-item"><a class="page-link" (click)="onPreviousPage()">Previous</a></li>
-    <li class="page-item"><a class="page-link" (click)="onFirstPage()">First</a></li>
-    <li class="page-item"><a class="page-link" (click)="onLastPage()">Last</a></li>
-    <li class="page-item"><a class="page-link" (click)="onNextPage()">Next</a>
-    </li>
-  </ul>
-</nav>
+<app-pagination [quantityPages]="numberOfPages"
+                [sizePage]="pageSize"
+                (clickPage)="getPage($event)"></app-pagination>
+
+
+
 
 

@@ -1,16 +1,14 @@
-
 <table class="table shadow">
   <thead class="shadow">
   <tr>
     <th scope="col">#</th>
     <th scope="col">Name</th>
     <th scope="col">Description</th>
-    <th scope="col" *ngIf="createCompound">#</th>
   </tr>
   </thead>
   <tbody>
 
-  <tr *ngFor="let action of actions; let i = index">
+  <tr *ngFor="let action of actions; let i = index" routerLink="/action/view-edit/{{i+1}}">
     <td scope="row">{{action.actionId}}</td>
     <td>{{action.actionName}}</td>
     <td>{{action.actionDescription}}</td>
@@ -33,7 +31,7 @@
     </li>
 
     <li class="page-item" *ngFor="let page of [].constructor(numberOfPages); let i = index">
-      <a class="page-link" (click)="getPage(i+1)" >{{i+1}}</a>
+      <a class="page-link" (click)="getPage(i+1)" [ngClass]="{background: pageNumbers === i+1}">{{i+1}}</a>
     </li>
 
     <li class="page-item">

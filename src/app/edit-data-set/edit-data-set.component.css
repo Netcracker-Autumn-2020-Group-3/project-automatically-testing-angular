@@ -21,9 +21,7 @@ th{
 button{
   /*  width: 160px;*/
   margin-left: 15px;
-  color: grey;
   height: 40px;
-  border-color: #E5E5E5;
 }
 .button-selected{
   background: white;
