@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { User } from '../model/user';
 import { UserDto } from '../users/users-list/user-dto';
 import {Params} from '@angular/router';
+import {TestCaseExecution} from "../model/testCaseExecution";
+import {Notification} from "../model/notification";
+
 
 @Injectable({
   providedIn: 'root'
@@ -19,40 +22,18 @@ export class NotificationService {
   return this.http.get<User>(url).toPromise();
   }
 
+  getNotificationPage(): Observable<Notification[]> {
+  const url = 'http://localhost:8080/notification-page';
+  return this.http.get<Notification[]>(url);
+  }
+
   getEventSource(url: string): EventSource {
       return new EventSource(url);
     }
 
-    getServerSentEvent(url: string) {/*
-    let dataList = [];
-    let myData = 1;
-      this.getAuthorization().subscribe(user => this.user = user);
-      const eventUrl = url + this.user.id;
-      const eventSource = this.getEventSource(eventUrl);
-         eventSource.addEventListener(`message`, message => {
-                      myData = JSON.parse(message.data);
-
-                     dataList.push(myData);
-                  });
-                  return dataList;
-*/
-      /*
-      return Observable.create(observer => {
-        const eventSource = getEventSource(eventUrl);
-
-        eventSource.onmessage = event => {
-          this.zone.run(()=>{
-            observer.next(event);
-          });
-        };
-        eventSource.onerror = error => {
-          this.zone.run(()=> {
-            observer.error(error);
-           });
-        };
-      });*/
-
-    }
-
+  getAmountOfNotifications() {
+    const url = 'http://localhost:8080/amount-notification';
+    return this.http.get<number>(url);
+  }
 
 }

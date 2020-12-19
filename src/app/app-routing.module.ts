@@ -36,7 +36,6 @@ import {ProjectViewComponent} from './project/project-view/project-view.componen
 import {ProjectEditComponent} from './project/project-edit/project-edit.component';
 import {ListOfTestCaseExecutionComponent} from './list-of-test-case-execution/list-of-test-case-execution.component';
 import {ActionExecutionComponent} from './action-execution/action-execution.component';
-import {ActionExecutionDashboardComponent} from './dashboard/action-execution-dashboard/action-execution-dashboard.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {ActionExecutionDashboardComponent} from "./dashboard/action-execution-dashboard/action-execution-dashboard.component";
 import {NotificationsComponent} from './notifications/notifications.component';

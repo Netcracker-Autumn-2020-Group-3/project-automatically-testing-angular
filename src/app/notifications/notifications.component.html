@@ -1,16 +1,34 @@
-<p >notification {{myData}}</p>
+<div class="container-fluid m-5" >
+<div>
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchedNotifications"
+         placeholder="search notification">
+</div>
 
-<table>
+<table class="table" style="width: 500px">
   <thead>
-  <th>name</th>
+  <th scope="col">Status</th>
+  <th scope="col">Start Time</th>
+  <th scope="col">Name</th>
 
   </thead>
 
   <tbody>
-  <tr *ngFor="let item of dataList">
-    <td>{{item}}</td>
-    <td>{{storedNames}}</td>
-
+  <tr *ngFor="let item of notifications | filter:searchedNotifications | slice:start:end; let i = index"
+      routerLink="/list/actions-execution/{{item.id}}" (click)="navigateToExecution()">
+    <td scope="row">{{item.name}}</td>
+    <td scope="row">{{item.status}}</td>
+    <td scope="row">{{item.startTime}}</td>
   </tr>
   </tbody>
 </table>
+  <nav aria-label="Page navigation example" style="margin-left: 30%">
+    <ul class="pagination">
+      <li class="page-item">
+        <button class="page-link" (click)="previousPage()"><</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="nextPage()">></button>
+      </li>
+    </ul>
+  </nav>
+</div>

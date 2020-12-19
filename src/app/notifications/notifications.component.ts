@@ -1,28 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone} from '@angular/core';
 import {Observable} from "rxjs";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute , Router} from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { User } from '../model/user';
 import { from } from 'rxjs';
+import {TestCaseExecution} from "../model/testCaseExecution";
+import {Notification} from "../model/notification";
+import {MenuComponent} from "../menu/menu.component";
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
+
+
+
 export class NotificationsComponent implements OnInit {
+  @ViewChild(MenuComponent) menuComponent: MenuComponent;
   myData: any;
-  dataList: any = [];
   user:User;
   url: string
  // storedNames: string ;
+ notifications: Notification[] = [];
+ notification: Notification;
+
+ start: number;
+   end: number;
+   step: number = 5;
+   searchedNotifications: any;
 
 
 
-  constructor( private route: ActivatedRoute, private service: NotificationService) {
+  constructor( private route: ActivatedRoute,
+  private service: NotificationService, private router: Router,
+  private ngZone: NgZone) {
+  this.start = 0;
+      this.end = this.step;
 
-   this.getAuth();
-   this.connect(this.getUrl());
+   }
+
+   navigateToExecution(){
+   //this.router.navigate(['/list/actions-execution/{{}}']);
+    this.ngZone.run( () => {
+      this.menuComponent.decreaseAmount();
+    });
    }
 
   getAuth(){
@@ -36,28 +58,41 @@ export class NotificationsComponent implements OnInit {
 
 
   async ngOnInit(){
- // this.service.getServerSentEvent(`http://localhost:8080/subscribe/`);
- this.user = await this.service.getAuthorization().then(user => this.user = user);
   this.getAuth();
+  this.connect('');
 
-
+  this.service.getNotificationPage().subscribe(data => {
+  this.notifications = data;
+    });
   }
 
-  connect(url: string): void {
-         let eventUrl = url;
-         this.service.getAuthorization().then(user => {
-         this.url = user.id.toString();
-         eventUrl = `http://localhost:8080/subscribe/${this.url}` ;
-                   const eventSource = this.service.getEventSource(eventUrl);
-                      eventSource.addEventListener(`message`, message => {
-                                   this.myData = message.data;
-                                  this.dataList.push(this.myData);
-                                  console.log(this.dataList);
-                                   // localStorage.setItem("dataList", JSON.stringify(this.dataList));
-                                   //this.storedNames = JSON.parse(localStorage.getItem("dataList")|| '{}')
-                               });
-         } );
 
-  }
+
+   connect(url: string): void {
+          let eventUrl = url;
+          this.service.getAuthorization().then(user => {
+          this.url = user.id.toString();
+          eventUrl = `http://localhost:8080/subscribe/${this.url}` ;
+                    const eventSource = this.service.getEventSource(eventUrl);
+                       eventSource.addEventListener(`message`, message => {
+                                    this.myData = JSON.parse(message.data);
+                                   this.notifications.push(this.myData);
+                                });
+          } );
+
+   }
+
+   previousPage() {
+       if(this.start != 0) {
+         this.start = this.start - this.step;
+         this.end = this.end - this.step;
+       }
+     }
+     nextPage() {
+       if(this.end <= this.notifications.length - 1) {
+         this.start = this.start + this.step;
+         this.end = this.end + this.step;
+       }
+     }
 
 }
