@@ -23,17 +23,7 @@ export class ListCompoundActionsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription.add(
-      this.route.paramMap.subscribe(params => {
-        this.subscription.add(
-          this.compoundService.getCompoundById(parseInt(params.get('id') as string, 0))
-            .subscribe(compounds => {
-              this.compound = compounds;
-              this.subscription.add(
-                this.compoundService.getAllActionsOfCompoundByCompoundId(this.compound.id)
-                  .subscribe(actions => this.actions = actions));
-            }));
-      }));
+    this.initFields();
   }
 
   ngOnDestroy() {
@@ -47,9 +37,24 @@ export class ListCompoundActionsComponent implements OnInit, OnDestroy {
   deleteCompound(): void {
     this.subscription.add(
       this.compoundService.archiveCompoundById(this.compound.id)
-        .subscribe()
+        .subscribe(() => {}, error => console.log(error))
     );
     this.isDeleted = true;
     setTimeout(() => this.comeBackToPreviousPage(), 2000);
+  }
+
+  private initFields() {
+    this.subscription.add(
+      this.route.paramMap.subscribe(params => {
+        this.subscription.add(
+          this.compoundService.getCompoundById(parseInt(params.get('id') as string, 0))
+            .subscribe(compound => {
+              this.compound = compound;
+              this.subscription.add(
+                this.compoundService.getAllActionsOfCompoundByCompoundId(this.compound.id)
+                  .subscribe(actions => this.actions = actions,
+                    error => console.log(error)));
+            }, error => console.log(error)));
+      }, error => console.log(error)));
   }
 }

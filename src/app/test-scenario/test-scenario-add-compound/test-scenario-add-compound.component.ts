@@ -1,18 +1,20 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {TestScenarioService} from '../../services/test-scenario.service';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {Compound} from '../../model/test-scenario/Compound';
 import {Action} from '../../model/test-scenario/Action';
 import {ActionWithPriority} from '../../model/test-scenario/ActionWithPriority';
 import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-test-scenario-add-compound',
   templateUrl: './test-scenario-add-compound.component.html',
   styleUrls: ['./test-scenario-add-compound.component.css']
 })
-export class TestScenarioAddCompoundComponent implements OnInit {
+export class TestScenarioAddCompoundComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription = new Subscription();
   @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
   @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
   @Input() actions: Action[];
@@ -31,12 +33,17 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
   getAllCompoundsWithIdAndName() {
-    this.testScenarioService.getAllCompounds()
-      .subscribe(
-        compounds => this.compounds = compounds,
-        error => console.log(error)
-      );
+    this.subscription.add(
+      this.testScenarioService.getAllCompounds()
+        .subscribe(compounds => this.compounds = compounds,
+          error => console.log(error)
+        )
+    );
   }
 
   cancelCompound() {
@@ -53,11 +60,13 @@ export class TestScenarioAddCompoundComponent implements OnInit {
 
   setCompound() {
     this.currentCompound = this.getCompoundByName(this.currentCompoundName);
-    this.testScenarioService.getAllCompoundActionsByCompoundId(this.currentCompound.id)
-      .subscribe(actions => {
-        this.compoundActions = actions;
-        this.addControlsToFormArray();
-      });
+    this.subscription.add(
+      this.testScenarioService.getAllCompoundActionsByCompoundId(this.currentCompound.id)
+        .subscribe(actions => {
+          this.compoundActions = actions;
+          this.addControlsToFormArray();
+        }, error => console.log(error))
+    );
     this.init = true;
   }
 
@@ -76,14 +85,14 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   private addControlsToFormArray() {
-    for (let i = 0; i < this.compoundActions.length; i++) {
-      (this.form.get('inputs') as FormArray)
-        .push(new FormControl(
-          {
-            value: null,
-            disabled: this.getActionVoidById(this.compoundActions[i].actionId)},
-          [Validators.required]));
-    }
+    this.compoundActions.forEach(action => {
+      (this.form.get('inputs') as FormArray).push(new FormControl(
+        {
+          value: null,
+          disabled: this.getActionVoidById(action.actionId)
+        },
+        [Validators.required]));
+    });
   }
 
   private getCompoundByName(name: string): Compound {
@@ -95,7 +104,6 @@ export class TestScenarioAddCompoundComponent implements OnInit {
   }
 
   getActionVoidById(id: number): boolean {
-    console.log('VOID', (this.actions.filter(a => a.id === id).pop() as Action).void);
     return (this.actions.filter(a => a.id === id).pop() as Action).void;
   }
 

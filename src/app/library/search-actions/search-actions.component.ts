@@ -19,8 +19,9 @@ export class SearchActionsComponent implements OnInit {
   @Output()actions = new EventEmitter<Action[]>();
   pageNumber: number;
   @Output()numberOfPages = new EventEmitter<number>();
-  pageSize = 2;
-  @Input()orderSearch = '';
+  pageSize = 5;
+  @Input()orderSearch = 'id';
+  @Input()orderSort: string;
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -37,6 +38,7 @@ export class SearchActionsComponent implements OnInit {
        const param = new HttpParams()
          .append('page', String(this.pageNumber))
          .append('orderSearch', String(this.orderSearch))
+         .append('orderSort', String(this.orderSort))
          .append('pageSize', String(this.pageSize));
        this.actionService.getActionsByName(param, this.actionName).subscribe((response => {
          this.actions.emit(response);

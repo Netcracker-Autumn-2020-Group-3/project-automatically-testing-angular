@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Params} from '@angular/router';
@@ -13,12 +13,13 @@ import {environment} from 'src/environments/environment';
 @Injectable({providedIn: 'root'})
 export class TestScenarioService {
 
-  // private url = 'https://automatically-testing-java.herokuapp.com/test-scenario';
   private url = `${environment.url}test-scenario/`;
   private getTestScenarioListUrl = this.url + 'list/page/';
   private countPagesUrl = this.url + 'pages/count/';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+  }
+
   getTestScenarioById(id: number): Observable<TestScenarioWithIdNameArchived[]> {
     return this.http.get<TestScenarioWithIdNameArchived[]>(`${this.url}${id}`);
   }
@@ -49,6 +50,7 @@ export class TestScenarioService {
       params: paramsVal
     });
   }
+
   countPages() {
     return this.http.get<number>(this.countPagesUrl);
   }
