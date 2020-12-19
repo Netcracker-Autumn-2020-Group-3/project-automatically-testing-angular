@@ -7,6 +7,7 @@ import { from } from 'rxjs';
 import {TestCaseExecution} from "../model/testCaseExecution";
 import {Notification} from "../model/notification";
 import {MenuComponent} from "../menu/menu.component";
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-notifications',
@@ -52,9 +53,6 @@ export class NotificationsComponent implements OnInit {
   this.user = user;
   });
   }
-  getUrl(): string{
-    return `http://localhost:8080/subscribe/`;
-  }
 
 
   async ngOnInit(){
@@ -72,7 +70,7 @@ export class NotificationsComponent implements OnInit {
           let eventUrl = url;
           this.service.getAuthorization().then(user => {
           this.url = user.id.toString();
-          eventUrl = `http://localhost:8080/subscribe/${this.url}` ;
+          eventUrl = `${environment.url}subscribe/${this.url}` ;
                     const eventSource = this.service.getEventSource(eventUrl);
                        eventSource.addEventListener(`message`, message => {
                                     this.myData = JSON.parse(message.data);

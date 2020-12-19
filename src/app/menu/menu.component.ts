@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NotificationService } from '../services/notification.service';
 import { User } from '../model/user';
 import {Notification} from "../model/notification";
+import {environment} from '../../environments/environment';
 
 @Component({
   selector: 'app-menu',
@@ -59,7 +60,7 @@ export class MenuComponent implements OnInit {
          let eventUrl = url;
          this.service.getAuthorization().then(user => {
          this.url = user.id.toString();
-         eventUrl = `http://localhost:8080/subscribe/${this.url}` ;
+         eventUrl = `${environment.url}subscribe/${this.url}` ;
                    const eventSource = this.service.getEventSource(eventUrl);
                       eventSource.addEventListener(`message`, message => {
                                   //this.amountOfNotification += 1;
