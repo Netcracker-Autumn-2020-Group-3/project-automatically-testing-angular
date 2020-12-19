@@ -24,7 +24,8 @@ export class LibraryComponent implements OnInit {
   pageNumber: number;
   numberOfPages: number;
   pageSize = 5;
-  orderSearch = '';
+  orderSearch = 'id';
+  orderSort = 'ASC';
 
   constructor(private listActionsComponent: ListActionsComponent, private actionService: LibraryActionService) { }
 
@@ -38,6 +39,7 @@ export class LibraryComponent implements OnInit {
     const param = new HttpParams()
       .append('page', String(this.pageNumber))
       .append('orderSearch', String(this.orderSearch))
+      .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
     this.actionService.getActions(param).subscribe(( res => {
       this.actions = res;
