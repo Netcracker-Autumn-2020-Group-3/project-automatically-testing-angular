@@ -1,10 +1,11 @@
-import {Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {FormControl, Validators} from '@angular/forms';
 import {TestScenarioService} from '../../services/test-scenario.service';
 import {Compound} from '../../model/test-scenario/Compound';
 import {Action} from '../../model/test-scenario/Action';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-test-scenario-create',
@@ -15,7 +16,6 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
   @ViewChild('inputElement') inputElemRef: ElementRef;
-  @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
   formName = new FormControl('', [Validators.required]);
   compounds: Compound[];
   actions: Action[];
@@ -29,7 +29,8 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
   isAddAction = false;
 
   constructor(private testScenarioService: TestScenarioService,
-              private renderer: Renderer2) {
+              private renderer: Renderer2,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -127,12 +128,12 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
     this.mapItemNames.clear();
     setTimeout(() => {
       this.isCreated = false;
-      this.eventCreated.emit();
+      this.router.navigate(['/test-scenario']).then();
     }, 2000);
   }
 
   cancelTestScenario() {
-    this.eventCreated.emit();
+    this.router.navigate(['/test-scenario']).then();
   }
 
   turnOnValidName() {
