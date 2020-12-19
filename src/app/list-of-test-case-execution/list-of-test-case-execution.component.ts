@@ -29,11 +29,7 @@ export class ListOfTestCaseExecutionComponent implements OnInit {
   constructor(private service: TestCaseExecutionService) { }
 
   ngOnInit(): void {
-    this.countTestCaseExecutions().subscribe(data => {
-      this.numberOfTestCaseExecution = data;
-      this.numberOfPage = Math.ceil(this.numberOfTestCaseExecution / this.step);
-      this.pagination = new Array(this.numberOfPage);
-    });
+    this.countPage();
     this.getAllTestCaseExecution(this.step, this.start, this.orderByValue, this.orderByClause, this.testCaseName, this.projectName).subscribe(data => this.testCaseExecutions = data);
   }
 
@@ -42,8 +38,17 @@ export class ListOfTestCaseExecutionComponent implements OnInit {
     return this.service.getAllTestCaseExecutionWithFailedActionNumber(limit, offset, orderBy, orderBuClause, testCaseName, projectName, getStatus);
   }
 
-  countTestCaseExecutions() {
-    return this.service.countTestCaseExecutions();
+  countTestCaseExecutions(testCaseName: string, projectName: string) {
+    let getStatus = this.statusSearch(this.status.passed, this.status.failed);
+    return this.service.countTestCaseExecutions(testCaseName, projectName, getStatus);
+  }
+
+  countPage() {
+    this.countTestCaseExecutions(this.testCaseName, this.projectName ).subscribe(data => {
+      this.numberOfTestCaseExecution = data;
+      this.numberOfPage = Math.ceil(this.numberOfTestCaseExecution / this.step);
+      this.pagination = new Array(this.numberOfPage);
+    });
   }
 
   previousPage() {
@@ -69,13 +74,7 @@ export class ListOfTestCaseExecutionComponent implements OnInit {
   }
 
   onSearchSubmit() {
-
-    if(this.testCaseName=='') {
-      this.testCaseName = 'undefined';
-    }
-    if(this.projectName=='') {
-      this.projectName = 'undefined';
-    }
+    this.countPage();
     this.getAllTestCaseExecution(this.step, this.start, this.orderByValue, this.orderByClause, this.testCaseName, this.projectName).subscribe(data => this.testCaseExecutions = data);
   }
 
@@ -89,7 +88,7 @@ export class ListOfTestCaseExecutionComponent implements OnInit {
     if(passed && failed) {
       return  'all';
     } else if (!passed && !failed){
-      return  '!all';
+      return  'all';
     }
     if(passed && !failed) {
       return 'passed';

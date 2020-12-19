@@ -3,19 +3,10 @@
     <thead>
     <tr>
       <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Test Case Name" aria-label="Search"
-                             [(ngModel)]=testCaseName (change)="onSearchSubmit()"></th>
+                             [(ngModel)]=testCaseName (keyup)="onSearchSubmit()"></th>
       <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Project Name" aria-label="Search"
-                             [(ngModel)]=projectName (change)="onSearchSubmit()"></th>
+                             [(ngModel)]=projectName (keyup)="onSearchSubmit()"></th>
 
-      <!--<th scope="col">
-        <div class="col-auto">
-          <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="status" (change)="onSearchSubmit()">
-            <option value="all" selected>Actions status</option>
-            <option value="failed" >failed/not started</option>
-            <option value="passed">passed</option>
-          </select>
-        </div>
-      </th>-->
       <th scope="col">
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="passed"
