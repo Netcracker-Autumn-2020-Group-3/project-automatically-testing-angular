@@ -44,7 +44,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let project of projects" routerLink="/projects/{{project.id}}">
+  <tr *ngFor="let project of projectsObs | async" routerLink="/projects/{{project.id}}">
     <th scope="row">{{project.id}}</th>
     <td>{{project.name}}</td>
     <td>{{project.link}}</td>
