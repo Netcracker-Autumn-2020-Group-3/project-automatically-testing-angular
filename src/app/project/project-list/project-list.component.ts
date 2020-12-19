@@ -27,6 +27,7 @@ export class ProjectListComponent implements OnInit {
   ngOnInit(): void {
     this.projectService.countPages().subscribe(data => {
       this.numberOfPages = data;
+      console.log(this.numberOfPages);
     });
     this.onSearchSubmit();
   }

@@ -62,7 +62,7 @@ const routes: Routes = [
   { path: 'edituser/:id', component: EditUserComponent },
   { path: 'users', component: UsersComponent},
   { path: 'menu', component: MenuComponent},
-  { path: 'projects/:project_id/testcase', component: TestCaseComponent},
+  { path: 'projects/:project_id/testcase', component: TestCaseListComponent},
   { path: 'projects/:project_id/edit', component: ProjectEditComponent},
   { path: 'projects/:project_id', component: ProjectViewComponent},
   { path: 'projects', component: ProjectComponent},
