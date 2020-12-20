@@ -13,12 +13,15 @@ export class OrderByButtonComponent implements OnInit {
   @Output()
   orderByClause: EventEmitter<string> = new EventEmitter<string>();
 
+  toggle: string = 'DESC';
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   orderBy(orderByClause: string) {
+    this.toggle = orderByClause;
     this.elementName.emit(orderByClause + "." +this.element);
     this.orderByClause.emit(orderByClause);
  }

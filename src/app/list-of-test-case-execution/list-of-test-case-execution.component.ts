@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {TestCaseExecutionService} from "../services/test-case-execution.service";
 import {TestCaseExecutionWithFailedActionNumber} from "../model/testCaseExecutionWithFailedActionNumber";
-import {newArray} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-list-of-test-case-execution',

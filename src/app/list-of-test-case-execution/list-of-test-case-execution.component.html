@@ -26,14 +26,12 @@
       </th>
     </tr>
     </thead>
-    <tbody>
-    </tbody>
   </table>
 
   <table class="table">
     <thead>
     <tr>
-      <th scope="row">id
+      <th scope="col">id
         <app-order-by-button [element]="'id'" (elementName)="orderBy($event)"></app-order-by-button>
       </th>
       <th scope="col">Test Case Name
@@ -74,7 +72,7 @@
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation example" style="margin-left: 20%">
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <button class="page-link" (click)="previousPage()"><</button>
