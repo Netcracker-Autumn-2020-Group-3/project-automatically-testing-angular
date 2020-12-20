@@ -2,10 +2,6 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ScenarioStep} from '../../model/test-case/scenario-step';
 import {DataEntry} from '../../model/test-case/data-entry';
 import {VariableValue} from '../../model/test-case/variable-value';
-import {Scenario} from '../../model/test-case/scenario';
-import {DataSet} from '../../model/test-case/data-set';
-import {ActivatedRoute} from '@angular/router';
-import {TestCaseService} from '../../services/test-case.service';
 
 @Component({
   selector: 'app-test-case-body',
@@ -19,10 +15,10 @@ export class TestCaseBodyComponent implements OnInit {
   varVals: VariableValue[][][] = [];
   showForm = false;
   onlyView = false;
+
   @Output() showFormButton = new EventEmitter();
 
   constructor() {
-
   }
 
   ngOnInit(): void {
@@ -34,24 +30,22 @@ export class TestCaseBodyComponent implements OnInit {
       step.actionDto.forEach((action, j) => {
         this.varVals[i][j] = [];
         action.variables.forEach((actionVariable, k) => {
-          this.varVals[i][j][k] = new VariableValue(action.actionInstanceId, actionVariable.id,
-            (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ? -1 : actionVariable.dataEntry.id,
-            (actionVariable.variableValueId === undefined || actionVariable.variableValueId === null) ?
-              -1 : actionVariable.variableValueId);
-          console.log(this.varVals[i][j][k]);
+          this.varVals[i][j][k] = {
+            actionInstanceId: action.actionInstanceId,
+            variableId: actionVariable.id,
+            dataEntryId: (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ?
+              undefined : actionVariable.dataEntry.id,
+            id: (actionVariable.variableValueId === undefined || actionVariable.variableValueId === null) ?
+              undefined : actionVariable.variableValueId
+          };
         });
       });
     });
     this.showFormButton.emit(true);
   }
 
-
-  onDataEntrySelect(i: number, j: number, k: number): void {
-    console.log('ijk' + this.varVals[i][j][k]);
-  }
-
   flattenVarVals() {
-    let variableValues: VariableValue[] = [];
+    const variableValues: VariableValue[] = [];
     this.scenarioSteps.forEach((step, i) => {
       step.actionDto.forEach((action, j) => {
         action.variables.forEach((actionVariable, k) => {
@@ -62,8 +56,8 @@ export class TestCaseBodyComponent implements OnInit {
     return variableValues;
   }
 
-  areVariableValuesAllFilled(variableValues: VariableValue[]){
-    return variableValues.map(vv => vv.dataEntryId).filter(deId => deId === -1).length > 0;
+  areVariableValuesAllFilled(variableValues: VariableValue[]) {
+    return variableValues.map(vv => vv.dataEntryId).filter(deId => deId === undefined).length > 0;
   }
 
 }

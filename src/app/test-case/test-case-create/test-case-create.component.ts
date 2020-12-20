@@ -1,13 +1,13 @@
-import {AfterViewInit, Component, OnInit, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {ScenarioStep} from '../../model/test-case/scenario-step';
 import {VariableValue} from '../../model/test-case/variable-value';
 import {DataEntry} from '../../model/test-case/data-entry';
 import {Scenario} from '../../model/test-case/scenario';
 import {DataSet} from '../../model/test-case/data-set';
-import {ActionDto} from '../../model/test-case/action-dto';
 import {TestCaseService} from '../../services/test-case.service';
 import {ActivatedRoute} from '@angular/router';
 import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -15,8 +15,9 @@ import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component'
   templateUrl: './test-case-create.component.html',
   styleUrls: ['./test-case-create.component.css']
 })
-export class TestCaseCreateComponent implements OnInit, AfterViewInit {
+export class TestCaseCreateComponent implements OnInit, OnDestroy, AfterViewInit {
 
+  subscriptions: Subscription = new Subscription();
 
   testCaseName = '';
   scenarioId = -1;
@@ -33,7 +34,6 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
   @ViewChild(TestCaseBodyComponent)
   formBody: TestCaseBodyComponent;
 
-  scenarioSteps: ScenarioStep[] = [];
   dataEntries: DataEntry[] = [];
   varVals: VariableValue[][][] = [];
   variableValues: VariableValue[] = [];
@@ -49,35 +49,37 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.testCaseService.getTestScenarioList().subscribe(data => {
+    this.subscriptions.add(this.testCaseService.getTestScenarioList().subscribe(data => {
       this.scenarios = data;
     }, error => {
       this.progressMessage = 'Error uploading test scenarios. Try reloading the page.';
       this.progressTypeClass = this.progressFail;
       this.showSaveProgress = true;
-    });
+    }));
 
-    this.testCaseService.getDataSetList().subscribe(data => {
+    this.subscriptions.add(this.testCaseService.getDataSetList().subscribe(data => {
       this.datasets = data;
     }, error => {
       this.progressMessage = 'Error uploading data sets. Try reloading the page.';
       this.progressTypeClass = this.progressFail;
       this.showSaveProgress = true;
-    });
+    }));
 
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   onScenarioChosen() {
-    this.testCaseService.getTestScenarioSteps(this.scenarioId).subscribe(data => {
-      this.scenarioSteps = data;
-      console.log(this.scenarioSteps);
-      this.formBody.scenarioSteps = this.scenarioSteps;
+    this.subscriptions.add(this.testCaseService.getTestScenarioSteps(this.scenarioId).subscribe(data => {
+      this.formBody.scenarioSteps = data;
       console.log(this.formBody.scenarioSteps);
     }, error => {
       this.progressMessage = 'Error uploading test scenario.';
       this.progressTypeClass = this.progressFail;
       this.showSaveProgress = true;
-    });
+    }));
     if (this.formBody.dataEntries !== undefined && this.formBody.dataEntries.length !== 0) {
       this.formBody.showForm = true;
       this.formBody.initVarVals();
@@ -85,14 +87,13 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
   }
 
   onDatasetChosen() {
-    this.testCaseService.getDataSetEntries(this.datasetId).subscribe(data => {
-      console.log('entries: ' + data);
+    this.subscriptions.add(this.testCaseService.getDataSetEntries(this.datasetId).subscribe(data => {
       this.formBody.dataEntries = data;
     }, error => {
       this.progressMessage = 'Error uploading data entries.';
       this.progressTypeClass = this.progressFail;
       this.showSaveProgress = true;
-    });
+    }));
     if (this.formBody.scenarioSteps !== undefined && this.formBody.scenarioSteps.length !== 0) {
       this.formBody.showForm = true;
       this.formBody.initVarVals();
@@ -101,6 +102,7 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
   }
 
   validate() {
+    this.removeAlert();
     if (this.testCaseName === '' || this.testCaseName === null || this.testCaseName === undefined) {
       this.progressMessage = 'Enter test case name!';
       this.progressTypeClass = this.progressFail;
@@ -125,29 +127,25 @@ export class TestCaseCreateComponent implements OnInit, AfterViewInit {
       return;
     }
 
-    let projectId;
-    this.route.paramMap.subscribe(value => {
-      projectId = value.get('project_id');
-    });
-    console.log('project id: ' + projectId);
-    if (projectId !== undefined) {
-      this.testCaseService.postTestCase(this.testCaseName,
-        projectId, this.datasetId, this.scenarioId, this.variableValues).subscribe(data => {
-          this.progressMessage = 'Successfully created.';
-          this.progressTypeClass = this.progressSuccess;
-          this.showSaveProgress = true;
-        },
-        error => {
-          this.progressMessage = 'Error uploading data entries.';
-          this.progressTypeClass = this.progressFail;
-          this.showSaveProgress = true;
-        }
-      );
-      console.log(this.testCaseName,
-        projectId, this.datasetId, this.scenarioId, this.variableValues);
-    } else {
-      console.log('project id undefined: ' + projectId);
-    }
+    // let projectId;
+    this.subscriptions.add(this.route.paramMap.subscribe(value => {
+      const projectId = value.get('project_id');
+      if (projectId !== undefined) {
+        this.subscriptions.add(this.testCaseService.postTestCase(this.testCaseName,
+          projectId === null ? '' : projectId, this.datasetId, this.scenarioId, this.variableValues)
+          .subscribe(data => {
+            this.progressMessage = 'Successfully created.';
+            this.progressTypeClass = this.progressSuccess;
+            this.showSaveProgress = true;
+          },
+          error => {
+            this.progressMessage = 'Error uploading data entries.';
+            this.progressTypeClass = this.progressFail;
+            this.showSaveProgress = true;
+          }
+        ));
+      }
+    }));
   }
 
   removeAlert() {

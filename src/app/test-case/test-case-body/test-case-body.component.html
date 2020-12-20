@@ -19,9 +19,8 @@
 
         <div class="col">
           <div class="row mb-3" *ngFor="let variable of action.variables; let k=index">
-            <select class="select-test-case custom-select mr-sm-2" [(ngModel)]="varVals[i][j][k].dataEntryId" [disabled]="onlyView"
-                    (change)="onDataEntrySelect(i, j, k)">
-              <option [value]=-1 disabled>Enter {{variable.name}}</option>
+            <select class="select-test-case custom-select mr-sm-2" [(ngModel)]="varVals[i][j][k].dataEntryId" [disabled]="onlyView">
+              <option [value]=undefined disabled>Enter {{variable.name}}</option>
               <option *ngFor="let dataEntry of dataEntries" [selected]="varVals[i][j][k].dataEntryId === dataEntry.id" [value]="dataEntry.id">
                 {{dataEntry.key}}
               </option>
@@ -44,7 +43,7 @@
         <div class="row mb-3" *ngFor="let variable of step.actionDto[0].variables; let k=index">
           <select class="select-test-case custom-select mr-sm-2" [(ngModel)]="varVals[i][0][k].dataEntryId" [disabled]="onlyView"
                   (change)="onDataEntrySelect(i, 0, k)">
-            <option [value]=-1 disabled>Enter {{variable.name}}</option>
+            <option [value]=undefined disabled>Enter {{variable.name}}</option>
             <option *ngFor="let dataEntry of dataEntries" [selected]="varVals[i][0][k].dataEntryId === dataEntry.id" [value]="dataEntry.id">
               {{dataEntry.key}}
             </option>

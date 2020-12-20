@@ -23,7 +23,6 @@ import {environment} from 'src/environments/environment';
 })
 export class TestCaseService {
 
-  // private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = `${environment.url}test-case/`;
 
   private executeTestCaseUrl = environment.url + 'test-case/execute/';
@@ -31,6 +30,7 @@ export class TestCaseService {
 
   constructor(private http: HttpClient, private tokenStorage: TokenStorageService) {
   }
+
   getAllTestCases(): Observable<TestCaseAll[]> {
     return this.http.get<TestCaseAll[]>(`${this.url}list`);
   }
@@ -54,7 +54,6 @@ export class TestCaseService {
   getTopFiveSubscribedTestCases(): Observable<TestCaseTopSubscribed[]> {
     return this.http.get<TestCaseTopSubscribed[]>(`${environment.url}dashboard/top-subscribed-test-cases`);
   }
-
 
   getTestCaseById(testCaseId: number) {
     return this.http.get<TestCaseDto>(`${this.url}${testCaseId}`);
@@ -80,6 +79,10 @@ export class TestCaseService {
     return this.http.get<number>(`${this.url}${projectId}/pages/count`);
   }
 
+  isFollowed(testCaseId: number) {
+    return this.http.get<boolean>(`${this.url}${testCaseId}/is-followed`);
+  }
+
   follow(testCaseId: number) {
     return this.http.patch(`${this.url}${testCaseId}/follow`, {});
   }
@@ -96,9 +99,6 @@ export class TestCaseService {
     return this.http.patch(`${this.url}${testCaseId}/unarchive`, {});
   }
 
-  isFollowed(testCaseId: number) {
-    return this.http.get<boolean>(`${this.url}${testCaseId}/is-followed`);
-  }
   executeTestCase(id: number) {
     const body = this.tokenStorage.getUsername();
     const url = this.testCaseExecutionUrl + '/execute/' + id;
