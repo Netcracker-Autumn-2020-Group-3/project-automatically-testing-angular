@@ -5,4 +5,5 @@ export interface TestCase {
   projectId: number;
   dataSetId: number;
   testScenarioId: number;
+  isArchived: boolean;
 }

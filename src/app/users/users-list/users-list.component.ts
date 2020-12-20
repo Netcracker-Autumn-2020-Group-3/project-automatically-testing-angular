@@ -1,16 +1,19 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {UserDto} from './user-dto';
 import {UserService} from '../../services/user.service';
 import {HttpParams} from '@angular/common/http';
 import {UserSearchDto} from './user-search-dto';
 import {PaginationComponent} from '../../util/pagination/pagination.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.css']
 })
-export class UsersListComponent implements OnInit {
+export class UsersListComponent implements OnInit, OnDestroy {
+
+  subscriptions: Subscription = new Subscription();
 
   @ViewChild(PaginationComponent)
   pagination: PaginationComponent;
@@ -89,6 +92,10 @@ export class UsersListComponent implements OnInit {
     this.search.page = '1';
     this.countPages();
     this.pagination.eventClickPage(1);
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
 }
