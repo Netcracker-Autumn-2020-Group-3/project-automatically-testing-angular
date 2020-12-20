@@ -17,7 +17,8 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   projects: Project[] = [];
   projectsObs: Observable<Project[]>;
   search = {
-    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '3', page: '1'};
+    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '3', page: '1'
+  };
 
   numberOfPages = 1;
   pageSize = 3;
@@ -29,19 +30,26 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscriptions.add(this.projectService.countPages().subscribe(data => {
+    this.onSearchSubmit();
+  }
+
+  countPages() {
+    const params = new HttpParams()
+      .append('name', this.search.name)
+      .append('link', this.search.link)
+      .append('onlyNotArchived', this.search.onlyNotArchived)
+      .append('pageSize', this.search.pageSize);
+    this.subscriptions.add(this.projectService.countPages(params).subscribe(data => {
+      console.log(data);
       this.numberOfPages = data;
     }));
-    this.onSearchSubmit();
   }
 
   getParams() {
     console.log(this.search);
     let params = new HttpParams();
     Object.entries(this.search).forEach(([key, value]) => {
-      if (value != null && value !== '') {
         params = params.append(key, value);
-      }
     });
     return params;
   }
@@ -66,6 +74,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   onSearchSubmit() {
     this.search.page = '1';
+    this.countPages();
     this.pagination.eventClickPage(1);
   }
 

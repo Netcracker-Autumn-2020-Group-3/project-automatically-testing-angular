@@ -40,7 +40,9 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(customerData: any) {
-        this.service.addUser(this.registerForm.value);
+    const form = this.registerForm.value;
+    form.password = btoa(this.registerForm.value.password);
+    this.service.addUser(form);
 
   }
 }

@@ -81,6 +81,7 @@ import { ErrorComponent } from './error/error.component';
 import { ActionExecutionSearchComponent } from './action-execution/action-execution-search/action-execution-search.component';
 
 import { NotificationsComponent } from './notifications/notifications.component';
+import { ProjectBodyComponent } from './project/project-body/project-body.component';
 
 @NgModule({
   declarations: [
@@ -165,7 +166,8 @@ import { NotificationsComponent } from './notifications/notifications.component'
     DashboardComponent,
     EditViewActionComponent,
     ErrorComponent,
-    ActionExecutionSearchComponent
+    ActionExecutionSearchComponent,
+    ProjectBodyComponent
   ],
   imports: [
     BrowserModule,

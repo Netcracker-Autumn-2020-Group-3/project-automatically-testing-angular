@@ -11,7 +11,7 @@
 -->
     <li><a routerLink="/test-scenario">Test Scenario</a></li>
     <li><a routerLink="/list-of-data-set">Data Set</a></li>
-    <li><a routerLink="/users">Users</a></li>
+    <li *ngIf="isAdmin"><a routerLink="/users">Users</a></li>
 
     <div style="padding-top: 30%">
       <li><a routerLink="/settings">Settings</a></li>

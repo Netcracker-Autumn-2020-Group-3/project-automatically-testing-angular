@@ -1,6 +1,6 @@
 
 <div class="router-outlet">
-  <div class="float-left "><app-menu  *ngIf="authority === 'admin'" class="position-fixed mr-0 h-100"></app-menu></div>
+  <div class="float-left " *ngIf="authority !== undefined" ><app-menu  class="position-fixed mr-0 h-100"></app-menu></div>
   <div class="float-left" style="margin-left: 250px"><router-outlet ></router-outlet></div>
 </div>
 

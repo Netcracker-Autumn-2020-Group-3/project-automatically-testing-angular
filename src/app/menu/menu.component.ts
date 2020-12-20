@@ -18,8 +18,9 @@ export class MenuComponent implements OnInit {
   user: User;
   myData: any;
   dataList: any = [];
-  url:string;
+  url: string;
   amountOfNotification: number;
+  isAdmin = this.tokenService.getAuthorities().find(role => role === 'ROLE_ADMIN') !== undefined;
 
   constructor(private tokenService: TokenStorageService,
   private service: NotificationService,
