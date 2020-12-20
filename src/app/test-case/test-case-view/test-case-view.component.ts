@@ -80,4 +80,8 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
     }
   }
 
+  run(id: number) {
+    this.testCaseService.executeTestCase(id);
+  }
+
 }

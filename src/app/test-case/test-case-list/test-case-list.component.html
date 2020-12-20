@@ -48,12 +48,9 @@
 </tr>
 </thead>
 <tbody>
-<tr *ngFor="let item of testCases">
+<tr *ngFor="let item of testCases" routerLink="{{item.id}}">
   <th scope="row">{{item.id}}</th>
   <td>{{item.name}}</td>
-  <button type="button" class="btn btn-success" routerLink="{{item.id}}">view</button>
-
-  <button type="button" class="btn btn-success" (click)="run(item.id)">run</button>
 </tr>
 </tbody>
 </table>
