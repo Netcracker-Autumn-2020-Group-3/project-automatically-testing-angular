@@ -1,8 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Project} from '../../model/project';
 import {ProjectService} from '../../services/project.service';
 import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {ProjectBodyComponent} from '../project-body/project-body.component';
+import {ProjectDto} from '../project-dto';
 
 @Component({
   selector: 'app-project-create',
@@ -13,10 +15,10 @@ export class ProjectCreateComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
-  projectLink: string;
-  projectName: string;
+  @ViewChild(ProjectBodyComponent)
+  projectBody: ProjectBodyComponent;
+
   project: Project = {name: '', link: '', archived: 'false'};
-  projectForm;
 
   showSaveProgress = false;
   progressMessage = '';
@@ -24,32 +26,19 @@ export class ProjectCreateComponent implements OnInit, OnDestroy {
   progressSuccess = 'alert-success';
   progressFail = 'alert-danger';
 
-  constructor(
-    private formBuilder: FormBuilder, private projectService: ProjectService) {
-    this.projectForm = this.formBuilder.group({
-      name: new FormControl(this.project.name, [
-        Validators.required,
-        Validators.maxLength(50),
-      ]),
-      link: new FormControl(this.project.link, [
-        Validators.required,
-        Validators.maxLength(50),
-      ]),
-    });
+  constructor(private formBuilder: FormBuilder, private projectService: ProjectService) {
   }
+
 
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(project: Project) {
+    console.log('sumbitting parent ' + project.name);
+    console.log('sumbitting link ' + project.name);
     this.showSaveProgress = false;
-    if (this.projectForm.invalid) {
-      this.progressMessage = 'All fields should be filled with value of length less than 50 symbols.';
-      this.progressTypeClass = this.progressFail;
-      this.showSaveProgress = true;
-      return;
-    }
-    this.subscriptions.add(this.projectService.postProject(this.project).subscribe(data => {
+
+    this.subscriptions.add(this.projectService.postProject(project).subscribe(data => {
         this.progressMessage = 'Successfully created.';
         this.progressTypeClass = this.progressSuccess;
         this.showSaveProgress = true;

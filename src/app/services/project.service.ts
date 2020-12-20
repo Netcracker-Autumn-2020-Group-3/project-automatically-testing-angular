@@ -29,7 +29,7 @@ export class ProjectService {
     return this.http.post(this.url, project);
   }
 
-  updateProject(project: ProjectDto) {
+  updateProject(project: Project) {
     return this.http.put(`${this.url}${project.id}`, project);
   }
 
