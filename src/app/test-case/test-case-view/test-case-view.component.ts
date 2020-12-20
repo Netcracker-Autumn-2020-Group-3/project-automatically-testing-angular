@@ -84,6 +84,10 @@ export class TestCaseViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
+  run(id: number) {
+    this.testCaseService.executeTestCase(id);
+  }
+
   onArchiveButton() {
     if (this.testCase.testCase.isArchived) {
       this.subscriptions.add(this.testCaseService.unarchive(this.testCaseId).subscribe(success => {
@@ -96,9 +100,9 @@ export class TestCaseViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  execute() {
+  /*execute() {
     this.testCaseService.executeTestCase(this.testCaseId);
-  }
+  }*/
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
