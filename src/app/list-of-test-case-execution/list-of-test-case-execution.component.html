@@ -3,19 +3,10 @@
     <thead>
     <tr>
       <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Test Case Name" aria-label="Search"
-                             [(ngModel)]=testCaseName (change)="onSearchSubmit()"></th>
+                             [(ngModel)]=testCaseName (keyup)="onSearchSubmit()"></th>
       <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Project Name" aria-label="Search"
-                             [(ngModel)]=projectName (change)="onSearchSubmit()"></th>
+                             [(ngModel)]=projectName (keyup)="onSearchSubmit()"></th>
 
-      <!--<th scope="col">
-        <div class="col-auto">
-          <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="status" (change)="onSearchSubmit()">
-            <option value="all" selected>Actions status</option>
-            <option value="failed" >failed/not started</option>
-            <option value="passed">passed</option>
-          </select>
-        </div>
-      </th>-->
       <th scope="col">
         <div class="form-check form-check-inline">
           <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="passed"
@@ -35,14 +26,12 @@
       </th>
     </tr>
     </thead>
-    <tbody>
-    </tbody>
   </table>
 
   <table class="table">
     <thead>
     <tr>
-      <th scope="row">id
+      <th scope="col">id
         <app-order-by-button [element]="'id'" (elementName)="orderBy($event)"></app-order-by-button>
       </th>
       <th scope="col">Test Case Name
@@ -83,7 +72,7 @@
     </tbody>
   </table>
 
-  <nav aria-label="Page navigation example" style="margin-left: 20%">
+  <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
       <li class="page-item">
         <button class="page-link" (click)="previousPage()"><</button>
