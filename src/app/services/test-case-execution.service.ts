@@ -12,20 +12,29 @@ import {environment} from "../../environments/environment";
 export class TestCaseExecutionService {
 
   private url = `${environment.url}test-case-execution/`;
-  private getAllTestCaseExecutionUrl = this.url + 'get-all';
-  private getAllTestCaseExecutionWithFailedActionNumberUrl = this.url + 'get-all-with-failed-action-number';
   private countTestCaseExecutionsUrl = this.url + 'count';
+
+  private testCaseName: string;
+  private projectName: string;
 
 
   constructor(private http: HttpClient) {
   }
 
-  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: string, orderByClause: string, testCaseName: string, projectName: string, status: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
-    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.getAllTestCaseExecutionWithFailedActionNumberUrl}/${limit}/${offset}
-    /${orderBy}/${orderByClause}/${testCaseName}/${projectName}/${status}`);
+  getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: string, orderByClause: string, testCaseName: string,
+                                                projectName: string, status: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
+    this.toUndefined(testCaseName, projectName);
+    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.url}${limit}/${offset}/${orderBy}/${orderByClause}
+      /${this.testCaseName}/${this.projectName}/${status}`);
   }
 
-  countTestCaseExecutions() {
-    return this.http.get<number>(this.countTestCaseExecutionsUrl);
+  countTestCaseExecutions(testCaseName: string, projectName: string, status: string) {
+    this.toUndefined(testCaseName, projectName);
+    return this.http.get<number>(`${this.countTestCaseExecutionsUrl}/${this.testCaseName}/${this.projectName}/${status}`);
+  }
+
+  toUndefined(testCaseName: string, projectName: string) {
+    this.testCaseName = (testCaseName == '') ? 'undefined' : testCaseName;
+    this.projectName = (projectName == '') ? 'undefined' : projectName;
   }
 }

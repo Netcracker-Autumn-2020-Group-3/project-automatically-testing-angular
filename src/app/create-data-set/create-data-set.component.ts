@@ -3,6 +3,7 @@ import { FormControl, FormGroup, FormArray } from '@angular/forms';
 import { DataSet } from '../model/dataSet';
 import { DataSetService } from '../services/data-set.service';
 import {DataEntryCreate} from "./dataEntryCreate";
+import { Location } from "@angular/common";
 import Swal from "sweetalert2";
 
 @Component({
@@ -15,7 +16,6 @@ export class CreateDataSetComponent implements OnInit {
   dataSet: DataSet;
   dataEntryCreate: DataEntryCreate[];
 
-  // tslint:disable-next-line:variable-name
   data_set_values: [];
 
   createDataSet = new FormGroup({
@@ -31,7 +31,7 @@ export class CreateDataSetComponent implements OnInit {
   indexes: number[];
   counter: number;
 
-  constructor(private services: DataSetService) {
+  constructor(private services: DataSetService, private location: Location) {
   }
 
   ngOnInit(): void {
@@ -58,7 +58,9 @@ export class CreateDataSetComponent implements OnInit {
     this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
       Swal.fire({icon: 'success',
         title: 'Ok',
-        text: 'created successfully!'});
+        text: 'created successfully!'
+      }).then((result) =>
+      this.location.back());
     }, error => {
       Swal.fire({
         icon: "error",
