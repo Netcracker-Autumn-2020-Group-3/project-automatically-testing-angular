@@ -6,6 +6,7 @@ import {TestCaseDto} from '../../model/test-case/test-case-dto';
 import {TestCaseBodyComponent} from '../test-case-body/test-case-body.component';
 import {ActivatedRoute} from '@angular/router';
 import {TestCaseService} from '../../services/test-case.service';
+import {TokenStorageService} from '../../auth/token-storage.service';
 
 @Component({
   selector: 'app-test-case-view',
@@ -19,13 +20,13 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
   testCase: TestCaseDto;
   testCaseId: number;
   showForm = false;
-
+  isNotEngineer = this.tokenStorageService.getAuthorities().find(role => role === 'ROLE_ENGINEER') === undefined;
   isFollowed: boolean;
 
   @ViewChild(TestCaseBodyComponent)
   formBody: TestCaseBodyComponent;
 
-  constructor(private route: ActivatedRoute, private testCaseService: TestCaseService) {
+  constructor(private route: ActivatedRoute, private testCaseService: TestCaseService, private tokenStorageService: TokenStorageService) {
 
   }
 
@@ -77,6 +78,18 @@ export class TestCaseViewComponent implements OnInit, AfterViewInit {
     } else {
       this.testCaseService.follow(this.testCaseId).subscribe();
       this.isFollowed = true;
+    }
+  }
+
+  onArchiveButton() {
+    if (this.testCase.testCase.isArchived) {
+      this.testCaseService.unarchive(this.testCaseId).subscribe(success => {
+        this.testCase.testCase.isArchived = false;
+      });
+    } else {
+      this.testCaseService.archive(this.testCaseId).subscribe(success => {
+        this.testCase.testCase.isArchived = true;
+      });
     }
   }
 

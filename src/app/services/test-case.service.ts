@@ -88,6 +88,14 @@ export class TestCaseService {
     return this.http.patch(`${this.url}${testCaseId}/unfollow`, {});
   }
 
+  archive(testCaseId: number) {
+    return this.http.patch(`${this.url}${testCaseId}/archive`, {});
+  }
+
+  unarchive(testCaseId: number) {
+    return this.http.patch(`${this.url}${testCaseId}/unarchive`, {});
+  }
+
   isFollowed(testCaseId: number) {
     return this.http.get<boolean>(`${this.url}${testCaseId}/is-followed`);
   }
