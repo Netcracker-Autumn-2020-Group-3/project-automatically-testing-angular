@@ -8,6 +8,7 @@ import {PaginationComponent} from '../../util/pagination/pagination.component';
 import {ActivatedRoute} from '@angular/router';
 import {FormBuilder} from '@angular/forms';
 import {ProjectService} from '../../services/project.service';
+import {TestCaseDtoWithUser} from './test-case-dto-with-user';
 
 @Component({
   selector: 'app-test-case-list',
@@ -16,7 +17,7 @@ import {ProjectService} from '../../services/project.service';
 })
 export class TestCaseListComponent implements OnInit {
 
-  testCases: TestCaseDtoForPagination[] = [];
+  testCases: TestCaseDtoWithUser[] = [];
   search = {
     name: '', id: '', sortField: '', pageSize: '3', page: '1'};
   pageSearch = 1;
@@ -77,7 +78,7 @@ export class TestCaseListComponent implements OnInit {
 
   getPage(page: number) {
     this.search.page = page.toString(10);
-    this.testCaseService.getPageByProjectId(this.getParams(), this.projectId).subscribe(data => {
+    this.testCaseService.getPageByProjectIdWithUser(this.getParams(), this.projectId).subscribe(data => {
       this.testCases = data;
     }, error => {
       console.log(error);
@@ -90,7 +91,7 @@ export class TestCaseListComponent implements OnInit {
 
   onSearchSubmit() {
     this.pageSearch = 1;
-    this.testCaseService.getPageByProjectId(this.getParams(), this.projectId).subscribe(data => {
+    this.testCaseService.getPageByProjectIdWithUser(this.getParams(), this.projectId).subscribe(data => {
       this.testCases = data.map(testCase => {
         console.log(testCase);
         return testCase;

@@ -16,6 +16,7 @@ import {TestCaseDtoForPagination} from '../test-case/test-case-list/test-case-dt
 import {TokenStorageService} from '../auth/token-storage.service';
 import {TestCaseTopSubscribed} from '../model/dashboard/test-case-top-subscribed';
 import {environment} from 'src/environments/environment';
+import {TestCaseDtoWithUser} from '../test-case/test-case-list/test-case-dto-with-user';
 
 
 @Injectable({
@@ -76,6 +77,13 @@ export class TestCaseService {
     return this.http.get<TestCaseDtoForPagination[]>(`${this.url}${projectId}/list/page`, {params});
   }
 
+  getPageWithUser(params: Params) {
+    return this.http.get<TestCaseDtoWithUser[]>(`${this.url}list/page-upd`, {params});
+  }
+
+  getPageByProjectIdWithUser(params: Params, projectId: number) {
+    return this.http.get<TestCaseDtoWithUser[]>(`${this.url}${projectId}/list/page-upd`, {params});
+  }
   countPages(projectId: number) {
     return this.http.get<number>(`${this.url}${projectId}/pages/count`);
   }
