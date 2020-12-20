@@ -15,14 +15,12 @@ export class ProjectService {
   constructor(private http: HttpClient) {
   }
 
-  getPage(paramsVal: Params) {
-    return this.http.get<Project[]>(`${this.url}list`, {
-      params: paramsVal
-    });
+  getPage(params: Params) {
+    return this.http.get<Project[]>(`${this.url}list`, {params});
   }
 
-  countPages() {
-    return this.http.get<number>(`${this.url}pages/count`);
+  countPages(params: Params) {
+    return this.http.get<number>(`${this.url}pages/count`, {params});
   }
 
   postProject(project: Project) {
