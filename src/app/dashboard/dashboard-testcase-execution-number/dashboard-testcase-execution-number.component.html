@@ -1,26 +1,16 @@
-<div style="text-align:center">
-  <div class="row ml-5">
-  <div class="col">
-    <h4>
-      Number of test case executions
-    </h4>
-    <div class="row">
-      <div *ngIf="isEnableData">
-        <ngx-charts-bar-vertical
-          [view]="view"
-          [results]="array"
-          [gradient]="gradient"
-          [xAxis]="showXAxis"
-          [yAxis]="showYAxis"
-          [legend]="showLegend"
-          [showXAxisLabel]="showXAxisLabel"
-          [showYAxisLabel]="showYAxisLabel"
-          [xAxisLabel]="xAxisLabel"
-          [yAxisLabel]="yAxisLabel"
-          (select)="onSelect($event)">
-        </ngx-charts-bar-vertical>
-     </div>
-    </div>
-  </div>
-  </div>
+<div style="text-align: center" *ngIf="isEnableData" routerLink="/list-of-test-case-execution">
+  <h4>Number of test case executions</h4>
+  <ngx-charts-bar-vertical
+    [view]="view"
+    [results]="array"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)">
+  </ngx-charts-bar-vertical>
 </div>
