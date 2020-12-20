@@ -1,6 +1,7 @@
 <div class="category-wrap">
   <h3 class="mb-5">{{name}}</h3>
   <ul class="mt-4">
+    <li ><a routerLink="/notification" style="color:red;" > <img src="../../assets/bell.jpg" width="55" height="55">{{amountOfNotification}}</a></li>
     <li><a routerLink="/dashboard">Dashboard</a></li>
     <li><a routerLink="/projects">Projects</a></li>
     <li><a routerLink="/list-of-test-case-execution">Test Case History</a></li>
@@ -8,13 +9,12 @@
 <!--
     <li><a routerLink="list-of-test-scenarios">Test Scenario</a></li>
 -->
-
     <li><a routerLink="/test-scenario">Test Scenario</a></li>
     <li><a routerLink="/list-of-data-set">Data Set</a></li>
     <li><a routerLink="/users">Users</a></li>
-    <li ><a routerLink="/notification" style="color:red;" > <img src="../../assets/bell.jpg" width="55" height="55">{{amountOfNotification}}</a></li>
+
+    <div style="padding-top: 30%">
       <li><a routerLink="/settings">Settings</a></li>
-    <div style="padding-top: 75%">
       <li><a (click)="logout()">Log out</a></li>
     </div>
   </ul>
