@@ -100,10 +100,6 @@ export class TestCaseViewComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  /*execute() {
-    this.testCaseService.executeTestCase(this.testCaseId);
-  }*/
-
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
