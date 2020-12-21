@@ -17,12 +17,12 @@
     </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of allDataSet | filter:searchedDataSet | slice:start:end" >
+      <tr *ngFor="let item of allDataSet | filter:searchedDataSet | slice:start:end" routerLink="/dataset/edit/{{item.id}}">
         <th scope="row">{{item.id}}</th>
         <td>{{item.name}}</td>
         <td style="text-align: right;">
-          <button type="button" class="btn btn-outline-info" routerLink="/dataset/edit/{{item.id}}">edit</button>
-          <button type="button" class="btn btn-outline-danger" (click)="delete(item.id)">X</button>
+         <!-- <button type="button" class="btn btn-outline-info" >edit</button>
+          <button type="button" class="btn btn-outline-danger" (click)="delete(item.id)">X</button>-->
         </td>
       </tr>
     </tbody>
