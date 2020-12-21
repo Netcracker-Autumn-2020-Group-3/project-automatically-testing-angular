@@ -15,12 +15,11 @@ export class UsersListComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
 
-  @ViewChild(PaginationComponent)
-  pagination: PaginationComponent;
+  @ViewChild(PaginationComponent) pagination: PaginationComponent;
 
   users: UserDto[] = [];
 
-  pageSize = 3;
+  pageSize = 6;
   numberOfPages = 1;
 
   search = {
@@ -39,8 +38,8 @@ export class UsersListComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.countPages();
-    this.onSearchSubmit();
+     this.countPages();
+     this.onSearchSubmit();
   }
 
   countPages() {

@@ -17,11 +17,11 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   projects: Project[] = [];
   projectsObs: Observable<Project[]>;
   search = {
-    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '3', page: '1'
+    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '6', page: '1'
   };
 
   numberOfPages = 1;
-  pageSize = 3;
+  pageSize = 6;
 
   @ViewChild(PaginationComponent)
   pagination: PaginationComponent;
