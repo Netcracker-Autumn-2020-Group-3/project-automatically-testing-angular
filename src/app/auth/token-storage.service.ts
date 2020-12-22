@@ -40,15 +40,12 @@ export class TokenStorageService {
 
   public getAuthorities(): string[] {
     this.roles = [];
-
     if (sessionStorage.getItem(TOKEN_KEY)) {
       // tslint:disable-next-line:no-non-null-assertion
       JSON.parse(sessionStorage.getItem(AUTHORITIES_KEY)!).forEach((authority: { authority: string; }) => {
         this.roles.push(authority.authority);
       });
     }
-
-
     return this.roles;
   }
 }

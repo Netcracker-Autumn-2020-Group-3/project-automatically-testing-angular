@@ -1,30 +1,32 @@
-import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter, OnDestroy} from '@angular/core';
 import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
 import {Search} from '../../util/search/search.component';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-list-actions',
   templateUrl: './list-actions.component.html',
   styleUrls: ['./list-actions.component.css']
 })
-export class ListActionsComponent implements OnInit {
+export class ListActionsComponent implements OnInit, OnDestroy {
 
-    @Input()actions: Action[];
-    @Input()pageNumbers: number;
-    @Input()numberOfPages: number;
-    @Input()pageSize: number;
-    @Input()orderSearch: string;
-    @Input()orderSort: string;
-    @Input()createCompound = false;
-    @Output()actionForCompound = new EventEmitter<Action>();
-    click: boolean;
-    p = 1;
+  subscription: Subscription = new Subscription();
+  @Input()actions: Action[];
+  @Input()pageNumbers: number;
+  @Input()numberOfPages: number;
+  @Input()pageSize: number;
+  @Input()orderSearch: string;
+  @Input()orderSort: string;
+  p = 1;
 
   constructor(private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getListOfActions(page: number){
@@ -33,9 +35,11 @@ export class ListActionsComponent implements OnInit {
       .append('orderSearch', String(this.orderSearch))
       .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
-    this.actionService.getActions(param).subscribe(( res => {
-      this.actions = res;
-    }));
+    this.subscription.add(
+      this.actionService.getActions(param).subscribe(( res => {
+        this.actions = res;
+      }))
+    );
   }
 
   getPage(page: number){
@@ -56,9 +60,13 @@ export class ListActionsComponent implements OnInit {
     }
   }
 
-  createActionForCompound(action: Action, i: number) {
-    this.actionForCompound.emit(action);
-  }
 
+  onClickOrderColumn(column: string) {
+    if (column !== this.orderSearch){
+      this.orderSearch = column;
+    }
+    this.orderSort = this.orderSort === 'ASC' ? 'DESC' : 'ASC';
+    this.getPage(1);
+  }
 }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Compound} from '../model/compound.model';
 import {CompoundAction} from '../model/compoundAction';
 import {Action} from '../model/action.model';
@@ -9,6 +9,7 @@ import Swal from 'sweetalert2';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {CompoundDto} from '../model/compound-dto';
 import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -16,21 +17,23 @@ import {Router} from '@angular/router';
   templateUrl: './create-compound.component.html',
   styleUrls: ['./create-compound.component.css']
 })
-export class CreateCompoundComponent implements OnInit {
+export class CreateCompoundComponent implements OnInit, OnDestroy {
 
-  pageCompoundActions = true;
-
+  subscriptions: Subscription = new Subscription();
   actions: Action[];
   compound = new Compound(1, '', '');
   compoundActions: CompoundAction[] = [];
   arrayForPassing: CompoundDto;
   name: string;
   description: string;
-  nameExist: boolean;
 
   constructor(private compoundService: CompoundService , private router: Router) { }
 
   ngOnInit(): void {}
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
 
   setName(name: string) {
     this.name = name;
@@ -45,13 +48,17 @@ export class CreateCompoundComponent implements OnInit {
   }
 
   saveCompound() {
-      this.fillTheCompound();
-      this.checkIfCompoundExist();
-  }
-
-  fillTheCompound(){
     this.compound.name = this.name;
     this.compound.description = this.description;
+    this.checkIfCompoundExist();
+  }
+
+  checkIfCompoundExist() {
+    this.subscriptions.add(
+      this.compoundService.checkIfCompoundNameExist(this.compound.name).subscribe(res =>{
+        this.alert(res);
+    })
+    );
   }
 
   fillTheCompoundActionPriority(){
@@ -60,26 +67,27 @@ export class CreateCompoundComponent implements OnInit {
     });
   }
 
-  checkIfCompoundExist() {
-    this.compoundService.checkIfCompoundNameExist(this.compound.name).subscribe(res =>{
-      if (res){
-        Swal.fire({icon: 'error',
-          title: 'Oops...',
-          text: 'Check your name!'});
-      }else{
-        this.fillTheCompoundActionPriority();
-        this.insertCompAndActions();
-      }
-    });
-  }
-
   insertCompAndActions() {
     this.arrayForPassing = new CompoundDto(this.compound.name, this.compound.description, this.compoundActions);
+    this.subscriptions.add(
     this.compoundService.createCompound(this.arrayForPassing).subscribe(res => {
       Swal.fire({icon: 'success',
         title: 'ok',
         text: 'Compound was created successfully!'});
-      this.router.navigate(['/library/actions']);
-    });
+      this.router.navigate(['/library']);
+    })
+    );
+  }
+
+  alert(res: boolean) {
+    if (res){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Check your name!'});
+    }else{
+      this.fillTheCompoundActionPriority();
+      this.insertCompAndActions();
+    }
   }
 }

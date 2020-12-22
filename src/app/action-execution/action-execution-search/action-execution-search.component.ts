@@ -7,8 +7,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ActionExecutionSearchComponent implements OnInit {
 
-  currentSearch = '';
   @Output() clickSearch: EventEmitter<any> = new EventEmitter<any>();
+  currentSearch = '';
 
   constructor() {}
 

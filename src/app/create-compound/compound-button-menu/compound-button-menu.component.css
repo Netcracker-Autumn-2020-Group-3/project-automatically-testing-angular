@@ -1,5 +1,4 @@
 button{
-  /*  width: 160px;*/
   margin-left: 15px;
   color: grey;
   height: 40px;
@@ -8,8 +7,7 @@ button{
 .button-selected{
   background: white;
   z-index: 4;
-  /*position: absolute;*/
-  /* height: 38px; */
+
   border-bottom: 0;
   height: 40px;
 }
@@ -17,4 +15,9 @@ button{
 .headbuttons{
   display: flex;
   justify-content: flex-start;
+}
+hr{
+  position: relative;
+  width: 1000px;
+  top: -0.7px
 }

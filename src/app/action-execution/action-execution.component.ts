@@ -5,9 +5,7 @@ import {ActionExecutionDto} from '../model/action-execution-dto';
 import {ReportService} from '../services/report.service';
 import {Subscription} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
-import {Pageable} from '../model/pageable';
 import Swal from 'sweetalert2';
-import {Search} from '../util/search/search.component';
 
 @Component({
   selector: 'app-action-execution',
@@ -32,14 +30,14 @@ export class ActionExecutionComponent implements OnInit, OnDestroy{
 
   constructor(private actionExecutionService: ActionExecutionService,
               private route: ActivatedRoute,
-              private reportService: ReportService,
-              private router: Router) { }
+              private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(value => {
       this.testCaseExecutionId = value.get('test_case_execution_id');
     });
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

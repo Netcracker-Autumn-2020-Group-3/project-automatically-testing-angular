@@ -13,18 +13,13 @@ export class LibraryActionService {
 
   constructor(private http: HttpClient) { }
 
-  //private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = `${environment.url}`;
-  //private getActionsUrl = 'https://automatically-testing-java.herokuapp.com/library/actions';
   private getActionsUrl = `${this.url}library/actions`;
-  //private getActionsByNameUrl = 'https://automatically-testing-java.herokuapp.com/library/actions/';
   private getActionsByNameUrl = `${this.url}library/actions/`;
   private getNumberOfActionsUrl = this.getActionsByNameUrl + 'count';
   private getAllActionsUrl = this.getActionsByNameUrl + 'get/all';
   private getActionVariableUrl = this.url + 'action/view-edit/';
   private updateActionVariableUrl = this.url + 'action/view-edit/update/';
-
-
 
   getActions(paramsVal: Params): Observable<Action[]>{
     return this.http.get<Action[]>(this.getActionsUrl, {

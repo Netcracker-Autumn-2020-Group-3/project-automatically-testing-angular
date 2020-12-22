@@ -21,18 +21,6 @@ export class EditCompoundComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  updateCompound() {
-    this.compoundService.checkIfCompoundNameExist(this.compound.name).subscribe(res => {
-      this.nameExist = res;
-      if (this.nameExist && this.nameBefore !== this.compound.name){
-        Swal.fire({icon: 'error',
-          title: 'Oops...',
-          text: 'Check your name!'});
-      }else{
-        this.compoundService.updateCompound(this.compound).subscribe();
-      }
-    });
-  }
 
 
 

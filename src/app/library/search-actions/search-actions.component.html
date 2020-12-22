@@ -11,11 +11,11 @@
              [(ngModel)]="actionName">
 
       <button type="button" class="btn btn-outline-success mr-3" (click)="searchAction()" >Search</button>
-      <button class="btn btn-outline-success bg-white mr-3" *ngIf="createCompoundSearchActions" (click)="getAllActions()">ShowAll</button>
       <label class="m-0 p-0">
         <select class="custom-select border-success"  [(ngModel)]="orderSearch" (change)="getOrderSearch()" id="sortBy" style="width: 100px;" >
           <option value="id">id</option>
           <option value="name">name</option>
+          <option value="description">description</option>
         </select>
       </label>
     </nav>

@@ -21,7 +21,6 @@ export class DashboardService {
     return this.http.get<TestCaseExecutionsByDates[]>(`${this.url}test-case-executions-by-dates?numberOfDays=${numberOfDays}`);
   }
 
-
   getGroupedTestCaseExecution() {
     return this.http.get<GroupedTestCaseExecutionDto[]>(this.getGroupedTestCaseExecutionsUrl);
   }

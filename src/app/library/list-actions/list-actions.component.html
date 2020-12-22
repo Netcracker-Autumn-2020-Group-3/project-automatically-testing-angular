@@ -1,26 +1,19 @@
 <table class="table shadow">
   <thead class="shadow">
   <tr>
-    <th scope="col">#</th>
-    <th scope="col">Name</th>
-    <th scope="col">Description</th>
+    <th scope="col" (click)="onClickOrderColumn('id')">Id</th>
+    <th scope="col" (click)="onClickOrderColumn('name')">Name</th>
+    <th scope="col" (click)="onClickOrderColumn('name')">Description</th>
   </tr>
   </thead>
   <tbody>
-
   <tr *ngFor="let action of actions; let i = index" routerLink="/action/view-edit/{{i+1}}">
     <td scope="row">{{action.actionId}}</td>
     <td>{{action.actionName}}</td>
     <td>{{action.actionDescription}}</td>
-    <td *ngIf="createCompound"><button (click)="createActionForCompound(action,i)"  class="btn btn-outline-success bg-white">Add</button></td>
   </tr>
   </tbody>
-
-
-
 </table>
-
-
 
 <nav aria-label="Page navigation example" class="d-flex justify-content-center">
   <ul class="pagination" >

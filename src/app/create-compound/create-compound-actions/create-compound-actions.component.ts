@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-create-compound-actions',
@@ -9,19 +10,26 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./create-compound-actions.component.css']
 })
 
-export class CreateCompoundActionsComponent implements OnInit {
+export class CreateCompoundActionsComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription = new Subscription();
   actions: Action[];
   actionsReserved: Action[] = [];
   actionsInCompound: Action[] = [];
-  @Output()actionsInCompound1 = new EventEmitter<Action[]>();
-  searchedAction: any;
+  @Output()createdActionsInCompound = new EventEmitter<Action[]>();
+
   constructor(private actionService: LibraryActionService) { }
 
   ngOnInit(): void {
+    this.subscriptions.add(
     this.actionService.getAllActions().subscribe(( res => {
       this.actions = Object.assign([], res);
       this.actionsReserved = Object.assign([], res);
-    }));
+    }))
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
   }
 
   drop(event: CdkDragDrop<Action[]>) {
@@ -31,6 +39,6 @@ export class CreateCompoundActionsComponent implements OnInit {
       transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
       this.actions = Object.assign([], this.actionsReserved);
     }
-    this.actionsInCompound1.emit(this.actionsInCompound);
+    this.createdActionsInCompound.emit(this.actionsInCompound);
   }
 }
