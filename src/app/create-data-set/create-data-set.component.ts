@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import {FormControl, FormGroup, FormArray, Validators} from '@angular/forms';
 import { DataSet } from '../model/dataSet';
 import { DataSetService } from '../services/data-set.service';
 import {DataEntryCreate} from "./dataEntryCreate";
@@ -19,11 +19,11 @@ export class CreateDataSetComponent implements OnInit {
   data_set_values: [];
 
   createDataSet = new FormGroup({
-    Name: new FormControl(''),
-    Data_set_values: new FormArray([
+    name: new FormControl(''),
+    dataSetValues: new FormArray([
       new FormGroup({
-        key: new FormControl(''),
-        value: new FormControl('')
+        key: new FormControl('',),
+        value: new FormControl('',)
       })
     ])
   });
@@ -40,7 +40,7 @@ export class CreateDataSetComponent implements OnInit {
   }
 
   addValue(): void {
-    (this.createDataSet.controls.Data_set_values as FormArray).push(new FormGroup({
+    (this.createDataSet.controls.dataSetValues as FormArray).push(new FormGroup({
       key: new FormControl(''),
       value: new FormControl('')
     }));
@@ -49,13 +49,14 @@ export class CreateDataSetComponent implements OnInit {
 
   delete(i: number): void {
     this.indexes.splice(i, 1);
-    (this.createDataSet.controls.Data_set_values as FormArray).removeAt(i);
+    (this.createDataSet.controls.dataSetValues as FormArray).removeAt(i);
   }
 
   onSubmit(customerData: any){
-    this.dataEntryCreate = customerData.Data_set_values;
+    this.dataEntryCreate = customerData.dataSetValues;
+    console.log(customerData.name);
     console.log(this.dataEntryCreate);
-    this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
+    /*this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
       Swal.fire({icon: 'success',
         title: 'Ok',
         text: 'created successfully!'
@@ -66,9 +67,9 @@ export class CreateDataSetComponent implements OnInit {
         icon: "error",
         title: "error"
       })
-    });
-    //this.services.addDataSet(customerData.Name, customerData.Data_set_values.filter(function (el: any) {
-    // return el != "";
-    //}));
+    });*/
+  /*  this.services.addDataSet(customerData.Name, customerData.DataSetValues.filter(function (el: any) {
+     return el != "";
+    }));*/
   }
 }
