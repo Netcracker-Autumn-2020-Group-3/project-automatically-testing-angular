@@ -54,9 +54,7 @@ export class CreateDataSetComponent implements OnInit {
 
   onSubmit(customerData: any){
     this.dataEntryCreate = customerData.dataSetValues;
-    console.log(customerData.name);
-    console.log(this.dataEntryCreate);
-    /*this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
+    this.services.addDataSet(customerData.name, this.dataEntryCreate).subscribe(ress => {
       Swal.fire({icon: 'success',
         title: 'Ok',
         text: 'created successfully!'
@@ -67,8 +65,8 @@ export class CreateDataSetComponent implements OnInit {
         icon: "error",
         title: "error"
       })
-    });*/
-  /*  this.services.addDataSet(customerData.Name, customerData.DataSetValues.filter(function (el: any) {
+    });
+   /* this.services.addDataSet(customerData.Name, customerData.DataSetValues.filter(function (el: any) {
      return el != "";
     }));*/
   }

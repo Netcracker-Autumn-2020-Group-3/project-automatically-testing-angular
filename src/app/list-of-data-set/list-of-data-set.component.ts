@@ -40,13 +40,5 @@ export class ListOfDataSetComponent implements OnInit {
   getAllDataSet(): Observable<DataSet[]> {
      return this.service.getAllDataSet();
   }
-  delete(id: number) {
-    const a = this.service.delete(id);
-    console.log(a);
-    console.log(a[Symbol.toStringTag]);
 
-    this.getAllDataSet().subscribe(dataSet => this.allDataSet = dataSet);
-    this.start = 0;
-    this.end = this.step;
-  }
 }

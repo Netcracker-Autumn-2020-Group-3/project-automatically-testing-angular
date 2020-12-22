@@ -31,8 +31,8 @@ export class DataSetService {
     return this.http.post(url, body);
   }
 
-  delete(id: number): Promise<Object> {
+  delete(id: number) {
     const url = `${this.url_delete_data_set}${id}`;
-    return this.http.delete(url).toPromise();
+    return this.http.patch(url, {}).toPromise();
   }
 }
