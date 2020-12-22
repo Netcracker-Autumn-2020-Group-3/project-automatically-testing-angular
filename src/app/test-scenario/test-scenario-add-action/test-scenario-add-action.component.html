@@ -9,31 +9,21 @@
   </label>
   <br>
   <button class="btn btn-outline-success m-1 w-25" type="button"
-          [disabled]="!init"
+          [disabled]="!isElementSelected"
           (click)="createAction()">Create</button>
   <button class="btn btn-outline-danger m-1 w-25" type="button"
           (click)="cancelAction()">Cancel</button>
-  <div class="mt-2" *ngIf="init">
+  <div class="mt-2" *ngIf="isElementSelected">
     <table class="table w-100">
       <thead>
       <tr>
         <th scope="col">Name</th>
-        <th scope="col">Void</th>
-        <th scope="col">Variable</th>
         <th scope="col">Priority</th>
       </tr>
       </thead>
       <tbody>
       <tr>
         <td>{{currentAction.name}}</td>
-        <td>{{currentAction.void.toString() | uppercase}}</td>
-        <td>
-          <label>
-            <input type="text" class="form-control"
-                   [(ngModel)]="currentVariableText"
-                   [disabled]="currentAction.void">
-          </label>
-        </td>
         <td>{{currentPriority}}</td>
       </tr>
     </table>
