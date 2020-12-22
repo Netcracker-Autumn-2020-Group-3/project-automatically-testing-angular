@@ -54,13 +54,13 @@ export class UserService {
   }
 
   addUser(user: User) {
-    const url = `${this.url}users/addUser`;
+    const url = `${this.url}users/add`;
     const body = {email: user.email, password: user.password, name: user.name, surname: user.surname, role: user.role};
     return this.http.post(url, body).toPromise();
   }
 
   resetPassword(passwordToken: string, pass: string) {
-    const url = `${this.url}users/resetpass`;
+    const url = `${this.url}settings/resetpass`;
     const body = {token: passwordToken, password: pass};
     return this.http.put(url, body).toPromise();
   }
@@ -80,6 +80,12 @@ export class UserService {
     const url = `${this.url}settings/password`;
     const body = {email: user.email, password: user.password};
     return this.http.put(url, body).toPromise();
+  }
+
+  resetPasswordByEmail(user: User) {
+    const url = `${this.url}settings/reset-by-email`;
+    const body = {email: user.email};
+    return this.http.post(url, body).toPromise();
   }
 
 }

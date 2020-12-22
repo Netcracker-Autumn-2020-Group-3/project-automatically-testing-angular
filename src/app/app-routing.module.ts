@@ -43,6 +43,7 @@ import {RoleGuard} from './guards/role.guard';
 import {ErrorComponent} from './error/error.component';
 import {ActionExecutionDashboardComponent} from "./dashboard/action-execution-dashboard/action-execution-dashboard.component";
 import {NotificationsComponent} from './notifications/notifications.component';
+import {ResetPassByEmailComponent} from './register/reset-password/reset-pass-by-email/reset-pass-by-email.component';
 
 const routes: Routes = [
   { path: 'list/actions-execution/:test_case_execution_id', component: ActionExecutionComponent},
@@ -79,11 +80,12 @@ const routes: Routes = [
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent, canActivate: [RoleGuard]},
   { path: 'list-of-test-case-execution', component: ListOfTestCaseExecutionComponent, canActivate: [RoleGuard] },
   { path: 'list-of-test-cases-pagination', component: TestCaseListComponent, canActivate: [RoleGuard]},
-  { path: 'reset-password/:token', component: ResetPasswordComponent, canActivate: [RoleGuard]},
+  { path: 'reset-password/:token', component: ResetPasswordComponent},
   { path: 'settings', component: SettingsComponent, canActivate: [RoleGuard]},
   { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent, canActivate: [RoleGuard] },
   { path: 'notification', component: NotificationsComponent, canActivate: [RoleGuard]},
   { path: 'action-execution-dashboard', component: ActionExecutionDashboardComponent, canActivate: [RoleGuard] },
+  { path: `reset-by-email`, component: ResetPassByEmailComponent},
   { path: 'error', component: ErrorComponent },
   { path: '**', redirectTo: '/error' }
 ];

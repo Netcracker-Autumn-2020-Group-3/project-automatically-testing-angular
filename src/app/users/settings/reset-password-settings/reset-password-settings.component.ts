@@ -23,7 +23,7 @@ export class ResetPasswordSettingsComponent implements OnInit {
   private route: ActivatedRoute,
   private formBuilder: FormBuilder) {
      this.resetPasswordForm = this.formBuilder.group({
-        password: ['', Validators.required],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,30}')]],
         passwordRepeat: ['', Validators.required]
      }, {validator: this.checkPasswords});
 
@@ -46,7 +46,7 @@ export class ResetPasswordSettingsComponent implements OnInit {
   }
 
   onSubmit(customerData:any){
-    this.user.password = customerData.password;
+    this.user.password = btoa(customerData.password);
     this.service.resetPasswordSettings(this.user);
 
   }

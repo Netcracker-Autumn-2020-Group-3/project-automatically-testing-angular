@@ -82,6 +82,7 @@ import { ActionExecutionSearchComponent } from './action-execution/action-execut
 
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ProjectBodyComponent } from './project/project-body/project-body.component';
+import { ResetPassByEmailComponent } from './register/reset-password/reset-pass-by-email/reset-pass-by-email.component';
 
 @NgModule({
   declarations: [
@@ -167,7 +168,8 @@ import { ProjectBodyComponent } from './project/project-body/project-body.compon
     EditViewActionComponent,
     ErrorComponent,
     ActionExecutionSearchComponent,
-    ProjectBodyComponent
+    ProjectBodyComponent,
+    ResetPassByEmailComponent
   ],
   imports: [
     BrowserModule,
