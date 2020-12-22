@@ -9,32 +9,23 @@
   </label>
   <br>
   <button class="btn btn-outline-success m-1 w-25" type="button"
-          [disabled]="!init"
+          [disabled]="!isElementSelected"
           (click)="createCompound()">Create
   </button>
   <button class="btn btn-outline-danger m-1 w-25" type="button"
           (click)="cancelCompound()">Cancel
   </button>
-  <div class="mt-2" *ngIf="init && compoundActions.length > 0">
-    <table class="table w-100" [formGroup]="form">
+  <div class="mt-2" *ngIf="isElementSelected && compoundActions.length > 0">
+    <table class="table w-100">
       <thead>
       <tr>
         <th scope="col">Action</th>
-        <th scope="col">Void</th>
-        <th scope="col">Variable</th>
         <th scope="col">Priority</th>
       </tr>
       </thead>
-      <tbody formArrayName="inputs">
-      <tr *ngFor="let action of compoundActions; let i = index">
+      <tbody>
+      <tr *ngFor="let action of compoundActions">
         <td>{{getActionNameById(action.actionId)}}</td>
-        <td>{{getActionVoidById(action.actionId).toString() | uppercase}}</td>
-        <td>
-          <label>
-            <input type="text" class="form-control"
-                   [formControlName]="i">
-          </label>
-        </td>
         <td>{{action.priority}}</td>
       </tr>
     </table>
