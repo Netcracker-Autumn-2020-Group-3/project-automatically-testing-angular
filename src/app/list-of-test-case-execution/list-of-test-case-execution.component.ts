@@ -84,15 +84,7 @@ export class ListOfTestCaseExecutionComponent implements OnInit {
   }
 
   statusSearch(passed: boolean, failed: boolean): string {
-    if(passed && failed) {
-      return  'all';
-    } else if (!passed && !failed){
-      return  'all';
-    }
-    if(passed && !failed) {
-      return 'passed';
-    } else {
-      return 'failed';
-    }
+    if((passed && failed) || (!passed && !failed)) return  'all';
+    return (passed && !failed)? 'passed' :  'failed';
   }
 }

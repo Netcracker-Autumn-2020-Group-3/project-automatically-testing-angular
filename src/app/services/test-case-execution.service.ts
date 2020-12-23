@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {TestCaseExecution} from "../model/testCaseExecution";
 import {TestCaseExecutionWithFailedActionNumber} from "../model/testCaseExecutionWithFailedActionNumber";
@@ -24,8 +24,16 @@ export class TestCaseExecutionService {
   getAllTestCaseExecutionWithFailedActionNumber(limit: number, offset: number, orderBy: string, orderByClause: string, testCaseName: string,
                                                 projectName: string, status: string): Observable<TestCaseExecutionWithFailedActionNumber[]> {
     this.toUndefined(testCaseName, projectName);
-    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(`${this.url}${limit}/${offset}/${orderBy}/${orderByClause}
-      /${this.testCaseName}/${this.projectName}/${status}`);
+    const url = this.url + "all";
+    const params = new HttpParams()
+      .set('limit', limit.toString())
+      .set('offset', offset.toString())
+      .set('orderBy', orderBy)
+      .set('orderByClause', orderByClause)
+      .set('testCaseName', this.testCaseName)
+      .set('projectName', this.projectName)
+      .set('status', status);
+    return this.http.get<TestCaseExecutionWithFailedActionNumber[]>(url,{params});
   }
 
   countTestCaseExecutions(testCaseName: string, projectName: string, status: string) {
