@@ -3,25 +3,25 @@
     <div class="four col-md-3">
       <div class="counter-box colored"> <i class="fa fa-group"></i>
         <p>Our site is used by</p>
-        <span class="counter" routerLink="/users">{{userCount}} users </span>
+        <span class="counter" routerLink="/users">{{getUserCount()}} users </span>
       </div>
     </div>
     <div class="four col-md-3">
       <div class="counter-box colored"> <i class="fa fa-user"></i>
         <p>Number of our administrators</p>
-        <span class="counter">{{adminCount}}</span>
+        <span class="counter">{{getAdminCount()}}</span>
       </div>
     </div>
     <div class="four col-md-3">
       <div class="counter-box colored"> <i class="fa fa-user"></i>
         <p>Number of our managers</p>
-        <span class="counter">{{managerCount}}</span>
+        <span class="counter">{{getManagerCount()}}</span>
       </div>
     </div>
     <div class="four col-md-3">
       <div class="counter-box colored"> <i class="fa fa-user"></i>
         <p>Number of our engineers</p>
-        <span class="counter">{{engineerCount}}</span>
+        <span class="counter">{{getEngineerCount()}}</span>
       </div>
     </div>
   </div>

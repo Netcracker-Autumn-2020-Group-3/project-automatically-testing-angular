@@ -6,7 +6,7 @@
       <strong>Name:</strong>
       <input type="text" class="form-control" style="width: 250%;"
              [formControl]="formName"
-             (ngModelChange)="turnOnValidName()"
+             (ngModelChange)="setValidNameTrue()"
              #inputElement>
       <small *ngIf="formName.invalid && formName.touched" style="color: red">Name is not defined!</small>
       <small *ngIf="!isValidName" style="color: red">Name is already exists!</small>
@@ -30,7 +30,8 @@
   <app-test-scenario-add-action *ngIf="isAddAction"
                                 (eventCancel)="cancelActionForm()"
                                 (eventCreated)="addActionToTestScenario($event)"
-                                [actions]="actions" [currentPriority]="getCurrentPriority()"
+                                [actions]="actions"
+                                [currentPriority]="getCurrentPriority()"
   ></app-test-scenario-add-action>
   <div *ngIf="isCreated" class="alert alert-success" role="alert"
        style="width: 75%; margin-top: 10px">

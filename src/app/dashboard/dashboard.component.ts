@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
   user: User;
   myData: any;
   dataList: any = [];
-  url:string;
+  url: string;
 
   constructor(private service: NotificationService,
   private route: ActivatedRoute,

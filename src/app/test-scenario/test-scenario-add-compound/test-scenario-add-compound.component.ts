@@ -4,7 +4,6 @@ import {TestScenarioItem} from '../../model/test-scenario/TestScenarioItem';
 import {Compound} from '../../model/test-scenario/Compound';
 import {Action} from '../../model/test-scenario/Action';
 import {ActionWithPriority} from '../../model/test-scenario/ActionWithPriority';
-import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -16,22 +15,17 @@ export class TestScenarioAddCompoundComponent implements OnInit, OnDestroy {
 
   subscription: Subscription = new Subscription();
   @Output() eventCreated: EventEmitter<any> = new EventEmitter<any>();
-  @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
+  @Output() eventCancel: EventEmitter<void> = new EventEmitter<void>();
   @Input() actions: Action[];
   @Input() compounds: Compound[];
   compoundActions: ActionWithPriority[] = [];
-  init = false;
+  isElementSelected = false;
   currentCompoundName: string;
   currentCompound: Compound;
-  form = new FormGroup({
-    inputs: new FormArray([])
-  });
 
-  constructor(private testScenarioService: TestScenarioService) {
-  }
+  constructor(private testScenarioService: TestScenarioService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -64,47 +58,28 @@ export class TestScenarioAddCompoundComponent implements OnInit, OnDestroy {
       this.testScenarioService.getAllCompoundActionsByCompoundId(this.currentCompound.id)
         .subscribe(actions => {
           this.compoundActions = actions;
-          this.addControlsToFormArray();
         }, error => console.log(error))
     );
-    this.init = true;
+    this.isElementSelected = true;
   }
 
   private getActionInstances(): TestScenarioItem[] {
     const actions: TestScenarioItem[] = [];
-    for (let i = 0; i < this.compoundActions.length; i++) {
+    this.compoundActions.forEach(actionWithPriority => {
       const action = new TestScenarioItem();
-      const inputValue = (this.form.get('inputs') as FormArray).controls[i].value;
-      action.id = this.compoundActions[i].actionId;
+      action.id = actionWithPriority.actionId;
       action.type = 'Action';
-      action.priority = this.compoundActions[i].priority;
-      action.contextInstanceName = inputValue === '' ? null : inputValue;
+      action.priority = actionWithPriority.priority;
       actions.push(action);
-    }
+    });
     return actions;
   }
 
-  private addControlsToFormArray() {
-    this.compoundActions.forEach(action => {
-      (this.form.get('inputs') as FormArray).push(new FormControl(
-        {
-          value: null,
-          disabled: this.getActionVoidById(action.actionId)
-        },
-        [Validators.required]));
-    });
-  }
-
   private getCompoundByName(name: string): Compound {
-    return this.compounds.filter(c => c.name === name).pop() as Compound;
+    return this.compounds.find(c => c.name === name) as Compound;
   }
 
   getActionNameById(id: number): string {
-    return (this.actions.filter(a => a.id === id).pop() as Action).name;
+    return (this.actions.find(a => a.id === id) as Action).name;
   }
-
-  getActionVoidById(id: number): boolean {
-    return (this.actions.filter(a => a.id === id).pop() as Action).void;
-  }
-
 }
