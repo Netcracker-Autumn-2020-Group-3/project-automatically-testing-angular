@@ -5,13 +5,11 @@
         <label>Data Set Name:
           <input class="form-control" type="text" id="data_set_name" formControlName="name" placeholder="Data Set Name" #dataSetName/>
         </label>
-       <!-- <div class="alert alert-danger" *ngIf="_name.errors?.required">
+        <div class="alert alert-danger" *ngIf="createDataSet.controls['name'].invalid && createDataSet.controls['name'].touched">
           Name is required!
-        </div>-->
+        </div>
       </div>
-      <div style="text-align: right">
-        <button type="button" class="btn btn-outline-success" (click)="addValue()">Add Value</button>
-      </div>
+
     </div>
       <div *ngFor="let index of indexes; let i = index" formArrayName="dataSetValues">
         <div class="form-group">
@@ -25,6 +23,9 @@
           </div>
         </div>
       </div>
+    <div class="add-value-button">
+      <button type="button" class="btn btn-outline-success" (click)="addValue()">Add Value</button>
+    </div>
     <div *ngIf="indexes.length>0" class="submit-button">
       <button type="submit" class="btn btn-outline-primary" [disabled]="!dataSetName.value">Add Data Set</button>
     </div>

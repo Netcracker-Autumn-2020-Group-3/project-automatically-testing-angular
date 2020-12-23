@@ -16,10 +16,9 @@ export class CreateDataSetComponent implements OnInit {
   dataSet: DataSet;
   dataEntryCreate: DataEntryCreate[];
 
-  data_set_values: [];
 
   createDataSet = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('',[Validators.required]),
     dataSetValues: new FormArray([
       new FormGroup({
         key: new FormControl('',),
@@ -54,7 +53,7 @@ export class CreateDataSetComponent implements OnInit {
 
   onSubmit(customerData: any){
     this.dataEntryCreate = customerData.dataSetValues;
-    this.services.addDataSet(customerData.name, this.dataEntryCreate).subscribe(ress => {
+    this.services.addDataSet(customerData.name, this.dataEntryCreate).subscribe(() => {
       Swal.fire({icon: 'success',
         title: 'Ok',
         text: 'created successfully!'
@@ -64,10 +63,8 @@ export class CreateDataSetComponent implements OnInit {
       Swal.fire({
         icon: "error",
         title: "error"
-      })
+      }).then(() =>
+        this.location.getState())
     });
-   /* this.services.addDataSet(customerData.Name, customerData.DataSetValues.filter(function (el: any) {
-     return el != "";
-    }));*/
   }
 }
