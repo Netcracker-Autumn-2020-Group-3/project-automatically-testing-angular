@@ -16,25 +16,11 @@ export class ActionExecutionDashboardComponent implements OnInit {
   chart: Chart;
 
   constructor(private service: ActionExecutionService, private cd: ChangeDetectorRef) {
+    //ChangeDetectorRef
    setTimeout(()=> {
      this.refreshChartData();
-    // this.cd.detectChanges();
     }, 2000);
   }
-
-/*  ngOnInit(): void {
-    this.service.getFailedPassedActionsExecution('FAILED').subscribe(data =>
-      this.failedActionsData = data.map(function (point) {
-       return [Date.UTC(Number(point.date.substr(0,4)),Number(point.date.substr(5,2))-1,
-        Number(point.date.substr(8,2))), point.quantity];
-    }));
-    this.service.getFailedPassedActionsExecution('PASSED').subscribe(data =>
-      this.passedActionsData = data.map((point) => {
-        return [Date.UTC(Number(point.date.substr(0, 4)), Number(point.date.substr(5, 2)) - 1,
-          Number(point.date.substr(8, 2))), point.quantity];
-      }));
-      //this.on();
-  }*/
 
   ngOnInit(): void {
    this.getFailedPassedActionsExecution();
