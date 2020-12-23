@@ -10,7 +10,7 @@ import {environment} from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  // private url = 'https://automatically-testing-java.herokuapp.com/';
+
   private url = `${environment.url}`;
   private managerUrl = this.url + 'manager';
   private adminUrl = this.url + 'admin';

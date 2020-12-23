@@ -5,9 +5,7 @@ import {ActionExecutionDto} from '../model/action-execution-dto';
 import {ReportService} from '../services/report.service';
 import {Subscription} from 'rxjs';
 import {HttpParams} from '@angular/common/http';
-import {Pageable} from '../model/pageable';
 import Swal from 'sweetalert2';
-import {Search} from '../util/search/search.component';
 
 @Component({
   selector: 'app-action-execution',
@@ -32,40 +30,36 @@ export class ActionExecutionComponent implements OnInit, OnDestroy{
 
   constructor(private actionExecutionService: ActionExecutionService,
               private route: ActivatedRoute,
-              private reportService: ReportService,
-              private router: Router) { }
+              private reportService: ReportService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(value => {
       this.testCaseExecutionId = value.get('test_case_execution_id');
     });
   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
-  getParams(){
+  getParams(currentPage: number, orderSearch: string,
+            orderSort: string, currentPageSize: number, currentSearch: string){
     return new HttpParams()
-      .append('page', String(this.currentPage))
-      .append('orderSearch', String(this.orderSearch))
-      .append('orderSort', String(this.orderSort))
-      .append('pageSize', String(this.currentPageSize))
-      .append('search', String(this.currentSearch));
-  }
-
-  getParamsForReport(){
-    return new HttpParams()
-      .append('page', String(this.currentPage))
-      .append('orderSearch', String(this.orderSearch))
-      .append('orderSort', String(this.orderSort))
-      .append('pageSize', String(this.quantity))
-      .append('search', String(this.currentSearch));
+      .append('page', String(currentPage))
+      .append('orderSearch', String(orderSearch))
+      .append('orderSort', String(orderSort))
+      .append('pageSize', String(currentPageSize))
+      .append('search', String(currentSearch));
   }
 
   getActionExecutions(){
     this.subscription.add(
-      this.actionExecutionService.getAllActionsExecution(this.testCaseExecutionId, this.getParams()).subscribe(res => {
-        this.actionExecution = res;
+      this.actionExecutionService.getAllActionsExecution(
+        this.testCaseExecutionId, this.getParams(this.currentPage, this.orderSearch,
+                                                this.orderSort, this.currentPageSize,
+                                                this.currentSearch)).subscribe(res => {
+            this.actionExecution = res;
+            this.offset = (this.currentPage - 1) * this.currentPageSize;
       })
     );
   }
@@ -79,7 +73,6 @@ export class ActionExecutionComponent implements OnInit, OnDestroy{
 
   getEventChangePage(page: number) {
     this.currentPage = page;
-    this.offset = (this.currentPage - 1) * this.currentPageSize;
     this.getQuantityPages();
     this.getActionExecutions();
   }
@@ -96,11 +89,13 @@ export class ActionExecutionComponent implements OnInit, OnDestroy{
 
   sendReport() {
     this.subscription.add(
-      this.actionExecutionService.getAllActionsExecution(this.testCaseExecutionId, this.getParamsForReport()).subscribe(res => {
-        this.actionsForReport = res;
-        this.reportService.sendReport(this.testCaseExecutionId, this.actionsForReport).subscribe(status => {
-            this.alertReport(status);
-          });
+      this.actionExecutionService.getAllActionsExecution(
+        this.testCaseExecutionId, this.getParams(this.currentPage, this.orderSearch, this.orderSort,
+                                                this.quantity, this.currentSearch)).subscribe(res => {
+            this.actionsForReport = res;
+            this.reportService.sendReport(this.testCaseExecutionId, this.actionsForReport).subscribe(status => {
+                this.alertReport(status);
+            });
       })
     );
   }
@@ -108,7 +103,7 @@ export class ActionExecutionComponent implements OnInit, OnDestroy{
   alertReport(status: string) {
     Swal.fire({icon: status === 'OK' ? 'success' : 'error',
       title: status === 'OK' ? 'success' : 'error',
-      text: status === 'OK' ? 'Email was send successfully!' : status === 'NO_CONTENT' ? 'No subscribers' : 'Emails are not correct'
+      text: status === 'OK' ? 'Email was sent successfully!' : status === 'NO_CONTENT' ? 'No subscribers' : 'Emails are not correct'
     });
   }
 

@@ -1,16 +1,18 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Action} from '../model/action.model';
 import {ListActionsComponent} from './list-actions/list-actions.component';
 import {LibraryActionService} from '../services/library-action.service';
 import {HttpParams} from '@angular/common/http';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-library-list-actions',
   templateUrl: './library.component.html',
   styleUrls: ['./library.component.css']
 })
-export class LibraryComponent implements OnInit {
+export class LibraryComponent implements OnInit, OnDestroy {
 
+  subscription: Subscription = new Subscription();
   @ViewChild('buttonActions') elemRefButActions: ElementRef;
   @ViewChild('buttonCompounds') elemRefButCompounds: ElementRef;
   @ViewChild('buttonCreateCompound') elemRefButCreateCompound: ElementRef;
@@ -39,9 +41,15 @@ export class LibraryComponent implements OnInit {
       .append('orderSearch', String(this.orderSearch))
       .append('orderSort', String(this.orderSort))
       .append('pageSize', String(this.pageSize));
-    this.actionService.getActions(param).subscribe(( res => {
-      this.actions = res;
-    }));
+    this.subscription.add(
+      this.actionService.getActions(param).subscribe(( res => {
+        this.actions = res;
+      }))
+    );
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   getActionsFromSearch(actionsSearch: Action[]) {
@@ -78,4 +86,6 @@ export class LibraryComponent implements OnInit {
     this.elemRefButCompounds.nativeElement.classList.remove('active');
     this.elemRefButCreateCompound.nativeElement.classList.add('active');
   }
+
+
 }

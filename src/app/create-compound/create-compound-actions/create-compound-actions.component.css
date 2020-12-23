@@ -14,7 +14,9 @@
 ::-webkit-scrollbar-thumb {
   background: grey;
 }
-
+.actionInCom{
+  min-width: 90px;
+}
 
 
 .example-list {

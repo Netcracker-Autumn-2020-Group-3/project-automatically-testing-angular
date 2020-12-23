@@ -16,5 +16,4 @@ export class ReportService {
   sendReport(testCaseExecutionId: number, actionExecution: ActionExecutionDto[]){
     return this.http.post<string>(this.sendReportUrl + String(testCaseExecutionId), actionExecution);
   }
-
 }

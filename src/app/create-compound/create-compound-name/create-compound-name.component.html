@@ -1,6 +1,6 @@
 <div>
   <div class="mb-4 input">
-    <label class="float-left mr-5" style="width: 160px">Name</label>
+    <label class="float-left mr-5" >Name</label>
     <input type="text"
            class="form-control input-field"
            [(ngModel)]="compoundName"
@@ -8,8 +8,9 @@
            placeholder="Name">
   </div>
   <div class="input">
-    <label class="float-left mr-5" style="width: 160px;">Description</label>
-    <input type="text" class="form-control input-field"  [(ngModel)]="compoundDescription" (ngModelChange)="setNameDescription()"   placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
+    <label class="float-left mr-5" >Description</label>
+    <input type="text" class="form-control input-field"  [(ngModel)]="compoundDescription"
+           (ngModelChange)="setNameDescription()"   placeholder="Name" aria-label="Username" aria-describedby="basic-addon1">
   </div>
 </div>
 

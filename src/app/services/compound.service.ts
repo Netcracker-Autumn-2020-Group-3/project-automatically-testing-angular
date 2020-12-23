@@ -34,7 +34,4 @@ export class CompoundService {
     return this.http.get<Compound>(this.compoundUrlEditGet + String(compoundId));
   }
 
-  updateCompound(compound: Compound) {
-    return this.http.put<string>(this.compoundUrlEditGet + String(compound.id), compound);
-  }
 }

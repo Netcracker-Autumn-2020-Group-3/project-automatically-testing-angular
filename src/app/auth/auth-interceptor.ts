@@ -4,7 +4,6 @@ import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http'
 
 import { TokenStorageService } from './token-storage.service';
 
-
 const TOKEN_HEADER_KEY = 'Authorization';
 
 @Injectable()
@@ -22,7 +21,6 @@ export class AuthInterceptor implements HttpInterceptor {
       return next.handle(authReq);
     }
     return next.handle(req);
-
   }
 }
 

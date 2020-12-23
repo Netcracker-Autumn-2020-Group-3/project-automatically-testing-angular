@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DataSet} from '../model/dataSet';
 import {DataEntry} from '../model/dataEntry';
 import { ActivatedRoute } from '@angular/router';
@@ -8,14 +8,16 @@ import {EditNameDataSetComponent} from './edit-name-data-set/edit-name-data-set.
 import {DataSetService} from "../services/data-set.service";
 import { Location } from "@angular/common";
 import Swal from "sweetalert2";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-edit-data-set',
   templateUrl: './edit-data-set.component.html',
   styleUrls: ['./edit-data-set.component.css']
 })
-export class EditDataSetComponent implements OnInit {
+export class EditDataSetComponent implements OnInit, OnDestroy {
 
+  subscriptions: Subscription = new Subscription();
   dataSet: DataSet;
   dataEntry: DataEntry[];
   idDataSet: any;
@@ -34,15 +36,23 @@ export class EditDataSetComponent implements OnInit {
     this.getDataEntryById(this.idDataSet);
   }
 
+  ngOnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
   getDataSetById(id: number){
-    this.dataSetService.getDataSetByIdForEdit(id).subscribe(
-      dataSet => this.dataSet = dataSet
+    this.subscriptions.add(
+      this.dataSetService.getDataSetByIdForEdit(id).subscribe(
+        dataSet => this.dataSet = dataSet
+      )
     );
   }
 
   getDataEntryById(id: number){
-    this.dataSetService.getDataEntryByDataSetIdForEdit(id).subscribe(
-      dataEntry => this.dataEntry = dataEntry
+    this.subscriptions.add(
+      this.dataSetService.getDataEntryByDataSetIdForEdit(id).subscribe(
+        dataEntry => this.dataEntry = dataEntry
+      )
     );
   }
 
