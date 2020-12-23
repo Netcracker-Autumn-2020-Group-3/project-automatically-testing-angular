@@ -21,7 +21,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   search = {
     name: '',
     link: '',
-    onlyNotArchived: false,
+    isArchived: false,
     sortField: 'id',
     sortOrder: 'ASC',
     pageSize: this.pageSize.toString(10),
@@ -42,10 +42,9 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     const params = new HttpParams()
       .append('name', this.search.name)
       .append('link', this.search.link)
-      .append('onlyNotArchived', this.search.onlyNotArchived.toString())
+      .append('isArchived', this.search.isArchived.toString())
       .append('pageSize', this.search.pageSize);
     this.subscriptions.add(this.projectService.countPages(params).subscribe(data => {
-      console.log(data);
       this.numberOfPages = data;
     }));
   }
