@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { User } from '../model/user';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup,
 Validators,
 ValidatorFn , AbstractControl,
@@ -40,9 +41,21 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(customerData: any) {
-    const form = this.registerForm.value;
-    form.password = btoa(this.registerForm.value.password);
-    this.service.addUser(form);
+    this.service.checkIfEmailExists(this.registerForm.value.email).subscribe(val => {
+    if(val === false){
+        const form = this.registerForm.value;
+        form.password = btoa(this.registerForm.value.password);
 
+        this.service.addUser(form);
+        Swal.fire({icon: 'success',
+                    title: 'ok',
+                    text: 'User created successfully!'});
+        }
+        else {
+         Swal.fire({icon: 'error',
+                         title: 'Oops',
+                         text: 'User with such email already exists'});
+        }
+    });
   }
 }

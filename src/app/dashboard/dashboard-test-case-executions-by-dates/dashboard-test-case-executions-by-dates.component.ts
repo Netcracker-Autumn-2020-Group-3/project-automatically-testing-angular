@@ -37,7 +37,6 @@ export class DashboardTestCaseExecutionsByDatesComponent implements OnInit {
 
   getTestCaseExecutionsByDates() {
     this.service.getTestCaseExecutionsByDates(10).subscribe(data => {
-      console.log('data tes case exec by dates : ' + data);
       this.testCaseExecutionsByDates = data;
       data.forEach(x => {
         this.array.push({value: x.numberOfExecutions, name: x.date});

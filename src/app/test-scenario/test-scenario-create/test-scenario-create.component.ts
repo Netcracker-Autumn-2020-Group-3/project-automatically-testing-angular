@@ -71,16 +71,15 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
   }
 
   private addItemToTestScenario(item: TestScenarioItem, itemName: string) {
-    const itemNew = item;
-    itemNew.priority = (this.items as TestScenarioItem[]).length + 1;
-    (this.items as TestScenarioItem[]).push(itemNew);
-    this.mapItemNames.set(itemNew, itemName);
+    item.priority = (this.items as TestScenarioItem[]).length + 1;
+    this.items.push(item);
+    this.mapItemNames.set(item, itemName);
   }
 
   deleteItemFromTestScenario(item: TestScenarioItem) {
     this.mapItemNames.delete(item);
-    const index = (this.items as TestScenarioItem[]).indexOf(item);
-    this.items = (this.items as TestScenarioItem[]).filter(a => a !== item);
+    const index = this.items.indexOf(item);
+    this.items = this.items.filter(a => a !== item);
     for (let i: number = index; i < this.items.length; i++) {
       this.items[i].priority -= 1;
     }
@@ -115,7 +114,7 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
     if (isCreated) {
       this.finishCreateTestScenario();
     } else {
-      this.turnOffValidName();
+      this.setValidNameFalse();
     }
   }
 
@@ -129,19 +128,19 @@ export class TestScenarioCreateComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.isCreated = false;
       this.router.navigate(['/test-scenario']).then();
-    }, 2000);
+    }, 1500);
   }
 
   cancelTestScenario() {
     this.router.navigate(['/test-scenario']).then();
   }
 
-  turnOnValidName() {
+  setValidNameTrue() {
     this.renderer.removeClass(this.inputElemRef.nativeElement, 'invalidInputForm');
     this.isValidName = true;
   }
 
-  private turnOffValidName() {
+  private setValidNameFalse() {
     this.renderer.addClass(this.inputElemRef.nativeElement, 'invalidInputForm');
     this.isValidName = false;
   }

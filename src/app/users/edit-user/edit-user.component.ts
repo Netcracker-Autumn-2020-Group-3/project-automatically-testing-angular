@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../model/user';
-import { FormBuilder } from '@angular/forms';
+import {FormBuilder, FormControl, Validators} from '@angular/forms';
 import { Location } from "@angular/common";
 import Swal from "sweetalert2";
 
@@ -25,11 +25,11 @@ export class EditUserComponent implements OnInit {
     private location: Location
   ) {
     this.updateUserForm = this.formBuilder.group({
-      email: '',
-      name: '',
-      surname: '',
-      role: '',
-      enabled: ''
+      email: new FormControl('', [Validators.required]),
+      name: new FormControl('', [Validators.required]),
+      surname:new FormControl('', [Validators.required]),
+      role: new FormControl('',[Validators.required]),
+      enabled: new FormControl('', [Validators.required])
     });
   }
 
@@ -45,6 +45,7 @@ export class EditUserComponent implements OnInit {
   }
 
   onSubmit(customerData: any) {
+    console.log(customerData.enabled);
     this.user.id = this.idParam;
     this.user.email = customerData.email;
     this.user.name = customerData.name;

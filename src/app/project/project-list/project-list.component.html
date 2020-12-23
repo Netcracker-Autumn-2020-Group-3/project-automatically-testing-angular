@@ -9,20 +9,10 @@
     <th scope="col"><input class="form-control mr-sm-2" type="search" placeholder="Link" aria-label="Search"
                            [(ngModel)]="search.link" (change)="onSearchSubmit()"></th>
     <th scope="col">
-      <div class="col-auto">
-        <select class="custom-select mr-sm-2" id="sortBy" [(ngModel)]="search.sortField" (change)="onSearchSubmit()">
-          <option selected value="">Sort by</option>
-          <option value="id">Id</option>
-          <option value="name">Name</option>
-          <option value="link">Link</option>
-        </select>
-      </div>
-    </th>
-    <th scope="col">
       <div class="form-check form-check-inline">
         <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option2"
-               [(ngModel)]=search.onlyNotArchived (change)="onSearchSubmit()">
-        <label class="form-check-label" for="inlineCheckbox4">Not archived</label>
+               [(ngModel)]=this.search.onlyNotArchived (change)="onSearchSubmit()">
+        <label class="form-check-label" for="inlineCheckbox4">Archived</label>
       </div>
     </th>
     <th scope="col">
@@ -58,5 +48,3 @@
 <app-pagination [quantityPages]="numberOfPages"
                 [sizePage]="pageSize"
                 (clickPage)="getPage($event)"></app-pagination>
-
-

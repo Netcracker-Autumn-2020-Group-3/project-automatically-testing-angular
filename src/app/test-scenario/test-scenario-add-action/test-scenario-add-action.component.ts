@@ -16,16 +16,13 @@ export class TestScenarioAddActionComponent implements OnInit, OnDestroy {
   @Output() eventCancel: EventEmitter<any> = new EventEmitter<any>();
   @Input() actions: Action[];
   @Input() currentPriority: number;
-  init = false;
+  isElementSelected = false;
   currentActionName: string;
   currentAction: Action;
-  currentVariableText: string | null = null;
 
-  constructor(private testScenarioService: TestScenarioService) {
-  }
+  constructor(private testScenarioService: TestScenarioService) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -47,18 +44,16 @@ export class TestScenarioAddActionComponent implements OnInit, OnDestroy {
   createAction() {
     const action = new TestScenarioItem();
     action.id = this.currentAction.id;
-    action.contextInstanceName = this.currentVariableText;
     action.type = 'Action';
     this.eventCreated.emit({action, actionName: this.currentActionName});
   }
 
   setAction() {
     this.currentAction = this.getActionByName(this.currentActionName);
-    this.init = true;
+    this.isElementSelected = true;
   }
 
   private getActionByName(name: string): Action {
-    return this.actions.filter(a => a.name === name).pop() as Action;
+    return this.actions.find(a => a.name === name) as Action;
   }
-
 }

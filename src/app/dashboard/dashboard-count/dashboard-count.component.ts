@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {DashboardService} from '../../services/dashboard.service';
+import {UserCountDto} from './user-count-dto';
 
 @Component({
   selector: 'app-dashboard-count',
@@ -8,36 +9,25 @@ import {DashboardService} from '../../services/dashboard.service';
 })
 
 export class DashboardCountComponent implements OnInit {
-  constructor(private dashboardService: DashboardService) {
-  }
-  userCount = 0;
-  adminCount = 0;
-  managerCount = 0;
-  engineerCount = 0;
+  userCountDto: UserCountDto;
+  constructor(private dashboardService: DashboardService) { }
   ngOnInit(): void {
-    this.dashboardService.getUserCount().subscribe(data => {
-      this.userCount = data;
-    }, error => {
+    this.dashboardService.getUserCountByRole().subscribe(data => {
+      this.userCountDto = data;
+    } , error => {
       console.log(error);
     });
-
-    this.dashboardService.getAdminCount().subscribe(data => {
-      this.adminCount = data;
-    }, error => {
-      console.log(error);
-    });
-
-    this.dashboardService.getManagerCount().subscribe(data => {
-      this.managerCount = data;
-    }, error => {
-      console.log(error);
-    });
-
-    this.dashboardService.getEngineerCount().subscribe(data => {
-      this.engineerCount = data;
-    }, error => {
-      console.log(error);
-    });
-
-
-}}
+  }
+  getUserCount() {
+    return this.userCountDto.userCount;
+  }
+  getAdminCount() {
+    return this.userCountDto.adminCount;
+  }
+  getManagerCount() {
+    return this.userCountDto.managerCount;
+  }
+  getEngineerCount() {
+    return this.userCountDto.engineerCount;
+  }
+}

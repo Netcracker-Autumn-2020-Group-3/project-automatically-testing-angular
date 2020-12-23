@@ -102,7 +102,7 @@ export class TestCaseCreateComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   validate() {
-    this.removeAlert();
+    this.showSaveProgress = false;
     if (this.testCaseName === '' || this.testCaseName === null || this.testCaseName === undefined) {
       this.progressMessage = 'Enter test case name!';
       this.progressTypeClass = this.progressFail;
@@ -119,7 +119,7 @@ export class TestCaseCreateComponent implements OnInit, OnDestroy, AfterViewInit
   }
 
   onSubmit() {
-    this.removeAlert();
+    this.showSaveProgress = false;
 
     this.variableValues = this.formBody.flattenVarVals();
 
@@ -127,31 +127,23 @@ export class TestCaseCreateComponent implements OnInit, OnDestroy, AfterViewInit
       return;
     }
 
-    // let projectId;
     this.subscriptions.add(this.route.paramMap.subscribe(value => {
       const projectId = value.get('project_id');
-      if (projectId !== undefined) {
-        this.subscriptions.add(this.testCaseService.postTestCase(this.testCaseName,
-          projectId === null ? '' : projectId, this.datasetId, this.scenarioId, this.variableValues)
+      if (projectId) {
+        this.subscriptions.add(this.testCaseService.postTestCase(this.testCaseName, projectId, this.datasetId,
+          this.scenarioId, this.variableValues)
           .subscribe(data => {
-            this.progressMessage = 'Successfully created.';
-            this.progressTypeClass = this.progressSuccess;
-            this.showSaveProgress = true;
-          },
-          error => {
-            this.progressMessage = 'Error uploading data entries.';
-            this.progressTypeClass = this.progressFail;
-            this.showSaveProgress = true;
-          }
-        ));
+              this.progressMessage = 'Successfully created.';
+              this.progressTypeClass = this.progressSuccess;
+              this.showSaveProgress = true;
+            },
+            error => {
+              this.progressMessage = 'Error saving test case.';
+              this.progressTypeClass = this.progressFail;
+              this.showSaveProgress = true;
+            }
+          ));
       }
     }));
   }
-
-  removeAlert() {
-    this.progressMessage = '';
-    this.progressTypeClass = '';
-    this.showSaveProgress = false;
-  }
-
 }

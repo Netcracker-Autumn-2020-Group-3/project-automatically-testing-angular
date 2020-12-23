@@ -21,8 +21,8 @@ export class ProjectCreateComponent implements OnInit, OnDestroy {
   project: Project = {name: '', link: '', archived: 'false'};
 
   showSaveProgress = false;
-  progressMessage = '';
-  progressTypeClass = '';
+  progressMessage: string;
+  progressTypeClass: string;
   progressSuccess = 'alert-success';
   progressFail = 'alert-danger';
 
@@ -34,8 +34,6 @@ export class ProjectCreateComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(project: Project) {
-    console.log('sumbitting parent ' + project.name);
-    console.log('sumbitting link ' + project.name);
     this.showSaveProgress = false;
 
     this.subscriptions.add(this.projectService.postProject(project).subscribe(data => {
