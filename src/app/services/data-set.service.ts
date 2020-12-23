@@ -15,14 +15,14 @@ export class DataSetService {
 
   //private url = 'https://automatically-testing-java.herokuapp.com/';
   private url = `${environment.url}`;
-  private url_get_all_data_set = this.url + 'allDataSet';
-  private url_delete_data_set = this.url + 'delete-data-set/';
+  private getAllDataSetUrl = this.url + 'all-data-set';
+  private deleteDataSetUrl = this.url + 'delete-data-set/';
 
 
   constructor(private http: HttpClient) { }
 
   getAllDataSet(): Observable<DataSet[]> {
-    return this.http.get<DataSet[]>(this.url_get_all_data_set);
+    return this.http.get<DataSet[]>(this.getAllDataSetUrl);
   }
 
   addDataSet(dataSetName: string, values: DataEntryCreate[]) {
@@ -32,7 +32,7 @@ export class DataSetService {
   }
 
   delete(id: number) {
-    const url = `${this.url_delete_data_set}${id}`;
+    const url = `${this.deleteDataSetUrl}${id}`;
     return this.http.patch(url, {}).toPromise();
   }
 }
