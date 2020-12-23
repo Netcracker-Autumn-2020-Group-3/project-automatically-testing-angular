@@ -33,8 +33,10 @@ export class TestCaseBodyComponent implements OnInit {
           this.varVals[i][j][k] = {
             actionInstanceId: action.actionInstanceId,
             variableId: actionVariable.id,
-            dataEntryId: (actionVariable.dataEntry === undefined) ? undefined : actionVariable.dataEntry.id,
-            id: (actionVariable.variableValueId === undefined) ? undefined : actionVariable.variableValueId
+            dataEntryId: (actionVariable.dataEntry === undefined || actionVariable.dataEntry === null) ?
+              undefined : actionVariable.dataEntry.id,
+            id: (actionVariable.variableValueId === undefined || actionVariable.variableValueId === null) ?
+              undefined : actionVariable.variableValueId
           };
         });
       });

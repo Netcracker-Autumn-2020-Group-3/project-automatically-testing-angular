@@ -72,10 +72,6 @@ export class TestCaseService {
     return this.http.get<TestCaseDtoForPagination[]>(`${this.url}list/page`, {params});
   }
 
-  getPageByProjectId(params: Params, projectId: number) {
-    return this.http.get<TestCaseDtoForPagination[]>(`${this.url}${projectId}/list/page`, {params});
-  }
-
   getPageWithUser(params: Params) {
     return this.http.get<TestCaseDtoWithUser[]>(`${this.url}list/page-upd`, {params});
   }
