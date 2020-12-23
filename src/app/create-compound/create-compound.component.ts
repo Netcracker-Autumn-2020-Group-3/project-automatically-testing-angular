@@ -57,7 +57,7 @@ export class CreateCompoundComponent implements OnInit, OnDestroy {
 
   checkIfCompoundExist() {
     this.subscriptions.add(
-      this.compoundService.checkIfCompoundNameExist(this.compound.name).subscribe(res =>{
+      this.compoundService.checkIfCompoundNameExist(this.compound.name).subscribe(res => {
         this.alert(res);
     })
     );
