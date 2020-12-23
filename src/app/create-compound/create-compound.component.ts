@@ -45,7 +45,8 @@ export class CreateCompoundComponent implements OnInit, OnDestroy {
   }
 
   saveCompound() {
-    if (this.name === '' || this.name == null || this.description === '' || this.description == null){
+    if (this.name === '' || this.name == null ||
+        this.description === '' || this.description == null){
       this.alertValidate();
     }else{
       this.compound.name = this.name;

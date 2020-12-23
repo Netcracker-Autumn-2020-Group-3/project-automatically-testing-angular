@@ -1,6 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Compound} from '../../model/compound.model';
-import {CompoundService} from '../../services/compound.service';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Action} from '../../model/action.model';
 import {LibraryActionService} from '../../services/library-action.service';
