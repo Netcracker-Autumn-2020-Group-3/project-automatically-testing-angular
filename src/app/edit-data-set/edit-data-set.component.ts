@@ -5,6 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import {EditDataSetService} from '../services/edit-data-set.service';
 import {EditDataEntryComponent} from './edit-data-entry/edit-data-entry.component';
 import {EditNameDataSetComponent} from './edit-name-data-set/edit-name-data-set.component';
+import {DataSetService} from "../services/data-set.service";
+import { Location } from "@angular/common";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-data-set',
@@ -20,7 +23,8 @@ export class EditDataSetComponent implements OnInit {
   @ViewChild(EditDataEntryComponent) editDataEntry: EditDataEntryComponent;
   @ViewChild(EditNameDataSetComponent) editDataSet: EditNameDataSetComponent;
 
-  constructor(private dataSetService: EditDataSetService, private route: ActivatedRoute) { }
+  constructor(private dataSetService: EditDataSetService, private route: ActivatedRoute, private service: DataSetService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(value => {
@@ -45,5 +49,20 @@ export class EditDataSetComponent implements OnInit {
   saveChanges() {
     this.dataSet = this.editDataSet.save();
     this.editDataEntry.saveChanges(this.dataSet);
+  }
+
+  delete() {
+    this.service.delete(this.idDataSet).then(ress => {
+      Swal.fire({icon: 'success',
+        title: 'Ok',
+        text: 'deleted successfully!'
+      }).then((result) =>
+        this.location.back());
+    }, error => {
+      Swal.fire({
+        icon: "error",
+        title: "error"
+      })
+    });
   }
 }

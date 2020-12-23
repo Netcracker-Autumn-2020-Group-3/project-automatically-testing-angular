@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormArray } from '@angular/forms';
+import {FormControl, FormGroup, FormArray, Validators} from '@angular/forms';
 import { DataSet } from '../model/dataSet';
 import { DataSetService } from '../services/data-set.service';
 import {DataEntryCreate} from "./dataEntryCreate";
@@ -16,14 +16,13 @@ export class CreateDataSetComponent implements OnInit {
   dataSet: DataSet;
   dataEntryCreate: DataEntryCreate[];
 
-  data_set_values: [];
 
   createDataSet = new FormGroup({
-    Name: new FormControl(''),
-    Data_set_values: new FormArray([
+    name: new FormControl('',[Validators.required]),
+    dataSetValues: new FormArray([
       new FormGroup({
-        key: new FormControl(''),
-        value: new FormControl('')
+        key: new FormControl('',),
+        value: new FormControl('',)
       })
     ])
   });
@@ -40,7 +39,7 @@ export class CreateDataSetComponent implements OnInit {
   }
 
   addValue(): void {
-    (this.createDataSet.controls.Data_set_values as FormArray).push(new FormGroup({
+    (this.createDataSet.controls.dataSetValues as FormArray).push(new FormGroup({
       key: new FormControl(''),
       value: new FormControl('')
     }));
@@ -49,13 +48,12 @@ export class CreateDataSetComponent implements OnInit {
 
   delete(i: number): void {
     this.indexes.splice(i, 1);
-    (this.createDataSet.controls.Data_set_values as FormArray).removeAt(i);
+    (this.createDataSet.controls.dataSetValues as FormArray).removeAt(i);
   }
 
   onSubmit(customerData: any){
-    this.dataEntryCreate = customerData.Data_set_values;
-    console.log(this.dataEntryCreate);
-    this.services.addDataSet(customerData.Name, this.dataEntryCreate).subscribe(ress => {
+    this.dataEntryCreate = customerData.dataSetValues;
+    this.services.addDataSet(customerData.name, this.dataEntryCreate).subscribe(() => {
       Swal.fire({icon: 'success',
         title: 'Ok',
         text: 'created successfully!'
@@ -65,10 +63,8 @@ export class CreateDataSetComponent implements OnInit {
       Swal.fire({
         icon: "error",
         title: "error"
-      })
+      }).then(() =>
+        this.location.getState())
     });
-    //this.services.addDataSet(customerData.Name, customerData.Data_set_values.filter(function (el: any) {
-    // return el != "";
-    //}));
   }
 }

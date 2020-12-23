@@ -33,6 +33,9 @@
       <li class="page-item">
         <button class="page-link" (click)="previousPage()"><</button>
       </li>
+      <li class="page-item" *ngFor="let item of pagination; let i = index" (click)="onPage(i)">
+        <button class="page-link" >{{i+1}}</button>
+      </li>
       <li class="page-item">
         <button class="page-link" (click)="nextPage()">></button>
       </li>
