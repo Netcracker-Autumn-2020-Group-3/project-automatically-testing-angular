@@ -19,19 +19,17 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   projectInitialized = false;
 
   showSaveProgress = false;
-  progressMessage = '';
-  progressTypeClass = '';
+  progressMessage: string;
+  progressTypeClass: string;
   progressSuccess = 'alert-success';
   progressFail = 'alert-danger';
 
-  constructor(private route: ActivatedRoute,
-              private formBuilder: FormBuilder, private projectService: ProjectService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private projectService: ProjectService) {
     this.subscriptions.add(
       this.route.paramMap.subscribe(value => {
         const projectId = value.get('project_id');
-        if (projectId !== null) {
+        if (projectId) {
           this.subscriptions.add(this.projectService.getProjectDtoById(parseInt(projectId, 10)).subscribe(data => {
-            console.log(data);
             this.project.name = data.name;
             this.project.link = data.link;
             this.project.id = data.id;
@@ -45,25 +43,21 @@ export class ProjectEditComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
   }
 
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
   onSubmit(project: Project) {
-    console.log('submit ' + project.name);
-    console.log('submit ' + project.link);
-    console.log('submit ' + project.id);
-
     this.subscriptions.add(this.projectService.updateProject(project).subscribe(data => {
-        this.progressMessage = 'Successfully created.';
+        this.progressMessage = 'Successfully edited.';
         this.progressTypeClass = this.progressSuccess;
         this.showSaveProgress = true;
       },
       error => {
-        this.progressMessage = 'Error creating project.';
+        this.progressMessage = 'Error editing project.';
         this.progressTypeClass = this.progressFail;
         this.showSaveProgress = true;
       }
     ));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }
