@@ -22,7 +22,6 @@ export class NotificationsComponent implements OnInit {
   myData: any;
   user:User;
   url: string
- // storedNames: string ;
  notifications: Notification[] = [];
  notification: Notification;
 
@@ -41,13 +40,6 @@ export class NotificationsComponent implements OnInit {
 
    }
 
-   navigateToExecution(){
-   //this.router.navigate(['/list/actions-execution/{{}}']);
-    this.ngZone.run( () => {
-      this.menuComponent.decreaseAmount();
-    });
-   }
-
   getAuth(){
   this.service.getAuthorization().then(user => {
   this.user = user;
@@ -57,7 +49,7 @@ export class NotificationsComponent implements OnInit {
 
   async ngOnInit(){
   this.getAuth();
-  this.connect('');
+  this.connect();
 
   this.service.getNotificationPage().subscribe(data => {
   this.notifications = data;
@@ -66,11 +58,10 @@ export class NotificationsComponent implements OnInit {
 
 
 
-   connect(url: string): void {
-          let eventUrl = url;
+   connect(): void {
           this.service.getAuthorization().then(user => {
           this.url = user.id.toString();
-          eventUrl = `${environment.url}subscribe/${this.url}` ;
+          let eventUrl = `${environment.url}subscribe/${this.url}` ;
                     const eventSource = this.service.getEventSource(eventUrl);
                        eventSource.addEventListener(`message`, message => {
                                     this.myData = JSON.parse(message.data);
