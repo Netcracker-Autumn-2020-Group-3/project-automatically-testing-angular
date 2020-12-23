@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, NgZone} from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
 import {TokenStorageService} from '../auth/token-storage.service';
 import {Observable} from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,15 +24,12 @@ export class MenuComponent implements OnInit {
 
   constructor(private tokenService: TokenStorageService,
               private service: NotificationService,
-              private route: ActivatedRoute,
-              private ngZone: NgZone) {
-    setInterval(() => this.getAmount(), 1000);
+              private route: ActivatedRoute) {
+    setInterval(() => this.getAmount(), 5000);
   }
 
   ngOnInit(): void {
     this.name = this.tokenService.getUsername();
-    this.getAuth();
-    this.connect('');
     this.getAmount();
 
   }
@@ -42,37 +39,6 @@ export class MenuComponent implements OnInit {
       this.amountOfNotification = amount;
       }
       );
-  }
-
-
-
-  getAuth(){
-  this.service.getAuthorization().then(user => {
-  this.user = user;
-  });
-  }
-
-  decreaseAmount() {
-  this.ngZone.run( () => {
-        this.amountOfNotification -= 1;
-      });
-
-  }
-
-  connect(url: string): void {
-         let eventUrl = url;
-         this.service.getAuthorization().then(user => {
-         this.url = user.id.toString();
-         eventUrl = `${environment.url}subscribe/${this.url}` ;
-         const eventSource = this.service.getEventSource(eventUrl);
-         eventSource.addEventListener(`message`, message => {
-                                  // this.amountOfNotification += 1;
-                                  this.ngZone.run( () => {
-                                           this.amountOfNotification += 1;
-                                        });
-                               });
-         } );
-
   }
 
   logout() {

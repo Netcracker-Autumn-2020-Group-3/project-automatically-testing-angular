@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../model/user';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup,
 Validators,
 ValidatorFn , AbstractControl,
@@ -48,6 +49,9 @@ export class ResetPasswordSettingsComponent implements OnInit {
   onSubmit(customerData:any){
     this.user.password = btoa(customerData.password);
     this.service.resetPasswordSettings(this.user);
+    Swal.fire({icon: 'success',
+                title: 'ok',
+                text: 'Password changed successfully!'});
 
   }
 

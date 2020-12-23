@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { User } from '../../model/user';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup,
 Validators,
 ValidatorFn , AbstractControl,
@@ -42,6 +43,9 @@ export class SettingsComponent implements OnInit {
   this.user.surname = customerData.surname
   }
   this.service.updateUserSettings(this.user);
+  Swal.fire({icon: 'success',
+              title: 'ok',
+              text: 'Data changed successfully!'});
   }
 
   resetPassword(): void {

@@ -88,4 +88,9 @@ export class UserService {
     return this.http.post(url, body).toPromise();
   }
 
+  checkIfEmailExists(email: string) {
+  const url = `${this.url}users/check-email/`;
+  return this.http.get<boolean>(url + String(email));
+  }
+
 }

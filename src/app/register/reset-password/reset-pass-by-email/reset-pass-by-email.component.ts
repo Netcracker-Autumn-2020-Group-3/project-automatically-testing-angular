@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup,
 Validators,
 ValidatorFn , AbstractControl,
@@ -29,5 +30,8 @@ export class ResetPassByEmailComponent implements OnInit {
 
   onSubmit(customerData: any): void {
       this.userService.resetPasswordByEmail(this.resetByEmailForm.value);
+       Swal.fire({icon: 'success',
+              title: 'ok',
+              text: 'Reset link sent to your email'});
     }
 }

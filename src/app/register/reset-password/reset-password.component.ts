@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup,
 Validators,
 ValidatorFn , AbstractControl,
@@ -42,6 +43,9 @@ export class ResetPasswordComponent implements OnInit {
   onSubmit(customerData: any): void {
     let pass = btoa(customerData.password)
     this.service.resetPassword(this.token, pass);
+     Swal.fire({icon: 'success',
+            title: 'ok',
+            text: 'Password changed successfully!'});
   }
 
 }
