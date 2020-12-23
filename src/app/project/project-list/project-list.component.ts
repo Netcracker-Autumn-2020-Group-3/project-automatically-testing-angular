@@ -16,12 +16,17 @@ export class ProjectListComponent implements OnInit, OnDestroy {
 
   projects: Project[] = [];
   projectsObs: Observable<Project[]>;
-  search = {
-    name: '', link: '', onlyNotArchived: 'true', sortField: 'id', sortOrder: 'ASC', pageSize: '6', page: '1'
-  };
-
   numberOfPages = 1;
   pageSize = 6;
+  search = {
+    name: '',
+    link: '',
+    onlyNotArchived: false,
+    sortField: 'id',
+    sortOrder: 'ASC',
+    pageSize: this.pageSize.toString(10),
+    page: '1'
+  };
 
   @ViewChild(PaginationComponent)
   pagination: PaginationComponent;
@@ -37,7 +42,7 @@ export class ProjectListComponent implements OnInit, OnDestroy {
     const params = new HttpParams()
       .append('name', this.search.name)
       .append('link', this.search.link)
-      .append('onlyNotArchived', this.search.onlyNotArchived)
+      .append('onlyNotArchived', this.search.onlyNotArchived.toString())
       .append('pageSize', this.search.pageSize);
     this.subscriptions.add(this.projectService.countPages(params).subscribe(data => {
       console.log(data);
@@ -46,10 +51,13 @@ export class ProjectListComponent implements OnInit, OnDestroy {
   }
 
   getParams() {
-    console.log(this.search);
     let params = new HttpParams();
     Object.entries(this.search).forEach(([key, value]) => {
+      if (typeof value === 'boolean') {
+        params = params.append(key, value.toString());
+      } else{
         params = params.append(key, value);
+      }
     });
     return params;
   }

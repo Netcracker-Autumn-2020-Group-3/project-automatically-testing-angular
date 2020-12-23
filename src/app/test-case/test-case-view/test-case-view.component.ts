@@ -76,11 +76,13 @@ export class TestCaseViewComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onFollowButton() {
     if (this.isFollowed) {
-      this.subscriptions.add(this.testCaseService.unfollow(this.testCaseId).subscribe());
-      this.isFollowed = false;
+      this.subscriptions.add(this.testCaseService.unfollow(this.testCaseId).subscribe(success => {
+        this.isFollowed = false;
+      }));
     } else {
-      this.subscriptions.add(this.testCaseService.follow(this.testCaseId).subscribe());
-      this.isFollowed = true;
+      this.subscriptions.add(this.testCaseService.follow(this.testCaseId).subscribe(success => {
+        this.isFollowed = true;
+      }));
     }
   }
 

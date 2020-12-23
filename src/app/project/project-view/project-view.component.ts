@@ -23,18 +23,12 @@ export class ProjectViewComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(this.route.paramMap.subscribe(value => {
       const projectId = value.get('project_id');
-      if (projectId !== null) {
+      if (projectId) {
         this.projectService.getProjectDtoById(parseInt(projectId, 10)).subscribe(data => {
           this.project = data;
           console.log(this.project);
         });
       }
-    }));
-  }
-
-  archive(): void {
-    this.subscriptions.add(this.projectService.archive(this.project.id).subscribe(data => {
-      console.log('archived');
     }));
   }
 

@@ -17,11 +17,11 @@ export class ProjectBodyComponent implements OnInit {
   projectForm: any;
 
   showSaveProgress = false;
-  progressMessage = '';
-  progressTypeClass = '';
+  progressMessage: string;
+  progressTypeClass: string;
   progressFail = 'alert-danger';
 
-  constructor(private formBuilder: FormBuilder, private projectService: ProjectService) {
+  constructor(private formBuilder: FormBuilder) {
     this.projectForm = this.formBuilder.group({
       name: new FormControl(this.project.name, [
         Validators.required,
@@ -36,16 +36,13 @@ export class ProjectBodyComponent implements OnInit {
 
   validateAndSubmit() {
     this.showSaveProgress = false;
-    console.log('is invalid: ' + this.projectForm.invalid);
     if (this.projectForm.invalid) {
       this.progressMessage = 'All fields should be filled with value of length less than 50 symbols.';
       this.progressTypeClass = this.progressFail;
       this.showSaveProgress = true;
       return;
     }
-    console.log('emitting');
     this.toSubmit.emit(this.project);
-
   }
 
   ngOnInit(): void {

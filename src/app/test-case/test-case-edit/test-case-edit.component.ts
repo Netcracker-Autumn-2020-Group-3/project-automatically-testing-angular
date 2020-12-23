@@ -48,23 +48,21 @@ export class TestCaseEditComponent implements OnInit, OnDestroy {
     // get test case id
     this.subscriptions.add(this.route.paramMap.subscribe(value => {
       const testCaseId = value.get('test_case_id');
-      this.testCaseId = testCaseId === null ? -1 : parseInt(testCaseId, 10);
+      if (testCaseId) {
+        this.testCaseId = parseInt(testCaseId, 10);
+        // get test case by id
+        this.subscriptions.add(this.testCaseService.getTestCaseById(this.testCaseId).subscribe(data => {
+          this.testCase = data;
+          this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
+          // get test case dataset entries
+          this.subscriptions.add(this.testCaseService.getDataSetEntries(this.testCase.testCase.dataSetId).subscribe(dataEntries => {
+            this.dataEntries = dataEntries;
+            this.initBody();
+          }));
+          this.showForm = true;
+        }));
+      }
     }));
-
-    // get test case by id
-    this.subscriptions.add(this.testCaseService.getTestCaseById(this.testCaseId).subscribe(data => {
-      this.testCase = data;
-      this.scenarioStepsWithData = this.testCase.scenarioStepsWithData;
-
-      // get test case dataset entries
-      this.subscriptions.add(this.testCaseService.getDataSetEntries(this.testCase.testCase.dataSetId).subscribe(dataEntries => {
-        this.dataEntries = dataEntries;
-        this.initBody();
-      }));
-      this.showForm = true;
-
-    }));
-
   }
 
   ngOnDestroy(): void {
@@ -89,31 +87,29 @@ export class TestCaseEditComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.variableValues = this.formBody.flattenVarVals();
-    let projectId;
 
     if (!this.validate()) {
       return;
     }
 
     this.subscriptions.add(this.route.paramMap.subscribe(value => {
-      projectId = value.get('project_id');
+      const projectId = value.get('project_id');
+      if (projectId) {
+        this.subscriptions.add(this.testCaseService.updateTestCase(
+          this.testCase.testCase.name, this.testCase.testCase.id, this.variableValues
+        )
+          .subscribe(data => {
+              this.progressMessage = 'Successfully updated.';
+              this.progressTypeClass = this.progressSuccess;
+              this.showEditProgress = true;
+            },
+            error => {
+              this.progressMessage = 'Error updating test case.';
+              this.progressTypeClass = this.progressFail;
+              this.showEditProgress = true;
+            }
+          ));
+      }
     }));
-    if (projectId !== undefined) {
-      this.subscriptions.add(this.testCaseService.updateTestCase(
-        this.testCase.testCase.name, this.testCase.testCase.id, this.variableValues
-      )
-        .subscribe(data => {
-            this.progressMessage = 'Successfully created.';
-            this.progressTypeClass = this.progressSuccess;
-            this.showEditProgress = true;
-          },
-          error => {
-            this.progressMessage = 'Error uploading data entries.';
-            this.progressTypeClass = this.progressFail;
-            this.showEditProgress = true;
-          }
-        ));
-    }
-
   }
 }
