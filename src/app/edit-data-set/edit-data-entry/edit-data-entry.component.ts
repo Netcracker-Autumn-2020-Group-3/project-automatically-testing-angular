@@ -7,6 +7,7 @@ import {EditDataSetComponent} from '../edit-data-set.component';
 import {EditNameDataSetComponent} from '../edit-name-data-set/edit-name-data-set.component';
 import Swal from "sweetalert2";
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-edit-data-entry',
@@ -21,7 +22,7 @@ export class EditDataEntryComponent implements OnInit, OnDestroy {
   deletedDataEntryItems: number[] = [];
   subscriptions: Subscription = new Subscription();
 
-  constructor(private dataSetService: EditDataSetService) {}
+  constructor(private dataSetService: EditDataSetService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -64,6 +65,7 @@ export class EditDataEntryComponent implements OnInit, OnDestroy {
       Swal.fire({icon: 'success',
         title: 'Ok',
         text: 'updated successfully!'});
+      this.router.navigate(['/list-of-data-set']);
     }
   }
 }

@@ -12,7 +12,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './edit-data-set.component.html',
   styleUrls: ['./edit-data-set.component.css']
 })
-export class EditDataSetComponent implements OnInit,OnDestroy {
+export class EditDataSetComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
   dataSet: DataSet;

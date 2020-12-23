@@ -3,10 +3,7 @@ import {Compound} from '../model/compound.model';
 import {CompoundAction} from '../model/compoundAction';
 import {Action} from '../model/action.model';
 import {CompoundService} from '../services/compound.service';
-import { Location } from '@angular/common';
-
 import Swal from 'sweetalert2';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {CompoundDto} from '../model/compound-dto';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -20,7 +17,7 @@ import {Subscription} from 'rxjs';
 export class CreateCompoundComponent implements OnInit, OnDestroy {
 
   subscriptions: Subscription = new Subscription();
-  actions: Action[];
+  actions: Action[] = [];
   compound = new Compound(1, '', '');
   compoundActions: CompoundAction[] = [];
   arrayForPassing: CompoundDto;
@@ -48,9 +45,13 @@ export class CreateCompoundComponent implements OnInit, OnDestroy {
   }
 
   saveCompound() {
-    this.compound.name = this.name;
-    this.compound.description = this.description;
-    this.checkIfCompoundExist();
+    if (this.name === '' || this.name == null || this.description === '' || this.description == null){
+      this.alertValidate();
+    }else{
+      this.compound.name = this.name;
+      this.compound.description = this.description;
+      this.checkIfCompoundExist();
+    }
   }
 
   checkIfCompoundExist() {
@@ -62,21 +63,30 @@ export class CreateCompoundComponent implements OnInit, OnDestroy {
   }
 
   fillTheCompoundActionPriority(){
-    this.actions.forEach((value, index) => {
-      this.compoundActions.push(new CompoundAction(value.actionId, index + 1));
-    });
+    if (this.actions.length > 0) {
+      this.actions.forEach((value, index) => {
+        this.compoundActions.push(new CompoundAction(value.actionId, index + 1));
+      });
+      this.insertCompAndActions();
+    }else{
+      this.alertValidate();
+    }
   }
 
   insertCompAndActions() {
     this.arrayForPassing = new CompoundDto(this.compound.name, this.compound.description, this.compoundActions);
     this.subscriptions.add(
     this.compoundService.createCompound(this.arrayForPassing).subscribe(res => {
-      Swal.fire({icon: 'success',
-        title: 'ok',
-        text: 'Compound was created successfully!'});
-      this.router.navigate(['/library']);
+      this.alertSuccess();
     })
     );
+  }
+
+  alertSuccess(){
+    Swal.fire({icon: 'success',
+      title: 'ok',
+      text: 'Compound was created successfully!'});
+    this.router.navigate(['/library']);
   }
 
   alert(res: boolean) {
@@ -87,7 +97,13 @@ export class CreateCompoundComponent implements OnInit, OnDestroy {
         text: 'Check your name!'});
     }else{
       this.fillTheCompoundActionPriority();
-      this.insertCompAndActions();
     }
+  }
+
+  alertValidate() {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Validate your info!'});
   }
 }

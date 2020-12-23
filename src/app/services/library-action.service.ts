@@ -27,7 +27,7 @@ export class LibraryActionService {
     });
   }
 
-  getActionsByName(paramsVal: Params, actionName: string): Observable<Action[]>{
+    getActionsByName(paramsVal: Params, actionName: string): Observable<Action[]>{
     return this.http.get<Action[]>(this.getActionsByNameUrl + actionName, {  params: paramsVal});
   }
 
